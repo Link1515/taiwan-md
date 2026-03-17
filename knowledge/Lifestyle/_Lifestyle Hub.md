@@ -58,7 +58,17 @@ description: "台灣生活方式融合傳統與現代，創造獨特的島嶼文
 
 ## 驚人事實
 
-台灣的便利商店密度竟然比郵局還高！平均每2,213人就有一家便利商店，而且營業24小時，提供超過3,000種商品和100多種服務，從繳費、取貨到現煮咖啡，儼然成為台灣人的「第二個家」。
+- **便利商店密度全球第二**：全台超過11,000家便利商店，平均每2,213人就有一家，密度僅次於韓國，24小時營業比例達70%
+- **全民健保覆蓋率99.9%**：是世界上覆蓋率最高的全民健保制度，民眾就醫可近性居世界前列，每人每年平均就診15次
+- **機車密度世界第一**：機車密度達每千人678輛，居世界首位，全台機車總數超過1,400萬輛
+- **夜市密度驚人**：全台登記有案夜市超過300個，年營業額超過600億台幣，士林夜市年訪客數達1,200萬人次
+- **外食比例全球最高**：台灣民眾外食比例達77%，居世界之冠，平均每2.3天就會光顧便利商店
+
+![台北市街景](https://upload.wikimedia.org/wikipedia/commons/b/bf/Sec._1%2C_Hankou_Street%2C_Zhongzheng_District%2C_Taipei_City_%28Taiwan%29.JPG)
+*圖片來源：[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sec._1,_Hankou_Street,_Zhongzheng_District,_Taipei_City_(Taiwan).JPG) | CC BY 4.0 | 攝影者：Malcolm Koo*
+
+![台灣便利商店](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/7-Eleven_Minyou_Store_and_FamilyMart_Fubei_Store_20240323.jpg/1280px-7-Eleven_Minyou_Store_and_FamilyMart_Fubei_Store_20240323.jpg)
+*圖片來源：[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:7-Eleven_Minyou_Store_and_FamilyMart_Fubei_Store_20240323.jpg) | CC BY-SA 4.0*
 
 ## 相關主題
 

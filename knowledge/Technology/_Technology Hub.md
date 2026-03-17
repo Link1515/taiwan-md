@@ -102,6 +102,20 @@ description: "台灣以台積電為核心的半導體產業掌握全球晶圓代
 - 《g0v.tw 台灣零時政府》- 官方網站
 - 《數位國家：台灣》- 行政院數位發展部
 
+## 驚人事實
+
+- **半導體全球霸主**：台積電掌握全球晶圓代工市場60%以上市佔率，先進製程市佔率更超過90%，被譽為「護國神山」
+- **3奈米製程技術領先**：台積電是全球首家量產3奈米晶片的公司，技術領先競爭對手2-3年
+- **政府數位化程度世界第一**：聯合國電子治理調查報告，台灣數位政府發展指數(EGDI)全球排名第9，數位服務普及率達95%
+- **開源社群活躍度亞洲第一**：g0v零時政府擁有超過1萬名貢獻者，是全球最大的公民科技社群之一
+- **5G基地台密度全球領先**：每平方公里5G基地台數量居世界前三，5G涵蓋率達85%以上
+
+![台積電新竹廠](https://upload.wikimedia.org/wikipedia/commons/0/02/Tsmc_factory_hsinchu.JPG)
+*圖片來源：[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Tsmc_factory_hsinchu.JPG) | 公有領域 | 攝影者：Arusanov*
+
+![數位政委唐鳳](https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Audrey_Tang_2016.jpg/1280px-Audrey_Tang_2016.jpg)
+*圖片來源：[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Audrey_Tang_2016.jpg) | CC BY 2.0 | 攝影者：TechCrunch*
+
 ---
 
 *台灣證明了小國也可以在全球科技競爭中找到自己的定位，關鍵在於專注與創新。*
