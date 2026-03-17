@@ -41,28 +41,79 @@ import CategoryGrid from '../components/CategoryGrid.astro';
   <section class="cover-story">
     <div class="cover-content">
       <h2>如何理解台灣？</h2>
-      <div class="cover-text">
-        <p class="lead">
-          台灣是一座面積只有 36,000 平方公里的島嶼，卻裝著整個世界的複雜度。
+      <p class="cover-lead">
+        台灣是一座面積只有 36,000 平方公里的島嶼，卻裝著整個世界的複雜度。<br>
+        四百年來，每一個踏上這座島嶼的人，都用不同的眼睛看見不同的台灣。
+      </p>
+
+      <div class="quotes-timeline">
+        <div class="quote-era">
+          <span class="era-label">原住民族</span>
+          <blockquote>
+            「山川河流都是祖先的身體，我們是大地的孩子。」
+            <cite>— 泰雅族口傳文學</cite>
+          </blockquote>
+        </div>
+
+        <div class="quote-era">
+          <span class="era-label">1584</span>
+          <blockquote>
+            「Isla Hermosa」— 美麗諸島。
+            <cite>— 西班牙文獻，最早以「美麗」稱呼台灣的確切記錄</cite>
+          </blockquote>
+        </div>
+
+        <div class="quote-era">
+          <span class="era-label">1697</span>
+          <blockquote>
+            「水沙連內山，山盡處有大潭，廣可數十里。中有嶼，番人聚居之。」
+            <cite>— 郁永河《裨海紀遊》，清朝文人的第一手台灣觀察</cite>
+          </blockquote>
+        </div>
+
+        <div class="quote-era">
+          <span class="era-label">1926</span>
+          <blockquote>
+            「勇士當為義鬥爭！」
+            <cite>— 賴和〈覺悟下的犧牲〉，台灣新文學之父</cite>
+          </blockquote>
+        </div>
+
+        <div class="quote-era">
+          <span class="era-label">1946</span>
+          <blockquote>
+            「台灣人的悲哀，在於不知道自己是誰。」
+            <cite>— 吳濁流《亞細亞的孤兒》</cite>
+          </blockquote>
+        </div>
+
+        <div class="quote-era">
+          <span class="era-label">2013</span>
+          <blockquote>
+            「看見台灣，你會發現，這片土地比你想像的更美麗，也比你想像的更脆弱。」
+            <cite>— 齊柏林《看見台灣》</cite>
+          </blockquote>
+        </div>
+
+        <div class="quote-era">
+          <span class="era-label">今天</span>
+          <blockquote>
+            「海浪的記憶比人長。」
+            <cite>— 夏曼·藍波安《天空的眼睛》，達悟族海洋文學</cite>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="cover-closing">
+        <p>
+          從南島語族的創世到半導體帝國的崛起，從戒嚴的沉默到亞洲第一個同婚合法化。
+          台灣的故事不是一條直線，而是一張網。
         </p>
         <p>
-          從 3,000 公尺的高山到熱帶海岸，從 6,000 年前的南島語族到今天的半導體帝國，
-          從戒嚴時期的沉默到亞洲第一個同婚合法化——台灣的故事不是一條直線，而是一張網。
-        </p>
-        <p>
-          你可能知道台積電，但你知道台灣的便利商店密度世界第一嗎？<br>
-          你可能吃過珍珠奶茶，但你知道台灣茶農每年用「比賽茶」的方式決一死戰嗎？<br>
-          你可能聽說過台灣的民主，但你知道這座島在 40 年前還在戒嚴嗎？
-        </p>
-        <p>
-          <strong>Taiwan.md 不是要給你答案。</strong><br>
+          <strong>Taiwan.md 不是要給你答案。</strong>
           我們想做的，是給你一張地圖——一張讓你自己走進台灣的地圖。
         </p>
-        <p class="cover-cta-text">
-          從任何一個面向開始。歷史、美食、科技、自然。<br>
-          每條路都會帶你到意想不到的地方。<br>
-          因為這就是台灣。
-        </p>
+        <a href="/about" class="cover-link">閱讀完整引言集 →</a>
       </div>
     </div>
   </section>
@@ -406,41 +457,93 @@ import CategoryGrid from '../components/CategoryGrid.astro';
 
   /* Cover Story */
   .cover-story {
-    padding: 4rem 2rem;
-    background: #fefefe;
+    padding: 5rem 2rem;
+    background: #fafbfc;
   }
   .cover-content {
-    max-width: 720px;
+    max-width: 780px;
     margin: 0 auto;
   }
   .cover-content h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: #1a1a2e;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     text-align: center;
   }
-  .cover-text {
-    font-size: 1.1rem;
-    line-height: 1.9;
+  .cover-lead {
+    text-align: center;
+    font-size: 1.15rem;
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+  .quotes-timeline {
+    position: relative;
+    padding-left: 3rem;
+  }
+  .quotes-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #e2e8f0, #3b82f6, #e2e8f0);
+  }
+  .quote-era {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  .quote-era::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 0.5rem;
+    width: 10px;
+    height: 10px;
+    background: #3b82f6;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #3b82f6;
+  }
+  .era-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #3b82f6;
+    margin-bottom: 0.4rem;
+  }
+  .quote-era blockquote {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
     color: #334155;
-  }
-  .cover-text .lead {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: #1a1a2e;
-    margin-bottom: 1.5rem;
-  }
-  .cover-text p {
-    margin-bottom: 1.2rem;
-  }
-  .cover-text strong {
-    color: #1a1a2e;
-  }
-  .cover-cta-text {
     font-style: italic;
-    color: #64748b;
-    border-left: 3px solid #3b82f6;
-    padding-left: 1rem;
-    margin-top: 1.5rem;
   }
+  .quote-era cite {
+    display: block;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-style: normal;
+    margin-top: 0.3rem;
+  }
+  .cover-closing {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #475569;
+  }
+  .cover-closing strong { color: #1a1a2e; }
+  .cover-closing p { margin-bottom: 1rem; }
+  .cover-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .cover-link:hover { text-decoration: underline; }
 </style>
