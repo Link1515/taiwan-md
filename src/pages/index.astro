@@ -561,16 +561,50 @@ const randomArticlesData = JSON.stringify(allArticles);
     }
     
     if (randomBtn && articles.length > 0) {
+      // Fisher-Yates shuffle for true randomness without repeats
+      let shuffled = [...articles];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      let currentIndex = 0;
+
       randomBtn.addEventListener('click', function() {
-        const randomIndex = Math.floor(Math.random() * articles.length);
-        const randomArticle = articles[randomIndex];
+        // Reshuffle when we've gone through all articles
+        if (currentIndex >= shuffled.length) {
+          currentIndex = 0;
+          for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+          }
+        }
+
+        const randomArticle = shuffled[currentIndex++];
         
-        // Add click animation
-        randomBtn.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          randomBtn.style.transform = 'scale(1)';
-          window.location.href = randomArticle.url;
-        }, 150);
+        // Slot machine animation - cycle through random titles
+        const textEl = randomBtn.querySelector('.random-text');
+        const subtitleEl = randomBtn.querySelector('.random-subtitle');
+        const originalText = textEl.textContent;
+        
+        randomBtn.style.pointerEvents = 'none';
+        let ticks = 0;
+        const totalTicks = 8;
+        const interval = setInterval(() => {
+          const preview = shuffled[Math.floor(Math.random() * shuffled.length)];
+          textEl.textContent = preview.title;
+          subtitleEl.textContent = preview.category;
+          textEl.style.opacity = 0.5 + (ticks / totalTicks) * 0.5;
+          ticks++;
+          if (ticks >= totalTicks) {
+            clearInterval(interval);
+            textEl.textContent = randomArticle.title;
+            subtitleEl.textContent = randomArticle.category;
+            textEl.style.opacity = 1;
+            setTimeout(() => {
+              window.location.href = randomArticle.url;
+            }, 400);
+          }
+        }, 80);
       });
     }
 
