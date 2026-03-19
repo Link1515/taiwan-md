@@ -1,4 +1,25 @@
 ---
+import { getCollection } from 'astro:content';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+
+// Count articles dynamically from knowledge/ directory
+function countArticles(categorySlug: string): number {
+  const categoryMap: Record<string, string> = {
+    history: 'History', geography: 'Geography', culture: 'Culture', food: 'Food',
+    art: 'Art', music: 'Music', technology: 'Technology', nature: 'Nature',
+    people: 'People', society: 'Society', economy: 'Economy', lifestyle: 'Lifestyle'
+  };
+  const dirName = categoryMap[categorySlug] || categorySlug;
+  const dirPath = path.join(process.cwd(), 'knowledge', dirName);
+  try {
+    const files = fs.readdirSync(dirPath);
+    return files.filter(f => f.endsWith('.md') && !f.startsWith('_')).length;
+  } catch {
+    return 0;
+  }
+}
+
 const categories = [
   { 
     name: '歷史', 
@@ -7,7 +28,7 @@ const categories = [
     description: '從史前時代到現代，台灣歷史的完整脈絡',
     icon: '📜',
     color: 'from-amber-500 to-orange-600',
-    articles: 8,
+    articles: 0, // replaced
     cover: '/images/wiki/b5604a9d7dac.jpg',
     cover: '/images/wiki/b5604a9d7dac.jpg',
   },
@@ -18,7 +39,7 @@ const categories = [
     description: '台灣的自然環境、地形特色與區域發展',
     icon: '🗺️',
     color: 'from-emerald-500 to-teal-600',
-    articles: 6,
+    articles: 0, // replaced
     cover: '/images/wiki/3a0af3fa1cff.jpg'
   },
   { 
@@ -28,7 +49,7 @@ const categories = [
     description: '多元族群文化的融合與在地特色',
     icon: '🎭',
     color: 'from-purple-500 to-violet-600',
-    articles: 5,
+    articles: 0, // replaced
     cover: '/images/wiki/c3f69037472b.jpg'
   },
   { 
@@ -38,7 +59,7 @@ const categories = [
     description: '從夜市小吃到精緻料理的美食文化',
     icon: '🍜',
     color: 'from-rose-500 to-pink-600',
-    articles: 4,
+    articles: 0, // replaced
     cover: '/images/wiki/6a7bed12c2a6.jpg'
   },
   { 
@@ -48,7 +69,7 @@ const categories = [
     description: '傳統工藝到當代藝術的創作能量',
     icon: '🎨',
     color: 'from-cyan-500 to-blue-600',
-    articles: 3,
+    articles: 0, // replaced
     cover: '/images/wiki/b92068ae92fb.jpg'
   },
   { 
@@ -58,7 +79,7 @@ const categories = [
     description: '從原住民音樂到流行音樂的聲音風景',
     icon: '🎵',
     color: 'from-indigo-500 to-purple-600',
-    articles: 2,
+    articles: 0, // replaced
     cover: '/images/wiki/dba145c33d6d.jpg'
   },
   { 
@@ -68,7 +89,7 @@ const categories = [
     description: '科技島的創新發展與數位轉型',
     icon: '💻',
     color: 'from-slate-500 to-gray-600',
-    articles: 4,
+    articles: 0, // replaced
     cover: '/images/wiki/f43072687967.jpg'
   },
   { 
@@ -78,7 +99,7 @@ const categories = [
     description: '豐富的生態環境與環保議題',
     icon: '🌿',
     color: 'from-green-500 to-emerald-600',
-    articles: 3,
+    articles: 0, // replaced
     cover: '/images/wiki/51510a8c6a50.jpg'
   },
   { 
@@ -88,7 +109,7 @@ const categories = [
     description: '影響台灣發展的重要人物與故事',
     icon: '👥',
     color: 'from-orange-500 to-red-600',
-    articles: 5,
+    articles: 0, // replaced
     cover: '/images/wiki/4eadbb02099d.jpg'
   },
   { 
@@ -98,7 +119,7 @@ const categories = [
     description: '社會變遷與當代議題的深度探討',
     icon: '🏛️',
     color: 'from-blue-500 to-indigo-600',
-    articles: 3,
+    articles: 0, // replaced
     cover: '/images/wiki/c18008c3ec52.jpg'
   },
   { 
@@ -108,7 +129,7 @@ const categories = [
     description: '經濟奇蹟的成因與轉型挑戰',
     icon: '📊',
     color: 'from-yellow-500 to-amber-600',
-    articles: 2,
+    articles: 0, // replaced
     cover: '/images/wiki/53ecc1645c5a.jpg'
   },
   { 
@@ -118,7 +139,7 @@ const categories = [
     description: '台灣人的生活方式與價值觀',
     icon: '🏠',
     color: 'from-teal-500 to-cyan-600',
-    articles: 2,
+    articles: 0, // replaced
     cover: '/images/wiki/c1fb1b3a4b79.jpg'
   }
 ];
@@ -142,7 +163,7 @@ const langPrefix = lang === 'en' ? '/en' : '';
         <div class="category-icon" style={category.cover ? 'display:none' : ''}>{category.icon}</div>
         <div class="category-gradient"></div>
         <div class="article-badge">
-          <span class="article-count">{category.articles}</span>
+          <span class="article-count">{countArticles(category.slug)}</span>
           <span class="article-label">篇</span>
         </div>
       </div>
