@@ -150,6 +150,13 @@ renderer.link = ({ href, title, text }) => {
   return `<a href="${href}"${titleAttr}${targetAttr}>${text}</a>`;
 };
 
+// Broken image fallback: show styled alt text placeholder
+renderer.image = ({ href, title, text }) => {
+  const titleAttr = title ? ` title="${title}"` : '';
+  const altText = text || '';
+  return `<img src="${href}" alt="${altText}"${titleAttr} loading="lazy" onerror="this.onerror=null;this.classList.add('img-broken')" />`;
+};
+
 const processedContent = marked.parse(resolvedContent, { renderer });
 ---
 
@@ -842,6 +849,23 @@ const processedContent = marked.parse(resolvedContent, { renderer });
     margin: 2.5rem auto;
     display: block;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  /* 圖片載入失敗的優雅降級 */
+  .content img.img-broken {
+    min-height: 120px;
+    max-height: 120px;
+    background: #f8f9fa;
+    border: 1.5px dashed #d0d5dd;
+    box-shadow: none;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem;
+    color: #667085;
+    text-align: center;
+    padding: 1rem;
+    line-height: 1.5;
+    word-break: break-word;
+    overflow: hidden;
   }
 
   /* 圖片說明文字 */

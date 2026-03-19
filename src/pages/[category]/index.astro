@@ -121,7 +121,15 @@ function resolveWikilinks(md: string, currentCategory: string) {
 }
 
 const resolvedContent = hubContent ? resolveWikilinks(hubContent, category) : '';
-const hubHtml = resolvedContent ? marked.parse(resolvedContent) : '';
+
+// Broken image fallback for hub pages
+const hubRenderer = new marked.Renderer();
+hubRenderer.image = ({ href, title, text }) => {
+  const titleAttr = title ? ` title="${title}"` : '';
+  const altText = text || '';
+  return `<img src="${href}" alt="${altText}"${titleAttr} loading="lazy" onerror="this.onerror=null;this.classList.add('img-broken')" />`;
+};
+const hubHtml = resolvedContent ? marked.parse(resolvedContent, { renderer: hubRenderer }) : '';
 
 // Split hub HTML into sections at <h2> boundaries for chart injection (economy only)
 const isEconomy = category === 'economy';
@@ -502,6 +510,21 @@ const otherCategories = Object.keys(categoryConfig)
     margin: 2rem auto;
     display: block;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .hub-prose img.img-broken {
+    min-height: 120px;
+    max-height: 120px;
+    background: #f8f9fa;
+    border: 1.5px dashed #d0d5dd;
+    box-shadow: none;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem;
+    color: #667085;
+    text-align: center;
+    padding: 1rem;
+    line-height: 1.5;
+    word-break: break-word;
+    overflow: hidden;
   }
   .hub-prose em {
     font-size: 0.85rem;

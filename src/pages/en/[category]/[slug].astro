@@ -131,6 +131,13 @@ renderer.link = ({ href, title, text }) => {
   return `<a href="${href}"${titleAttr}${targetAttr}>${text}</a>`;
 };
 
+// Broken image fallback: show styled alt text placeholder
+renderer.image = ({ href, title, text }) => {
+  const titleAttr = title ? ` title="${title}"` : '';
+  const altText = text || '';
+  return `<img src="${href}" alt="${altText}"${titleAttr} loading="lazy" onerror="this.onerror=null;this.classList.add('img-broken')" />`;
+};
+
 const processedContent = marked.parse(resolvedContent, { renderer });
 ---
 
@@ -700,6 +707,23 @@ const processedContent = marked.parse(resolvedContent, { renderer });
     margin: 2rem auto;
     display: block;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  /* Graceful fallback for broken images */
+  .content img.img-broken {
+    min-height: 120px;
+    max-height: 120px;
+    background: #f8f9fa;
+    border: 1.5px dashed #d0d5dd;
+    box-shadow: none;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem;
+    color: #667085;
+    text-align: center;
+    padding: 1rem;
+    line-height: 1.5;
+    word-break: break-word;
+    overflow: hidden;
   }
 
   .content p > em:only-child {
