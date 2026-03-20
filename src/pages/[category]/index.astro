@@ -4,7 +4,11 @@ import { resolve, join, basename } from 'path';
 import matter from 'gray-matter';
 import Layout from '../../layouts/Layout.astro';
 import { marked } from 'marked';
-import { categoryConfig, getCategoryConfig, type CategoryKey } from '../../utils/categoryConfig';
+import {
+  categoryConfig,
+  getCategoryConfig,
+  type CategoryKey,
+} from '../../utils/categoryConfig';
 
 export async function getStaticPaths() {
   const categories = Object.keys(categoryConfig);
@@ -32,7 +36,9 @@ export async function getStaticPaths() {
     try {
       const zhFolderPath = resolve(process.cwd(), 'knowledge', folderName);
       const zhFiles = await readdir(zhFolderPath);
-      const zhMarkdownFiles = zhFiles.filter((file) => file.endsWith('.md') && !file.startsWith('_'));
+      const zhMarkdownFiles = zhFiles.filter(
+        (file) => file.endsWith('.md') && !file.startsWith('_'),
+      );
 
       for (const file of zhMarkdownFiles) {
         const filePath = join(zhFolderPath, file);
@@ -58,7 +64,9 @@ export async function getStaticPaths() {
     try {
       const hubFolder = resolve(process.cwd(), 'knowledge', folderName);
       const hubFiles = await readdir(hubFolder);
-      const hubFile = hubFiles.find((f) => f.startsWith('_') && f.includes('Hub'));
+      const hubFile = hubFiles.find(
+        (f) => f.startsWith('_') && f.includes('Hub'),
+      );
       if (hubFile) {
         const hubPath = join(hubFolder, hubFile);
         const hubRaw = await readFile(hubPath, 'utf-8');
@@ -89,7 +97,9 @@ const { categoryInfo, category, hubContent, articles } = Astro.props;
 
 // Compute unique tags for filter
 const allTagsSet = new Set();
-articles.forEach((a: any) => { if (a.tags) a.tags.forEach((t: string) => allTagsSet.add(t)); });
+articles.forEach((a: any) => {
+  if (a.tags) a.tags.forEach((t: string) => allTagsSet.add(t));
+});
 const uniqueTags = [...allTagsSet].sort().slice(0, 12) as string[];
 
 // Load economic data for economy category
@@ -112,21 +122,34 @@ if (category === 'economy') {
 
 function resolveWikilinks(md: string, currentCategory: string) {
   if (!md) return md;
-  return md.replace(/\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g, (_, target, display) => {
-    const label = display || target;
-    if (target.startsWith('_')) {
-      const catName = target.replace(/^_/, '').replace(/ Hub$/, '').toLowerCase();
-      return `[${label}](/${catName})`;
-    }
-    const matchArticle = articles.find((a: any) => a.title === target || a.slug === target || a.slug === encodeURIComponent(target));
-    if (matchArticle) {
-      return `[${label}](/${currentCategory}/${matchArticle.slug})`;
-    }
-    return `**${label}**`;
-  });
+  return md.replace(
+    /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g,
+    (_, target, display) => {
+      const label = display || target;
+      if (target.startsWith('_')) {
+        const catName = target
+          .replace(/^_/, '')
+          .replace(/ Hub$/, '')
+          .toLowerCase();
+        return `[${label}](/${catName})`;
+      }
+      const matchArticle = articles.find(
+        (a: any) =>
+          a.title === target ||
+          a.slug === target ||
+          a.slug === encodeURIComponent(target),
+      );
+      if (matchArticle) {
+        return `[${label}](/${currentCategory}/${matchArticle.slug})`;
+      }
+      return `**${label}**`;
+    },
+  );
 }
 
-const resolvedContent = hubContent ? resolveWikilinks(hubContent, category) : '';
+const resolvedContent = hubContent
+  ? resolveWikilinks(hubContent, category)
+  : '';
 
 // Broken image fallback for hub pages
 const hubRenderer = new marked.Renderer();
@@ -135,7 +158,9 @@ hubRenderer.image = ({ href, title, text }) => {
   const altText = text || '';
   return `<img src="${href}" alt="${altText}"${titleAttr} loading="lazy" onerror="this.onerror=null;this.classList.add('img-broken')" />`;
 };
-const hubHtml = resolvedContent ? marked.parse(resolvedContent, { renderer: hubRenderer }) : '';
+const hubHtml = resolvedContent
+  ? marked.parse(resolvedContent, { renderer: hubRenderer })
+  : '';
 
 // Split hub HTML into sections at <h2> boundaries for chart injection (economy only)
 const isEconomy = category === 'economy';
@@ -143,7 +168,7 @@ type HubSection = { html: string; chartAfter?: string };
 let hubSections: HubSection[] = [];
 if (isEconomy && hubHtml) {
   const parts = (hubHtml as string).split(/(?=<h2>)/);
-  hubSections = parts.map(part => {
+  hubSections = parts.map((part) => {
     let chartAfter: string | undefined;
     if (part.includes('從零到英雄')) chartAfter = 'cpi';
     else if (part.includes('矽島的誕生')) chartAfter = 'taiex';
@@ -155,22 +180,25 @@ if (isEconomy && hubHtml) {
 
 // 其他分類（跨分類導航用）
 const otherCategories = Object.keys(categoryConfig)
-  .filter(cat => cat !== category)
+  .filter((cat) => cat !== category)
   .slice(0, 5) // 只顯示5個
-  .map(cat => ({
+  .map((cat) => ({
     key: cat,
-    ...categoryConfig[cat as CategoryKey]
+    ...categoryConfig[cat as CategoryKey],
   }));
 ---
 
-<Layout 
+<Layout
   title={`${categoryInfo.name} - Taiwan.md`}
   description={`${categoryInfo.description} - 台灣知識庫`}
   category={categoryInfo.name}
 >
   <main class="category-page">
     <!-- Hero Banner -->
-    <section class="hero-banner" style={`background: ${categoryInfo.gradient};`}>
+    <section
+      class="hero-banner"
+      style={`background: ${categoryInfo.gradient};`}
+    >
       <div class="hero-content">
         <div class="hero-icon">{categoryInfo.icon}</div>
         <h1 class="hero-title">{categoryInfo.name}</h1>
@@ -191,161 +219,214 @@ const otherCategories = Object.keys(categoryConfig)
       </nav>
 
       <!-- Hub Content (curated overview) -->
-      {hubHtml && !isEconomy && (
-        <section class="hub-content">
-          <div class="hub-prose" set:html={hubHtml} />
-        </section>
-      )}
+      {
+        hubHtml && !isEconomy && (
+          <section class="hub-content">
+            <div class="hub-prose" set:html={hubHtml} />
+          </section>
+        )
+      }
 
-      {isEconomy && hubSections.length > 0 && (
-        <section class="hub-content">
-          <div class="hub-prose">
-            {hubSections.map((section) => (
-              <Fragment>
-                <div set:html={section.html} />
-                {section.chartAfter && (
-                  <div class="econ-chart-wrapper" data-chart={section.chartAfter}>
-                    <div class="econ-chart-container">
-                      <div class="econ-chart-header">
-                        <h4 class="econ-chart-title">
-                          {section.chartAfter === 'taiex' && '📈 歷年台灣加權股價指數 (TAIEX)'}
-                          {section.chartAfter === 'cpi' && '📊 歷年消費者物價指數 (CPI)'}
-                          {section.chartAfter === 'salary' && '💰 歷年每月經常性薪資'}
-                          {section.chartAfter === 'housing' && '🏠 信義房價指數'}
-                        </h4>
-                        <span class="econ-chart-source">
-                          {section.chartAfter === 'taiex' && '資料來源：臺灣證券交易所'}
-                          {section.chartAfter === 'cpi' && '資料來源：行政院主計總處'}
-                          {section.chartAfter === 'salary' && '資料來源：行政院主計總處'}
-                          {section.chartAfter === 'housing' && '資料來源：信義房屋'}
-                        </span>
-                      </div>
-                      <div class="econ-chart-svg-wrap">
-                        <svg class="econ-chart-svg" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet">
-                        </svg>
-                        <div class="econ-chart-tooltip"></div>
+      {
+        isEconomy && hubSections.length > 0 && (
+          <section class="hub-content">
+            <div class="hub-prose">
+              {hubSections.map((section) => (
+                <Fragment>
+                  <div set:html={section.html} />
+                  {section.chartAfter && (
+                    <div
+                      class="econ-chart-wrapper"
+                      data-chart={section.chartAfter}
+                    >
+                      <div class="econ-chart-container">
+                        <div class="econ-chart-header">
+                          <h4 class="econ-chart-title">
+                            {section.chartAfter === 'taiex' &&
+                              '📈 歷年台灣加權股價指數 (TAIEX)'}
+                            {section.chartAfter === 'cpi' &&
+                              '📊 歷年消費者物價指數 (CPI)'}
+                            {section.chartAfter === 'salary' &&
+                              '💰 歷年每月經常性薪資'}
+                            {section.chartAfter === 'housing' &&
+                              '🏠 信義房價指數'}
+                          </h4>
+                          <span class="econ-chart-source">
+                            {section.chartAfter === 'taiex' &&
+                              '資料來源：臺灣證券交易所'}
+                            {section.chartAfter === 'cpi' &&
+                              '資料來源：行政院主計總處'}
+                            {section.chartAfter === 'salary' &&
+                              '資料來源：行政院主計總處'}
+                            {section.chartAfter === 'housing' &&
+                              '資料來源：信義房屋'}
+                          </span>
+                        </div>
+                        <div class="econ-chart-svg-wrap">
+                          <svg
+                            class="econ-chart-svg"
+                            viewBox="0 0 800 300"
+                            preserveAspectRatio="xMidYMid meet"
+                          />
+                          <div class="econ-chart-tooltip" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
-              </Fragment>
-            ))}
-          </div>
-        </section>
-      )}
+                  )}
+                </Fragment>
+              ))}
+            </div>
+          </section>
+        )
+      }
 
       <!-- Articles Section -->
       <h2 class="articles-heading">📖 延伸閱讀</h2>
-      {articles.length > 0 ? (
-        <section class="articles-section">
-          <!-- Sort & Filter Toolbar -->
-          <div class="toolbar">
-            <div class="toolbar-left">
-              <div class="sort-group">
-                <span class="toolbar-label">排序</span>
-                <button class="sort-btn active" data-sort="featured" type="button">⭐ 精選</button>
-                <button class="sort-btn" data-sort="title" type="button">文 標題</button>
-                <button class="sort-btn" data-sort="date" type="button">🕐 時間</button>
-                <button class="sort-btn" data-sort="reading" type="button">📖 閱讀時間</button>
+      {
+        articles.length > 0 ? (
+          <section class="articles-section">
+            {/* <!-- Sort & Filter Toolbar --> */}
+            <div class="toolbar">
+              <div class="toolbar-left">
+                <div class="sort-group">
+                  <span class="toolbar-label">排序</span>
+                  <button
+                    class="sort-btn active"
+                    data-sort="featured"
+                    type="button"
+                  >
+                    ⭐ 精選
+                  </button>
+                  <button class="sort-btn" data-sort="title" type="button">
+                    文 標題
+                  </button>
+                  <button class="sort-btn" data-sort="date" type="button">
+                    🕐 時間
+                  </button>
+                  <button class="sort-btn" data-sort="reading" type="button">
+                    📖 閱讀時間
+                  </button>
+                </div>
+              </div>
+              <div class="toolbar-right">
+                <div class="filter-group">
+                  <input
+                    type="text"
+                    class="filter-input"
+                    id="articleFilter"
+                    placeholder="🔍 搜尋文章..."
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="tag-filter" id="tagFilter">
+                  {uniqueTags.map((tag) => (
+                    <button class="tag-btn" data-tag={tag} type="button">
+                      {tag}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-            <div class="toolbar-right">
-              <div class="filter-group">
-                <input 
-                  type="text" 
-                  class="filter-input" 
-                  id="articleFilter"
-                  placeholder="🔍 搜尋文章..."
-                  autocomplete="off"
-                />
-              </div>
-              <div class="tag-filter" id="tagFilter">
-                {uniqueTags.map((tag) => (
-                  <button class="tag-btn" data-tag={tag} type="button">{tag}</button>
-                ))}
-              </div>
-            </div>
-          </div>
 
-          <div class="articles-grid" id="articlesGrid">
-            {articles.map((article: any, index: number) => (
-              <article 
-                class={`article-card ${index === 0 && article.featured ? 'featured-card' : ''}`}
-                data-title={article.title}
-                data-date={article.date || ''}
-                data-reading={article.readingTime || 0}
-                data-featured={article.featured ? '1' : '0'}
-                data-tags={JSON.stringify(article.tags || [])}
-                data-lang={article.lang}
-              >
-                <a href={`/${category}/${article.slug}`} class="card-link">
-                  <div class="card-image-placeholder" style={`background: ${categoryInfo.gradient};`}>
-                    <div class="card-image-icon">{categoryInfo.icon}</div>
-                  </div>
-                  
-                  <div class="card-content">
-                    <div class="card-header">
-                      <div class="article-meta">
-                        {article.status && (
-                          <span class="status-tag">{article.status}</span>
-                        )}
-                        {article.lang && (
-                          <span class="lang-tag">{article.lang === 'zh-TW' ? '中文' : 'EN'}</span>
+            <div class="articles-grid" id="articlesGrid">
+              {articles.map((article: any, index: number) => (
+                <article
+                  class={`article-card ${index === 0 && article.featured ? 'featured-card' : ''}`}
+                  data-title={article.title}
+                  data-date={article.date || ''}
+                  data-reading={article.readingTime || 0}
+                  data-featured={article.featured ? '1' : '0'}
+                  data-tags={JSON.stringify(article.tags || [])}
+                  data-lang={article.lang}
+                >
+                  <a href={`/${category}/${article.slug}`} class="card-link">
+                    <div
+                      class="card-image-placeholder"
+                      style={`background: ${categoryInfo.gradient};`}
+                    >
+                      <div class="card-image-icon">{categoryInfo.icon}</div>
+                    </div>
+
+                    <div class="card-content">
+                      <div class="card-header">
+                        <div class="article-meta">
+                          {article.status && (
+                            <span class="status-tag">{article.status}</span>
+                          )}
+                          {article.lang && (
+                            <span class="lang-tag">
+                              {article.lang === 'zh-TW' ? '中文' : 'EN'}
+                            </span>
+                          )}
+                        </div>
+                        {article.featured && (
+                          <div class="featured-badge">⭐ 精選</div>
                         )}
                       </div>
-                      {article.featured && (
-                        <div class="featured-badge">⭐ 精選</div>
-                      )}
+
+                      <h3 class="article-title">{article.title}</h3>
+
+                      <p class="article-excerpt">{article.description}</p>
+
+                      <div class="article-info">
+                        {article.readingTime && (
+                          <span class="info-item">
+                            📖 {article.readingTime} 分鐘
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    
-                    <h3 class="article-title">{article.title}</h3>
-                    
-                    <p class="article-excerpt">{article.description}</p>
-                    
-                    <div class="article-info">
-                      {article.readingTime && (
-                        <span class="info-item">
-                          📖 {article.readingTime} 分鐘
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </a>
-              </article>
-            ))}
-          </div>
-          <div class="no-results" id="noResults" style="display:none;">
-            <p>找不到符合條件的文章 😢</p>
-          </div>
-        </section>
-      ) : (
-        <section class="coming-soon">
-          <div class="coming-soon-content">
-            <div class="coming-soon-icon">{categoryInfo.icon}</div>
-            <h2>內容準備中</h2>
-            <p>這個分類的文章正在努力製作中，敬請期待！</p>
-            <p class="category-desc">未來這裡將會有：{categoryInfo.description}</p>
-            
-            <div class="action-buttons">
-              <a href="/" class="btn-primary">返回首頁</a>
-              <a href="https://github.com/frank890417/taiwan-md" target="_blank" class="btn-secondary">
-                參與貢獻
-              </a>
+                  </a>
+                </article>
+              ))}
             </div>
-          </div>
-        </section>
-      )}
+            <div class="no-results" id="noResults" style="display:none;">
+              <p>找不到符合條件的文章 😢</p>
+            </div>
+          </section>
+        ) : (
+          <section class="coming-soon">
+            <div class="coming-soon-content">
+              <div class="coming-soon-icon">{categoryInfo.icon}</div>
+              <h2>內容準備中</h2>
+              <p>這個分類的文章正在努力製作中，敬請期待！</p>
+              <p class="category-desc">
+                未來這裡將會有：{categoryInfo.description}
+              </p>
+
+              <div class="action-buttons">
+                <a href="/" class="btn-primary">
+                  返回首頁
+                </a>
+                <a
+                  href="https://github.com/frank890417/taiwan-md"
+                  target="_blank"
+                  class="btn-secondary"
+                >
+                  參與貢獻
+                </a>
+              </div>
+            </div>
+          </section>
+        )
+      }
 
       <!-- 探索其他面向 -->
       <section class="explore-more">
         <h2 class="explore-title">探索台灣其他面向</h2>
         <div class="categories-grid">
-          {otherCategories.map(cat => (
-            <a href={`/${cat.key}`} class="category-card" style={`border-color: ${cat.color}; color: ${cat.color};`}>
-              <div class="category-card-icon">{cat.icon}</div>
-              <div class="category-card-name">{cat.name}</div>
-            </a>
-          ))}
+          {
+            otherCategories.map((cat) => (
+              <a
+                href={`/${cat.key}`}
+                class="category-card"
+                style={`border-color: ${cat.color}; color: ${cat.color};`}
+              >
+                <div class="category-card-icon">{cat.icon}</div>
+                <div class="category-card-name">{cat.name}</div>
+              </a>
+            ))
+          }
         </div>
       </section>
     </div>
@@ -356,10 +437,14 @@ const otherCategories = Object.keys(categoryConfig)
   document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('articlesGrid');
     const noResults = document.getElementById('noResults');
-    const filterInput = document.getElementById('articleFilter') as HTMLInputElement;
+    const filterInput = document.getElementById(
+      'articleFilter',
+    ) as HTMLInputElement;
     if (!grid) return;
 
-    const cards = Array.from(grid.querySelectorAll('.article-card')) as HTMLElement[];
+    const cards = Array.from(
+      grid.querySelectorAll('.article-card'),
+    ) as HTMLElement[];
     let activeSort = 'featured';
     let activeTag = '';
 
@@ -379,18 +464,21 @@ const otherCategories = Object.keys(categoryConfig)
           return (b.dataset.date || '').localeCompare(a.dataset.date || '');
         }
         if (method === 'reading') {
-          return parseInt(a.dataset.reading || '0') - parseInt(b.dataset.reading || '0');
+          return (
+            parseInt(a.dataset.reading || '0') -
+            parseInt(b.dataset.reading || '0')
+          );
         }
         return 0;
       });
-      sorted.forEach(card => grid.appendChild(card));
+      sorted.forEach((card) => grid.appendChild(card));
     }
 
     // Filter
     function applyFilters() {
       const query = filterInput?.value.toLowerCase() || '';
       let visible = 0;
-      cards.forEach(card => {
+      cards.forEach((card) => {
         const title = (card.dataset.title || '').toLowerCase();
         const tags: string[] = JSON.parse(card.dataset.tags || '[]');
         const matchQuery = !query || title.includes(query);
@@ -406,9 +494,11 @@ const otherCategories = Object.keys(categoryConfig)
     }
 
     // Sort buttons
-    document.querySelectorAll('.sort-btn').forEach(btn => {
+    document.querySelectorAll('.sort-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+        document
+          .querySelectorAll('.sort-btn')
+          .forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
         activeSort = (btn as HTMLElement).dataset.sort || 'featured';
         sortCards(activeSort);
@@ -416,14 +506,16 @@ const otherCategories = Object.keys(categoryConfig)
     });
 
     // Tag buttons
-    document.querySelectorAll('.tag-btn').forEach(btn => {
+    document.querySelectorAll('.tag-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         const tag = (btn as HTMLElement).dataset.tag || '';
         if (activeTag === tag) {
           activeTag = '';
           btn.classList.remove('active');
         } else {
-          document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+          document
+            .querySelectorAll('.tag-btn')
+            .forEach((b) => b.classList.remove('active'));
           activeTag = tag;
           btn.classList.add('active');
         }
@@ -438,7 +530,12 @@ const otherCategories = Object.keys(categoryConfig)
   });
 </script>
 
-<style define:vars={{ categoryColor: categoryInfo.color, categoryColorLight: categoryInfo.colorLight }}>
+<style
+  define:vars={{
+    categoryColor: categoryInfo.color,
+    categoryColorLight: categoryInfo.colorLight,
+  }}
+>
   .category-page {
     min-height: 100vh;
   }
@@ -467,8 +564,13 @@ const otherCategories = Object.keys(categoryConfig)
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 
   .hero-title {
@@ -476,7 +578,11 @@ const otherCategories = Object.keys(categoryConfig)
     font-weight: 800;
     margin-bottom: 1rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(45deg, rgba(255,255,255,1), rgba(255,255,255,0.8));
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0.8)
+    );
     background-clip: text;
     -webkit-background-clip: text;
   }
@@ -511,7 +617,11 @@ const otherCategories = Object.keys(categoryConfig)
     right: -10%;
     width: 50%;
     height: 100%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 70%
+    );
     border-radius: 50%;
   }
 
@@ -615,7 +725,8 @@ const otherCategories = Object.keys(categoryConfig)
     margin: 1.2rem 0;
     text-align: justify;
   }
-  .hub-prose ul, .hub-prose ol {
+  .hub-prose ul,
+  .hub-prose ol {
     padding-left: 2rem;
     margin: 1rem 0;
     list-style-position: inside;
@@ -642,7 +753,7 @@ const otherCategories = Object.keys(categoryConfig)
     border-radius: 12px;
     margin: 2rem auto;
     display: block;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
   .hub-prose img.img-broken {
     min-height: 120px;
@@ -650,7 +761,10 @@ const otherCategories = Object.keys(categoryConfig)
     background: #f8f9fa;
     border: 1.5px dashed #d0d5dd;
     box-shadow: none;
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family:
+      system-ui,
+      -apple-system,
+      sans-serif;
     font-size: 0.85rem;
     color: #667085;
     text-align: center;
@@ -672,7 +786,8 @@ const otherCategories = Object.keys(categoryConfig)
     margin: 1.5rem 0;
     font-size: 0.95rem;
   }
-  .hub-prose th, .hub-prose td {
+  .hub-prose th,
+  .hub-prose td {
     padding: 0.75rem 1rem;
     border: 1px solid #e2e8f0;
     text-align: left;
@@ -682,8 +797,12 @@ const otherCategories = Object.keys(categoryConfig)
     font-weight: 600;
     color: #1e293b;
   }
-  .hub-prose tr:hover { background: #f8fafc; }
-  .hub-prose strong { color: #1e293b; }
+  .hub-prose tr:hover {
+    background: #f8fafc;
+  }
+  .hub-prose strong {
+    color: #1e293b;
+  }
   .hub-prose hr {
     border: none;
     border-top: 1px solid #e2e8f0;
@@ -844,7 +963,10 @@ const otherCategories = Object.keys(categoryConfig)
     border-radius: 22px;
     overflow: hidden;
     box-shadow: var(--shadow-soft);
-    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease,
+      border-color 0.22s ease;
     border: 1px solid rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(10px);
   }
@@ -1022,7 +1144,8 @@ const otherCategories = Object.keys(categoryConfig)
     flex-wrap: wrap;
   }
 
-  .btn-primary, .btn-secondary {
+  .btn-primary,
+  .btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -1032,7 +1155,11 @@ const otherCategories = Object.keys(categoryConfig)
     font-weight: 600;
     font-size: 0.95rem;
     justify-content: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease,
+      border-color 0.2s ease;
   }
 
   .btn-primary {
@@ -1093,7 +1220,9 @@ const otherCategories = Object.keys(categoryConfig)
     border: 1px solid;
     border-radius: 22px;
     text-decoration: none;
-    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease;
     text-align: center;
     box-shadow: var(--shadow-soft);
   }
@@ -1123,7 +1252,7 @@ const otherCategories = Object.keys(categoryConfig)
     border: 1px solid #e2e8f0;
     border-radius: 16px;
     padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   }
   .econ-chart-header {
     display: flex;
@@ -1163,7 +1292,7 @@ const otherCategories = Object.keys(categoryConfig)
     pointer-events: none;
     white-space: nowrap;
     z-index: 10;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transform: translate(-50%, -120%);
   }
   .econ-milestone-label {
@@ -1222,129 +1351,187 @@ const otherCategories = Object.keys(categoryConfig)
   }
 </style>
 
-{isEconomy && (
-<script define:vars={{ taiexData, cpiData, salaryData, housingData }}>
-  document.addEventListener('DOMContentLoaded', () => {
-    const chartConfigs = {
-      taiex: { data: taiexData, color: '#dc2626', yKey: 'close', label: '加權指數', format: v => v.toLocaleString() + ' 點' },
-      cpi:   { data: cpiData, color: '#2563eb', yKey: 'value', label: 'CPI', format: v => v.toFixed(1) },
-      salary:{ data: salaryData, color: '#059669', yKey: 'value', label: '月薪', format: v => 'NT$ ' + v.toLocaleString() },
-      housing:{ data: housingData, color: '#7c3aed', yKey: 'value', label: '房價指數', format: v => v.toFixed(1) },
-    };
+<script define:vars={{ taiexData, cpiData, salaryData, housingData, isEconomy }}
+>
+  function init() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const chartConfigs = {
+        taiex: {
+          data: taiexData,
+          color: '#dc2626',
+          yKey: 'close',
+          label: '加權指數',
+          format: (v) => v.toLocaleString() + ' 點',
+        },
+        cpi: {
+          data: cpiData,
+          color: '#2563eb',
+          yKey: 'value',
+          label: 'CPI',
+          format: (v) => v.toFixed(1),
+        },
+        salary: {
+          data: salaryData,
+          color: '#059669',
+          yKey: 'value',
+          label: '月薪',
+          format: (v) => 'NT$ ' + v.toLocaleString(),
+        },
+        housing: {
+          data: housingData,
+          color: '#7c3aed',
+          yKey: 'value',
+          label: '房價指數',
+          format: (v) => v.toFixed(1),
+        },
+      };
 
-    document.querySelectorAll('.econ-chart-wrapper').forEach(wrapper => {
-      const chartType = wrapper.dataset.chart;
-      const config = chartConfigs[chartType];
-      if (!config || !config.data || config.data.length === 0) return;
+      document.querySelectorAll('.econ-chart-wrapper').forEach((wrapper) => {
+        const chartType = wrapper.dataset.chart;
+        const config = chartConfigs[chartType];
+        if (!config || !config.data || config.data.length === 0) return;
 
-      const svg = wrapper.querySelector('.econ-chart-svg');
-      const tooltip = wrapper.querySelector('.econ-chart-tooltip');
-      const data = config.data;
-      const ns = 'http://www.w3.org/2000/svg';
+        const svg = wrapper.querySelector('.econ-chart-svg');
+        const tooltip = wrapper.querySelector('.econ-chart-tooltip');
+        const data = config.data;
+        const ns = 'http://www.w3.org/2000/svg';
 
-      const W = 800, H = 300;
-      const pad = { top: 30, right: 20, bottom: 40, left: 65 };
-      const cw = W - pad.left - pad.right;
-      const ch = H - pad.top - pad.bottom;
+        const W = 800,
+          H = 300;
+        const pad = { top: 30, right: 20, bottom: 40, left: 65 };
+        const cw = W - pad.left - pad.right;
+        const ch = H - pad.top - pad.bottom;
 
-      const years = data.map(d => d.year);
-      const values = data.map(d => d[config.yKey]);
-      const minY = Math.min(...values) * 0.9;
-      const maxY = Math.max(...values) * 1.1;
+        const years = data.map((d) => d.year);
+        const values = data.map((d) => d[config.yKey]);
+        const minY = Math.min(...values) * 0.9;
+        const maxY = Math.max(...values) * 1.1;
 
-      const xScale = (year) => pad.left + ((year - years[0]) / (years[years.length-1] - years[0])) * cw;
-      const yScale = (val) => pad.top + ch - ((val - minY) / (maxY - minY)) * ch;
+        const xScale = (year) =>
+          pad.left +
+          ((year - years[0]) / (years[years.length - 1] - years[0])) * cw;
+        const yScale = (val) =>
+          pad.top + ch - ((val - minY) / (maxY - minY)) * ch;
 
-      // Grid lines
-      const gridCount = 5;
-      for (let i = 0; i <= gridCount; i++) {
-        const yVal = minY + (maxY - minY) * (i / gridCount);
-        const y = yScale(yVal);
-        const line = document.createElementNS(ns, 'line');
-        line.setAttribute('x1', pad.left); line.setAttribute('x2', W - pad.right);
-        line.setAttribute('y1', y); line.setAttribute('y2', y);
-        line.setAttribute('stroke', '#e2e8f0'); line.setAttribute('stroke-width', '1');
-        svg.appendChild(line);
-        const label = document.createElementNS(ns, 'text');
-        label.setAttribute('x', pad.left - 8); label.setAttribute('y', y + 4);
-        label.setAttribute('text-anchor', 'end'); label.setAttribute('fill', '#94a3b8');
-        label.setAttribute('font-size', '10');
-        label.textContent = chartType === 'salary' ? Math.round(yVal/1000) + 'K' : chartType === 'taiex' ? Math.round(yVal).toLocaleString() : yVal.toFixed(0);
-        svg.appendChild(label);
-      }
-
-      // X axis labels
-      const yearStep = Math.max(1, Math.floor(years.length / 8));
-      for (let i = 0; i < years.length; i += yearStep) {
-        const x = xScale(years[i]);
-        const label = document.createElementNS(ns, 'text');
-        label.setAttribute('x', x); label.setAttribute('y', H - 8);
-        label.setAttribute('text-anchor', 'middle'); label.setAttribute('fill', '#94a3b8');
-        label.setAttribute('font-size', '10');
-        label.textContent = years[i];
-        svg.appendChild(label);
-      }
-
-      // Area fill
-      let areaPath = `M ${xScale(years[0])} ${yScale(values[0])}`;
-      for (let i = 1; i < data.length; i++) {
-        areaPath += ` L ${xScale(years[i])} ${yScale(values[i])}`;
-      }
-      areaPath += ` L ${xScale(years[years.length-1])} ${pad.top + ch} L ${xScale(years[0])} ${pad.top + ch} Z`;
-      const area = document.createElementNS(ns, 'path');
-      area.setAttribute('d', areaPath);
-      area.setAttribute('fill', config.color); area.setAttribute('opacity', '0.08');
-      svg.appendChild(area);
-
-      // Line
-      let linePath = `M ${xScale(years[0])} ${yScale(values[0])}`;
-      for (let i = 1; i < data.length; i++) {
-        linePath += ` L ${xScale(years[i])} ${yScale(values[i])}`;
-      }
-      const line = document.createElementNS(ns, 'path');
-      line.setAttribute('d', linePath);
-      line.setAttribute('fill', 'none'); line.setAttribute('stroke', config.color);
-      line.setAttribute('stroke-width', '2.5'); line.setAttribute('stroke-linejoin', 'round');
-      svg.appendChild(line);
-
-      // Milestones & interactive dots
-      data.forEach((d, i) => {
-        const x = xScale(d.year);
-        const y = yScale(d[config.yKey]);
-
-        if (d.milestone) {
-          const dot = document.createElementNS(ns, 'circle');
-          dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', '5');
-          dot.setAttribute('fill', config.color); dot.setAttribute('stroke', 'white'); dot.setAttribute('stroke-width', '2');
-          dot.setAttribute('class', 'econ-milestone-dot');
-          svg.appendChild(dot);
-          const mlabel = document.createElementNS(ns, 'text');
-          mlabel.setAttribute('x', x); mlabel.setAttribute('y', y - 12);
-          mlabel.setAttribute('class', 'econ-milestone-label');
-          mlabel.textContent = d.milestone;
-          svg.appendChild(mlabel);
+        // Grid lines
+        const gridCount = 5;
+        for (let i = 0; i <= gridCount; i++) {
+          const yVal = minY + (maxY - minY) * (i / gridCount);
+          const y = yScale(yVal);
+          const line = document.createElementNS(ns, 'line');
+          line.setAttribute('x1', pad.left);
+          line.setAttribute('x2', W - pad.right);
+          line.setAttribute('y1', y);
+          line.setAttribute('y2', y);
+          line.setAttribute('stroke', '#e2e8f0');
+          line.setAttribute('stroke-width', '1');
+          svg.appendChild(line);
+          const label = document.createElementNS(ns, 'text');
+          label.setAttribute('x', pad.left - 8);
+          label.setAttribute('y', y + 4);
+          label.setAttribute('text-anchor', 'end');
+          label.setAttribute('fill', '#94a3b8');
+          label.setAttribute('font-size', '10');
+          label.textContent =
+            chartType === 'salary'
+              ? Math.round(yVal / 1000) + 'K'
+              : chartType === 'taiex'
+                ? Math.round(yVal).toLocaleString()
+                : yVal.toFixed(0);
+          svg.appendChild(label);
         }
 
-        // Invisible hover area
-        const hover = document.createElementNS(ns, 'rect');
-        const barW = cw / data.length;
-        hover.setAttribute('x', x - barW/2); hover.setAttribute('y', pad.top);
-        hover.setAttribute('width', barW); hover.setAttribute('height', ch);
-        hover.setAttribute('fill', 'transparent'); hover.setAttribute('cursor', 'crosshair');
+        // X axis labels
+        const yearStep = Math.max(1, Math.floor(years.length / 8));
+        for (let i = 0; i < years.length; i += yearStep) {
+          const x = xScale(years[i]);
+          const label = document.createElementNS(ns, 'text');
+          label.setAttribute('x', x);
+          label.setAttribute('y', H - 8);
+          label.setAttribute('text-anchor', 'middle');
+          label.setAttribute('fill', '#94a3b8');
+          label.setAttribute('font-size', '10');
+          label.textContent = years[i];
+          svg.appendChild(label);
+        }
 
-        hover.addEventListener('mouseenter', () => {
-          tooltip.style.display = 'block';
-          tooltip.innerHTML = `<strong>${d.year}</strong>　${config.label}：${config.format(d[config.yKey])}`;
+        // Area fill
+        let areaPath = `M ${xScale(years[0])} ${yScale(values[0])}`;
+        for (let i = 1; i < data.length; i++) {
+          areaPath += ` L ${xScale(years[i])} ${yScale(values[i])}`;
+        }
+        areaPath += ` L ${xScale(years[years.length - 1])} ${pad.top + ch} L ${xScale(years[0])} ${pad.top + ch} Z`;
+        const area = document.createElementNS(ns, 'path');
+        area.setAttribute('d', areaPath);
+        area.setAttribute('fill', config.color);
+        area.setAttribute('opacity', '0.08');
+        svg.appendChild(area);
+
+        // Line
+        let linePath = `M ${xScale(years[0])} ${yScale(values[0])}`;
+        for (let i = 1; i < data.length; i++) {
+          linePath += ` L ${xScale(years[i])} ${yScale(values[i])}`;
+        }
+        const line = document.createElementNS(ns, 'path');
+        line.setAttribute('d', linePath);
+        line.setAttribute('fill', 'none');
+        line.setAttribute('stroke', config.color);
+        line.setAttribute('stroke-width', '2.5');
+        line.setAttribute('stroke-linejoin', 'round');
+        svg.appendChild(line);
+
+        // Milestones & interactive dots
+        data.forEach((d, i) => {
+          const x = xScale(d.year);
+          const y = yScale(d[config.yKey]);
+
+          if (d.milestone) {
+            const dot = document.createElementNS(ns, 'circle');
+            dot.setAttribute('cx', x);
+            dot.setAttribute('cy', y);
+            dot.setAttribute('r', '5');
+            dot.setAttribute('fill', config.color);
+            dot.setAttribute('stroke', 'white');
+            dot.setAttribute('stroke-width', '2');
+            dot.setAttribute('class', 'econ-milestone-dot');
+            svg.appendChild(dot);
+            const mlabel = document.createElementNS(ns, 'text');
+            mlabel.setAttribute('x', x);
+            mlabel.setAttribute('y', y - 12);
+            mlabel.setAttribute('class', 'econ-milestone-label');
+            mlabel.textContent = d.milestone;
+            svg.appendChild(mlabel);
+          }
+
+          // Invisible hover area
+          const hover = document.createElementNS(ns, 'rect');
+          const barW = cw / data.length;
+          hover.setAttribute('x', x - barW / 2);
+          hover.setAttribute('y', pad.top);
+          hover.setAttribute('width', barW);
+          hover.setAttribute('height', ch);
+          hover.setAttribute('fill', 'transparent');
+          hover.setAttribute('cursor', 'crosshair');
+
+          hover.addEventListener('mouseenter', () => {
+            tooltip.style.display = 'block';
+            tooltip.innerHTML = `<strong>${d.year}</strong>　${config.label}：${config.format(d[config.yKey])}`;
+          });
+          hover.addEventListener('mousemove', (e) => {
+            const rect = wrapper
+              .querySelector('.econ-chart-svg-wrap')
+              .getBoundingClientRect();
+            tooltip.style.left = e.clientX - rect.left + 'px';
+            tooltip.style.top = e.clientY - rect.top + 'px';
+          });
+          hover.addEventListener('mouseleave', () => {
+            tooltip.style.display = 'none';
+          });
+          svg.appendChild(hover);
         });
-        hover.addEventListener('mousemove', (e) => {
-          const rect = wrapper.querySelector('.econ-chart-svg-wrap').getBoundingClientRect();
-          tooltip.style.left = (e.clientX - rect.left) + 'px';
-          tooltip.style.top = (e.clientY - rect.top) + 'px';
-        });
-        hover.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
-        svg.appendChild(hover);
       });
     });
-  });
+  }
+
+  if (isEconomy) init();
 </script>
-)}
