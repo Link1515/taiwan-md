@@ -28,7 +28,7 @@
       "民主化"
     ],
     "url": "https://taiwan.md/History/%E4%BA%8C%E4%BA%8C%E5%85%AB%E4%BA%8B%E4%BB%B6",
-    "readingTime": 9,
+    "readingTime": 11,
     "featured": false,
     "date": "2026-03-17",
     "path": "History/二二八事件.md"
@@ -80,21 +80,22 @@
     "path": "Society/人權與性別平等.md"
   },
   {
-    "title": "大立光電：從台中小廠到全球鏡頭王者的傳奇",
-    "description": "從1980年東海大學旁的小工廠起步，大立光電用40年時間成為全球手機鏡頭霸主，股價曾飆破6,000元創台股天價紀錄",
+    "title": "大立光電：當工匠精神遇到架構革命",
+    "description": "擁有全球最強塑膠鏡頭技術的台灣隱形冠軍，為何在技術最領先時被中國對手搶走iPhone訂單？",
     "category": "Economy",
     "tags": [
-      "Economy",
+      "經濟",
       "企業",
+      "大立光電",
       "光學產業",
-      "股王",
-      "手機鏡頭",
-      "精密製造"
+      "精密製造",
+      "蘋果供應鏈",
+      "架構創新"
     ],
     "url": "https://taiwan.md/Economy/%E5%8F%B0%E7%81%A3%E4%BC%81%E6%A5%AD%EF%BC%9A%E5%A4%A7%E7%AB%8B%E5%85%89%E9%9B%BB",
-    "readingTime": 14,
+    "readingTime": 24,
     "featured": false,
-    "date": "2026-03-20",
+    "date": "2026-03-22",
     "path": "Economy/台灣企業：大立光電.md"
   },
   {
@@ -887,7 +888,7 @@
   },
   {
     "title": "台灣企業：台達電子",
-    "description": "全球電源管理領導者，從變壓器廠到綠能科技先驅",
+    "description": "從30萬台幣到小行星命名：一個戰亂孤兒的電源帝國",
     "category": "Economy",
     "tags": [
       "Economy",
@@ -898,9 +899,9 @@
       "ESG"
     ],
     "url": "https://taiwan.md/Economy/%E5%8F%B0%E7%81%A3%E4%BC%81%E6%A5%AD%EF%BC%9A%E5%8F%B0%E9%81%94%E9%9B%BB%E5%AD%90",
-    "readingTime": 16,
-    "featured": false,
-    "date": "2026-03-20",
+    "readingTime": 13,
+    "featured": true,
+    "date": "2026-03-22",
     "path": "Economy/台灣企業：台達電子.md"
   },
   {
@@ -923,7 +924,7 @@
   },
   {
     "title": "台灣企業：巨大機械",
-    "description": "從代工奴隸到標準制定者：巨大機械如何重新定義「台灣製造」的含義",
+    "description": "從被美國大廠拋棄的代工奴隸，到制定全球自行車技術標準的隱形帝國",
     "category": "Economy",
     "tags": [
       "經濟",
@@ -931,12 +932,14 @@
       "巨大機械",
       "捷安特",
       "製造業",
-      "品牌轉型"
+      "品牌轉型",
+      "A-Team",
+      "電動自行車"
     ],
     "url": "https://taiwan.md/Economy/%E5%8F%B0%E7%81%A3%E4%BC%81%E6%A5%AD%EF%BC%9A%E5%B7%A8%E5%A4%A7%E6%A9%9F%E6%A2%B0",
-    "readingTime": 25,
+    "readingTime": 24,
     "featured": false,
-    "date": "2026-03-21",
+    "date": "2026-03-22",
     "path": "Economy/台灣企業：巨大機械.md"
   },
   {
@@ -1008,21 +1011,21 @@
   },
   {
     "title": "台灣企業：富邦金控",
-    "description": "台灣市值第一大金控，蔡明忠兄弟打造的金融王國",
+    "description": "10人到60,000人：蔡家兄弟如何用60年建造台灣最大金融帝國",
     "category": "Economy",
     "tags": [
-      "Economy",
+      "經濟",
       "企業",
+      "富邦金控",
+      "蔡明忠",
       "金融業",
-      "金控",
-      "銀行",
-      "保險",
-      "富邦集團"
+      "併購",
+      "數位轉型"
     ],
     "url": "https://taiwan.md/Economy/%E5%8F%B0%E7%81%A3%E4%BC%81%E6%A5%AD%EF%BC%9A%E5%AF%8C%E9%82%A6%E9%87%91%E6%8E%A7",
-    "readingTime": 14,
+    "readingTime": 20,
     "featured": false,
-    "date": "2026-03-20",
+    "date": "2026-03-22",
     "path": "Economy/台灣企業：富邦金控.md"
   },
   {
@@ -4029,8 +4032,8 @@
     "path": "Economy/台灣企業：奇美實業.md"
   },
   {
-    "title": "宗教與民間信仰",
-    "description": "從恐懼管理到信仰帝國：台灣如何創造全球最密集卻最自由的宗教生態",
+    "title": "宗教與民間信仰：從恐懼管理到信仰帝國",
+    "description": "台灣有全球最高廟宇密度，卻也是宗教自由世界第一——這套矛盾背後隱藏17世紀軍事移民的生存智慧",
     "category": "Lifestyle",
     "tags": [
       "生活",
@@ -4043,7 +4046,7 @@
       "實用主義"
     ],
     "url": "https://taiwan.md/Lifestyle/%E5%AE%97%E6%95%99%E8%88%87%E6%B0%91%E9%96%93%E4%BF%A1%E4%BB%B0",
-    "readingTime": 28,
+    "readingTime": 16,
     "featured": false,
     "date": "2026-03-22",
     "path": "Lifestyle/宗教與民間信仰.md"
@@ -5620,7 +5623,7 @@
       "療癒文化"
     ],
     "url": "https://taiwan.md/Lifestyle/%E6%BA%AB%E6%B3%89%E6%96%87%E5%8C%96",
-    "readingTime": 20,
+    "readingTime": 19,
     "featured": false,
     "date": "2026-03-22",
     "path": "Lifestyle/溫泉文化.md"
@@ -7038,6 +7041,24 @@
     "path": "en/People/crowd-lu-indie-folk-treasure.md"
   },
   {
+    "title": "Delta Electronics: Taiwan's Power Empire",
+    "description": "From War Orphan to Asteroid Namesake: How NT$300,000 Built a Global Energy Giant",
+    "category": "en",
+    "tags": [
+      "Economy",
+      "Enterprise",
+      "Power Management",
+      "Green Technology",
+      "Industrial Automation",
+      "ESG"
+    ],
+    "url": "https://taiwan.md/en/Economy/%E5%8F%B0%E7%81%A3%E4%BC%81%E6%A5%AD%EF%BC%9A%E5%8F%B0%E9%81%94%E9%9B%BB%E5%AD%90",
+    "readingTime": 43,
+    "featured": true,
+    "date": "2026-03-22",
+    "path": "en/Economy/台灣企業：台達電子.md"
+  },
+  {
     "title": "democracy-and-democratization",
     "description": "Taiwan's successful democratization holds significant historical and contemporary importance. It proves that Chinese soc",
     "category": "en",
@@ -7446,6 +7467,26 @@
     "path": "en/Lifestyle/hot-spring-culture.md"
   },
   {
+    "title": "Hot Spring Culture",
+    "description": "From military therapy to world-class thermal wonders: How Taiwan accidentally became a hot spring empire",
+    "category": "en",
+    "tags": [
+      "lifestyle",
+      "hot springs",
+      "Beitou",
+      "Jiaoxi",
+      "Guanziling",
+      "Japanese colonial period",
+      "geology",
+      "healing culture"
+    ],
+    "url": "https://taiwan.md/en/Lifestyle/%E6%BA%AB%E6%B3%89%E6%96%87%E5%8C%96",
+    "readingTime": 71,
+    "featured": false,
+    "date": "2026-03-22",
+    "path": "en/Lifestyle/溫泉文化.md"
+  },
+  {
     "title": "Hou Hsiao-hsien",
     "description": "",
     "category": "en",
@@ -7825,6 +7866,24 @@
     "featured": true,
     "date": "2026-03-19",
     "path": "en/People/lai-ching-te.md"
+  },
+  {
+    "title": "Largan Precision: When Craftsmanship Meets Architectural Revolution",
+    "description": "How the world leader in plastic camera lens technology lost iPhone orders to Chinese rivals during its peak innovation period.",
+    "category": "en",
+    "tags": [
+      "Economy",
+      "Largan",
+      "Optics Industry",
+      "Apple Supply Chain",
+      "Precision Manufacturing",
+      "Innovation"
+    ],
+    "url": "https://taiwan.md/en/Economy/%E5%8F%B0%E7%81%A3%E4%BC%81%E6%A5%AD%EF%BC%9A%E5%A4%A7%E7%AB%8B%E5%85%89%E9%9B%BB",
+    "readingTime": 77,
+    "featured": false,
+    "date": "2026-03-22",
+    "path": "en/Economy/台灣企業：大立光電.md"
   },
   {
     "title": "Lee Teng-hui",
@@ -8584,6 +8643,26 @@
     "path": "en/Lifestyle/religion-folk-beliefs.md"
   },
   {
+    "title": "Religion and Folk Beliefs: From Fear Management to Faith Empire",
+    "description": "Taiwan has the worlds highest temple density yet ranks #1 in religious freedom—this paradox reveals the remarkable evolution of 17th-century military migrants survival wisdom",
+    "category": "en",
+    "tags": [
+      "life",
+      "religion",
+      "Mazu",
+      "folk beliefs",
+      "temple culture",
+      "Wangye worship",
+      "religious freedom",
+      "pragmatism"
+    ],
+    "url": "https://taiwan.md/en/Lifestyle/%E5%AE%97%E6%95%99%E8%88%87%E6%B0%91%E9%96%93%E4%BF%A1%E4%BB%B0",
+    "readingTime": 53,
+    "featured": false,
+    "date": "2026-03-22",
+    "path": "en/Lifestyle/宗教與民間信仰.md"
+  },
+  {
     "title": "Renjian Magazine (人間雜誌)",
     "description": "47 issues, four years, a quiet revolution launched with photography and writing—the starting point of Taiwan's documentary literature",
     "category": "en",
@@ -8905,6 +8984,45 @@
     "featured": false,
     "date": "2026-03-20",
     "path": "en/Culture/taiwan-comics-and-animation-culture.md"
+  },
+  {
+    "title": "Taiwan Companies: Fubon Financial Holdings",
+    "description": "From 10 employees to 60,000: How the Tsai brothers built Taiwan's largest financial empire over 60 years",
+    "category": "en",
+    "tags": [
+      "Economy",
+      "Companies",
+      "Fubon Financial Holdings",
+      "Daniel Tsai",
+      "Financial Industry",
+      "M&A",
+      "Digital Transformation"
+    ],
+    "url": "https://taiwan.md/en/Economy/%E5%8F%B0%E7%81%A3%E4%BC%81%E6%A5%AD%EF%BC%9A%E5%AF%8C%E9%82%A6%E9%87%91%E6%8E%A7",
+    "readingTime": 68,
+    "featured": false,
+    "date": "2026-03-22",
+    "path": "en/Economy/台灣企業：富邦金控.md"
+  },
+  {
+    "title": "Taiwan Companies: Giant Manufacturing",
+    "description": "From abandoned OEM slave to the hidden empire that sets global bicycle technology standards",
+    "category": "en",
+    "tags": [
+      "Economy",
+      "Enterprises",
+      "Giant Manufacturing",
+      "Giant",
+      "Manufacturing",
+      "Brand Transformation",
+      "A-Team",
+      "E-bikes"
+    ],
+    "url": "https://taiwan.md/en/Economy/Taiwan%20Companies%3A%20Giant%20Manufacturing",
+    "readingTime": 80,
+    "featured": false,
+    "date": "2026-03-22",
+    "path": "en/Economy/Taiwan Companies: Giant Manufacturing.md"
   },
   {
     "title": "Taiwan Contemporary Art",

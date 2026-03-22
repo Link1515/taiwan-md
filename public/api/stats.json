@@ -1,12 +1,12 @@
 {
-  "totalArticles": 740,
+  "totalArticles": 746,
   "totalCategories": 26,
   "estimatedContributors": 50,
-  "totalTags": 1732,
+  "totalTags": 1759,
   "categories": [
     {
       "name": "en",
-      "count": 358
+      "count": 364
     },
     {
       "name": "History",
@@ -116,7 +116,7 @@
     },
     {
       "name": "Economy",
-      "count": 31
+      "count": 33
     },
     {
       "name": "企業",
@@ -183,17 +183,17 @@
       "count": 9
     },
     {
-      "name": "製造業",
+      "name": "數位轉型",
       "count": 9
     },
     {
-      "name": "生活",
+      "name": "製造業",
       "count": 9
     }
   ],
   "languageDistribution": {
-    "zh-TW": 740,
+    "zh-TW": 746,
     "en": 0
   },
-  "lastUpdated": "2026-03-21T17:33:07.202Z"
+  "lastUpdated": "2026-03-22T01:12:41.376Z"
 }
