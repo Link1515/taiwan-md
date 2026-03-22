@@ -357,32 +357,6 @@
     "path": "半導體產業.md"
   },
   {
-    "title": "台北101",
-    "description": "距離活動斷層僅 200 公尺，台灣人在地震帶上蓋了世界第一高樓——然後有人徒手爬了上去。508 公尺高的台北101融合竹節美學與全球最大 TMD 阻尼器，更是霍諾德徒手獨攀與垂直馬拉松的極限舞台，展現台灣工程奇蹟與挑戰精神。",
-    "category": "Geography",
-    "tags": [
-      "台北",
-      "地標",
-      "摩天大樓",
-      "建築",
-      "抗震工程",
-      "TMD",
-      "垂直馬拉松",
-      "跨年煙火",
-      "觀景台",
-      "李祖原",
-      "信義區",
-      "霍諾德",
-      "徒手獨攀",
-      "free solo"
-    ],
-    "url": "https://taiwan.md/Geography/%E5%8F%B0%E5%8C%97101",
-    "readingTime": 10,
-    "featured": false,
-    "date": "2026-03-23",
-    "path": "Geography/台北101.md"
-  },
-  {
     "title": "台泥：台灣第一上市公司的綠色轉型傳奇",
     "description": "1962年台灣證交所為它而生，股票代號1101象徵台股起源。從辜家三代經營76年，台泥用一座座水泥窯見證台灣建設奇蹟，如今轉型綠色企業迎戰碳中和時代",
     "category": "Economy",
@@ -3554,6 +3528,33 @@
     "featured": false,
     "date": "2026-03-20",
     "path": "Economy/台灣企業：兆豐金控.md"
+  },
+  {
+    "title": "在搖晃的島嶼上，他們蓋了一座能飛的塔",
+    "description": "距離活動斷層僅 200 公尺，台灣人偏要在最不穩定的土地上建出世界最高樓——然後有個瘋子花 91 分鐘徒手爬了上去。",
+    "category": "Geography",
+    "tags": [
+      "台北101",
+      "地標",
+      "摩天大樓",
+      "抗震工程",
+      "TMD阻尼器",
+      "垂直馬拉松",
+      "跨年煙火",
+      "霍諾德",
+      "徒手攀爬",
+      "free solo",
+      "信義區",
+      "建築奇蹟",
+      "李祖原",
+      "LEED白金",
+      "綠建築"
+    ],
+    "url": "https://taiwan.md/Geography/%E5%8F%B0%E5%8C%97101",
+    "readingTime": 18,
+    "featured": false,
+    "date": "2026-03-23",
+    "path": "Geography/台北101.md"
   },
   {
     "title": "地形與地質",
@@ -10076,32 +10077,6 @@
     "path": "en/People/tai-yu-wu.md"
   },
   {
-    "title": "Taipei 101",
-    "description": "Just 200 meters from an active fault line, Taiwanese built the world's tallest building in an earthquake zone—then someone climbed it with bare hands. At 508 meters high, Taipei 101 combines bamboo-inspired aesthetics with the world's largest TMD damper, serving as the ultimate stage for Honnold's free solo climb and vertical marathons, showcasing Taiwan's engineering miracle and spirit of challenge.",
-    "category": "en",
-    "tags": [
-      "Taipei",
-      "Landmark",
-      "Skyscraper",
-      "Architecture",
-      "Seismic Engineering",
-      "TMD",
-      "Vertical Marathon",
-      "New Year Fireworks",
-      "Observatory",
-      "Li Tsu-yuan",
-      "Xinyi District",
-      "Honnold",
-      "Free Solo",
-      "Free Climbing"
-    ],
-    "url": "https://taiwan.md/en/Geography/taipei-101",
-    "readingTime": 28,
-    "featured": false,
-    "date": "2026-03-23",
-    "path": "en/Geography/taipei-101.md"
-  },
-  {
     "title": "Taiwan AI Labs - Pioneering AI for Social Good",
     "description": "A non-profit AI research institute founded by PTT creator Audrey Tang, focusing on smart healthcare, smart cities, and disinformation defense through tech for good philosophy",
     "category": "en",
@@ -10318,6 +10293,59 @@
     "featured": false,
     "date": "2026-03-17",
     "path": "en/Art/contemporary-art.md"
+  },
+  {
+    "title": "Taiwan Corporation: ASUS",
+    "description": "Tech giant that grew from motherboard startup: Inspiring transformation from small Hsinchu factory to world's fifth-largest PC brand",
+    "category": "en",
+    "tags": [
+      "Economy",
+      "Corporations",
+      "Computer Hardware",
+      "Brand",
+      "Technology"
+    ],
+    "url": "https://taiwan.md/en/Economy/asus-computer",
+    "readingTime": 44,
+    "featured": false,
+    "date": "2026-03-20",
+    "path": "en/Economy/asus-computer.md"
+  },
+  {
+    "title": "Taiwan Corporation: Foxconn Precision Industry",
+    "description": "The world's largest electronics manufacturing empire and the hidden champion behind your iPhone",
+    "category": "en",
+    "tags": [
+      "Economy",
+      "Corporations",
+      "Electronics Manufacturing",
+      "Contract Manufacturing",
+      "Foxconn",
+      "Taiwan"
+    ],
+    "url": "https://taiwan.md/en/Economy/foxconn-precision-industry",
+    "readingTime": 42,
+    "featured": false,
+    "date": "2026-03-20",
+    "path": "en/Economy/foxconn-precision-industry.md"
+  },
+  {
+    "title": "Taiwan Corporation: MediaTek",
+    "description": "Global mobile chip challenger: From enabling knockoff phones to AI chip rising star",
+    "category": "en",
+    "tags": [
+      "Economy",
+      "Corporations",
+      "Semiconductors",
+      "Chip Design",
+      "IC Design",
+      "MediaTek"
+    ],
+    "url": "https://taiwan.md/en/Economy/mediatek",
+    "readingTime": 42,
+    "featured": false,
+    "date": "2026-03-20",
+    "path": "en/Economy/mediatek.md"
   },
   {
     "title": "Taiwan Democratization",
@@ -12652,6 +12680,31 @@
     "featured": false,
     "date": "2026-03-20",
     "path": "en/Art/theater-and-performing-arts.md"
+  },
+  {
+    "title": "They Built a Flying Tower on a Shaking Island",
+    "description": "Just 200 meters from an active fault line, Taiwan decided to build the world's tallest skyscraper—then a madman spent 91 minutes climbing it with his bare hands.",
+    "category": "en",
+    "tags": [
+      "Taipei 101",
+      "skyscraper",
+      "earthquake engineering",
+      "TMD damper",
+      "vertical marathon",
+      "New Year fireworks",
+      "Alex Honnold",
+      "free solo climbing",
+      "Xinyi District",
+      "architectural miracle",
+      "C.Y. Lee",
+      "LEED Platinum",
+      "green building"
+    ],
+    "url": "https://taiwan.md/en/Geography/taipei-101",
+    "readingTime": 53,
+    "featured": false,
+    "date": "2026-03-23",
+    "path": "en/Geography/taipei-101.md"
   },
   {
     "title": "Threads 在台灣：從現象級爆紅到日常「脆」文化",

@@ -1,12 +1,12 @@
 {
-  "totalArticles": 845,
+  "totalArticles": 848,
   "totalCategories": 28,
   "estimatedContributors": 57,
-  "totalTags": 2141,
+  "totalTags": 2153,
   "categories": [
     {
       "name": "en",
-      "count": 418
+      "count": 421
     },
     {
       "name": "History",
@@ -53,12 +53,12 @@
       "count": 1
     },
     {
-      "name": "Geography",
-      "count": 18
-    },
-    {
       "name": "Nature",
       "count": 21
+    },
+    {
+      "name": "Geography",
+      "count": 18
     },
     {
       "name": "Lifestyle",
@@ -120,7 +120,7 @@
   "topTags": [
     {
       "name": "Economy",
-      "count": 48
+      "count": 51
     },
     {
       "name": "人物",
@@ -151,6 +151,10 @@
       "count": 12
     },
     {
+      "name": "Taiwan",
+      "count": 12
+    },
+    {
       "name": "歷史",
       "count": 11
     },
@@ -175,10 +179,6 @@
       "count": 11
     },
     {
-      "name": "Taiwan",
-      "count": 11
-    },
-    {
       "name": "奧運",
       "count": 10
     },
@@ -191,17 +191,17 @@
       "count": 10
     },
     {
-      "name": "民主化",
-      "count": 9
+      "name": "Technology",
+      "count": 10
     },
     {
-      "name": "TSMC",
+      "name": "民主化",
       "count": 9
     }
   ],
   "languageDistribution": {
-    "zh-TW": 845,
+    "zh-TW": 848,
     "en": 0
   },
-  "lastUpdated": "2026-03-22T17:46:47.861Z"
+  "lastUpdated": "2026-03-22T17:57:30.773Z"
 }
