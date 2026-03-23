@@ -9,7 +9,7 @@ tags:
   - 文化融合
   - 台北牛肉麺フェスティバル
   - ミシュラン
-featured: true
+featured: false
 lastVerified: 2026-03-19
 lastHumanReview: false
 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Taiwanese_Beef_Noodle_Soup.jpg/960px-Taiwanese_Beef_Noodle_Soup.jpg"
