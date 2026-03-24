@@ -1,4 +1,6 @@
 import type { Lang } from '../types';
+
+export type Locale = Lang;
 import { homeUI } from './home';
 import { aboutUI } from './about';
 import { dataUI } from './data';
@@ -102,6 +104,32 @@ export const ui = {
       'The origins of the economic miracle and transformation challenges',
     'categoryConfig.lifestyle.description':
       'Lifestyle and values of the Taiwanese people',
+    // Article page
+    'article.toc': 'Table of Contents',
+    'article.sources': 'Sources',
+    'article.furtherReading': 'Further Reading',
+    'article.moreInCategory': 'More in this category',
+    'article.moreAspects': 'More aspects of Taiwan',
+    'article.backToCategory': 'Back to category',
+    'article.backToHome': 'Back to home',
+    'article.home': 'Home',
+    'article.share': 'Share',
+    'article.shareLabel': 'Share this article',
+    'article.copyLink': 'Copy link',
+    'article.copied': 'Copied!',
+    'article.editPage': 'Edit this page',
+    'article.reportIssue': 'Report an issue',
+    'article.randomExplore': 'Random article',
+    'article.exploreTaiwan': 'Explore Taiwan',
+    'article.startExplore': 'Start exploring',
+    'article.viewAll': 'View all',
+    'article.articles': 'articles',
+    'article.langLabel': 'Language',
+    'article.disclaimer.title': 'About this article',
+    'article.disclaimer.body':
+      'This article was collaboratively written with AI assistance and community review.',
+    'article.tts.play': 'Listen',
+    'article.tts.stop': 'Stop',
     'CategoryGrid.article': 'article',
     'CategoryGrid.articles': 'articles',
     'CategoryGrid.explore': 'explore',
@@ -187,6 +215,31 @@ export const ui = {
     'categoryConfig.society.description': '社會變遷與當代議題的深度探討',
     'categoryConfig.economy.description': '經濟奇蹟的成因與轉型挑戰',
     'categoryConfig.lifestyle.description': '台灣人的生活方式與價值觀',
+    // Article page
+    'article.toc': '目錄',
+    'article.sources': '參考資料',
+    'article.furtherReading': '延伸閱讀',
+    'article.moreInCategory': '同分類更多文章',
+    'article.moreAspects': '更多台灣面向',
+    'article.backToCategory': '回到分類',
+    'article.backToHome': '回到首頁',
+    'article.home': '首頁',
+    'article.share': '分享',
+    'article.shareLabel': '分享這篇文章',
+    'article.copyLink': '複製連結',
+    'article.copied': '已複製！',
+    'article.editPage': '編輯此頁',
+    'article.reportIssue': '回報問題',
+    'article.randomExplore': '隨機文章',
+    'article.exploreTaiwan': '探索台灣',
+    'article.startExplore': '開始探索',
+    'article.viewAll': '查看全部',
+    'article.articles': '篇文章',
+    'article.langLabel': '語言',
+    'article.disclaimer.title': '關於此文章',
+    'article.disclaimer.body': '本文章由社群協作，並經 AI 輔助撰寫與審查。',
+    'article.tts.play': '朗讀',
+    'article.tts.stop': '停止',
     'CategoryGrid.article': '篇',
     'CategoryGrid.articles': '篇',
     'CategoryGrid.explore': '探索',
@@ -196,3 +249,34 @@ export const ui = {
     'CategoryGrid.alt-category-image-suffix': '主題相關圖片',
   },
 } as const;
+
+// ── Helper utilities ──────────────────────────────────────────────────────────
+
+export function getLangPrefix(lang: Lang): string {
+  if (lang === 'zh-TW') return '';
+  return `/${lang}`;
+}
+
+export function getLocaleFromPath(path: string): Lang {
+  if (path.startsWith('/en')) return 'en';
+  if (path.startsWith('/es')) return 'es';
+  return 'zh-TW';
+}
+
+export function getActiveLocales(): Lang[] {
+  return ['zh-TW', 'en'];
+}
+
+export function t(key: string, lang: Lang = defaultLang): string {
+  const localeStrings = ui[lang] as Record<string, string> | undefined;
+  if (localeStrings && key in localeStrings) {
+    return localeStrings[key];
+  }
+  if (lang !== 'en' && key in ui.en) {
+    return ui.en[key as keyof typeof ui.en];
+  }
+  if (key in ui['zh-TW']) {
+    return ui['zh-TW'][key as keyof (typeof ui)['zh-TW']];
+  }
+  return key;
+}
