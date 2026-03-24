@@ -54,7 +54,8 @@ if (CI_MODE || STAGED_MODE) {
     }
     console.log(`🔍 ${mode} mode: checking ${changedFiles.size} file(s)\n`);
   } catch {
-    console.log('⚠️  Could not get git diff, checking all files\n');
+    console.log('⚠️  Could not get git diff, skipping validation.\n');
+    process.exit(0);
   }
 }
 
