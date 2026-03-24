@@ -1,8 +1,8 @@
 {
   "version": "2.0",
-  "timestamp": "2026-03-24T19:54:30Z",
+  "timestamp": "2026-03-24T20:52:34Z",
   "total": 439,
-  "flagged": 147,
+  "flagged": 146,
   "files": [
     {"file": "_Home.md", "score": 9},
     {"file": "about/台灣官方網站資源.md", "score": 8},
@@ -25,7 +25,6 @@
     {"file": "culture/台灣新興宗教與心靈文化.md", "score": 5},
     {"file": "culture/台灣棒球文化.md", "score": 4},
     {"file": "culture/台灣漫畫與動漫文化.md", "score": 5},
-    {"file": "culture/台灣茶道與生活美學.md", "score": 8},
     {"file": "culture/台灣街頭藝術與塗鴉文化.md", "score": 5},
     {"file": "culture/客家文化.md", "score": 8},
     {"file": "culture/客家文化與語言.md", "score": 4},
