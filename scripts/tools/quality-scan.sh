@@ -29,7 +29,7 @@
 #  14. 🆕 QUALITY-DECAY：前後半品質衰退（後段散文比例 < 前段 70%）
 
 set -uo pipefail
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/../.."
 
 RED='\033[0;31m'
 YEL='\033[0;33m'
@@ -38,7 +38,7 @@ DIM='\033[0;90m'
 CYN='\033[0;36m'
 RST='\033[0m'
 
-BASELINE_FILE="tools/.quality-baseline.json"
+BASELINE_FILE="scripts/tools/.quality-baseline.json"
 
 JSON_MODE=false
 FIX_MODE=false
