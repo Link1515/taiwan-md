@@ -86,6 +86,50 @@ export function getArticleFiles() {
   return results;
 }
 
+/**
+ * Collect all article markdown files for a given language.
+ * For lang 'zh' (default), delegates to getArticleFiles().
+ * For other langs (en, ja, es), scans knowledge/{lang}/ directory.
+ *
+ * @param {string} lang - Language code: 'zh', 'en', 'ja', 'es'
+ * @returns {string[]} Array of absolute file paths
+ */
+export function getArticleFilesForLang(lang) {
+  if (!lang || lang === 'zh' || lang === 'zh-TW') {
+    return getArticleFiles();
+  }
+
+  const knowledgeDir = getKnowledgePath();
+  const langDir = path.join(knowledgeDir, lang);
+
+  if (!fs.existsSync(langDir)) return [];
+
+  const results = [];
+  function collect(dir) {
+    let entries;
+    try {
+      entries = fs.readdirSync(dir, { withFileTypes: true });
+    } catch {
+      return;
+    }
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        collect(fullPath);
+      } else if (
+        entry.isFile() &&
+        entry.name.endsWith('.md') &&
+        !entry.name.startsWith('_')
+      ) {
+        results.push(fullPath);
+      }
+    }
+  }
+
+  collect(langDir);
+  return results;
+}
+
 function collectArticleFiles(dir, rootDir, results) {
   let entries;
   try {

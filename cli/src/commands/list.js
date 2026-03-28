@@ -8,6 +8,7 @@ import {
   categoryLabel,
   formatArticleRow,
 } from '../lib/render.js';
+import { ensureData } from '../lib/ensure-data.js';
 
 /**
  * Load dashboard-articles.json from the API path.
@@ -149,6 +150,7 @@ export function listCommand(program) {
     .option('--json', 'Output as JSON')
     .action(async (category, opts) => {
       try {
+        await ensureData();
         const data = loadArticles();
         let articles = Array.isArray(data) ? data : data.articles || [];
 

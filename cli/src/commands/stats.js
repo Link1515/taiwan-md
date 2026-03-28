@@ -3,6 +3,7 @@ import Table from 'cli-table3';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { getApiPath } from '../lib/knowledge.js';
+import { ensureData } from '../lib/ensure-data.js';
 
 /**
  * Load a JSON file from the API path.
@@ -39,6 +40,7 @@ export function statsCommand(program) {
     .option('--json', 'Output as JSON')
     .action(async (opts) => {
       try {
+        await ensureData();
         let vitals, organism;
 
         try {

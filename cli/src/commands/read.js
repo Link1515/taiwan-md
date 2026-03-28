@@ -1,7 +1,12 @@
 import chalk from 'chalk';
 import { exec } from 'child_process';
-import { getArticleFiles, readArticle } from '../lib/knowledge.js';
+import {
+  getArticleFiles,
+  getArticleFilesForLang,
+  readArticle,
+} from '../lib/knowledge.js';
 import { renderArticleHeader, renderMarkdown } from '../lib/render.js';
+import { ensureData } from '../lib/ensure-data.js';
 
 /**
  * Slugify a filename for comparison.
@@ -16,7 +21,7 @@ function slugify(filename) {
 }
 
 /**
- * Find the best matching article file for a given slug.
+ * Find the best matching article file for a given slug within a file list.
  */
 async function findArticle(slug, articleFiles) {
   const normalizedSlug = slug.toLowerCase().replace(/[\s_]+/g, '-');
@@ -65,84 +70,127 @@ async function findArticle(slug, articleFiles) {
   return null;
 }
 
+/**
+ * Resolve effective language from options.
+ * --lang <code> takes precedence, then shorthand flags.
+ */
+function resolveLang(opts) {
+  if (opts.lang) return opts.lang;
+  if (opts.en) return 'en';
+  if (opts.ja) return 'ja';
+  if (opts.es) return 'es';
+  return null; // default: zh-TW
+}
+
 export function readCommand(program) {
   program
     .command('read <slug>')
     .description('Read a Taiwan.md article')
-    .option('--en', 'Read English version')
+    .option('--en', 'Read English version (shorthand for --lang en)')
+    .option('--ja', 'Read Japanese version (shorthand for --lang ja)')
+    .option('--es', 'Read Spanish version (shorthand for --lang es)')
+    .option('--lang <code>', 'Language code: en, ja, es (default: zh-TW)')
     .option('--raw', 'Output raw markdown')
     .option('--web', 'Open in browser')
     .action(async (slug, opts) => {
       try {
-        const articleFiles = await getArticleFiles();
+        await ensureData();
+
+        const lang = resolveLang(opts);
+
+        // Load file list for the requested language
+        const articleFiles = lang
+          ? getArticleFilesForLang(lang)
+          : getArticleFiles();
 
         if (!articleFiles || articleFiles.length === 0) {
-          console.log(chalk.yellow('\n  知識庫尚未同步。請先執行:'));
-          console.log(chalk.cyan('  taiwanmd sync\n'));
+          if (lang) {
+            console.log(
+              chalk.yellow(`\n  找不到「${lang}」語言版本的文章。\n`),
+            );
+            console.log(chalk.gray('  可用語言: en, ja, es (需要先 sync)\n'));
+          } else {
+            console.log(chalk.yellow('\n  知識庫尚未同步。請先執行:'));
+            console.log(chalk.cyan('  taiwanmd sync\n'));
+          }
           return;
         }
 
         const filePath = await findArticle(slug, articleFiles);
 
         if (!filePath) {
+          // If a lang was requested and not found, try falling back to zh-TW
+          if (lang) {
+            console.log(
+              chalk.yellow(
+                `\n  找不到「${slug}」的 ${lang} 版本，嘗試中文版...\n`,
+              ),
+            );
+            const zhFiles = getArticleFiles();
+            const zhPath = await findArticle(slug, zhFiles);
+            if (!zhPath) {
+              console.log(chalk.yellow(`\n  找不到文章「${slug}」\n`));
+              console.log(chalk.gray('  💡 試試搜尋:'));
+              console.log(chalk.cyan(`  taiwanmd search ${slug}\n`));
+              return;
+            }
+            // Fall through with zh path
+            return await renderArticleFile(zhPath, opts);
+          }
+
           console.log(chalk.yellow(`\n  找不到文章「${slug}」\n`));
           console.log(chalk.gray('  💡 試試搜尋:'));
           console.log(chalk.cyan(`  taiwanmd search ${slug}\n`));
           return;
         }
 
-        const article = await readArticle(filePath);
-
-        if (!article) {
-          console.log(chalk.red('\n  無法讀取文章內容。\n'));
-          return;
-        }
-
-        // Handle --en flag: try to find English version
-        if (opts.en) {
-          const enPath = filePath.replace(/\.md$/i, '-EN.md');
-          const enFiles = articleFiles.filter((f) => f === enPath);
-          if (enFiles.length > 0) {
-            const enArticle = await readArticle(enFiles[0]);
-            if (enArticle) {
-              Object.assign(article, enArticle);
-            }
-          }
-        }
-
-        const fm = article.frontmatter;
-
-        // Handle --web flag: open in browser
-        if (opts.web) {
-          const url = `https://taiwan.md/${fm.category}/${fm.slug}`;
-          console.log(chalk.gray(`\n  Opening ${url} ...\n`));
-          exec(`open "${url}"`);
-          return;
-        }
-
-        // Handle --raw flag: output raw markdown
-        if (opts.raw) {
-          console.log(article.body || '');
-          return;
-        }
-
-        // Default: render article
-        console.log('');
-        console.log(
-          renderArticleHeader({
-            title: fm.title,
-            category: fm.category,
-            date: fm.date,
-            wordCount: fm.wordCount,
-            tags: fm.tags,
-            description: fm.description,
-          }),
-        );
-        console.log('');
-        console.log(renderMarkdown(article.body || ''));
+        await renderArticleFile(filePath, opts);
       } catch (err) {
         console.error(chalk.red(`讀取失敗: ${err.message}`));
         process.exit(1);
       }
     });
+}
+
+/**
+ * Render an article from a given file path.
+ */
+async function renderArticleFile(filePath, opts) {
+  const article = await readArticle(filePath);
+
+  if (!article) {
+    console.log(chalk.red('\n  無法讀取文章內容。\n'));
+    return;
+  }
+
+  const fm = article.frontmatter;
+
+  // Handle --web flag: open in browser
+  if (opts.web) {
+    const url = `https://taiwan.md/${fm.category}/${fm.slug}`;
+    console.log(chalk.gray(`\n  Opening ${url} ...\n`));
+    exec(`open "${url}"`);
+    return;
+  }
+
+  // Handle --raw flag: output raw markdown
+  if (opts.raw) {
+    console.log(article.body || '');
+    return;
+  }
+
+  // Default: render article
+  console.log('');
+  console.log(
+    renderArticleHeader({
+      title: fm.title,
+      category: fm.category,
+      date: fm.date,
+      wordCount: fm.wordCount,
+      tags: fm.tags,
+      description: fm.description,
+    }),
+  );
+  console.log('');
+  console.log(renderMarkdown(article.body || ''));
 }

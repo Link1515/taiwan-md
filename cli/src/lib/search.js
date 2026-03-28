@@ -2,13 +2,17 @@
  * Taiwan.md Search
  *
  * Provides article search using MiniSearch (pre-built bigram index)
- * with a fallback to simple string matching on dashboard data.
+ * with a fallback to simple string matching on dashboard data,
+ * and a final remote fallback that fetches articles.json from taiwan.md.
  */
 
 import fs from 'fs';
 import path from 'path';
 import MiniSearch from 'minisearch';
 import { getApiPath } from './knowledge.js';
+
+// In-memory cache for remote article list
+let _remoteArticlesCache = null;
 
 // ── CJK bigram tokenizer (must match build-search-index.mjs) ──
 
@@ -157,6 +161,45 @@ function categoryFromUrl(url) {
 }
 
 /**
+ * Fetch articles.json from taiwan.md remote API.
+ * Caches result in memory for the lifetime of the process.
+ *
+ * @returns {Promise<Array|null>}
+ */
+async function fetchRemoteArticles() {
+  if (_remoteArticlesCache) return _remoteArticlesCache;
+
+  try {
+    const response = await fetch('https://taiwan.md/api/articles.json', {
+      headers: { Accept: 'application/json' },
+      signal: AbortSignal.timeout(10_000),
+    });
+
+    if (!response.ok) return null;
+
+    const data = await response.json();
+    const articles = Array.isArray(data) ? data : data.articles || null;
+    if (articles) _remoteArticlesCache = articles;
+    return articles;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Search using the remote articles.json API.
+ *
+ * @param {string} query
+ * @param {number} limit
+ * @returns {Promise<Array>}
+ */
+export async function searchRemote(query, limit = 10) {
+  const articles = await fetchRemoteArticles();
+  if (!articles) return [];
+  return fallbackSearch(articles, query, limit);
+}
+
+/**
  * Search articles.
  *
  * @param {string} query - Search query string
@@ -202,7 +245,10 @@ export async function searchArticles(
 
   // Fallback: simple matching on dashboard-articles.json
   const articles = loadDashboardArticles();
-  if (!articles) return [];
+  if (articles) {
+    return fallbackSearch(articles, trimmedQuery, limit);
+  }
 
-  return fallbackSearch(articles, trimmedQuery, limit);
+  // Final fallback: fetch from remote API
+  return searchRemote(trimmedQuery, limit);
 }

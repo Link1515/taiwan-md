@@ -7,6 +7,7 @@ import {
   categoryEmoji,
   categoryLabel,
 } from '../lib/render.js';
+import { ensureData } from '../lib/ensure-data.js';
 
 /**
  * Load dashboard-articles.json from the API path.
@@ -35,6 +36,7 @@ export function randomCommand(program) {
     .option('-c, --category <cat>', 'Limit to category')
     .action(async (opts) => {
       try {
+        await ensureData();
         const data = loadArticles();
         let articles = Array.isArray(data) ? data : data.articles || [];
 

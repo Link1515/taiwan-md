@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import Table from 'cli-table3';
 import { searchArticles } from '../lib/search.js';
 import { categoryEmoji, categoryLabel } from '../lib/render.js';
+import { ensureData } from '../lib/ensure-data.js';
 
 /**
  * Build a visual score bar (8 chars wide).
@@ -25,6 +26,7 @@ export function searchCommand(program) {
     .option('--json', 'Output as JSON')
     .action(async (query, opts) => {
       try {
+        await ensureData();
         const limit = parseInt(opts.limit, 10) || 10;
         const results = await searchArticles(query, { limit, lang: opts.lang });
 
