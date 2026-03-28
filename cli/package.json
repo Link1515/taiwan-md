@@ -4,7 +4,7 @@
   "description": "CLI for Taiwan.md — search, read, and explore 900+ curated articles about Taiwan from your terminal.",
   "type": "module",
   "bin": {
-    "taiwanmd": "./src/index.js"
+    "taiwanmd": "src/index.js"
   },
   "keywords": [
     "taiwan",
