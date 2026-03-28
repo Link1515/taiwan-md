@@ -12,6 +12,12 @@
 | [CONTRIBUTORS-PIPELINE.md](CONTRIBUTORS-PIPELINE.md) | Contributors Update | 03:30 |
 | [DAILY-REPORT-PIPELINE.md](DAILY-REPORT-PIPELINE.md) | Daily Report        | 09:00 |
 
+## Reference（手動 / Build-time）
+
+| Pipeline                                       | 觸發                | 說明                          |
+| ---------------------------------------------- | ------------------- | ----------------------------- |
+| [DASHBOARD-PIPELINE.md](DASHBOARD-PIPELINE.md) | prebuild + 手動 GA4 | Dashboard 數據管線 + 模板架構 |
+
 ## Archived（Cron 暫停，知識保留）
 
 | Pipeline                                             | Cron                    | 狀態               |
