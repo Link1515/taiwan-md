@@ -278,6 +278,7 @@ const forkDataJSON = JSON.stringify(forkData);
         <h2>🌿 語言分支樹 — 一個詞如何走出兩條路</h2>
         <p class="fork-graph-sub">從共同詞源到兩岸分歧，每條分支都是真實生活的選擇</p>
       </div>
+      <p class="fork-scroll-hint">← 左右滑動查看完整分支樹 →</p>
       <div class="fork-graph-wrap">
         <svg id="fork-graph-svg" aria-label="語言分歧分支圖"></svg>
         <div id="fork-tooltip" class="fork-tooltip" role="tooltip" aria-hidden="true"></div>
@@ -782,15 +783,21 @@ const forkDataJSON = JSON.stringify(forkData);
   .fork-graph-wrap {
     position: relative;
     width: 100%;
-    overflow-x: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     background: #fafafa;
     border: 1px solid #e8e8e8;
     border-radius: 12px;
+    cursor: grab;
+  }
+  .fork-graph-wrap:active {
+    cursor: grabbing;
   }
   #fork-graph-svg {
     display: block;
-    min-width: 640px;
+    width: 900px;
+    min-width: 900px;
   }
   .fork-tooltip {
     position: fixed;
@@ -825,7 +832,15 @@ const forkDataJSON = JSON.stringify(forkData);
   .legend-cn { color: #3498db; font-weight: 600; margin-left: 0.5rem; }
   .legend-origin { color: #888; margin-left: 0.5rem; }
 
+  .fork-scroll-hint {
+    display: none;
+    text-align: center;
+    font-size: 0.78rem;
+    color: #aaa;
+    margin-top: 0.4rem;
+  }
   @media (max-width: 640px) {
+    .fork-scroll-hint { display: block; }
     .fork-graph-header h2 { font-size: 1.15rem; }
     .fork-graph-section { padding: 0 0.75rem; }
   }
