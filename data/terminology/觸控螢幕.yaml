@@ -1,22 +1,11 @@
-id: 觸控螢幕
+id: touchscreen
+taiwan: 觸控螢幕
+china: 觸控屏 / 觸摸屏
+type: A
 category: tech
-subcategory: 硬體與裝置
-fork_type: B
-
-display:
-  taiwan: 觸控螢幕
-  china: 觸屏
-
-etymology:
-  origin: ""
-  taiwan_path: 台灣用法
-  china_path: 中國用法
-  fork_point: ""
-
-notes: ""
-
-sources:
-  - "ThunderKO C2T / 《大陸用語檢索手冊》1997"
-
-added: "2026-03-30"
-updated: "2026-03-30"
+origin: 台灣說「觸控螢幕」，中國說「觸控屏」或「觸摸屏」。核心差異在「螢幕」vs「屏」。
+taiwan_path: 台灣統一用「螢幕」：「觸控螢幕」「電腦螢幕」「手機螢幕」。「屏」在台灣僅用於「屏風」。
+china_path: 中國用「屏」或「屏幕」：「觸控屏」「觸摸屏」「顯示屏」「大屏」，口語中「屏」可單獨使用。
+fork_cause: 「螢幕」vs「屏幕/屏」是兩岸最基礎的科技用語分歧之一。台灣保留完整詞「螢幕」，中國常簡化為「屏」。
+notes: |
+  「觸控屏」在台灣人耳裡一聽就是中國用語。台灣也不說「觸摸」螢幕，而是「觸控」螢幕（control vs touch）。
