@@ -2,8 +2,7 @@
 title: 'LINE 在台灣：一個通訊軟體如何重塑社會'
 description: '從 99.4% 使用率到長輩圖文化，LINE 如何成為台灣 2200 萬人的數位生活作業系統'
 date: 2026-03-21
-tags:
-  ['科技社會', 'LINE', 'LINE Pay', '長輩圖', '數位政務', '通訊軟體', '社群媒體']
+tags: ['科技社會', 'LINE', 'LINE Pay', '長輩圖', '數位政務', '通訊軟體', '社群媒體']
 category: 'lifestyle'
 author: 'Taiwan.md'
 featured: false
@@ -52,7 +51,6 @@ LINE 在台灣的成功，不只是因為通訊功能，更因為它建構了一
 如果要選一個最能代表台灣 LINE 文化的現象，那一定是「長輩圖」。這些充滿濃烈色彩、誇張字體、溫馨問候語的圖片，是台灣長輩在數位時代的獨特表達方式。
 
 典型的長輩圖通常包含：
-
 - 鮮豔的背景（常見粉紅、金黃、天藍色）
 - 花朵、蝴蝶、風景等裝飾元素
 - 大字體的問候語（早安、晚安、週末愉快）
@@ -117,9 +115,9 @@ LINE 在台灣發展出了獨特的商業模式，與全球其他市場截然不
 
 ## 參考資料
 
-- [【LINE App 2024 使用資料】LINE 在台使用者數達 2200 萬 - LINE 台灣](https://www.linecorp.com/tw/pr/news/2024/1217/)
-- [【LINE 年會 2018】LINE 兩大海外市場最新營運資料大公開：臺灣和泰國 - iThome](https://www.ithome.com.tw/news/124203)
-- [About | LINE 台灣](https://www.linecorp.com/tw/company/info/)
-- [為何 LINE Pay 在日本停用、卻獲台灣過半人口 1270 萬人使用 ～ 自由電子報](https://today.line.me/tw/v3/article/XY5OYXw)
-- [長輩圖錯了嗎？銀髮族熱愛、年輕人卻嘲笑的小圖片，其實很有用 ～ 獨立評論](https://opinion.cw.com.tw/blog/profile/390/article/9375)
+- [【LINE App 2024使用資料】LINE 在台使用者數達2200萬 - LINE台灣](https://www.linecorp.com/tw/pr/news/2024/1217/)
+- [【LINE年會 2018】LINE兩大海外市場最新營運資料大公開：臺灣和泰國 - iThome](https://www.ithome.com.tw/news/124203)
+- [About | LINE台灣](https://www.linecorp.com/tw/company/info/)
+- [為何LINE Pay在日本停用、卻獲台灣過半人口1270萬人使用 - 自由電子報](https://today.line.me/tw/v3/article/XY5OYXw)
+- [長輩圖錯了嗎？銀髮族熱愛、年輕人卻嘲笑的小圖片，其實很有用 - 獨立評論](https://opinion.cw.com.tw/blog/profile/390/article/9375)
 - [台灣全民都在用它？解析即時通訊 App 市佔率與潛在風險！](https://blog.suosuo.chat/analysis-of-instant-messaging-app-market-share-and-potential-risks/)
