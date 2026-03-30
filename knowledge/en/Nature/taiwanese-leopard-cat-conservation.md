@@ -2,13 +2,23 @@
 title: 'Taiwanese Leopard Cat Conservation'
 description: "The phantom feline with fewer than 500 individuals left—when Taiwan's last native cat species walks to the edge of extinction"
 date: 2026-03-18
-tags: ['Leopard Cat', 'Conservation', 'Roadkill', 'Habitat', 'Miaoli', 'Endangered Species', 'Ecology']
+tags:
+  [
+    'Leopard Cat',
+    'Conservation',
+    'Roadkill',
+    'Habitat',
+    'Miaoli',
+    'Endangered Species',
+    'Ecology',
+  ]
 author: 'Taiwan.md Contributors'
 readingTime: 12
 featured: false
-lastVerified: 2026-03-19
-lastHumanReview: false
+lastVerified: 2026-03-30
+lastHumanReview: true
 ---
+
 # Taiwanese Leopard Cat Conservation
 
 ## 30-Second Overview
