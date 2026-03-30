@@ -1,0 +1,11 @@
+id: coding
+category: tech
+subcategory: 軟體與程式開發
+fork_type: B
+display:
+  taiwan: 寫程式
+  china: 編程
+notes: 台灣口語「寫程式」比「程式設計」更常見；中國「編程」對應台灣「寫程式」
+sources:
+- 台灣軟體業常用術語
+added: '2026-03-30'
