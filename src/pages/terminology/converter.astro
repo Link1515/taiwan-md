@@ -168,9 +168,12 @@ const rulesJSON = JSON.stringify(rules);
       try {
         const OpenCC =
           await import('https://cdn.jsdelivr.net/npm/opencc-js@1/dist/esm/cn2t.js');
+        // Use cn → t (字形 only), NOT cn → tw (字形+用語)
+        // We want OpenCC to only convert simplified → traditional characters,
+        // while our terminology rules handle the semantic conversion (视频→影片 etc.)
         openccConverter = OpenCC.ConverterFactory(
           OpenCC.Locale.from.cn,
-          OpenCC.Locale.to.tw,
+          OpenCC.Locale.to.t,
         );
         openccStatus = 'ready';
       } catch (e) {
@@ -219,7 +222,13 @@ const rulesJSON = JSON.stringify(rules);
       const matches = [];
       let text = input;
 
-      // Apply replacements (rules already sorted by source.length desc)
+      // Step 1: Apply OpenCC (字形 only: 简→繁) FIRST,
+      // so terminology rules can match traditional Chinese source terms
+      if (openccConverter) {
+        text = openccConverter(text);
+      }
+
+      // Step 2: Apply terminology replacements (rules sorted by source.length desc)
       // Use a marker system to avoid double-replacing
       const placeholders = [];
       let markerIdx = 0;
@@ -240,12 +249,6 @@ const rulesJSON = JSON.stringify(rules);
             markerIdx++;
           }
         }
-      }
-
-      // Step 2: Apply OpenCC to convert remaining simplified Chinese to traditional
-      // Markers (null-byte sequences) are not Chinese characters, so OpenCC won't touch them
-      if (openccConverter) {
-        text = openccConverter(text);
       }
 
       // Escape HTML in the modified text
