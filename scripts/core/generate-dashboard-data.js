@@ -19,6 +19,7 @@ const PROJECT_ROOT = path.join(__dirname, '../..');
 const KNOWLEDGE_DIR = path.join(PROJECT_ROOT, 'knowledge');
 const OUTPUT_DIR = path.join(PROJECT_ROOT, 'public/api');
 const EDITORIAL_PATH = path.join(PROJECT_ROOT, 'docs', 'editorial', 'EDITORIAL.md');
+const QUALITY_BASELINE_PATH = path.join(PROJECT_ROOT, 'scripts', 'tools', '.quality-baseline.json');
 
 // PascalCase category directories (zh-TW SSOT)
 const CATEGORIES = [
@@ -234,6 +235,25 @@ function deriveSlug(fileName) {
 }
 
 // ---------------------------------------------------------------------------
+// Quality score cache (from quality-scan --json)
+// ---------------------------------------------------------------------------
+function loadQualityScores() {
+  const scores = new Map();
+  try {
+    if (fs.existsSync(QUALITY_BASELINE_PATH)) {
+      const data = JSON.parse(fs.readFileSync(QUALITY_BASELINE_PATH, 'utf8'));
+      for (const f of data.files || []) {
+        // f.file is like "People/郭婞淳.md" — match by filename
+        scores.set(f.file, { score: f.score, reasons: f.reasons || '' });
+      }
+    }
+  } catch (e) {
+    console.error('Quality baseline load error:', e.message);
+  }
+  return scores;
+}
+
+// ---------------------------------------------------------------------------
 // Scan zh-TW articles (SSOT)
 // ---------------------------------------------------------------------------
 function getZhTwArticles() {
@@ -354,6 +374,9 @@ async function main() {
   // Build translation lookup
   const translationMap = buildTranslationMap();
 
+  // Load quality scores cache
+  const qualityScores = loadQualityScores();
+
   // Get all zh-TW articles
   const rawArticles = getZhTwArticles();
 
@@ -408,6 +431,11 @@ async function main() {
           (featured ? 10 : 0),
       );
 
+      // Quality score from cached quality-scan baseline (keys are lowercase)
+      const qKey = raw.relativePath.toLowerCase();
+      const qData = qualityScores.get(qKey);
+      const qualityScore = qData ? qData.score : 0; // 0 = passed (not in flagged list)
+
       articles.push({
         title: frontmatter.title || fileName,
         slug,
@@ -426,6 +454,7 @@ async function main() {
         commitHash,
         description: frontmatter.description || '',
         healthScore,
+        qualityScore,
       });
     } catch (err) {
       console.error(`Error processing ${raw.filePath}: ${err.message}`);

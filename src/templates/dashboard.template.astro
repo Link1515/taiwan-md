@@ -165,6 +165,9 @@ const isEn = lang === 'en';
               <th class="sortable" data-sort="lastModified"
                 >{isEn ? 'Modified' : '最後修改'}</th
               >
+              <th class="sortable" data-sort="qualityScore"
+                >{isEn ? 'Quality' : '品質'}</th
+              >
               <th class="sortable" data-sort="lastHumanReview"
                 >{t('dashboard.registry.col.reviewed')}</th
               >
@@ -583,6 +586,8 @@ const isEn = lang === 'en';
         const catColor = categoryColors[a.category] || '#64748b';
         const date = a.date || '—';
         const modified = a.lastModified || '—';
+        const qs = a.qualityScore || 0;
+        const qLabel = qs === 0 ? '✅' : qs <= 3 ? '✅' : qs <= 7 ? `⚠️ ${qs}` : `🔴 ${qs}`;
         const reviewed = a.lastHumanReview ? '✅' : '—';
         const subcategory = a.subcategory || '—';
         const langs = ['en', 'es', 'ja']
@@ -600,6 +605,7 @@ const isEn = lang === 'en';
           <td>${subcategory}</td>
           <td>${date}</td>
           <td>${modified}</td>
+          <td class="col-center">${qLabel}</td>
           <td class="col-center">${reviewed}</td>
           <td class="col-right">${(a.wordCount || 0).toLocaleString()}</td>
           <td class="col-center col-hideable">${a.tagCount || 0}</td>
