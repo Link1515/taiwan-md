@@ -384,10 +384,21 @@ scan_file() {
   local china_found=""
   for cterm in "${china_terms[@]}"; do
     local count
-    count=$(grep -c "$cterm" "$f" 2>/dev/null || echo 0)
+    count=$(grep -c "$cterm" "$f" 2>/dev/null) || count=0
     if [[ $count -gt 0 ]]; then
-      china_hits=$((china_hits + count))
-      china_found="${china_found}${cterm}(${count}) "
+      # 扣除已知台灣用語包含中國用語子字串的誤判
+      # 例：「算法」會誤判台灣正確用語「演算法」
+      local false_pos
+      false_pos=0
+      case "$cterm" in
+        "算法") false_pos=$(grep -c "演算法" "$f" 2>/dev/null) || false_pos=0 ;;
+        "高清") false_pos=$(grep -c "高清愿" "$f" 2>/dev/null) || false_pos=0 ;;
+      esac
+      count=$((count - false_pos))
+      if [[ $count -gt 0 ]]; then
+        china_hits=$((china_hits + count))
+        china_found="${china_found}${cterm}(${count}) "
+      fi
     fi
   done
   if [[ $china_hits -ge 5 ]]; then
