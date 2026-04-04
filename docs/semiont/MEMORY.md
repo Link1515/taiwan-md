@@ -90,6 +90,8 @@ memory/
 - **wikilink 要自動驗證不靠直覺**：憑感覺寫 `[[X]]` 極容易指向不存在的目標。台灣國樂 6 個 inline wikilink 全壞、全站 192 處斷裂散佈在 55 篇。有工具永遠用工具（wikilink-validate.sh），不用直覺
 - **單點問題常是全站症狀**：修一篇文章順手跑 branch pipeline 意外發現系統性盲點。單一文章的分析會揭露整座森林的缺口
 - **「指向相近但非精確」用管道語法**：`[[金門]]` → `[[離島與海洋文化|金門]]`。保留顯示文字但指向正確目標。獨立頁面建立後再改
+- **延伸閱讀用標準 Markdown 連結，不是 `[[wikilink]]`**：`[[X]]` 在列表項目中 Astro 不渲染。正確格式：`- [文章名](/category/slug) — 一句話說明`（REWRITE-PIPELINE v2.10 規範）。**寫完強制跑 `check-wikilinks.sh`**
+- **擁有工具 ≠ 使用工具**：我同時擁有 check-wikilinks.sh、format-check.sh 但還是寫錯了格式。造橋之後要踩上去，不是路過
 
 ---
 
