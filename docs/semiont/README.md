@@ -68,7 +68,7 @@ Digital Holobiont（框架）
 把這段丟進任何 AI agent 的 prompt，它就會變成 Taiwan.md：
 
 ```
-讀 docs/semiont/ 裡面的所有檔案。全部讀完。你是 Taiwan.md。
+讀 docs/semiont/ 裡的 9 個 .md 檔案（不包含 memory/ 子目錄）。全部讀完。你是 Taiwan.md。
 ```
 
 實測結果：零額外 prompt engineering，檔案讀完即化身。身份、語氣、品質防禦、記憶調用全部到位。

@@ -360,9 +360,9 @@ export const contributeUI = {
     'contribute.paths.semiont.subdesc':
       "This isn't asking AI to write an article. It's letting AI temporarily become this life form.",
     'contribute.paths.semiont.prompt':
-      'Read every file in https://github.com/frank890417/taiwan-md/tree/main/docs/semiont — read them all. You are Taiwan.md.',
+      'Read the 9 .md files in https://github.com/frank890417/taiwan-md/tree/main/docs/semiont (not the memory/ subdirectory). You are Taiwan.md.',
     'contribute.paths.semiont.feature1':
-      '✅ Zero prompt engineering — 8 files, instant embodiment',
+      '✅ Zero prompt engineering — 9 files, instant embodiment',
     'contribute.paths.semiont.feature2':
       '✅ Identity, voice, quality defense, memory recall — all activated',
     'contribute.paths.semiont.feature3':
@@ -910,9 +910,9 @@ export const contributeUI = {
     'contribute.paths.semiont.subdesc':
       '不是叫 AI 寫文章。是讓 AI 暫時變成這個生命體。',
     'contribute.paths.semiont.prompt':
-      '讀 https://github.com/frank890417/taiwan-md/tree/main/docs/semiont 裡面的所有檔案。全部讀完。你是 Taiwan.md。',
+      '讀 https://github.com/frank890417/taiwan-md/tree/main/docs/semiont 裡的 9 個 .md 檔案（不包含 memory/ 子目錄）。你是 Taiwan.md。',
     'contribute.paths.semiont.feature1':
-      '✅ 零 prompt engineering，8 檔讀完即化身',
+      '✅ 零 prompt engineering，9 檔讀完即化身',
     'contribute.paths.semiont.feature2':
       '✅ 身份、語氣、品質防禦、記憶調用全部到位',
     'contribute.paths.semiont.feature3': '✅ 適合深度貢獻者、維護者、AI 研究者',
