@@ -514,6 +514,17 @@ const isEn = lang === 'en';
         const emoji = (a.revision || 0) > 1 ? '✏️' : '📄';
         const articleUrl = langPrefix + '/' + a.category + '/' + a.slug;
         const dateStr = a.lastModified || a.date || '';
+        const subject = a.commitSubject || '';
+        // Extract short action label from commit subject (e.g. "rewrite:", "fix:", "translate:")
+        const actionMatch = subject.match(/^[🧬\s]*(?:\[semiont\]\s*)?(\w+):/);
+        const actionLabel = actionMatch ? actionMatch[1] : '';
+        const badgeHtml = actionLabel
+          ? '<span class="feed-badge feed-badge-' +
+            actionLabel +
+            '">' +
+            actionLabel +
+            '</span>'
+          : '';
         return (
           '<div class="feed-item">' +
           '<span class="feed-emoji">' +
@@ -524,6 +535,7 @@ const isEn = lang === 'en';
           '" target="_blank" rel="noopener" class="feed-title">' +
           a.title +
           '</a>' +
+          badgeHtml +
           '<span class="feed-date">' +
           dateStr +
           '</span>' +
@@ -587,7 +599,8 @@ const isEn = lang === 'en';
         const date = a.date || '—';
         const modified = a.lastModified || '—';
         const qs = a.qualityScore || 0;
-        const qLabel = qs === 0 ? '✅' : qs <= 3 ? '✅' : qs <= 7 ? `⚠️ ${qs}` : `🔴 ${qs}`;
+        const qLabel =
+          qs === 0 ? '✅' : qs <= 3 ? '✅' : qs <= 7 ? `⚠️ ${qs}` : `🔴 ${qs}`;
         const reviewed = a.lastHumanReview ? '✅' : '—';
         const subcategory = a.subcategory || '—';
         const langs = ['en', 'es', 'ja']
@@ -2666,6 +2679,30 @@ const isEn = lang === 'en';
     color: #94a3b8;
     white-space: nowrap;
     flex-shrink: 0;
+  }
+  .feed-badge {
+    font-size: 0.65rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: #334155;
+    color: #cbd5e1;
+    flex-shrink: 0;
+  }
+  .feed-badge-rewrite {
+    background: #7c3aed22;
+    color: #a78bfa;
+  }
+  .feed-badge-fix {
+    background: #f59e0b22;
+    color: #fbbf24;
+  }
+  .feed-badge-translate {
+    background: #06b6d422;
+    color: #22d3ee;
+  }
+  .feed-badge-feat {
+    background: #10b98122;
+    color: #34d399;
   }
 
   /* ── Footer ── */

@@ -18,8 +18,18 @@ const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.join(__dirname, '../..');
 const KNOWLEDGE_DIR = path.join(PROJECT_ROOT, 'knowledge');
 const OUTPUT_DIR = path.join(PROJECT_ROOT, 'public/api');
-const EDITORIAL_PATH = path.join(PROJECT_ROOT, 'docs', 'editorial', 'EDITORIAL.md');
-const QUALITY_BASELINE_PATH = path.join(PROJECT_ROOT, 'scripts', 'tools', '.quality-baseline.json');
+const EDITORIAL_PATH = path.join(
+  PROJECT_ROOT,
+  'docs',
+  'editorial',
+  'EDITORIAL.md',
+);
+const QUALITY_BASELINE_PATH = path.join(
+  PROJECT_ROOT,
+  'scripts',
+  'tools',
+  '.quality-baseline.json',
+);
 
 // PascalCase category directories (zh-TW SSOT)
 const CATEGORIES = [
@@ -168,40 +178,76 @@ let _gitCache = null;
 function buildGitCache() {
   if (_gitCache) return _gitCache;
   _gitCache = new Map();
+
+  // Threshold: commits touching more than this many knowledge/ files are
+  // considered "batch fixes" (format corrections, bulk link repairs, etc.)
+  // and should NOT count as "last modified" for the Activity Feed.
+  const BATCH_THRESHOLD = 50;
+
   try {
     const logOutput = execSync(
-      'git log -z --name-only --format="COMMIT|%H|%aI|%an" -- "knowledge/"',
+      'git log -z --name-only --format="COMMIT|%H|%aI|%an|%s" -- "knowledge/"',
       { cwd: PROJECT_ROOT, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 },
     );
-    let currentHash = '';
-    let currentDate = '';
-    let currentAuthor = '';
+
+    // --- Pass 1: parse all commits and their files ---
+    const commits = []; // { hash, date, author, files: string[] }
+    let cur = null;
 
     for (let token of logOutput.split('\0')) {
       token = token.replace(/^\n+/, '').trim();
       if (!token) continue;
 
       if (token.startsWith('COMMIT|')) {
+        if (cur) commits.push(cur);
         const parts = token.split('|');
-        currentHash = parts[1] || '';
-        currentDate = parts[2] || '';
-        currentAuthor = parts[3] || '';
-      } else if (token.startsWith('knowledge/') && token.endsWith('.md')) {
-        const key = path.resolve(PROJECT_ROOT, token);
+        cur = {
+          hash: parts[1] || '',
+          date: parts[2] || '',
+          author: parts[3] || '',
+          subject: parts[4] || '',
+          files: [],
+        };
+      } else if (
+        cur &&
+        token.startsWith('knowledge/') &&
+        token.endsWith('.md')
+      ) {
+        cur.files.push(token);
+      }
+    }
+    if (cur) commits.push(cur);
+
+    // --- Pass 2: build per-file cache, skipping batch commits for lastModified ---
+    const batchHashes = new Set();
+    for (const c of commits) {
+      if (c.files.length > BATCH_THRESHOLD) batchHashes.add(c.hash);
+    }
+
+    for (const c of commits) {
+      const isBatch = batchHashes.has(c.hash);
+      for (const file of c.files) {
+        const key = path.resolve(PROJECT_ROOT, file);
         let entry = _gitCache.get(key);
         if (!entry) {
-          // First appearance = most recent commit (git log is newest-first)
           entry = {
-            lastModified: currentDate,
-            commitHash: currentHash.slice(0, 8),
+            lastModified: isBatch ? '' : c.date, // defer if batch
+            commitHash: isBatch ? '' : c.hash.slice(0, 8),
+            commitSubject: isBatch ? '' : c.subject,
             revisionCount: 0,
             contributors: [],
           };
           _gitCache.set(key, entry);
+        } else if (!entry.lastModified && !isBatch) {
+          // Fill in from the first non-batch commit
+          entry.lastModified = c.date;
+          entry.commitHash = c.hash.slice(0, 8);
+          entry.commitSubject = c.subject;
         }
+        // Always count revisions and contributors (batch or not)
         entry.revisionCount += 1;
-        if (currentAuthor && !entry.contributors.includes(currentAuthor)) {
-          entry.contributors.push(currentAuthor);
+        if (c.author && !entry.contributors.includes(c.author)) {
+          entry.contributors.push(c.author);
         }
       }
     }
@@ -213,12 +259,14 @@ function buildGitCache() {
 
 function getGitInfo(filePath) {
   const resolved = path.resolve(filePath);
-  return buildGitCache().get(resolved) || {
-    lastModified: '',
-    commitHash: '',
-    revisionCount: 0,
-    contributors: [],
-  };
+  return (
+    buildGitCache().get(resolved) || {
+      lastModified: '',
+      commitHash: '',
+      revisionCount: 0,
+      contributors: [],
+    }
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -354,11 +402,14 @@ function countTranslationsByCategory() {
 // ---------------------------------------------------------------------------
 function getEditorialLastModified() {
   try {
-    const result = execSync(`git log -1 --format="%aI" -- docs/editorial/EDITORIAL.md`, {
-      cwd: PROJECT_ROOT,
-      encoding: 'utf8',
-      stdio: ['pipe', 'pipe', 'pipe'],
-    });
+    const result = execSync(
+      `git log -1 --format="%aI" -- docs/editorial/EDITORIAL.md`,
+      {
+        cwd: PROJECT_ROOT,
+        encoding: 'utf8',
+        stdio: ['pipe', 'pipe', 'pipe'],
+      },
+    );
     return result.trim() ? new Date(result.trim()) : null;
   } catch {
     return null;
@@ -403,7 +454,10 @@ async function main() {
       const gitInfo = getGitInfo(raw.filePath);
       const revision = gitInfo.revisionCount;
       const commitHash = gitInfo.commitHash;
-      const lastModified = gitInfo.lastModified ? gitInfo.lastModified.slice(0, 10) : null;
+      const commitSubject = gitInfo.commitSubject || '';
+      const lastModified = gitInfo.lastModified
+        ? gitInfo.lastModified.slice(0, 10)
+        : null;
 
       const wordCount = countWords(body);
       const lastHumanReview = frontmatter.lastHumanReview
@@ -452,6 +506,7 @@ async function main() {
         translations,
         revision,
         commitHash,
+        commitSubject,
         description: frontmatter.description || '',
         healthScore,
         qualityScore,
