@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# quality-scan.sh v3.2 — 偵測疑似 AI 空洞模板的文章 + 引用健康度整合報告
+# quality-scan.sh v3.3 — 偵測疑似 AI 空洞模板的文章 + 引用健康度整合報告
 # 用法: bash tools/quality-scan.sh [--fix] [--json] [--diff] [--sort] [--worst N]
 #
 # v3.0 新增:
@@ -103,6 +103,14 @@ scan_file() {
   local first_line
   first_line=$(head -1 "$f")
   [[ "$first_line" != "---" ]] && return
+
+  # ── Hub page detection (v3.3) ──
+  # Hub pages (_XXX Hub.md) are category index pages with natural list structure.
+  # Reduce structural penalties (LIST-DUMP, THIN, QUALITY-DECAY) for these pages.
+  local is_hub=false
+  local basename_f
+  basename_f=$(basename "$f")
+  [[ "$basename_f" == _*Hub* ]] && is_hub=true
 
   # ── 1. Bullet 密度 ──
   local bullet_lines
@@ -310,7 +318,13 @@ scan_file() {
   local back_ratio=0
   [[ $front_total -gt 0 ]] && front_ratio=$((front_bullet * 100 / front_total))
   [[ $back_total -gt 0 ]] && back_ratio=$((back_bullet * 100 / back_total))
-  if [[ $back_ratio -gt 40 ]] && [[ $front_total -gt 0 ]] && [[ $back_ratio -gt $((front_ratio * 2)) ]]; then
+  if [[ "$is_hub" == true ]]; then
+    # Hub pages naturally have article index lists in back half — cap at +1
+    if [[ $back_ratio -gt 60 ]] && [[ $front_total -gt 0 ]] && [[ $back_ratio -gt $((front_ratio * 3)) ]]; then
+      score=$((score + 1))
+      reasons="${reasons}後段清單堆砌${back_ratio}%(Hub減免) "
+    fi
+  elif [[ $back_ratio -gt 40 ]] && [[ $front_total -gt 0 ]] && [[ $back_ratio -gt $((front_ratio * 2)) ]]; then
     score=$((score + 3))
     reasons="${reasons}後段清單堆砌${back_ratio}% "
   elif [[ $back_ratio -gt 30 ]]; then
@@ -343,7 +357,13 @@ scan_file() {
   if [[ "$in_block" == true ]] && [[ $prose_in_block -lt 3 ]]; then
     thin_count=$((thin_count + 1))
   fi
-  if [[ $thin_count -ge 2 ]]; then
+  if [[ "$is_hub" == true ]]; then
+    # Hub pages may have short intro blocks for sub-topics — cap at +1
+    if [[ $thin_count -ge 4 ]]; then
+      score=$((score + 1))
+      reasons="${reasons}稀薄段落×${thin_count}(Hub減免) "
+    fi
+  elif [[ $thin_count -ge 2 ]]; then
     score=$((score + 2))
     reasons="${reasons}稀薄段落×${thin_count} "
   elif [[ $thin_count -ge 1 ]]; then
@@ -378,7 +398,13 @@ scan_file() {
   if [[ $front_prose_ratio -gt 0 ]]; then
     local decay_threshold_50=$(( front_prose_ratio / 2 ))
     local decay_threshold_70=$(( front_prose_ratio * 7 / 10 ))
-    if [[ $back_prose_ratio -lt $decay_threshold_50 ]]; then
+    if [[ "$is_hub" == true ]]; then
+      # Hub pages expect narrative intro → article index; only flag extreme decay
+      if [[ $back_prose_ratio -lt $(( front_prose_ratio / 4 )) ]]; then
+        score=$((score + 1))
+        reasons="${reasons}品質衰退前${front_prose_ratio}%後${back_prose_ratio}%(Hub減免) "
+      fi
+    elif [[ $back_prose_ratio -lt $decay_threshold_50 ]]; then
       score=$((score + 3))
       reasons="${reasons}品質衰退前${front_prose_ratio}%後${back_prose_ratio}% "
     elif [[ $back_prose_ratio -lt $decay_threshold_70 ]]; then
@@ -490,9 +516,9 @@ scan_file() {
 echo ""
 if [[ "$JSON_MODE" == false ]]; then
   if [[ -n "$SINGLE_FILE" ]]; then
-    echo "🔍 quality-scan v3.2 — 掃描單一檔案: $SINGLE_FILE"
+    echo "🔍 quality-scan v3.3 — 掃描單一檔案: $SINGLE_FILE"
   else
-    echo "🔍 quality-scan v3.2 — 掃描 src/content/zh-TW/"
+    echo "🔍 quality-scan v3.3 — 掃描 src/content/zh-TW/"
   fi
   echo "   評分: 0-3 ✅ OK | 4-7 ⚠️ 可疑 | 8+ 🔴 高度可疑"
   echo "   維度: 原11項 + LIST-DUMP + THIN + QUALITY-DECAY + CHINA-TERM + CITATION-DESERT"

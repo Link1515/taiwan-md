@@ -1,7 +1,18 @@
 {
-  "version": "3.2",
-  "timestamp": "2026-04-05T02:12:54Z",
-  "total": 1,
-  "flagged": 0,
-  "files": []
+  "version": "3.3",
+  "timestamp": "2026-04-05T08:49:29Z",
+  "total": 447,
+  "flagged": 395,
+  "files": [
+    {"file": "nature/台灣山岳與登山文化.md", "score": 16},
+    {"file": "economy/台灣金融科技發展.md", "score": 14},
+    {"file": "culture/澎湖民俗文化.md", "score": 14},
+    {"file": "technology/電子商務與數位支付生態系.md", "score": 14},
+    {"file": "culture/台灣婚喪喜慶與人生禮俗.md", "score": 14},
+    {"file": "society/動物園與展演動物倫理.md", "score": 14},
+    {"file": "people/黃仁勳.md", "score": 14},
+    {"file": "people/葉丙成.md", "score": 14},
+    {"file": "nature/台灣穿山甲.md", "score": 14},
+    {"file": "culture/客家文化與語言.md", "score": 5}
+  ]
 }
