@@ -10,6 +10,8 @@
 
 | #   | 日期       | 語言 | 平台    | 文章 slug            | 分類       | 模板       | URL                                                        |
 | --- | ---------- | ---- | ------- | -------------------- | ---------- | ---------- | ---------------------------------------------------------- |
+| 9   | 2026-04-06 | zh   | X       | 嚴長壽               | people     | A 人物型   | [→](https://x.com/taiwandotmd/status/2041143084583469498)  |
+| 8   | 2026-04-06 | zh   | Threads | 嚴長壽               | people     | A 人物型   | [→](https://www.threads.com/@taiwandotmd/post/DWyqKShE4a8) |
 | 7   | 2026-04-06 | zh   | X       | 台灣宗教與寺廟文化   | culture    | B 冷知識型 | [→](https://x.com/taiwandotmd/status/2041042663613608298)  |
 | 6   | 2026-04-06 | zh   | Threads | 台灣宗教與寺廟文化   | culture    | B 冷知識型 | [→](https://www.threads.com/@taiwandotmd/post/DWx7dvkEcNA) |
 | 5   | 2026-04-04 | zh   | X       | 台灣國樂             | music      | B 冷知識型 | [→](https://x.com/taiwandotmd/status/2040438911697379383)  |
@@ -23,6 +25,7 @@
 | 語言 | 平台        | 文章 slug          | 分類    | 模板       | 備註                       |
 | ---- | ----------- | ------------------ | ------- | ---------- | -------------------------- |
 | en   | Threads + X | 台灣國樂           | music   | B 冷知識型 | 英文孢子已寫好，待人類發佈 |
+| en   | Threads + X | 嚴長壽             | people  | A 人物型   | 英文孢子已寫好，待人類發佈 |
 | en   | Threads + X | 台灣宗教與寺廟文化 | culture | B 冷知識型 | 英文孢子已寫好，待人類發佈 |
 
 ---
