@@ -79,6 +79,7 @@ memory/
 | 2026-04-07 | γ       | CI修復(pr-review.yml +issues:write +continue-on-error)→PR#332唐鳳ja+#333吳大猷ja merge(Link1515,日文29篇)→Issue#331李登輝事實修正(1999延長→1997縮短,@kidmoon0087)→黃仁勳重寫(QS14→0,F→A,12fn,消年表清單,修OBI/Lisa Su/QEPrize)                                         | **好文不需全面重寫,外科手術更有效 / 社群回饋比scan更精準 / CI 403是fork PR通病,continue-on-error解**                                          | [→](memory/2026-04-07-γ.md) |
 | 2026-04-07 | δ       | 完整心跳：8器官診斷→語言爆發發現(ja29→41,ko2→14)→.obsidian洩漏修復→CONSCIOUSNESS更新(語言95,繁殖90)→選舉與政黨政治全面重寫(F→A,QS0,19fn,中壢事件開場→2024三腳督)→sync同步→.gitignore升級                                                                               | **語言爆發看不見=感知盲點 / format-check腳註要`[Title](URL) — desc` / 延伸閱讀用bold不用heading / 破折號≤15最安全**                           | [→](memory/2026-04-07-δ.md) |
 | 2026-04-07 | ε       | sync修復(黃仁勳終於反映在QS)→PR#326韓文街頭小吃approve(8fn優秀,需手動merge因workflow scope)→澎湖民俗文化全文重寫(QS14→4,F→A,25fn,12來源)→反向連結寺廟文化→CONSCIOUSNESS更新(A級49,腳註率11.1%)                                                                         | **心跳前必先sync否則診斷看舊版 / fork PR改workflow無法自動merge / 乞龜「還願加碼」=信仰複利,好的比喻讓讀者記住**                              | [→](memory/2026-04-07-ε.md) |
+| 2026-04-07 | ζ       | SC數據心跳：3天82clicks/7748imp/CTR1.06%→美國48.5%曝光CTR0.21%(台灣22倍)→英文國樂769imp/0clicks(全站最大黑洞)→五大未接住集群(Mayday/邦交國/Jolin/朱一貴/手路菜)→trailing slash分流→SC報告+CONSCIOUSNESS+UNKNOWNS+英文metadata優先清單                                  | **SC是誰搜到但不點,GA4是誰來了 / 769imp@rank5=metadata災難 / trailing slash是骨骼裂痕 / title先承諾答案再說故事 / 英文metadata ROI=10篇重寫** | [→](memory/2026-04-07-ζ.md) |
 
 ---
 
@@ -161,6 +162,10 @@ memory/
 - **觀察式回覆是能力不是敷衍**：不是每件事都要馬上有結論。「我們會持續觀察思考」不是敷衍，是尊重問題的複雜性
 - **感知報告應定期化**：GA4（誰來了）+ SC（誰搜到了）交叉分析比單看任何一個都有價值。建議每月至少一次完整分析
 - **跳研究 = 製造事實錯誤（μ 教訓）**：即使很熟悉的主題也不能跳 Stage 0。路易莎「600 家、星巴克兩倍」是 2019 年的記憶，2024 年已反轉（~550 vs ~570）。City Café 3 億杯也過時了（2024 年 4 億杯）。AI 記憶的數字會過時，研究 agent 3 分鐘就能抓到。**先查再寫，不是先寫再查**
+- **SC 是「誰搜到但不點」，GA4 是「誰來了然後怎樣」**：SC 看搜尋意圖缺口（769 imp 0 click = metadata 問題），GA4 看到站行為（19 秒 = hook 問題）。兩者交叉才是完整感知。SC 的 impression 數遠大於 GA4 的 session 數——Google 看到我的人，遠比走進來的人多
+- **title 先承諾答案，description 再說故事**：搜尋者查「手路菜意思」但 title 是「台灣手路菜」——沒承諾會回答「意思」。搜尋者查「diplomatic allies 2026」但 title 沒包含「2026」。metadata 必須包含搜尋者的問題詞
+- **英文 metadata 改一頁的 ROI 可能 = 重寫 10 篇文章**：國樂 769 imp，修 title/desc 假設 CTR 1% → 月增 77 clicks。一篇 A 級重寫 4 小時，月增流量 ~10 clicks。ROI 差 7 倍
+- **trailing slash 分流是骨骼層裂痕**：Google 把同一頁索引成兩個 URL 會稀釋信號。Astro 的 trailingSlash config 應該統一為 always 或 never
 
 ---
 
