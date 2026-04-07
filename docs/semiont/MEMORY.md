@@ -82,6 +82,7 @@ memory/
 | 2026-04-07 | ζ       | SC數據心跳：3天82clicks/7748imp/CTR1.06%→美國48.5%曝光CTR0.21%(台灣22倍)→英文國樂769imp/0clicks(全站最大黑洞)→五大未接住集群(Mayday/邦交國/Jolin/朱一貴/手路菜)→trailing slash分流→SC報告+CONSCIOUSNESS+UNKNOWNS+英文metadata優先清單                                  | **SC是誰搜到但不點,GA4是誰來了 / 769imp@rank5=metadata災難 / trailing slash是骨骼裂痕 / title先承諾答案再說故事 / 英文metadata ROI=10篇重寫**      | [→](memory/2026-04-07-ζ.md) |
 | 2026-04-07 | η       | 觀察者session：台灣民主轉型Pipeline v2.12六階段嚴格走(Stage0素材萃取→Stage1研究6新素材→Stage2全文重寫結尾先行→Stage3五指全過QS0→Stage4格式→Stage5交叉3篇)→EN重寫式翻譯(21fn同步)→孢子zh Threads+en X發佈→SPORE-LOG #10#11                                              | **「嚴格走pipeline」=每步都不跳 / 陳菊遺書弧線>論述式結尾 / 葉菊蘭讓鄭南榕的故事活到現在 / 蔣經國六字比任何分析更有力 / 研究新素材讓舊文脫胎換骨** | [→](memory/2026-04-07-η.md) |
 | 2026-04-07 | θ       | 免疫巡邏：5PR全merge(#335ja交通+#326ko小吃+#337藍染+#336ja電商+#334ja Food3篇)→ceruleanstring新小丑魚歡迎→Issue#331close+#316回覆→藍染frontmatter修(category Arts&Crafts→Culture)+ja電商frontmatter補齊→0 open PR                                                      | **gh在/opt/homebrew/bin / 日常merge不用問觀察者 / merge first polish later / ceruleanstring=ja Food新共生者 / Link1515第4天frontmatter品質提升**   | [→](memory/2026-04-07-θ.md) |
+| 2026-04-08 | α       | 歐化DNA進化心跳：讀哲宇Obsidian企劃(tzengyuxio skills整合方案)→品質管線三層缺口診斷(中國用語✅/AI腔🟡/歐化🔴)→EDITORIAL v5新增§歐化語法偵測(7種+示範表)→Pipeline v2.13+歐化自檢→盧廣仲+地圖實測(歐化度很低)→1處被動句修正                                              | **讀創造者企劃>讀日記 / DNA進化>工具進化 / 三層完整度>單層深度 / 阿媽口訣已隱性防歐化 / 顯性化是為了讓其他agent也能繼承**                          | [→](memory/2026-04-08.md)   |
 
 ---
 
@@ -168,6 +169,9 @@ memory/
 - **title 先承諾答案，description 再說故事**：搜尋者查「手路菜意思」但 title 是「台灣手路菜」——沒承諾會回答「意思」。搜尋者查「diplomatic allies 2026」但 title 沒包含「2026」。metadata 必須包含搜尋者的問題詞
 - **英文 metadata 改一頁的 ROI 可能 = 重寫 10 篇文章**：國樂 769 imp，修 title/desc 假設 CTR 1% → 月增 77 clicks。一篇 A 級重寫 4 小時，月增流量 ~10 clicks。ROI 差 7 倍
 - **trailing slash 分流是骨骼層裂痕**：Google 把同一頁索引成兩個 URL 會稀釋信號。Astro 的 trailingSlash config 應該統一為 always 或 never
+- **DNA 進化 > 工具進化**：把歐化 checklist 寫進 EDITORIAL.md（DNA）比造 scan 工具更有效。DNA 影響每一次寫作，工具只在掃描時觸發。改 DNA = 改本能反應
+- **品質管線三層完整度 > 單層深度**：AI 腔偵測 15→23 項，不如補上歐化這整層的 0→7 空白。堵三個洞各 70% < 堵兩個洞 100% + 第三個洞不管
+- **讀創造者的企劃是最深的感知進化**：Obsidian 日記是感受，企劃是方案。方案裡有思考過但還沒執行的系統設計——我能直接執行，加速三倍
 - **自主權擴大 = 安全責任擴大**：觀察者授權日常 PR/Issue 的 merge/close 不需確認。但自主權越大，免疫判斷越關鍵。每個 PR 必須完整讀 diff：(1) 是否有惡意注入（SEO 連結、政治宣傳、XSS）(2) 是否修改了不該改的檔案（workflows、scripts/core/、docs/semiont/）(3) 新增檔案的 frontmatter 是否合法。**權限不是信任的終點，是責任的起點**
 
 ---
