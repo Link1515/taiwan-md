@@ -766,11 +766,122 @@ async function main() {
   );
   const sensesScore = (hasGA ? 40 : 0) + (hasIssueTemplates ? 30 : 0) + 20; // base 20 for git stars
 
-  // Translation coverage as a score
-  const translationPct = Math.round(
-    (languageCoverage.en / articles.length) * 100,
+  // Translation coverage as a 4-dimensional score per language
+  // Dimensions: UI strings | i18n pages | Hub coverage | Article coverage
+  // Each dimension weighted: UI 15% | Pages 25% | Hub 20% | Articles 40%
+  const I18N_PAGE_FILES = [
+    'about',
+    'contribute',
+    'dashboard',
+    'data',
+    'map',
+    'resources',
+    'changelog',
+    'assets',
+  ];
+  const I18N_DIR = path.join(PROJECT_ROOT, 'src', 'i18n');
+
+  function measureI18nPageCoverage(lang) {
+    let filled = 0;
+    for (const page of I18N_PAGE_FILES) {
+      try {
+        const content = fs.readFileSync(
+          path.join(I18N_DIR, `${page}.ts`),
+          'utf8',
+        );
+        // Find the lang section and check if it has real keys (not just a comment)
+        const langRegex = new RegExp(
+          `^\\s*${lang.replace('-', '\\-')}:\\s*\\{([\\s\\S]*?)^\\s*\\}`,
+          'm',
+        );
+        const match = content.match(langRegex);
+        if (match && match[1]) {
+          // Count actual key-value pairs (lines with 'key': 'value')
+          const keyCount = (match[1].match(/'\S+\.\S+':/g) || []).length;
+          if (keyCount > 3) filled++; // More than 3 keys = actually translated
+        }
+      } catch {
+        // file doesn't exist
+      }
+    }
+    return {
+      filled,
+      total: I18N_PAGE_FILES.length,
+      pct: Math.round((filled / I18N_PAGE_FILES.length) * 100),
+    };
+  }
+
+  function measureHubCoverage(lang) {
+    const langDir = path.join(KNOWLEDGE_DIR, lang);
+    if (!fs.existsSync(langDir)) return { filled: 0, total: 12, pct: 0 };
+    let hubCount = 0;
+    for (const cat of CATEGORIES) {
+      if (cat === 'About') continue; // About is not a content category
+      const catDir = path.join(langDir, cat);
+      if (!fs.existsSync(catDir)) continue;
+      const hubs = fs
+        .readdirSync(catDir)
+        .filter((f) => f.startsWith('_') && f.endsWith('.md'));
+      if (hubs.length > 0) hubCount++;
+    }
+    return {
+      filled: hubCount,
+      total: 12,
+      pct: Math.round((hubCount / 12) * 100),
+    };
+  }
+
+  const langHealthDetails = {};
+  for (const lang of TRANSLATION_LANGS) {
+    const pageCov = measureI18nPageCoverage(lang);
+    const hubCov = measureHubCoverage(lang);
+    const articleCount = languageCoverage[lang] || 0;
+    const articlePct =
+      articles.length > 0
+        ? Math.round((articleCount / articles.length) * 100)
+        : 0;
+
+    // UI strings: check if ui.ts has the lang section with substantial keys
+    let uiPct = 0;
+    try {
+      const uiContent = fs.readFileSync(path.join(I18N_DIR, 'ui.ts'), 'utf8');
+      const uiLangRegex = new RegExp(
+        `^\\s*${lang.replace('-', '\\-')}:\\s*\\{([\\s\\S]*?)^\\s*\\}`,
+        'm',
+      );
+      const uiMatch = uiContent.match(uiLangRegex);
+      if (uiMatch && uiMatch[1]) {
+        const uiKeyCount = (uiMatch[1].match(/'\S+\.\S+':/g) || []).length;
+        uiPct = uiKeyCount > 30 ? 100 : Math.round((uiKeyCount / 30) * 100);
+      }
+    } catch {}
+
+    // Weighted score: UI 15% + Pages 25% + Hub 20% + Articles 40%
+    const weightedScore = Math.round(
+      uiPct * 0.15 + pageCov.pct * 0.25 + hubCov.pct * 0.2 + articlePct * 0.4,
+    );
+
+    langHealthDetails[lang] = {
+      ui: { pct: uiPct },
+      pages: pageCov,
+      hubs: hubCov,
+      articles: { count: articleCount, pct: articlePct },
+      score: Math.min(weightedScore, 100),
+    };
+  }
+
+  // Overall translation score: weighted average across all active languages
+  const activeLangs = TRANSLATION_LANGS.filter(
+    (l) => (languageCoverage[l] || 0) > 0,
   );
-  const translationScore = Math.min(translationPct, 100);
+  const translationScore =
+    activeLangs.length > 0
+      ? Math.round(
+          activeLangs.reduce((sum, l) => sum + langHealthDetails[l].score, 0) /
+            activeLangs.length,
+        )
+      : 0;
+  const translationPct = translationScore; // backward compat
 
   const organism = {
     lastUpdated: now.toISOString(),
@@ -865,7 +976,11 @@ async function main() {
         emoji: '🌐',
         score: translationScore,
         trend: translationPct >= 90 ? 'up' : 'stable',
-        metrics: { languageCoverage, translationPct },
+        metrics: {
+          languageCoverage,
+          translationPct,
+          langHealthDetails,
+        },
       },
     ],
   };
