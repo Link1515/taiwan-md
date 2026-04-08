@@ -16,7 +16,7 @@ const translatePath = useTranslatedPath(lang);
       <div class="footer-brand">
         <span class="footer-logo">🇹🇼 Taiwan.md</span>
         <p>{t('footer.desc')}</p>
-        <p class="footer-heart">Built with ❤️ in Taiwan</p>
+        <p class="footer-heart">{t('footer.builtWith')}</p>
         <p class="footer-license">
           <a
             href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-tw"
@@ -58,12 +58,8 @@ const translatePath = useTranslatedPath(lang);
         >
         <a href={translatePath('/about')}>{t('footer.about')}</a>
         <a href={translatePath('/graph')}>{t('footer.graph')}</a>
-        <a href={translatePath('/data')}
-          >{lang === 'en' ? 'Data' : '數據台灣'}</a
-        >
-        <a href={translatePath('/dashboard')}
-          >{lang === 'en' ? 'Dashboard' : '監測面板'}</a
-        >
+        <a href={translatePath('/data')}>{t('footer.dataPage')}</a>
+        <a href={translatePath('/dashboard')}>{t('footer.dashboardPage')}</a>
         <a
           href="https://github.com/frank890417/taiwan-md/blob/main/CONTRIBUTING.md"
           target="_blank">{t('footer.contribute')}</a
