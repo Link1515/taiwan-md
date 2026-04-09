@@ -3,7 +3,7 @@ title: '阿里山：帝国の林場と高一生の山'
 description: '1954年4月17日午後2時半、「阿里山のニーチェ」と呼ばれた鄒族の指導者・高一生が処刑された。阿里山はただの観光地ではなく、二つの帝国が次々と書き換えた記憶の山だ。'
 date: 2026-04-05
 tags: ['阿里山', '高一生', '鄒族', '原住民族', '白色テロ', '日治時期', '森林鉄道', '河合鈰太郎']
-subcategory: '戦後と威権主義'
+subcategory: '戦後と権威主義'
 category: 'History'
 author: 'Taiwan.md Translation Team'
 readingTime: 12

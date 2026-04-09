@@ -1,16 +1,20 @@
 {
-  "totalArticles": 898,
+  "totalArticles": 972,
   "totalCategories": 20,
-  "estimatedContributors": 60,
-  "totalTags": 2280,
+  "estimatedContributors": 65,
+  "totalTags": 2455,
   "categories": [
     {
       "name": "en",
-      "count": 390
+      "count": 395
     },
     {
       "name": "Culture",
-      "count": 40
+      "count": 42
+    },
+    {
+      "name": "ja",
+      "count": 62
     },
     {
       "name": "History",
@@ -18,7 +22,7 @@
     },
     {
       "name": "Society",
-      "count": 27
+      "count": 32
     },
     {
       "name": "Music",
@@ -26,7 +30,7 @@
     },
     {
       "name": "Economy",
-      "count": 47
+      "count": 48
     },
     {
       "name": "People",
@@ -35,10 +39,6 @@
     {
       "name": "Lifestyle",
       "count": 16
-    },
-    {
-      "name": "ja",
-      "count": 27
     },
     {
       "name": "Art",
@@ -50,7 +50,7 @@
     },
     {
       "name": "Technology",
-      "count": 27
+      "count": 28
     },
     {
       "name": "Nature",
@@ -58,7 +58,7 @@
     },
     {
       "name": "Geography",
-      "count": 18
+      "count": 19
     },
     {
       "name": "About",
@@ -82,7 +82,7 @@
     },
     {
       "name": "ko",
-      "count": 2
+      "count": 26
     }
   ],
   "topTags": [
@@ -99,36 +99,40 @@
       "count": 31
     },
     {
+      "name": "民主化",
+      "count": 15
+    },
+    {
       "name": "半導體",
       "count": 15
     },
     {
       "name": "台灣",
-      "count": 15
+      "count": 14
     },
     {
       "name": "歷史",
       "count": 13
     },
     {
-      "name": "金曲獎",
+      "name": "原住民族",
       "count": 13
+    },
+    {
+      "name": "金曲獎",
+      "count": 12
     },
     {
       "name": "音樂",
       "count": 12
     },
     {
+      "name": "教育",
+      "count": 12
+    },
+    {
       "name": "Technology",
       "count": 12
-    },
-    {
-      "name": "people",
-      "count": 12
-    },
-    {
-      "name": "原住民族",
-      "count": 11
     },
     {
       "name": "數位轉型",
@@ -139,11 +143,19 @@
       "count": 11
     },
     {
+      "name": "people",
+      "count": 11
+    },
+    {
       "name": "民間信仰",
       "count": 10
     },
     {
-      "name": "民主化",
+      "name": "歴史",
+      "count": 10
+    },
+    {
+      "name": "政治",
       "count": 10
     },
     {
@@ -153,23 +165,11 @@
     {
       "name": "ODM",
       "count": 10
-    },
-    {
-      "name": "History",
-      "count": 10
-    },
-    {
-      "name": "製造業",
-      "count": 10
-    },
-    {
-      "name": "教育",
-      "count": 10
     }
   ],
   "languageDistribution": {
-    "zh-TW": 898,
+    "zh-TW": 972,
     "en": 0
   },
-  "lastUpdated": "2026-04-07T01:32:14.642Z"
+  "lastUpdated": "2026-04-09T15:56:20.007Z"
 }
