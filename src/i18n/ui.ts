@@ -10,6 +10,7 @@ import { resourcesUI } from './resources';
 import { mapUI } from './map';
 import { assetsUI } from './assets';
 import { dashboardUI } from './dashboard';
+import { notFoundUI } from './notfound';
 
 export const languages: Record<Lang, string> = {
   en: 'English',
@@ -32,6 +33,7 @@ export const ui = {
     ...mapUI.en,
     ...assetsUI.en,
     ...dashboardUI.en,
+    ...notFoundUI.en,
     'nav.aria-home': 'Taiwan.md Home',
     'nav.aria-img-label': 'Taiwan.md logo',
     'nav.aria-toggle-menu': 'Toggle navigation menu',
@@ -75,6 +77,9 @@ export const ui = {
     'footer.report': 'Report Issue',
     'footer.discuss': 'Discussions',
     'footer.desc': 'Open-source, AI-friendly knowledge base about Taiwan',
+    'footer.builtWith': 'Built with ❤️ in Taiwan',
+    'footer.dataPage': 'Data',
+    'footer.dashboardPage': 'Dashboard',
     'footer.support-us': 'Support us',
     'footer.font-sponsor-prefix': 'Web fonts sponsored by',
     'footer.font-sponsor-suffix': ' ',
@@ -90,6 +95,9 @@ export const ui = {
     'categoryConfig.society': 'Society',
     'categoryConfig.economy': 'Economy',
     'categoryConfig.lifestyle': 'Lifestyle',
+    'categoryConfig.about': 'About',
+    'categoryConfig.about.description':
+      'About Taiwan.md — origin story, team, and mission',
     'categoryConfig.history.description':
       "The complete timeline of Taiwan's history from prehistoric times to the present",
     'categoryConfig.geography.description':
@@ -158,6 +166,7 @@ export const ui = {
     ...mapUI.ja,
     ...assetsUI.ja,
     ...dashboardUI.ja,
+    ...notFoundUI.ja,
     'nav.aria-home': 'Taiwan.md ホーム',
     'nav.aria-img-label': 'Taiwan.md ロゴ',
     'nav.aria-toggle-menu': 'ナビゲーションメニューの切替',
@@ -201,6 +210,9 @@ export const ui = {
     'footer.report': '問題を報告',
     'footer.discuss': 'ディスカッション',
     'footer.desc': 'オープンソース、AI対応の台湾ナレッジベース',
+    'footer.builtWith': '台湾から ❤️ を込めて',
+    'footer.dataPage': 'データ台湾',
+    'footer.dashboardPage': 'モニタリング',
     'footer.support-us': 'サポート',
     'footer.font-sponsor-prefix': 'Webフォント提供：',
     'footer.font-sponsor-suffix': ' ',
@@ -216,6 +228,9 @@ export const ui = {
     'categoryConfig.society': '社会',
     'categoryConfig.economy': '経済',
     'categoryConfig.lifestyle': 'ライフスタイル',
+    'categoryConfig.about': '概要',
+    'categoryConfig.about.description':
+      'Taiwan.md について — 始まりの物語、チーム、ミッション',
     'categoryConfig.history.description':
       '先史時代から現代まで、台湾の歴史の完全な流れ',
     'categoryConfig.geography.description':
@@ -276,6 +291,7 @@ export const ui = {
     ...mapUI.ko,
     ...assetsUI.ko,
     ...dashboardUI.ko,
+    ...notFoundUI.ko,
     'nav.aria-home': 'Taiwan.md 홈',
     'nav.aria-img-label': 'Taiwan.md 로고',
     'nav.aria-toggle-menu': '내비게이션 메뉴 전환',
@@ -319,6 +335,9 @@ export const ui = {
     'footer.report': '문제 보고',
     'footer.discuss': '토론',
     'footer.desc': '오픈소스, AI 친화적인 대만 지식 베이스',
+    'footer.builtWith': '대만에서 ❤️로 만들었습니다',
+    'footer.dataPage': '데이터 타이완',
+    'footer.dashboardPage': '모니터링 대시보드',
     'footer.support-us': '후원하기',
     'footer.font-sponsor-prefix': '웹폰트 제공: ',
     'footer.font-sponsor-suffix': ' ',
@@ -334,6 +353,9 @@ export const ui = {
     'categoryConfig.society': '사회',
     'categoryConfig.economy': '경제',
     'categoryConfig.lifestyle': '라이프스타일',
+    'categoryConfig.about': '소개',
+    'categoryConfig.about.description':
+      'Taiwan.md 소개 — 시작 이야기, 팀과 사명',
     'categoryConfig.history.description':
       '선사시대부터 현대까지, 대만 역사의 완전한 흐름',
     'categoryConfig.geography.description':
@@ -397,6 +419,7 @@ export const ui = {
     ...mapUI['zh-TW'],
     ...assetsUI['zh-TW'],
     ...dashboardUI['zh-TW'],
+    ...notFoundUI['zh-TW'],
     'nav.aria-home': 'Taiwan.md 首頁',
     'nav.aria-img-label': 'Taiwan.md 標誌圖示',
     'nav.aria-toggle-menu': '開啟/關閉導航選單',
@@ -440,6 +463,9 @@ export const ui = {
     'footer.report': '回報問題',
     'footer.discuss': '討論區',
     'footer.desc': '開源、AI-friendly 的台灣知識庫',
+    'footer.builtWith': '在台灣以 ❤️ 打造',
+    'footer.dataPage': '數據台灣',
+    'footer.dashboardPage': '監測面板',
     'footer.support-us': '支持我們',
     'footer.font-sponsor-prefix': '字體由',
     'footer.font-sponsor-suffix': '提供',
@@ -455,6 +481,8 @@ export const ui = {
     'categoryConfig.society': '社會',
     'categoryConfig.economy': '經濟',
     'categoryConfig.lifestyle': '生活',
+    'categoryConfig.about': '關於',
+    'categoryConfig.about.description': '關於 Taiwan.md — 緣起、團隊與使命',
     'categoryConfig.history.description':
       '從史前時代到現代，台灣歷史的完整脈絡',
     'categoryConfig.geography.description':

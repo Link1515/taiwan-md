@@ -25,10 +25,54 @@ export const changelogUI = {
     'changelog.time.days-ago': 'days ago',
   },
   ja: {
-    // Japanese — uses English as base, core strings will be translated
+    // Meta
+    'changelog.meta.title': 'サイト更新履歴',
+    'changelog.meta.description':
+      'Taiwan.md のリアルタイム更新履歴、すべてのコンテンツ追加とサイト改善を追跡します。',
+
+    // Header
+    'changelog.header.title': 'サイト更新履歴',
+    'changelog.header.subtitle':
+      'Taiwan.md のすべてのコンテンツ追加とサイト改善を追跡',
+    'changelog.header.meta.updates': '件の更新履歴',
+    'changelog.header.meta.synced': '自動同期元：',
+
+    // Timeline
+    'changelog.day.updates': '件の更新',
+
+    // Locale for date formatting
+    'changelog.locale': 'ja-JP',
+
+    // Relative time
+    'changelog.time.just-now': 'たった今',
+    'changelog.time.minutes-ago': '分前',
+    'changelog.time.hours-ago': '時間前',
+    'changelog.time.days-ago': '日前',
   },
   ko: {
-    // Korean — uses English as base, core strings will be translated
+    // Meta
+    'changelog.meta.title': '사이트 업데이트 기록',
+    'changelog.meta.description':
+      'Taiwan.md의 실시간 업데이트 기록, 모든 콘텐츠 추가와 사이트 개선 사항을 추적합니다.',
+
+    // Header
+    'changelog.header.title': '사이트 업데이트 기록',
+    'changelog.header.subtitle':
+      'Taiwan.md의 모든 콘텐츠 추가와 사이트 개선 사항을 추적합니다',
+    'changelog.header.meta.updates': '건 업데이트 기록',
+    'changelog.header.meta.synced': '자동 동기화 출처:',
+
+    // Timeline
+    'changelog.day.updates': '건 업데이트',
+
+    // Locale for date formatting
+    'changelog.locale': 'ko-KR',
+
+    // Relative time
+    'changelog.time.just-now': '방금',
+    'changelog.time.minutes-ago': '분 전',
+    'changelog.time.hours-ago': '시간 전',
+    'changelog.time.days-ago': '일 전',
   },
   'zh-TW': {
     // Meta

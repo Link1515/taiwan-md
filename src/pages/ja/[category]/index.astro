@@ -70,6 +70,7 @@ export async function getStaticPaths() {
         const { data: frontmatter } = safeMatter(fileContent);
         const slug = basename(file, '.md');
 
+        const fnCount = (fileContent.match(/^\[\^\d+\]:/gm) || []).length;
         articles.push({
           slug,
           title: frontmatter.title || slug,
@@ -78,6 +79,7 @@ export async function getStaticPaths() {
           readingTime: frontmatter.readingTime || null,
           date: frontmatter.date || null,
           featured: frontmatter.featured || false,
+          footnotes: fnCount,
           lang: 'ja',
         });
       }
@@ -103,14 +105,37 @@ export async function getStaticPaths() {
       }
     } catch {}
 
+    // Compute top picks
+    const computeTopPicks = () => {
+      if (articles.length === 0) return [];
+      const tryThr = (ft: number, nt: number) =>
+        articles.filter(
+          (a: any) => (a.footnotes || 0) >= (a.featured ? ft : nt),
+        );
+      let cands = tryThr(8, 15);
+      if (cands.length < 2) cands = tryThr(3, 8);
+      if (cands.length === 0) cands = articles.filter((a: any) => a.featured);
+      if (cands.length === 0) return [];
+      return [...cands]
+        .sort((a: any, b: any) => {
+          if (a.featured !== b.featured) return a.featured ? -1 : 1;
+          return (b.footnotes || 0) - (a.footnotes || 0);
+        })
+        .slice(0, 5);
+    };
+    const topPicks = computeTopPicks();
+
     paths.push({
       params: { category },
       props: {
         category,
         hubContent,
+        topPicks,
         articles: articles.sort((a, b) => {
           if (a.featured && !b.featured) return -1;
           if (!a.featured && b.featured) return 1;
+          if ((b.footnotes || 0) !== (a.footnotes || 0))
+            return (b.footnotes || 0) - (a.footnotes || 0);
           return a.title.localeCompare(b.title);
         }),
       },
@@ -120,7 +145,7 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { category, hubContent, articles } = Astro.props;
+const { category, hubContent, articles, topPicks } = Astro.props;
 
 function resolveWikilinks(md: string, currentCategory: string) {
   if (!md) return md;
@@ -186,6 +211,11 @@ const categoryKeys = Object.keys({
 
 // Topic-pill link renderer for hub pages
 const hubRenderer = new marked.Renderer();
+hubRenderer.image = ({ href, title, text }) => {
+  const titleAttr = title ? ` title="${title}"` : '';
+  const altText = text || '';
+  return `<img src="${href}" alt="${altText}"${titleAttr} loading="lazy" onerror="this.onerror=null;this.classList.add('img-broken')" />`;
+};
 hubRenderer.link = ({ href, title, text }) => {
   const titleAttr = title ? ` title="${title}"` : '';
   const h = href || '';
@@ -229,16 +259,57 @@ const rawHubHtml = resolvedContent
   : '';
 const hubHtml = enrichBlockquotes(rawHubHtml as string);
 
+// Split hub HTML into hook (first 3 paragraphs, no headings) and full essay
+let hubHook = '';
+let hubFull = hubHtml;
+if (hubHtml) {
+  // Strip leading headings (h1, h2) from the beginning
+  let stripped = (hubHtml as string)
+    .replace(/^(\s*<h[12][^>]*>[\s\S]*?<\/h[12]>\s*)+/i, '')
+    .trim();
+  // Find the end of the 3rd </p> tag
+  let cutIndex = -1;
+  let pCount = 0;
+  const pCloseRegex = /<\/p>/gi;
+  let match;
+  while ((match = pCloseRegex.exec(stripped)) !== null) {
+    pCount++;
+    if (pCount === 3) {
+      cutIndex = match.index + match[0].length;
+      break;
+    }
+  }
+  if (cutIndex > 0 && cutIndex < stripped.length * 0.7) {
+    hubHook = stripped.slice(0, cutIndex);
+    hubFull = hubHtml;
+  }
+}
+
+// Group articles by subcategory
+const subcategoryGroups: { name: string; articles: any[] }[] = [];
+const subcatMap = new Map<string, any[]>();
+for (const article of articles) {
+  const sub = (article as any).subcategory || 'その他';
+  if (!subcatMap.has(sub)) subcatMap.set(sub, []);
+  subcatMap.get(sub)!.push(article);
+}
+for (const [name, arts] of [...subcatMap.entries()].sort((a, b) => {
+  if (a[0] === 'その他') return 1;
+  if (b[0] === 'その他') return -1;
+  return a[0].localeCompare(b[0]);
+})) {
+  subcategoryGroups.push({ name, articles: arts });
+}
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const categoryConfigs = getCategoryConfigs(t);
 const categoryInfo = categoryConfigs[category];
 
-// 其他分類（跨分類導航用）
+// Other categories (sidebar cross-category nav)
 const otherCategories = categories
   .filter((cat) => cat !== category)
-  .slice(0, 5) // 只顯示5個
   .map((cat) => ({
     key: cat,
     ...categoryConfigs[cat as CategoryKey],
@@ -252,143 +323,237 @@ const otherCategories = categories
   category={categoryInfo.name}
 >
   <main class="category-page">
-    <!-- Hero Banner -->
-    <section
-      class="hero-banner"
-      style={`background: ${categoryInfo.gradient};`}
+    <!-- Category Header (compact bar + curatorial hook fused) -->
+    <div
+      class="category-header"
+      style={`border-bottom: 2px solid ${categoryInfo.color};`}
     >
-      <div class="hero-content">
-        <div class="hero-icon">{categoryInfo.icon}</div>
-        <h1 class="hero-title">{categoryInfo.name}</h1>
-        <p class="hero-description">{categoryInfo.description}</p>
-        <div class="hero-stats">
-          <span class="stats-badge">📚 {articles.length} articles</span>
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/ja" class="breadcrumb-link">ホーム</a>
+          <span class="separator">›</span>
+          <span class="current">{categoryInfo.name}</span>
+        </nav>
+        <div class="bar-row">
+          <span class="bar-icon">{categoryInfo.icon}</span>
+          <h1 class="bar-title" style={`color: ${categoryInfo.color}`}>
+            {categoryInfo.name}
+          </h1>
+          <span class="bar-sep">·</span>
+          <span class="bar-desc">{categoryInfo.description}</span>
+          <span class="bar-count">{articles.length} 記事</span>
         </div>
+        {
+          hubHook && (
+            <div class="header-hook">
+              <div class="header-hook-prose" set:html={hubHook} />
+              <a href="#hub-essay" class="hook-readmore">
+                キュレーション全文を読む →
+              </a>
+            </div>
+          )
+        }
       </div>
-      <div class="hero-decoration"></div>
-    </section>
+    </div>
 
     <div class="container">
-      <!-- Breadcrumb -->
-      <nav class="breadcrumb">
-        <a href="/en">Home</a>
-        <span class="separator">›</span>
-        <span class="current">{categoryInfo.name}</span>
-      </nav>
-
-      <!-- Hub Content (curated overview) -->
-      {
-        hubHtml && (
-          <section class="hub-content">
-            <div class="hub-prose" set:html={hubHtml} />
-          </section>
-        )
-      }
-
-      <!-- Articles Section -->
-      <h2 class="articles-heading">📖 Further Reading</h2>
+      <!-- Main two-column layout: sidebar + content -->
       {
         articles.length > 0 ? (
-          <section class="articles-section">
-            <div class="articles-grid">
-              {articles.map((article, index) => (
-                <article
-                  class={`article-card ${index === 0 && article.featured ? 'featured-card' : ''}`}
-                >
-                  <a href={`/ja/${category}/${article.slug}`} class="card-link">
-                    <div
-                      class="card-image-placeholder"
-                      style={`background: ${categoryInfo.gradient};`}
-                    >
-                      <div class="card-image-icon">{categoryInfo.icon}</div>
-                    </div>
+          <div class="hub-layout">
+            <aside class="hub-sidebar">
+              {/* Subcategory nav */}
+              {subcategoryGroups.length > 1 && (
+                <nav class="sidebar-nav">
+                  <span class="sidebar-label">トピック</span>
+                  {subcategoryGroups.map((group) => (
+                    <a href={`#sub-${group.name}`} class="sidebar-item">
+                      {group.name}
+                      <span class="sidebar-count">{group.articles.length}</span>
+                    </a>
+                  ))}
+                </nav>
+              )}
 
-                    <div class="card-content">
-                      <div class="card-header">
-                        <div class="article-meta">
-                          {article.status && (
-                            <span class="status-tag">{article.status}</span>
-                          )}
-                          {article.lang && (
-                            <span class="lang-tag">
-                              {article.lang === 'ja'
-                                ? '日本語'
-                                : article.lang === 'zh-TW'
-                                  ? '中文'
-                                  : 'EN'}
-                            </span>
-                          )}
-                        </div>
-                        {article.featured && (
-                          <div class="featured-badge">⭐ Featured</div>
-                        )}
-                      </div>
-
-                      <h3 class="article-title">{article.title}</h3>
-
-                      <p class="article-excerpt">{article.description}</p>
-
-                      <div class="article-info">
-                        {article.readingTime && (
-                          <span class="info-item">
-                            📖 {article.readingTime} min read
-                          </span>
-                        )}
-                      </div>
-                    </div>
+              {/* Cross-category nav (replaces bottom explore cards) */}
+              <div class="sidebar-divider" />
+              <nav class="sidebar-nav">
+                <span class="sidebar-label">他のトピック</span>
+                {otherCategories.map((cat) => (
+                  <a href={`/ja/${cat.key}`} class="sidebar-item sidebar-other">
+                    <span>
+                      {cat.icon} {cat.name}
+                    </span>
                   </a>
-                </article>
-              ))}
+                ))}
+              </nav>
+            </aside>
+
+            <div class="hub-main">
+              {/* Featured Picks (horizontal chips) */}
+              {topPicks && topPicks.length > 0 && (
+                <div class="featured-strip">
+                  <span class="featured-label">注目</span>
+                  {topPicks.slice(0, 3).map((article: any) => (
+                    <a
+                      href={`/ja/${category}/${encodeURIComponent(article.slug)}`}
+                      class="featured-chip"
+                    >
+                      ★ {article.title}
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {/* Articles list */}
+              <div class="articles-main" id="articlesGrid">
+                <div class="articles-toolbar">
+                  <input
+                    type="text"
+                    class="filter-input"
+                    id="articleFilter"
+                    placeholder="記事を検索..."
+                    autocomplete="off"
+                  />
+                </div>
+
+                {subcategoryGroups.map((group) => (
+                  <div class="subcategory-section" id={`sub-${group.name}`}>
+                    {subcategoryGroups.length > 1 && (
+                      <h3 class="subcategory-heading">
+                        {group.name}
+                        <span class="subcategory-count">
+                          {group.articles.length}
+                        </span>
+                      </h3>
+                    )}
+                    <div class="article-rows">
+                      {group.articles.map((article: any) => (
+                        <a
+                          href={`/ja/${category}/${encodeURIComponent(article.slug)}`}
+                          class={`article-row ${article.featured ? 'is-featured' : ''}`}
+                          data-title={article.title}
+                        >
+                          <div class="row-main">
+                            <div class="row-title-line">
+                              {article.featured && (
+                                <span class="row-star">★</span>
+                              )}
+                              <h3 class="row-title">{article.title}</h3>
+                            </div>
+                            {article.description && (
+                              <p class="row-desc">
+                                {article.description.length > 120
+                                  ? article.description.slice(0, 117) + '...'
+                                  : article.description}
+                              </p>
+                            )}
+                          </div>
+                          <div class="row-meta">
+                            {(article.footnotes || 0) > 0 && (
+                              <span class="row-fn">
+                                {article.footnotes} 引用
+                              </span>
+                            )}
+                            {article.readingTime && (
+                              <span class="row-time">
+                                {article.readingTime} min
+                              </span>
+                            )}
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+
+                <div class="no-results" id="noResults" style="display:none;">
+                  <p>条件に一致する記事が見つかりません</p>
+                </div>
+              </div>
+
+              {/* Full Hub Essay (not collapsed -- the soul of Taiwan.md) */}
+              {hubHtml && (
+                <section class="hub-content" id="hub-essay">
+                  <h2 class="hub-essay-heading">
+                    {categoryInfo.icon} キュレーション
+                  </h2>
+                  <div class="hub-prose" set:html={hubHtml} />
+                </section>
+              )}
             </div>
-          </section>
+          </div>
         ) : (
           <section class="coming-soon">
             <div class="coming-soon-content">
               <div class="coming-soon-icon">{categoryInfo.icon}</div>
-              <h2>Content Coming Soon</h2>
-              <p>Articles in this category are being prepared. Stay tuned!</p>
-              <p class="category-desc">
-                Coming soon: {categoryInfo.description}
-              </p>
-
+              <h2>コンテンツ準備中</h2>
+              <p>このカテゴリの記事は準備中です。お楽しみに！</p>
+              <p class="category-desc">準備中：{categoryInfo.description}</p>
               <div class="action-buttons">
-                <a href="/en" class="btn-primary">
-                  Back to Home
+                <a href="/ja" class="btn-primary">
+                  ホームに戻る
                 </a>
                 <a
                   href="https://github.com/frank890417/taiwan-md"
                   target="_blank"
                   class="btn-secondary"
                 >
-                  Contribute
+                  貢献する
                 </a>
               </div>
             </div>
           </section>
         )
       }
-
-      <!-- 探索其他面向 -->
-      <section class="explore-more">
-        <h2 class="explore-title">Explore Other Aspects of Taiwan</h2>
-        <div class="categories-grid">
-          {
-            otherCategories.map((cat) => (
-              <a
-                href={`/ja/${cat.key}`}
-                class="category-card"
-                style={`border-color: ${cat.color}; color: ${cat.color};`}
-              >
-                <div class="category-card-icon">{cat.icon}</div>
-                <div class="category-card-name">{cat.name}</div>
-              </a>
-            ))
-          }
-        </div>
-      </section>
     </div>
   </main>
 </Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('articlesGrid');
+    const noResults = document.getElementById('noResults');
+    const filterInput = document.getElementById(
+      'articleFilter',
+    ) as HTMLInputElement;
+    if (!grid) return;
+
+    const rows = Array.from(
+      grid.querySelectorAll('.article-row'),
+    ) as HTMLElement[];
+    const subcategorySections = Array.from(
+      grid.querySelectorAll('.subcategory-section'),
+    ) as HTMLElement[];
+
+    function applyFilters() {
+      const query = filterInput?.value.toLowerCase() || '';
+      let visible = 0;
+      rows.forEach((row) => {
+        const title = (row.dataset.title || '').toLowerCase();
+        const show = !query || title.includes(query);
+        row.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      subcategorySections.forEach((section) => {
+        const sectionRows = section.querySelectorAll(
+          '.article-row',
+        ) as NodeListOf<HTMLElement>;
+        const anyVisible = Array.from(sectionRows).some(
+          (r) => r.style.display !== 'none',
+        );
+        section.style.display = anyVisible ? '' : 'none';
+      });
+      if (noResults) {
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+      }
+    }
+
+    filterInput?.addEventListener('input', () => {
+      applyFilters();
+    });
+  });
+</script>
 
 <style
   define:vars={{
@@ -400,88 +565,152 @@ const otherCategories = categories
     min-height: 100vh;
   }
 
-  /* Hero Banner */
-  .hero-banner {
-    position: relative;
-    width: 100%;
-    padding: 4rem 2rem;
-    color: white;
-    text-align: center;
-    overflow: hidden;
+  /* Category Header (bar + curatorial hook fused) */
+  .category-header {
+    padding: 0.75rem 0 1.25rem;
+    background: var(--categoryColorLight);
   }
-
-  .hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    animation: float 3s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  .hero-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0.8)
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-  }
-
-  .hero-description {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    line-height: 1.4;
-  }
-
-  .hero-stats {
+  .bar-row {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .bar-icon {
+    font-size: 1.5rem;
+  }
+  .bar-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0;
+  }
+  .bar-sep {
+    color: #94a3b8;
+    font-weight: 300;
+  }
+  .bar-desc {
+    font-size: 0.88rem;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 50%;
+  }
+  .bar-count {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    background: #f1f5f9;
+    padding: 0.15rem 0.5rem;
+    border-radius: 12px;
+    margin-left: auto;
   }
 
-  .stats-badge {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    font-weight: 500;
+  /* Header Hook (curatorial intro inside category header) */
+  .header-hook {
+    margin-top: 0.75rem;
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: #475569;
+    max-width: 800px;
+  }
+  .header-hook-prose :global(p) {
+    margin: 0.4rem 0;
+  }
+  .header-hook-prose :global(p:first-child) {
+    margin-top: 0;
+  }
+  .header-hook-prose :global(p:last-child) {
+    margin-bottom: 0;
+  }
+  .hook-readmore {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--categoryColor);
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  .hook-readmore:hover {
+    text-decoration: underline;
   }
 
-  .hero-decoration {
-    position: absolute;
-    top: 0;
-    right: -10%;
-    width: 50%;
-    height: 100%;
-    background: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.1) 0%,
-      transparent 70%
-    );
-    border-radius: 50%;
+  /* Hub Layout (two-column: sidebar + main) */
+  .hub-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-top: 1rem;
+  }
+  .hub-sidebar {
+    width: 180px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 72px;
+    align-self: flex-start;
+  }
+  .hub-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Featured Strip (horizontal chips) */
+  .featured-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .featured-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--categoryColor);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+  .featured-chip {
+    font-size: 0.82rem;
+    color: var(--categoryColor);
+    background: var(--categoryColorLight);
+    border: 1px solid transparent;
+    padding: 0.2rem 0.6rem;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .featured-chip:hover {
+    border-color: var(--categoryColor);
+    background: white;
+  }
+
+  /* Hub Essay (full curatorial essay below articles) */
+  .hub-essay-heading {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #334155;
+    margin: 3rem 0 0.5rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e2e8f0;
+  }
+
+  /* Sidebar shared styles */
+  .sidebar-divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 0.75rem 0;
+  }
+  .sidebar-other {
+    font-size: 0.78rem;
+    opacity: 0.75;
+  }
+  .sidebar-other:hover {
+    opacity: 1;
   }
 
   /* Container */
@@ -496,7 +725,7 @@ const otherCategories = categories
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 0.5rem;
     font-size: 0.9rem;
   }
 
@@ -517,6 +746,47 @@ const otherCategories = categories
   .current {
     color: #6b7280;
     font-weight: 600;
+  }
+
+  /* Sidebar Nav */
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .sidebar-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0 0.5rem 0.4rem;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 0.3rem;
+  }
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.82rem;
+    color: #475569;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+  }
+  .sidebar-item:hover {
+    background: rgba(45, 80, 22, 0.06);
+    color: var(--categoryColor, #2d5016);
+  }
+  .sidebar-count {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    background: #f1f5f9;
+    padding: 0.1rem 0.35rem;
+    border-radius: 8px;
+    min-width: 1.2rem;
+    text-align: center;
   }
 
   /* Articles Grid */
@@ -743,145 +1013,135 @@ const otherCategories = categories
     margin: 2.5rem 0;
   }
 
-  .articles-heading {
-    font-size: 1.4rem;
-    margin: 0 0 1.5rem 0;
-    color: #1e293b;
-  }
-
   .articles-section {
     margin-bottom: 4rem;
   }
 
-  .articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+  /* Articles toolbar */
+  .articles-main {
+    margin-top: 1.5rem;
+  }
+  .articles-toolbar {
+    margin-bottom: 1rem;
+  }
+  .articles-toolbar .filter-input {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .articles-toolbar .filter-input:focus {
+    border-color: var(--categoryColor, #2d5016);
+    box-shadow: 0 0 0 2px rgba(45, 80, 22, 0.08);
   }
 
-  .article-card {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
-    transition: all 0.2s ease;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-  }
-
-  .article-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-    border-color: rgba(0, 0, 0, 0.12);
-  }
-
-  .featured-card {
-    grid-column: 1 / -1;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .card-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .card-image-placeholder {
-    height: 160px;
+  /* Subcategory headings */
+  .subcategory-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #334155;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--categoryColor, #e2e8f0);
+    margin: 1.5rem 0 0.5rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .featured-card .card-image-placeholder {
-    height: 200px;
-  }
-
-  .card-image-icon {
-    font-size: 3rem;
-    opacity: 0.8;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-  }
-
-  .card-content {
-    padding: 1.5rem;
-  }
-
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-  }
-
-  .article-meta {
-    display: flex;
     gap: 0.5rem;
-    flex-wrap: wrap;
+  }
+  .subcategory-section:first-child .subcategory-heading {
+    margin-top: 0;
+  }
+  .subcategory-count {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    font-weight: 400;
   }
 
-  .status-tag {
-    background: var(--categoryColorLight);
-    color: var(--categoryColor);
-    padding: 0.25rem 0.5rem;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 500;
+  /* Row list layout */
+  .article-rows {
+    display: flex;
+    flex-direction: column;
   }
-
-  .lang-tag {
-    background: #f3f4f6;
-    color: #6b7280;
-    padding: 0.25rem 0.5rem;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 500;
+  .article-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.65rem 0.5rem;
+    text-decoration: none;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.15s ease;
   }
-
-  .featured-badge {
-    background: linear-gradient(45deg, #fbbf24, #f59e0b);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
+  .article-row:last-child {
+    border-bottom: none;
+  }
+  .article-row:hover {
+    background: rgba(45, 80, 22, 0.03);
+    padding-left: 0.75rem;
+  }
+  .article-row.is-featured {
+    background: rgba(45, 80, 22, 0.02);
+  }
+  .row-main {
+    flex: 1;
+    min-width: 0;
+  }
+  .row-title-line {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .row-star {
+    color: var(--categoryColor, #d97706);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+  .row-title {
+    font-size: 0.95rem;
     font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.35;
   }
-
-  .article-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-    color: #1f2937;
+  .article-row:hover .row-title {
+    color: var(--categoryColor, #2d5016);
   }
-
-  .featured-card .article-title {
-    font-size: 1.8rem;
-  }
-
-  .article-excerpt {
-    color: #6b7280;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+  .row-desc {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0.15rem 0 0;
+    line-height: 1.4;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-
-  .article-info {
+  .row-meta {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    font-size: 0.9rem;
-    color: #9ca3af;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+  }
+  .row-fn {
+    font-size: 0.72rem;
+    color: #16a34a;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .row-time {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    white-space: nowrap;
   }
 
-  .info-item {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
+  .no-results {
+    text-align: center;
+    padding: 2rem;
+    color: #94a3b8;
   }
 
   /* Coming Soon */
@@ -963,88 +1223,71 @@ const otherCategories = categories
     transform: translateY(-2px);
   }
 
-  /* Explore More */
-  .explore-more {
-    margin-top: 5rem;
-    padding: 3rem 0;
-    border-top: 1px solid #e5e7eb;
-  }
-
-  .explore-title {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1f2937;
-    margin-bottom: 2rem;
-  }
-
-  .categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .category-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 1rem;
-    background: white;
-    border: 2px solid;
-    border-radius: 16px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    text-align: center;
-  }
-
-  .category-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  }
-
-  .category-card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .category-card-name {
-    font-weight: 600;
-    font-size: 1.1rem;
-  }
-
   /* Responsive */
   @media (max-width: 768px) {
-    .hero-banner {
-      padding: 3rem 1rem;
+    .bar-desc {
+      display: none;
     }
-
-    .hero-title {
-      font-size: 2.5rem;
+    .bar-sep {
+      display: none;
     }
-
-    .hero-description {
-      font-size: 1.2rem;
+    .hub-layout {
+      flex-direction: column;
+      gap: 0;
     }
-
+    .hub-sidebar {
+      position: static;
+      width: 100%;
+      max-height: none;
+      overflow: visible;
+    }
+    .sidebar-other {
+      display: none;
+    }
+    .sidebar-divider {
+      display: none;
+    }
+    .featured-strip {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.5rem;
+    }
+    .header-hook {
+      font-size: 0.85rem;
+    }
+    .sidebar-nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 1rem;
+    }
+    .sidebar-label {
+      display: none;
+    }
+    .sidebar-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.78rem;
+    }
     .container {
       padding: 1rem;
     }
-
-    .articles-grid {
-      grid-template-columns: 1fr;
+    .row-desc {
+      display: none;
     }
-
-    .featured-card {
-      grid-column: 1;
+    .row-meta {
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.1rem;
     }
-
     .action-buttons {
       flex-direction: column;
       align-items: center;
-    }
-
-    .categories-grid {
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
   }
 </style>

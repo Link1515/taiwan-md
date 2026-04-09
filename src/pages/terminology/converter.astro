@@ -18,12 +18,18 @@ try {
   // Both build-time and frontend must use the same conversion to ensure rules match
   s2tConverter = OpenCC.Converter({ from: 'cn', to: 'tw' });
 } catch {
-  console.warn('[converter.astro] opencc-js not available, china values may not match simplified input');
+  console.warn(
+    '[converter.astro] opencc-js not available, china values may not match simplified input',
+  );
 }
 
 function toTraditional(text: string): string {
   if (!s2tConverter) return text;
-  try { return s2tConverter(text); } catch { return text; }
+  try {
+    return s2tConverter(text);
+  } catch {
+    return text;
+  }
 }
 
 /**
@@ -81,12 +87,7 @@ for (const file of files) {
     // Support both display.{china,taiwan} and top-level {china,taiwan} formats
     const chinaVal = d?.display?.china || (d as any)?.china;
     const taiwanVal = d?.display?.taiwan || (d as any)?.taiwan;
-    if (
-      d &&
-      chinaVal &&
-      taiwanVal &&
-      chinaVal !== taiwanVal
-    ) {
+    if (d && chinaVal && taiwanVal && chinaVal !== taiwanVal) {
       const forkType = d.fork_type || (d as any)?.type || '';
       const category = d.category || '';
       const id = d.id || file.replace('.yaml', '');
@@ -98,7 +99,8 @@ for (const file of files) {
 
       // Skip if value is N/A, （無直接對應）, or cleaned result equals taiwan
       if (!chinaCleaned || chinaCleaned === target) continue;
-      if (chinaCleaned.startsWith('N/A') || chinaCleaned.startsWith('（無')) continue;
+      if (chinaCleaned.startsWith('N/A') || chinaCleaned.startsWith('（無'))
+        continue;
 
       // Step 2: Normalize to traditional Chinese so it matches
       // the frontend's OpenCC-converted input text
@@ -106,14 +108,30 @@ for (const file of files) {
 
       // Add rule for the traditional form (the primary matching source)
       if (!seenSources.has(chinaTraditional) && chinaTraditional !== target) {
-        rules.push({ source: chinaTraditional, target, forkType, category, id });
+        rules.push({
+          source: chinaTraditional,
+          target,
+          forkType,
+          category,
+          id,
+        });
         seenSources.add(chinaTraditional);
       }
 
       // If the original simplified form differs from traditional, also add
       // a fallback rule for the simplified form (for when OpenCC is unavailable)
-      if (chinaCleaned !== chinaTraditional && !seenSources.has(chinaCleaned) && chinaCleaned !== target) {
-        rules.push({ source: chinaCleaned, target, forkType, category, id: id + '_simp' });
+      if (
+        chinaCleaned !== chinaTraditional &&
+        !seenSources.has(chinaCleaned) &&
+        chinaCleaned !== target
+      ) {
+        rules.push({
+          source: chinaCleaned,
+          target,
+          forkType,
+          category,
+          id: id + '_simp',
+        });
         seenSources.add(chinaCleaned);
       }
     }
@@ -128,15 +146,23 @@ rules.sort((a, b) => b.source.length - a.source.length);
 const rulesJSON = JSON.stringify(rules);
 ---
 
-<Layout title="🔄 用語轉換器 — Taiwan.md">
+<Layout
+  title="台灣用語轉換器：中國用語一鍵轉台灣說法"
+  description={`免費線上台灣用語轉換工具。「視頻」→「影片」、「軟件」→「軟體」、「打車」→「叫計程車」——${rules.length} 條轉換規則涵蓋科技、生活、醫療、校園等分類，附台灣化指數分析。不只轉字形，轉的是語感。`}
+>
   <!-- Preload OpenCC for faster mobile loading -->
-  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/opencc-js@1/dist/esm/cn2t.js" />
+  <link
+    rel="modulepreload"
+    href="https://cdn.jsdelivr.net/npm/opencc-js@1/dist/esm/cn2t.js"
+  />
   <main class="conv-page">
     <!-- ── Header ──────────────────────────────────────────────────── -->
     <div class="conv-header">
       <div class="header-inner">
         <h1>
-          🔄 用語轉換器 <span class="header-en">Terminology Converter</span>
+          台灣用語轉換器 <span class="header-en"
+            >Taiwan Terminology Converter</span
+          >
         </h1>
         <p class="header-tagline">
           把中國用語轉換為台灣用語——不只是字形，是語感。
@@ -161,7 +187,12 @@ const rulesJSON = JSON.stringify(rules);
           <div class="editor-panel">
             <div class="panel-label">輸入文字</div>
             <div class="input-wrapper">
-              <div id="input-highlight" class="input-highlight" aria-hidden="true"></div>
+              <div
+                id="input-highlight"
+                class="input-highlight"
+                aria-hidden="true"
+              >
+              </div>
               <textarea
                 id="input-text"
                 class="editor-textarea"
@@ -194,7 +225,8 @@ const rulesJSON = JSON.stringify(rules);
           <button class="btn btn-example" data-example="tech">💻 科技文</button>
           <button class="btn btn-example" data-example="life">🍜 生活文</button>
           <button class="btn btn-example" data-example="news">📰 新聞稿</button>
-          <button class="btn btn-example" data-example="medical">🏥 醫療</button>
+          <button class="btn btn-example" data-example="medical">🏥 醫療</button
+          >
           <button class="btn btn-example" data-example="school">🎓 校園</button>
           <button class="btn btn-example" data-example="social">📱 社群</button>
           <button class="btn btn-example" data-example="gaming">🎮 遊戲</button>
@@ -252,7 +284,7 @@ const rulesJSON = JSON.stringify(rules);
           const OpenCC = await Promise.race([
             import(/* @vite-ignore */ url),
             new Promise((_, reject) =>
-              setTimeout(() => reject(new Error('timeout')), 8000)
+              setTimeout(() => reject(new Error('timeout')), 8000),
             ),
           ]);
           // Use cn → tw (standard traditional Chinese used in Taiwan)
@@ -338,10 +370,17 @@ const rulesJSON = JSON.stringify(rules);
         while ((idx = text.indexOf(rule.source, idx)) !== -1) {
           let overlap = false;
           for (let i = idx; i < idx + rule.source.length; i++) {
-            if (used[i]) { overlap = true; break; }
+            if (used[i]) {
+              overlap = true;
+              break;
+            }
           }
           if (!overlap) {
-            allRegions.push({ start: idx, end: idx + rule.source.length, ruleIdx: ri });
+            allRegions.push({
+              start: idx,
+              end: idx + rule.source.length,
+              ruleIdx: ri,
+            });
             for (let i = idx; i < idx + rule.source.length; i++) used[i] = true;
             count++;
           }
@@ -439,7 +478,8 @@ const rulesJSON = JSON.stringify(rules);
       } else if (openccStatus === 'failed') {
         openccStatusEl.hidden = false;
         openccStatusEl.className = 'opencc-status-row opencc-failed';
-        openccStatusEl.textContent = '⚠️ 簡→繁字形轉換載入中或不可用，用語替換仍正常運作（建議先手動轉為繁體再貼入）';
+        openccStatusEl.textContent =
+          '⚠️ 簡→繁字形轉換載入中或不可用，用語替換仍正常運作（建議先手動轉為繁體再貼入）';
       } else {
         openccStatusEl.hidden = true;
       }
@@ -612,6 +652,112 @@ const rulesJSON = JSON.stringify(rules);
       }
     });
   </script>
+
+  <!-- ── WebApplication JSON-LD ─────────────────────────────────────── -->
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: '台灣用語轉換器',
+        alternateName: 'Taiwan Terminology Converter',
+        description: `免費線上工具，一鍵把中國用語轉成台灣在地說法。${rules.length} 條轉換規則，涵蓋科技、生活、醫療、校園等分類。`,
+        url: 'https://taiwan.md/terminology/converter',
+        applicationCategory: 'LanguageTool',
+        operatingSystem: 'Web',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'TWD',
+        },
+        inLanguage: ['zh-TW', 'zh-CN'],
+        creator: {
+          '@type': 'Organization',
+          name: 'Taiwan.md',
+          url: 'https://taiwan.md',
+        },
+        featureList: [
+          `${rules.length} 條中國→台灣用語轉換規則`,
+          '科技、生活、醫療、校園等多分類',
+          '台灣化指數分析報告',
+          '簡體中文自動轉正體中文',
+          '開源、免費、無需註冊',
+        ],
+      },
+      null,
+      2,
+    )}
+  />
+
+  <!-- ── FAQPage JSON-LD + visible FAQ section ──────────────────────── -->
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: '台灣用語轉換器和繁簡轉換有什麼不同？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '繁簡轉換只處理字形（简→繁），但「視頻」轉成繁體還是「視頻」。台灣用語轉換器處理的是詞彙層級的差異：「視頻」→「影片」、「軟件」→「軟體」、「打車」→「叫計程車」。兩者解決不同層次的問題，本工具同時內建簡繁轉換。',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '為什麼同樣是中文，中國和台灣的用語不一樣？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '1949 年後兩岸分治，語言各自演化了 70 多年。科技詞彙差異最大（因為在不同的翻譯傳統下獨立發展），日常用語也有不少差異。Taiwan.md 整理了超過 1,800 條對照規則，分為 A（完全不同）到 F（新創詞）六種分支類型。',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: '「視頻」在台灣叫什麼？「軟件」在台灣怎麼說？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '「視頻」在台灣叫「影片」或「影音」。「軟件」在台灣叫「軟體」。其他常見差異：「網絡」→「網路」、「硬盤」→「硬碟」、「鼠標」→「滑鼠」、「優盤」→「隨身碟」。這些屬於 A 類（完全不同）的用語差異。',
+            },
+          },
+        ],
+      },
+      null,
+      2,
+    )}
+  />
+
+  <!-- ── Visible FAQ section (below the tool, helps long-tail SEO) ──── -->
+  <section class="conv-faq">
+    <h2>常見問題</h2>
+    <details open>
+      <summary>台灣用語轉換器和繁簡轉換有什麼不同？</summary>
+      <p>
+        繁簡轉換只處理字形（简→繁），但「視頻」轉成繁體還是「視頻」。台灣用語轉換器處理的是<strong
+          >詞彙層級</strong
+        >的差異：「視頻」→「影片」、「軟件」→「軟體」、「打車」→「叫計程車」。兩者解決不同層次的問題，本工具同時內建簡繁轉換。
+      </p>
+    </details>
+    <details>
+      <summary>為什麼同樣是中文，中國和台灣的用語不一樣？</summary>
+      <p>
+        1949 年後兩岸分治，語言各自演化了 70
+        多年。科技詞彙差異最大（在不同翻譯傳統下獨立發展），日常用語也有不少差異。Taiwan.md
+        整理了超過 {rules.length} 條對照規則，分為 A（完全不同）到 F（新創詞）六種分支類型。
+      </p>
+    </details>
+    <details>
+      <summary>「視頻」在台灣叫什麼？「軟件」在台灣怎麼說？</summary>
+      <p>
+        「視頻」在台灣叫「影片」或「影音」。「軟件」在台灣叫「軟體」。其他常見例子：「網絡」→「網路」、「硬盤」→「硬碟」、「鼠標」→「滑鼠」、「優盤」→「隨身碟」。這些屬於
+        A 類（完全不同）的用語差異。完整對照表請見<a href="/terminology"
+          >用語詞庫</a
+        >。
+      </p>
+    </details>
+  </section>
 </Layout>
 
 <style>
@@ -844,7 +990,7 @@ const rulesJSON = JSON.stringify(rules);
     white-space: nowrap;
     z-index: 10;
     pointer-events: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
   :global(mark.sample-mark) {
     background: #fff0a0;
@@ -1059,5 +1205,59 @@ const rulesJSON = JSON.stringify(rules);
   }
   .index-arrow {
     color: #888;
+  }
+
+  /* ── FAQ section ───────────────────────────────────────────────── */
+  .conv-faq {
+    max-width: 800px;
+    margin: 2rem auto 3rem;
+    padding: 0 1.5rem;
+  }
+  .conv-faq h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  .conv-faq details {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+  .conv-faq summary {
+    padding: 0.875rem 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: #fafafa;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: #222;
+  }
+  .conv-faq summary::before {
+    content: '▸';
+    font-size: 0.8rem;
+    transition: transform 0.2s;
+    color: #666;
+  }
+  .conv-faq details[open] summary::before {
+    transform: rotate(90deg);
+  }
+  .conv-faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .conv-faq details p {
+    padding: 0.75rem 1.25rem 1rem;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #444;
+  }
+  .conv-faq details a {
+    color: #00695c;
+    text-decoration: underline;
   }
 </style>
