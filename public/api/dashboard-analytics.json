@@ -1,273 +1,342 @@
 {
-  "lastUpdated": "2026-03-28T08:48:05.830Z",
-  "dateRange": "30d",
+  "lastUpdated": "2026-04-09T16:30:00+08:00",
+  "sourcesUsed": ["ga", "searchConsole24h", "cloudflare24h"],
+  "ga": {
+    "label": "2026-03-12 to 2026-04-08",
+    "startDate": "2026-03-12",
+    "endDate": "2026-04-08",
+    "totals": {
+      "activeUsers": 84386,
+      "newUsers": 84580,
+      "avgEngagementSeconds": 41.5,
+      "events": 612864
+    },
+    "highlights": [
+      {
+        "title": "台灣知識庫",
+        "views": 78683,
+        "users": 56755,
+        "bounceRate": 52.7
+      },
+      {
+        "title": "🕸️ 知識圖譜",
+        "views": 7398,
+        "users": 5203,
+        "bounceRate": 9.9
+      },
+      {
+        "title": "Dashboard — 數位生命體即時監測",
+        "views": 581,
+        "users": 206,
+        "bounceRate": 16.1
+      }
+    ],
+    "topPages": [
+      {
+        "title": "台灣知識庫 | Taiwan.md",
+        "views": 78683,
+        "users": 56755,
+        "bounceRate": 52.7
+      },
+      {
+        "title": "開源台灣知識庫 | Taiwan.md",
+        "views": 26693,
+        "users": 15843,
+        "bounceRate": 51.1
+      },
+      {
+        "title": "Taiwan.md - Open Knowledge Base of Taiwan | Taiwan.md",
+        "views": 10333,
+        "users": 7881,
+        "bounceRate": 20.6
+      },
+      {
+        "title": "🕸️ 知識圖譜 — Taiwan.md | Taiwan.md",
+        "views": 7398,
+        "users": 5203,
+        "bounceRate": 9.9
+      },
+      {
+        "title": "歷史 - Taiwan.md | Taiwan.md",
+        "views": 6156,
+        "users": 4923,
+        "bounceRate": 18.9
+      },
+      {
+        "title": "關於 Taiwan.md | Taiwan.md",
+        "views": 6060,
+        "users": 3901,
+        "bounceRate": 15.2
+      },
+      {
+        "title": "我想貢獻 — Taiwan.md | Taiwan.md",
+        "views": 4848,
+        "users": 3305,
+        "bounceRate": 14.5
+      },
+      {
+        "title": "美食 - Taiwan.md | Taiwan.md",
+        "views": 4643,
+        "users": 3926,
+        "bounceRate": 19.5
+      }
+    ]
+  },
+  "searchConsole24h": {
+    "label": "2026-04-09 (24h)",
+    "totals": {
+      "clicks": 10,
+      "impressions": 376,
+      "ctr": 2.66,
+      "brandClicks": 9,
+      "brandImpressions": 20,
+      "nonBrandClicks": 1,
+      "nonBrandImpressions": 356
+    },
+    "topQueries": [
+      {
+        "query": "taiwan.md",
+        "clicks": 5,
+        "impressions": 7,
+        "ctr": "71.43%",
+        "position": 1.0
+      },
+      {
+        "query": "taiwan md",
+        "clicks": 4,
+        "impressions": 6,
+        "ctr": "66.67%",
+        "position": 1.0
+      },
+      {
+        "query": "台灣便利商店特色",
+        "clicks": 1,
+        "impressions": 3,
+        "ctr": "33.33%",
+        "position": 4.0
+      },
+      {
+        "query": "台灣前50大企業排名",
+        "clicks": 0,
+        "impressions": 19,
+        "ctr": "0%",
+        "position": 7.84
+      },
+      {
+        "query": "md",
+        "clicks": 0,
+        "impressions": 19,
+        "ctr": "0%",
+        "position": 10.0
+      },
+      {
+        "query": "臺灣大百科 朱一貴事件",
+        "clicks": 0,
+        "impressions": 15,
+        "ctr": "0%",
+        "position": 6.53
+      },
+      {
+        "query": "mayday ashin birthplace tainan",
+        "clicks": 0,
+        "impressions": 11,
+        "ctr": "0%",
+        "position": 8.82
+      },
+      {
+        "query": "朱一贵 籍贯",
+        "clicks": 0,
+        "impressions": 10,
+        "ctr": "0%",
+        "position": 10.5
+      }
+    ],
+    "opportunities": [
+      {
+        "query": "台灣前50大企業排名",
+        "clicks": 0,
+        "impressions": 19,
+        "ctr": "0%",
+        "position": 7.84
+      },
+      {
+        "query": "臺灣大百科 朱一貴事件",
+        "clicks": 0,
+        "impressions": 15,
+        "ctr": "0%",
+        "position": 6.53
+      },
+      {
+        "query": "mayday taiwan",
+        "clicks": 0,
+        "impressions": 8,
+        "ctr": "0%",
+        "position": 7.38
+      },
+      {
+        "query": "md taiwan",
+        "clicks": 0,
+        "impressions": 7,
+        "ctr": "0%",
+        "position": 5.14
+      },
+      {
+        "query": "中華民國 邦交國 2026",
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": "0%",
+        "position": 1.75
+      },
+      {
+        "query": "\"臺灣原住民建築的生態智慧與可持續發展\"",
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": "0%",
+        "position": 3.0
+      },
+      {
+        "query": "台灣 邦交國 數量 2026",
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": "0%",
+        "position": 5.0
+      },
+      {
+        "query": "masa mayday born in tainan",
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": "0%",
+        "position": 5.25
+      }
+    ]
+  },
+  "cloudflare24h": {
+    "label": "Last 24 hours (GMT+8)",
+    "aiCrawlers": {
+      "detectedRequests": 1060,
+      "http200": 691,
+      "allowedRequests": 811,
+      "unsuccessfulRequests": 247,
+      "topPath": {
+        "path": "taiwan.md/",
+        "successfulRequests": 33
+      },
+      "topCrawler": {
+        "name": "PetalBot",
+        "requests": 249
+      },
+      "crawlers": [
+        {
+          "name": "PetalBot",
+          "requests": 249
+        },
+        {
+          "name": "ChatGPT-User",
+          "requests": 120
+        },
+        {
+          "name": "BingBot",
+          "requests": 110
+        },
+        {
+          "name": "Googlebot",
+          "requests": 108
+        },
+        {
+          "name": "Amazonbot",
+          "requests": 102
+        },
+        {
+          "name": "PerplexityBot",
+          "requests": 80
+        },
+        {
+          "name": "Bytespider",
+          "requests": 17
+        },
+        {
+          "name": "Applebot",
+          "requests": 14
+        }
+      ]
+    },
+    "traffic": {
+      "topCountries": [
+        {
+          "country": "Taiwan",
+          "requests": 1945
+        },
+        {
+          "country": "United States",
+          "requests": 1886
+        },
+        {
+          "country": "Singapore",
+          "requests": 750
+        },
+        {
+          "country": "China",
+          "requests": 267
+        },
+        {
+          "country": "Japan",
+          "requests": 202
+        }
+      ]
+    }
+  },
   "totals": {
-    "pageViews": 195565,
-    "activeUsers": 79216,
-    "sessions": 96888,
-    "newUsers": 79246,
-    "avgSessionDuration": "110.9",
-    "bounceRate": "55.6"
+    "activeUsers": 84386,
+    "newUsers": 84580,
+    "avgEngagementSeconds": 41.5,
+    "events": 612864
   },
   "topPages": [
     {
-      "path": "/",
-      "pageViews": 99167,
-      "users": 68938
+      "title": "台灣知識庫 | Taiwan.md",
+      "views": 78683,
+      "users": 56755,
+      "bounceRate": 52.7
     },
     {
-      "path": "/en/",
-      "pageViews": 12040,
-      "users": 9241
+      "title": "開源台灣知識庫 | Taiwan.md",
+      "views": 26693,
+      "users": 15843,
+      "bounceRate": 51.1
     },
     {
-      "path": "/graph/",
-      "pageViews": 6938,
-      "users": 5054
+      "title": "Taiwan.md - Open Knowledge Base of Taiwan | Taiwan.md",
+      "views": 10333,
+      "users": 7881,
+      "bounceRate": 20.6
     },
     {
-      "path": "/history/",
-      "pageViews": 5465,
-      "users": 4667
-    },
-    {
-      "path": "/about/",
-      "pageViews": 5382,
-      "users": 3671
-    },
-    {
-      "path": "/contribute/",
-      "pageViews": 4384,
-      "users": 3167
-    },
-    {
-      "path": "/food/",
-      "pageViews": 4178,
-      "users": 3702
-    },
-    {
-      "path": "/geography/",
-      "pageViews": 3836,
-      "users": 3439
-    },
-    {
-      "path": "/resources/",
-      "pageViews": 2621,
-      "users": 1996
-    },
-    {
-      "path": "/culture/",
-      "pageViews": 2594,
-      "users": 2277
-    },
-    {
-      "path": "/data/",
-      "pageViews": 2587,
-      "users": 1851
-    },
-    {
-      "path": "/people/",
-      "pageViews": 1984,
-      "users": 1720
-    },
-    {
-      "path": "/map/",
-      "pageViews": 1965,
-      "users": 1198
-    },
-    {
-      "path": "/history/民主化/",
-      "pageViews": 1668,
-      "users": 1508
-    },
-    {
-      "path": "/technology/半導體產業/",
-      "pageViews": 1597,
-      "users": 1425
-    },
-    {
-      "path": "/lifestyle/",
-      "pageViews": 1578,
-      "users": 1373
-    },
-    {
-      "path": "/art/",
-      "pageViews": 1536,
-      "users": 1356
-    },
-    {
-      "path": "/music/",
-      "pageViews": 1492,
-      "users": 1354
-    },
-    {
-      "path": "/nature/",
-      "pageViews": 1325,
-      "users": 1161
-    },
-    {
-      "path": "/technology/",
-      "pageViews": 1270,
-      "users": 1118
+      "title": "🕸️ 知識圖譜 — Taiwan.md | Taiwan.md",
+      "views": 7398,
+      "users": 5203,
+      "bounceRate": 9.9
     }
   ],
   "countries": [
     {
       "country": "Taiwan",
-      "users": 64769
+      "requests": 1945
     },
     {
       "country": "United States",
-      "users": 4914
-    },
-    {
-      "country": "Japan",
-      "users": 1969
-    },
-    {
-      "country": "Australia",
-      "users": 900
+      "requests": 1886
     },
     {
       "country": "Singapore",
-      "users": 853
-    },
-    {
-      "country": "Hong Kong",
-      "users": 807
-    },
-    {
-      "country": "Canada",
-      "users": 744
-    },
-    {
-      "country": "United Kingdom",
-      "users": 666
-    },
-    {
-      "country": "Germany",
-      "users": 612
+      "requests": 750
     },
     {
       "country": "China",
-      "users": 495
+      "requests": 267
     },
     {
-      "country": "Malaysia",
-      "users": 374
-    },
-    {
-      "country": "France",
-      "users": 355
-    },
-    {
-      "country": "Netherlands",
-      "users": 330
-    },
-    {
-      "country": "New Zealand",
-      "users": 210
-    },
-    {
-      "country": "Thailand",
-      "users": 164
-    },
-    {
-      "country": "Vietnam",
-      "users": 159
-    },
-    {
-      "country": "Sweden",
-      "users": 149
-    },
-    {
-      "country": "South Korea",
-      "users": 137
-    },
-    {
-      "country": "India",
-      "users": 94
-    },
-    {
-      "country": "Switzerland",
-      "users": 84
-    }
-  ],
-  "sources": [
-    {
-      "source": "(direct)",
-      "medium": "(none)",
-      "sessions": 33474
-    },
-    {
-      "source": "m.facebook.com",
-      "medium": "referral",
-      "sessions": 22012
-    },
-    {
-      "source": "l.facebook.com",
-      "medium": "referral",
-      "sessions": 13464
-    },
-    {
-      "source": "lm.facebook.com",
-      "medium": "referral",
-      "sessions": 5692
-    },
-    {
-      "source": "github.com",
-      "medium": "referral",
-      "sessions": 4821
-    },
-    {
-      "source": "l.threads.com",
-      "medium": "referral",
-      "sessions": 4803
-    },
-    {
-      "source": "t.co",
-      "medium": "referral",
-      "sessions": 4411
-    },
-    {
-      "source": "google",
-      "medium": "organic",
-      "sessions": 1734
-    },
-    {
-      "source": "ig_text_feed_timeline",
-      "medium": "referral",
-      "sessions": 1333
-    },
-    {
-      "source": "facebook.com",
-      "medium": "referral",
-      "sessions": 1030
-    },
-    {
-      "source": "l.instagram.com",
-      "medium": "referral",
-      "sessions": 715
-    },
-    {
-      "source": "ig_text_post_permalink",
-      "medium": "referral",
-      "sessions": 591
-    },
-    {
-      "source": "ig_text_feed_timeline",
-      "medium": "(not set)",
-      "sessions": 525
-    },
-    {
-      "source": "(not set)",
-      "medium": "(not set)",
-      "sessions": 473
-    },
-    {
-      "source": "plurk.com",
-      "medium": "referral",
-      "sessions": 328
+      "country": "Japan",
+      "requests": 202
     }
   ]
 }

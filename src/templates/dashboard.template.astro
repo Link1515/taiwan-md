@@ -321,16 +321,18 @@ const isEn = lang === 'en';
       <p class="section-subtitle">
         {
           isEn
-            ? 'Traffic & audience insights (last 30 days)'
-            : '流量與受眾洞察（近 30 天）'
+            ? 'GA behavior + Search intent + Cloudflare edge signals'
+            : 'GA 行為 + 搜尋意圖 + Cloudflare 邊緣訊號'
         }
       </p>
       <div class="analytics-grid">
         <div class="analytics-totals" id="analytics-totals"></div>
-        <div class="analytics-sources" id="analytics-sources"></div>
+        <div class="analytics-sources" id="analytics-insights"></div>
       </div>
       <div class="analytics-detail-grid">
         <div class="analytics-pages" id="analytics-pages"></div>
+        <div class="analytics-pages" id="analytics-search"></div>
+        <div class="analytics-pages" id="analytics-crawlers"></div>
         <div class="analytics-countries" id="analytics-countries"></div>
       </div>
     </section>
@@ -1521,45 +1523,64 @@ const isEn = lang === 'en';
   // ── GA4 Analytics ──
   function renderAnalytics(data) {
     const totalsEl = document.getElementById('analytics-totals');
-    const sourcesEl = document.getElementById('analytics-sources');
+    const insightsEl = document.getElementById('analytics-insights');
     const pagesEl = document.getElementById('analytics-pages');
+    const searchEl = document.getElementById('analytics-search');
+    const crawlersEl = document.getElementById('analytics-crawlers');
     const countriesEl = document.getElementById('analytics-countries');
     if (!totalsEl) return;
 
-    const t = data.totals;
+    const ga = data.ga || {};
+    const search = data.searchConsole24h || {};
+    const cloudflare = data.cloudflare24h || {};
+    const t = ga.totals || data.totals || {};
     const fmtNum = (n) => (typeof n === 'number' ? n.toLocaleString() : n);
+    const fmtPct = (n) =>
+      typeof n === 'number' && Number.isFinite(n) ? `${n.toFixed(1)}%` : n;
+    const fmtRank = (n) =>
+      typeof n === 'number' && Number.isFinite(n) ? n.toFixed(2) : n;
+    const gaHighlights = ga.highlights || [];
+    const topPages = ga.topPages || data.topPages || [];
+    const topQueries = search.topQueries || [];
+    const opportunities = search.opportunities || [];
+    const crawlers = cloudflare.aiCrawlers?.crawlers || [];
+    const topCountries =
+      cloudflare.traffic?.topCountries || data.countries || [];
 
     // Totals row
     totalsEl.innerHTML = [
       {
         icon: '👁️',
-        value: fmtNum(t.pageViews),
-        label: isEn ? 'Page Views' : '頁面瀏覽',
-      },
-      {
-        icon: '👤',
         value: fmtNum(t.activeUsers),
-        label: isEn ? 'Visitors' : '訪客',
-      },
-      {
-        icon: '🔄',
-        value: fmtNum(t.sessions),
-        label: isEn ? 'Sessions' : '工作階段',
+        label: isEn ? 'Active Users (GA)' : '活躍使用者（GA）',
       },
       {
         icon: '🆕',
         value: fmtNum(t.newUsers),
-        label: isEn ? 'New Users' : '新訪客',
+        label: isEn ? 'New Users (GA)' : '新使用者（GA）',
       },
       {
         icon: '⏱️',
-        value: Math.round(parseFloat(t.avgSessionDuration)) + 's',
-        label: isEn ? 'Avg Duration' : '平均停留',
+        value:
+          typeof t.avgEngagementSeconds === 'number'
+            ? `${Math.round(t.avgEngagementSeconds)}s`
+            : `${Math.round(parseFloat(t.avgSessionDuration || 0))}s`,
+        label: isEn ? 'Avg Engagement' : '平均互動',
       },
       {
-        icon: '↩️',
-        value: t.bounceRate + '%',
-        label: isEn ? 'Bounce Rate' : '跳出率',
+        icon: '⚡',
+        value: fmtNum(t.events),
+        label: isEn ? 'Events (GA)' : '事件數（GA）',
+      },
+      {
+        icon: '🔎',
+        value: fmtNum(search.totals?.clicks),
+        label: isEn ? 'Search Clicks (24h)' : '搜尋點擊（24h）',
+      },
+      {
+        icon: '🤖',
+        value: fmtNum(cloudflare.aiCrawlers?.detectedRequests),
+        label: isEn ? 'AI Crawls (24h)' : 'AI 爬取（24h）',
       },
     ]
       .map(
@@ -1571,58 +1592,146 @@ const isEn = lang === 'en';
       )
       .join('');
 
-    // Traffic sources
-    if (sourcesEl && data.sources) {
-      const maxSessions = data.sources[0]?.sessions || 1;
-      sourcesEl.innerHTML =
-        `<h3 class="subsection-title">${isEn ? '🔗 Traffic Sources' : '🔗 流量來源'}</h3>` +
-        data.sources
-          .slice(0, 8)
-          .map((s) => {
-            const pct = ((s.sessions / maxSessions) * 100).toFixed(0);
-            const label =
-              s.source === '(direct)'
-                ? isEn
-                  ? 'Direct'
-                  : '直接造訪'
-                : s.source;
-            return `<div class="ga-source-row">
-            <span class="ga-source-name">${label}</span>
-            <div class="ga-source-bar-track">
-              <div class="ga-source-bar-fill" style="width:${pct}%"></div>
-            </div>
-            <span class="ga-source-count">${s.sessions.toLocaleString()}</span>
-          </div>`;
-          })
-          .join('');
+    // Multi-source summary
+    if (insightsEl) {
+      const brandShare =
+        search.totals?.clicks > 0
+          ? Math.round(((search.brand?.clicks || 0) / search.totals.clicks) * 100)
+          : 0;
+      const successfulCrawls = cloudflare.aiCrawlers?.http200 || 0;
+      insightsEl.innerHTML =
+        `<h3 class="subsection-title">${isEn ? '🧭 Signal Readout' : '🧭 訊號判讀'}</h3>` +
+        '<div class="ga-callouts">' +
+        [
+          {
+            title: isEn ? 'Behavior' : '站內行為',
+            body: isEn
+              ? `${ga.label || 'Recent GA window'} shows home still dominates, while graph/dashboard/map are sticky utility pages.`
+              : `${ga.label || '最近 GA 觀測窗'} 顯示首頁仍是主漏斗，但圖譜、Dashboard、地圖已是高黏著工具頁。`,
+            meta:
+              gaHighlights
+                .slice(0, 2)
+                .map((item) => `${item.title} ${fmtNum(item.views)}`)
+                .join(' · ') || '',
+          },
+          {
+            title: isEn ? 'Search' : '搜尋意圖',
+            body: isEn
+              ? `Only ${fmtNum(search.totals?.clicks)} clicks came in over the last 24h, and ${brandShare}% were brand searches. Discovery is still ahead of capture.`
+              : `過去 24 小時只有 ${fmtNum(search.totals?.clicks)} 次點擊，其中 ${brandShare}% 仍是品牌詞。被看見的速度，仍快於被接住的速度。`,
+            meta:
+              opportunities[0]
+                ? `${opportunities[0].query} · ${fmtNum(opportunities[0].impressions)} imp · #${fmtRank(opportunities[0].position)}`
+                : '',
+          },
+          {
+            title: isEn ? 'Edge + AI' : '邊緣與 AI',
+            body: isEn
+              ? `${fmtNum(cloudflare.aiCrawlers?.detectedRequests)} AI crawler requests arrived in the last 24h; ${fmtNum(successfulCrawls)} returned HTTP 200.`
+              : `過去 24 小時 Cloudflare 看見 ${fmtNum(cloudflare.aiCrawlers?.detectedRequests)} 次 AI crawler 請求，其中 ${fmtNum(successfulCrawls)} 次成功拿到 HTTP 200。`,
+            meta:
+              cloudflare.aiCrawlers?.topCrawler
+                ? `${cloudflare.aiCrawlers.topCrawler.name} ${fmtNum(cloudflare.aiCrawlers.topCrawler.requests)} · ${cloudflare.aiCrawlers.topPath?.path || ''}`
+                : '',
+          },
+        ]
+          .map(
+            (item) => `<div class="ga-callout">
+              <div class="ga-callout-title">${item.title}</div>
+              <div class="ga-callout-body">${item.body}</div>
+              <div class="ga-callout-meta">${item.meta}</div>
+            </div>`,
+          )
+          .join('') +
+        '</div>';
     }
 
-    // Top pages
-    if (pagesEl && data.topPages) {
+    // GA top pages
+    if (pagesEl && topPages.length) {
       pagesEl.innerHTML =
-        `<h3 class="subsection-title">${isEn ? '🏆 Popular Pages' : '🏆 熱門頁面'}</h3>` +
+        `<h3 class="subsection-title">${isEn ? '🏆 GA Top Pages' : '🏆 GA 熱門頁面'}</h3>` +
         '<div class="ga-pages-list">' +
-        data.topPages
-          .slice(0, 12)
+        topPages
+          .slice(0, 8)
           .map((p, i) => {
-            const name =
-              p.path === '/'
+            const name = p.title
+              ? p.title.replace(/\s+\|\s+Taiwan\.md$/, '')
+              : p.path === '/'
                 ? isEn
                   ? 'Home'
                   : '首頁'
                 : decodeURIComponent(p.path.replace(/^\/|\/$/g, ''));
             return `<div class="ga-page-row">
             <span class="ga-page-rank">${i + 1}</span>
-            <a href="${p.path}" target="_blank" rel="noopener" class="ga-page-name">${name}</a>
-            <span class="ga-page-pv">${p.pageViews.toLocaleString()} PV</span>
+            <span class="ga-page-name">${name}</span>
+            <span class="ga-page-pv">${fmtNum(p.views || p.pageViews)} ${isEn ? 'views' : '瀏覽'}</span>
           </div>`;
           })
           .join('') +
         '</div>';
     }
 
-    // Countries
-    if (countriesEl && data.countries) {
+    // Search Console 24h
+    if (searchEl && topQueries.length) {
+      searchEl.innerHTML =
+        `<h3 class="subsection-title">${isEn ? '🔎 Search Console (24h)' : '🔎 Search Console（24h）'}</h3>` +
+        `<div class="ga-subtle">${
+          isEn
+            ? `${fmtNum(search.totals?.impressions)} impressions · ${fmtNum(search.totals?.clicks)} clicks · ${fmtPct(search.totals?.ctr)} CTR`
+            : `${fmtNum(search.totals?.impressions)} 曝光 · ${fmtNum(search.totals?.clicks)} 點擊 · ${fmtPct(search.totals?.ctr)} CTR`
+        }</div>` +
+        '<div class="ga-mini-list">' +
+        topQueries
+          .slice(0, 5)
+          .map(
+            (q) => `<div class="ga-mini-row">
+              <span class="ga-mini-label">${q.query}</span>
+              <span class="ga-mini-meta">${fmtNum(q.clicks)}c / ${fmtNum(q.impressions)}i / #${fmtRank(q.position)}</span>
+            </div>`,
+          )
+          .join('') +
+        '</div>' +
+        `<h4 class="ga-block-title">${isEn ? 'Best Next Fixes' : '優先補洞'}</h4>` +
+        '<div class="ga-mini-list">' +
+        opportunities
+          .slice(0, 4)
+          .map(
+            (q) => `<div class="ga-mini-row">
+              <span class="ga-mini-label">${q.query}</span>
+              <span class="ga-mini-meta">${fmtNum(q.impressions)}i / #${fmtRank(q.position)}</span>
+            </div>`,
+          )
+          .join('') +
+        '</div>';
+    }
+
+    // Cloudflare AI crawler watch
+    if (crawlersEl && crawlers.length) {
+      const maxRequests = crawlers[0]?.requests || 1;
+      crawlersEl.innerHTML =
+        `<h3 class="subsection-title">${isEn ? '🤖 AI Crawl Watch (24h)' : '🤖 AI 爬行監測（24h）'}</h3>` +
+        `<div class="ga-kpi-strip">
+          <span>${isEn ? 'Allowed' : '允許'} ${fmtNum(cloudflare.aiCrawlers?.allowedRequests)}</span>
+          <span>HTTP 200 ${fmtNum(cloudflare.aiCrawlers?.http200)}</span>
+          <span>${isEn ? 'Failed' : '失敗'} ${fmtNum(cloudflare.aiCrawlers?.unsuccessfulRequests)}</span>
+        </div>` +
+        crawlers
+          .slice(0, 8)
+          .map((crawler) => {
+            const pct = ((crawler.requests / maxRequests) * 100).toFixed(0);
+            return `<div class="ga-source-row">
+              <span class="ga-source-name">${crawler.name}</span>
+              <div class="ga-source-bar-track">
+                <div class="ga-source-bar-fill" style="width:${pct}%"></div>
+              </div>
+              <span class="ga-source-count">${fmtNum(crawler.requests)}</span>
+            </div>`;
+          })
+          .join('');
+    }
+
+    // Countries / regions
+    if (countriesEl && topCountries.length) {
       const countryFlags = {
         Taiwan: '🇹🇼',
         'United States': '🇺🇸',
@@ -1649,22 +1758,24 @@ const isEn = lang === 'en';
         Spain: '🇪🇸',
         Italy: '🇮🇹',
       };
-      const maxUsers = data.countries[0]?.users || 1;
+      const maxUsers =
+        topCountries[0]?.requests || topCountries[0]?.users || 1;
       countriesEl.innerHTML =
-        `<h3 class="subsection-title">${isEn ? '🌍 Visitor Geography' : '🌍 訪客地理分布'}</h3>` +
+        `<h3 class="subsection-title">${isEn ? '🌍 Edge Geography (24h)' : '🌍 邊緣流量地理（24h）'}</h3>` +
         '<div class="ga-countries-list">' +
-        data.countries
-          .slice(0, 12)
+        topCountries
+          .slice(0, 8)
           .map((c) => {
             const flag = countryFlags[c.country] || '🌐';
-            const pct = ((c.users / maxUsers) * 100).toFixed(0);
+            const count = c.requests || c.users;
+            const pct = ((count / maxUsers) * 100).toFixed(0);
             return `<div class="ga-country-row">
             <span class="ga-country-flag">${flag}</span>
             <span class="ga-country-name">${c.country}</span>
             <div class="ga-country-bar-track">
               <div class="ga-country-bar-fill" style="width:${pct}%"></div>
             </div>
-            <span class="ga-country-count">${c.users.toLocaleString()}</span>
+            <span class="ga-country-count">${fmtNum(count)}</span>
           </div>`;
           })
           .join('') +
@@ -2956,7 +3067,7 @@ const isEn = lang === 'en';
   }
   .analytics-detail-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
   }
   .analytics-pages,
@@ -3057,12 +3168,77 @@ const isEn = lang === 'en';
     color: #64748b;
     flex-shrink: 0;
   }
+  .ga-callouts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.8rem;
+  }
+  .ga-callout {
+    padding: 0.95rem;
+    border-radius: 10px;
+    background: rgba(248, 250, 252, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+  }
+  .ga-callout-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.35rem;
+  }
+  .ga-callout-body {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: #334155;
+  }
+  .ga-callout-meta,
+  .ga-subtle {
+    margin-top: 0.45rem;
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+  .ga-mini-list {
+    margin-top: 0.7rem;
+  }
+  .ga-mini-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  }
+  .ga-mini-label {
+    flex: 1;
+    font-size: 0.82rem;
+    color: #0f172a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ga-mini-meta,
+  .ga-kpi-strip {
+    font-size: 0.76rem;
+    color: #64748b;
+    flex-shrink: 0;
+  }
+  .ga-kpi-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin: 0.45rem 0 0.75rem;
+    font-weight: 600;
+  }
+  .ga-block-title {
+    margin: 1rem 0 0.3rem;
+    font-size: 0.82rem;
+    color: #334155;
+  }
   @media (max-width: 768px) {
-    .analytics-detail-grid {
-      grid-template-columns: 1fr;
-    }
     .analytics-totals {
       grid-template-columns: repeat(3, 1fr);
+    }
+    .ga-mini-row {
+      flex-direction: column;
+      gap: 0.2rem;
     }
   }
 </style>

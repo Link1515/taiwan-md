@@ -69,7 +69,7 @@
     "lastVerified": "2026-04-08",
     "lastHumanReview": "2026-04-08",
     "featured": false,
-    "wordCount": 4059,
+    "wordCount": 4108,
     "tagCount": 8,
     "tags": [
       "教育",
@@ -3308,7 +3308,7 @@
     "lastVerified": "2026-03-29",
     "lastHumanReview": "false",
     "featured": false,
-    "wordCount": 2733,
+    "wordCount": 2998,
     "tagCount": 5,
     "tags": [
       "原住民族",
@@ -3327,11 +3327,11 @@
     "commitHash": "0ae179a8",
     "commitSubject": "rewrite: 原住民族3篇全文重寫 — 歷史正名(湯英伸開場) + 語言復振(邵語4人) + 16族地圖(數字的政治性) (zh only, all score=0)",
     "description": "台灣邵族只剩 4 位母語者，卻誕生出全球最密集的語言復振實驗之一。從 2017 年《原住民族語言發展法》到數位族語平台，一場靜默的搶救正在加速進行。",
-    "healthScore": 88,
+    "healthScore": 90,
     "qualityScore": 0,
-    "formatIssues": 2,
-    "hasOverview": false,
-    "hasReading": false,
+    "formatIssues": 0,
+    "hasOverview": true,
+    "hasReading": true,
     "fnCount": 0
   },
   {
@@ -6121,7 +6121,7 @@
     "lastVerified": "2026-03-24",
     "lastHumanReview": "false",
     "featured": false,
-    "wordCount": 3224,
+    "wordCount": 3450,
     "tagCount": 5,
     "tags": [
       "少子化",
@@ -6142,9 +6142,9 @@
     "description": "當全世界最不想生孩子的地方，同時也是最愛孩子的地方——台灣0.87的生育率數字背後，是整個社會結構的系統性崩解",
     "healthScore": 87,
     "qualityScore": 0,
-    "formatIssues": 2,
-    "hasOverview": false,
-    "hasReading": false,
+    "formatIssues": 0,
+    "hasOverview": true,
+    "hasReading": true,
     "fnCount": 0
   },
   {
@@ -14402,7 +14402,7 @@
     "lastVerified": "2026-03-19",
     "lastHumanReview": "false",
     "featured": true,
-    "wordCount": 2963,
+    "wordCount": 3082,
     "tagCount": 6,
     "tags": [
       "教育",
@@ -14424,9 +14424,9 @@
     "description": "從聯考制度到十二年國教，台灣教育如何在競爭與多元之間尋求平衡",
     "healthScore": 100,
     "qualityScore": 0,
-    "formatIssues": 1,
+    "formatIssues": 0,
     "hasOverview": true,
-    "hasReading": false,
+    "hasReading": true,
     "fnCount": 0
   },
   {

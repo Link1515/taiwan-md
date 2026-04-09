@@ -49,6 +49,7 @@ export async function getStaticPaths() {
 
   for (const category of categories) {
     const folderName = categoryMapping[category];
+    if (!folderName) continue;
     const articles = [];
 
     try {

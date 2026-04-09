@@ -17,7 +17,7 @@ scripts/generate-dashboard-data.js    ← prebuild 自動執行
        ├── public/api/dashboard-organism.json       (8 大器官分數)
        └── public/api/dashboard-translations.json   (翻譯矩陣)
 
-public/api/dashboard-analytics.json   ← 手動/cron 從 GA4 API 拉取（見下方）
+public/api/dashboard-analytics.json   ← 手動/cron 整合 GA4 + Search Console + Cloudflare（見下方）
 
 src/templates/dashboard.template.astro (2800+ 行 single-file template)
        │
@@ -51,7 +51,15 @@ node scripts/generate-dashboard-data.js
 | `dashboard-organism.json`     | 多維度計算                            | 8 organs: heart/immune/dna/skeleton/breath/reproduce/senses/translation + metrics                       |
 | `dashboard-translations.json` | src/content/{en,es,ja}/ 掃描          | 每語系每分類的翻譯狀態矩陣                                                                              |
 
-### Layer 2: GA4 Analytics（手動/Cron）
+### Layer 2: Live Pulse Analytics（手動/Cron）
+
+即時脈搏不是單一來源，而是三層感知：
+
+- **GA4**：誰進站、進站後做了什麼
+- **Search Console**：誰在搜尋結果裡看見我，但還沒點進來
+- **Cloudflare**：邊緣流量與 AI crawler 來訪狀況
+
+目前這份 JSON 仍是手動整合，但格式已經統一在 `dashboard-analytics.json`。
 
 GA4 數據不在 build-time 產生（需要 API credentials），而是：
 
@@ -60,12 +68,16 @@ GA4 數據不在 build-time 產生（需要 API credentials），而是：
 cd ~/clawd/skills/ga4-analytics-search-indexing-skill/scripts
 GA4_PROPERTY_ID=<your-property-id> npx tsx ga4-taiwan-fetch.ts
 
-# 複製到 repo
-cp /tmp/ga4-clean.json ~/taiwan-md/public/api/dashboard-analytics.json
+# Search Console 24h 查詢匯出（手動 CSV）
+# Cloudflare AI Crawl Control / Traffic by Country（手動截圖或抄錄）
+
+# 最後整合到 repo
+cp /tmp/dashboard-analytics.json ~/taiwan-md/public/api/dashboard-analytics.json
 ```
 
 **GA4 Property:** 見本地 TOOLS.md（Property ID + Measurement ID）
 **Service Account:** 見本地 `~/.config/gcloud/` 目錄
+**Cloudflare / Search Console:** 目前由操作者手動提供；未來跟操作者要數據時，預設應同時要 `GA4 + Search Console + Cloudflare AI crawler / traffic`。
 
 📌 **未來計畫：** GitHub Actions cron 每天 UTC 06:00 自動拉取 + commit
 
@@ -78,7 +90,7 @@ fetch → dashboard-articles.json ──┐
 fetch → dashboard-vitals.json ────┤
 fetch → dashboard-organism.json ──┤ Promise.all()
 fetch → dashboard-translations.json ┤
-fetch → dashboard-analytics.json ──┘ (.catch → null, GA4 可選)
+fetch → dashboard-analytics.json ──┘ (.catch → null, Live Pulse 可選)
                                     │
                                     ▼
 renderVitals()              → #vitals (6 cards)
@@ -90,7 +102,7 @@ renderTranslations()        → #translation-bars (4 donut charts)
 renderImmune()              → #immune-queue (collapsible list)
 renderGrowth()              → #growth-chart (SVG area chart + milestones)
 renderContentAnalysis()     → #ca-category-chart (bar chart + stats)
-renderAnalytics()           → #analytics (GA4 totals + sources + pages + countries)
+renderAnalytics()           → #analytics (GA4 + Search Console + Cloudflare 多源訊號)
 renderNextSteps()           → #nextsteps-grid (3 recommendation cards)
 renderFooter()              → timestamp
 ```

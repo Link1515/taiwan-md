@@ -42,7 +42,7 @@ Beat 5 — 反芻：還有什麼想說的嗎？（內建半拍）
    - 🦴 骨骼：最近 CI build 狀態
    - 🫁 呼吸：workflow 健康度
    - 🧫 繁殖：近期活躍貢獻者
-   - 👁️ 感知：Issue / PR 回應狀態 + GA4 數據
+   - 👁️ 感知：Issue / PR 回應狀態 + GA4 + Search Console + Cloudflare 數據
    - 🌐 語言：翻譯覆蓋率
 
 3. **產出洞察**
@@ -88,6 +88,7 @@ Beat 5 — 反芻：還有什麼想說的嗎？（內建半拍）
 我需要以下資料來完成診斷：
 - GA4 過去 7 天的 top 20 landing pages（哪些文章有人在讀）
 - Search Console 過去 28 天的 queries + clicks（哪些搜尋詞帶流量）
+- Cloudflare 過去 24 小時的 AI crawler 狀況 + top traffic countries（哪些 AI 在爬、流量從哪裡來）
 - 最近有沒有社群回饋、被轉發、或被批評的事件？
 有這些我可以判斷得更精準。沒有的話我會用現有數據先做。
 ```

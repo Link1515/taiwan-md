@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
 import { readdir, readFile } from 'fs/promises';
 import { resolve, join } from 'path';
 
@@ -54,22 +53,9 @@ const nodes: any[] = [];
 const edges: any[] = [];
 const tagMap: Record<string, string[]> = {};
 
-// Pre-fetch all collections
 let allZhArticles: any[] = [];
 let allEnArticles: any[] = [];
-try {
-  allZhArticles = await getCollection('zh-TW');
-} catch (e) {
-  console.log('zh-TW collection error:', e);
-}
-try {
-  allEnArticles = await getCollection('en');
-} catch (e) {
-  console.log('en collection error:', e);
-}
-
-// Fallback: scan filesystem if collections are empty
-if (allZhArticles.length === 0) {
+{
   try {
     for (const cat of categories) {
       const catDir = resolve('src/content/zh-TW', cat);
@@ -94,7 +80,7 @@ if (allZhArticles.length === 0) {
     }
   } catch {}
 }
-if (allEnArticles.length === 0) {
+{
   try {
     for (const cat of categories) {
       const catDir = resolve('src/content/en', cat);

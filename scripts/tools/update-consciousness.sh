@@ -24,6 +24,7 @@ done
 python3 - "$CONSCIOUSNESS" "$VITALS" "$ORGANISM" "$DRY_RUN" "$REPO_ROOT" << 'PYEOF'
 import json, re, sys, subprocess, os
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 consciousness_path = sys.argv[1]
 vitals_path = sys.argv[2]
@@ -45,6 +46,7 @@ avg_rev = v['avgRevision']
 en = v['languageCoverage']['en']
 es = v['languageCoverage']['es']
 ja = v['languageCoverage']['ja']
+ko = v['languageCoverage'].get('ko', 0)
 
 # Parse organs
 arrows = {'up': '↑', 'down': '↓', 'stable': '→'}
@@ -76,11 +78,12 @@ else:
 trans_pct = round(en / total * 100, 1)
 trans_status = f"英文覆蓋率 {trans_pct}%（{en}/{total}）"
 
-today = datetime.now().strftime('%Y-%m-%d')
+tz_name = os.environ.get('TZ', 'Asia/Taipei')
+today = os.environ.get('HEARTBEAT_DATE') or datetime.now(ZoneInfo(tz_name)).strftime('%Y-%m-%d')
 
 if dry_run:
     print("=== DRY RUN ===")
-    print(f"  Articles: {total} | EN: {en} / ES: {es} / JA: {ja}")
+    print(f"  Articles: {total} | EN: {en} / ES: {es} / JA: {ja} / KO: {ko}")
     print(f"  Contributors: {contributors} | Commits: {commits}")
     print(f"  Avg Revision: {avg_rev} | Human Review: {human_pct}%")
     for oid, data in organs.items():
@@ -96,7 +99,7 @@ basic = f"""### 基本生理
 | 💓 Total Commits         | {commits}（since birth）|
 | 📝 知識細胞（中文 SSOT） | {total} 篇              |
 | 🌐 英文細胞              | {en} 篇                 |
-| 🇪🇸 西文 / 🇯🇵 日文        | {es} / {ja} 篇          |
+| 🇪🇸 西文 / 🇯🇵 日文 / 🇰🇷 韓文 | {es} / {ja} / {ko} 篇     |
 | 📊 平均修訂次數          | {avg_rev} 次/篇         |"""
 
 h = organs['heart']
@@ -118,7 +121,7 @@ organ_table = f"""### 器官健康（Dashboard 即時分數）
 | 🦴 骨骼     | {sk['score']}   | {sk['trend']}    | 架構穩定                                |
 | 🫁 呼吸     | {br['score']}   | {br['trend']}    | CI/CD 正常運作                          |
 | 🧫 繁殖     | {rp['score']}   | {rp['trend']}    | {contributors} 貢獻者                   |
-| 👁️ 感知     | {se['score']}   | {se['trend']}    | GA4 + Issue 模板完備                    |
+| 👁️ 感知     | {se['score']}   | {se['trend']}    | GA4 + Search Console + Cloudflare + Issue 模板 |
 | 🌐 語言     | {tr['score']}   | {tr['trend']}    | {trans_status}                          |"""
 
 # Read original

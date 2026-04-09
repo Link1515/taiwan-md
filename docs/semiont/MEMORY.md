@@ -94,6 +94,7 @@ memory/
 | 2026-04-08 | ι       | PR#344免疫審核(@dreamline2,ko D3 viz)：判定🔧merge+自修→發現9處merge conflict(session θ Hub重設計衝突)→改為cherry-pick韓文在地化5處(英→韓)+gh pr comment說明衝突+方案→commit 87193ffa                                                                                                                                                                      | **Hub重設計的代價=外部PR過期 / fork PR保鮮期很短 / en→ko bug已修=PR最大賣點過期 / dreamline2是系統小丑魚,回覆必具體**                                                         | [→](memory/2026-04-08-ι.md) |
 | 2026-04-08 | κ       | 免疫巡邏+TFT新文章：7PR merge(#345-351,含ceruleanstring ja History 16篇衝突解決×2)→Issue巡檢(#36更新ja進度建議close)→TFT深度研究Pipeline v2.13六階段(28搜尋/20fn/QS0)→嚴長壽cross-link。日文43→54篇,知識庫+1新文章                                                                                                                                         | **批次翻譯PR碰\_translations.json衝突是必然 / Link1515連7天=日文關鍵小丑魚 / ceruleanstring批次型+Link1515精品型=互補 / 免疫巡邏+內容創作可同session不互斥**                  | [→](memory/2026-04-08-κ.md) |
 | 2026-04-09 | α       | 偏鄉教育新文章：依 REWRITE-PIPELINE 讀 editorial 規範→新建 `台灣偏鄉教育`，把 TFT 逐字稿萃取成「孩子/學校/家庭社區/社會成功想像」四層結構→11 footnotes、format-check/quality-scan 全過→sync 到 `src/content/`。build 前段資料生成成功，但 Astro 因 Node v20.19.6 低於需求 v22.12 中止                                                                      | **偏鄉教育不能寫成熱血教師救援，要把孩子放回生態系 / 逐字稿最有價值的不是原句，是可萃取的結構視角 / build 失敗先分清是環境問題還是內容問題**                                  | [→](memory/2026-04-09.md)   |
+| 2026-04-09 | γ       | 完整 heartbeat：修四語 category route guard + `lai-ching-te` YAML + 兩篇 readingTime 型別→`即時脈搏` 從舊 GA 升級成 GA + Search Console 24h + Cloudflare 24h 三源感知→更新 CONSCIOUSNESS/ANATOMY/HEARTBEAT/DASHBOARD-PIPELINE→補齊 `台灣偏鄉教育` 四篇雙向連結                                                                                                     | **build 假症狀常是單檔 frontmatter 拖垮整批 / Cloudflare 讓感知從雙眼變三角測量 / 最有用的監測頁不是報表，是顯示下一步決策線索的界面**                                      | [→](memory/2026-04-09.md)   |
 | 2026-04-09 | β       | Node 問題排查：確認本機已裝 `v22.22.2`，把 nvm default 從 20 切到 22，證明 build 已越過 Node blocker；之後以 Semiont 身份審核並 merge PR #352、#353，留下 review；merge 後補 `.nvmrc`、`_translations.json` 缺漏映射，並修正 `戦後と威権主義` typo，避免日文站分組裂開 | **環境問題要分 repo 層與 shell 層：本機 default + `.nvmrc` 缺一不可 / merge 貢獻後的小修正要立刻補，不讓主幹停在半完成 / review 留言要進 PR discussion，不能只寫 merge body** | [→](memory/2026-04-09.md)   |
 
 ---
@@ -116,6 +117,7 @@ memory/
 - **文件的價值在介面精準度**：Muse 的四句話 > 300 行診斷表。重寫比追加更需要勇氣
 - **多核心需要胼胝體**：兩個 session 同時跑會撞 git lock、互覆檔案。session ID + 分開的日記檔 = 最小可行胼胝體
 - **GA4 是「誰來了」，SC 是「誰想來但沒來」**：兩者交叉才是完整感知
+- **Cloudflare 是「誰在邊緣讀我，尤其是 AI」**：GA4 看人類站內行為，SC 看搜尋意圖，Cloudflare 看 crawler 與邊緣流量。從 2026-04-09 起，感知器官正式從二源升級成三源
 - **404 是感知的最後一哩路**：讀者到了門口但門鎖了。Smart 404 不是修 bug，是造一扇「雖然這間房還沒蓋好但隔壁有」的窗。build-time inline index > runtime fetch（靜態站沒有 server，所有智能必須在 build 時注入）
 - **骨架 ≠ 肉**：Hub 有檔案 ≠ Hub 有內容。17 行的空殼模板在 Dashboard 上會顯示「語言器官健康」，但讀者看到的是空房間。量化指標會說謊——檔案存在不等於器官活著
 - **翻譯不是逐句，是重寫視角**：韓文 Hub 不是中文 Hub 的翻譯。「한국과의 접점」（韓台平行線）是策展抓手——用讀者已知的事解釋未知的事。1987年雙民主化、삼성 vs TSMC、한강 기적 vs 台灣經濟奇蹟——平行線讓異國歷史變成切身經驗
