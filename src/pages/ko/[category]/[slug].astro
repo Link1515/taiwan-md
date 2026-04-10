@@ -187,7 +187,7 @@ export async function getStaticPaths() {
   const paths: any[] = [];
   for (const [categorySlug, folderName] of Object.entries(_categoryMapping)) {
     try {
-      const folderPath = resolve(process.cwd(), 'knowledge', 'ko', folderName);
+      const folderPath = resolve(process.cwd(), 'knowledge', 'en', folderName);
       const files = await readdir(folderPath);
       for (const file of files.filter(
         (f) => f.endsWith('.md') && !f.startsWith('_'),
@@ -262,7 +262,7 @@ let relatedArticles: any[] = [];
 try {
   const folderName = categoryMapping[category as string];
   if (folderName) {
-    const folderPath = resolve(process.cwd(), 'knowledge', 'ko', folderName);
+    const folderPath = resolve(process.cwd(), 'knowledge', 'en', folderName);
     const files = (await readdir(folderPath)).filter(
       (f) => f.endsWith('.md') && !f.startsWith('_'),
     );
@@ -289,7 +289,7 @@ try {
   for (const [catSlug, folderName] of Object.entries(categoryMapping)) {
     if (catSlug === category) continue;
     try {
-      const catPath = resolve(process.cwd(), 'knowledge', 'ko', folderName);
+      const catPath = resolve(process.cwd(), 'knowledge', 'en', folderName);
       for (const file of (await readdir(catPath)).filter(
         (f) => f.endsWith('.md') && !f.startsWith('_'),
       )) {
@@ -381,7 +381,25 @@ const encodedTitle = encodeURIComponent(title);
   <!-- Reading progress bar -->
   <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
 
-  <main class="article-page" lang="ko">
+  <!--
+    Phase 6 partial migration — ko/[category]/[slug].astro
+    ──────────────────────────────────────────────────────
+    - Wrappers (article shell grid, meta strip, sources block,
+      AI disclaimer, contribute row, bottom meta, return nav,
+      related section, random explore, explore section) migrated
+      to inline Tailwind
+    - `.article-page` kept as hook: global.css has
+      `body.page-default main.article-page { padding-top: 0 }`
+    - `.prose :global(*)` rules stay in scoped <style> because
+      the markdown body is rendered via `set:html={processedContent}`
+      and its elements (h1-h6, p, ul, blockquote, code, table…)
+      can't be reached by Tailwind classes
+    - `.reading-progress` stays scoped because JS animates its
+      width live and the bar reads `var(--catColor)` from the
+      `define:vars` wrapper on the <style> block
+    - Same markup structure is mirrored to ja/ko/zh-TW copies
+  -->
+  <main class="article-page bg-[#f8f1e9] min-h-screen" lang="ko">
     <!-- ── Hero ─────────────────────────────────────────────────── -->
     <ArticleHero
       title={title}
@@ -395,20 +413,27 @@ const encodedTitle = encodeURIComponent(title);
     />
 
     <!-- ── Three-column body ─────────────────────────────────────── -->
-    <div class="article-shell">
+    <div
+      class="mx-auto grid max-w-[1280px] grid-cols-[220px_1fr_200px] [grid-template-areas:'toc_body_sidebar'] items-start gap-14 px-8 pb-20 pt-16 max-lg:grid-cols-1 max-lg:[grid-template-areas:'body'_'sidebar'] max-lg:gap-8 max-lg:px-6 max-lg:pb-16 max-lg:pt-10 max-[640px]:px-4 max-[640px]:pb-12 max-[640px]:pt-6"
+    >
       <!-- Left: Table of Contents -->
-      <div class="col-toc" aria-label={t('article.toc', 'en')}>
+      <div
+        class="[grid-area:toc] max-lg:hidden"
+        aria-label={t('article.toc', 'en')}
+      >
         <TableOfContents content={processedContent} />
       </div>
 
       <!-- Center: Article content -->
-      <article class="col-body" data-pagefind-body>
+      <article class="min-w-0 [grid-area:body]" data-pagefind-body>
         <!-- Status / date strip -->
-        <div class="article-meta-strip">
+        <div
+          class="mb-10 flex flex-wrap items-center gap-3 border-b border-[rgba(26,60,52,0.08)] pb-8"
+        >
           {
             frontmatter.status && (
               <span
-                class="status-badge"
+                class="rounded-full px-3 py-1 font-['Inter',system-ui,sans-serif] text-[0.72rem] font-semibold uppercase tracking-[0.12em]"
                 style={`background:${categoryInfo.colorLight}; color:${categoryInfo.color};`}
               >
                 {frontmatter.status}
@@ -417,7 +442,10 @@ const encodedTitle = encodeURIComponent(title);
           }
           {
             frontmatter.date && (
-              <time class="meta-date" datetime={frontmatter.date}>
+              <time
+                class="font-['Inter',system-ui,sans-serif] text-[0.8rem] text-[#7a8b7e]"
+                datetime={frontmatter.date}
+              >
                 {new Date(frontmatter.date).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
@@ -426,7 +454,10 @@ const encodedTitle = encodeURIComponent(title);
               </time>
             )
           }
-          <span class="meta-lang">{t('article.langLabel', 'en')}</span>
+          <span
+            class="ml-auto rounded-full border border-[rgba(26,60,52,0.12)] px-[0.6rem] py-[0.2rem] font-['Inter',system-ui,sans-serif] text-[0.75rem] text-[#9aa89e]"
+            >{t('article.langLabel', 'en')}</span
+          >
         </div>
 
         <!-- Prose body -->
@@ -435,16 +466,18 @@ const encodedTitle = encodeURIComponent(title);
         <!-- Sources -->
         {
           frontmatter.source && frontmatter.source.length > 0 && (
-            <div class="sources-block">
-              <h3 class="sources-heading">{t('article.sources', 'en')}</h3>
-              <ul class="sources-list">
+            <div class="my-12 rounded-2xl border border-[rgba(26,60,52,0.08)] bg-[rgba(26,60,52,0.03)] p-8">
+              <h3 class="mb-4 font-['Inter',system-ui,sans-serif] text-[0.85rem] font-semibold uppercase tracking-[0.1em] text-[#1a3c34]">
+                {t('article.sources', 'en')}
+              </h3>
+              <ul class="m-0 flex list-none flex-col gap-2 p-0">
                 {frontmatter.source.map((url: string) => (
                   <li>
                     <a
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="source-link"
+                      class="break-all text-[0.82rem] text-[#006d77] no-underline hover:underline"
                     >
                       {url}
                     </a>
@@ -456,8 +489,13 @@ const encodedTitle = encodeURIComponent(title);
         }
 
         <!-- AI Disclaimer -->
-        <div class="ai-disclaimer">
-          <div class="disclaimer-icon" aria-hidden="true">
+        <div
+          class="my-12 mb-8 flex items-start gap-4 rounded-xl border border-[rgba(193,125,94,0.18)] bg-[rgba(193,125,94,0.06)] px-6 py-5"
+        >
+          <div
+            class="mt-[0.15rem] flex-shrink-0 text-[#c17d5e]"
+            aria-hidden="true"
+          >
             <svg
               width="18"
               height="18"
@@ -473,19 +511,21 @@ const encodedTitle = encodeURIComponent(title);
               ></line></svg
             >
           </div>
-          <div class="disclaimer-text">
+          <div
+            class="font-['Inter',system-ui,sans-serif] text-[0.83rem] leading-[1.6] text-[#5a4a42] [&>strong]:mb-[0.3rem] [&>strong]:block [&>strong]:text-[0.8rem] [&>strong]:font-semibold [&>strong]:uppercase [&>strong]:tracking-[0.08em] [&>strong]:text-[#c17d5e]"
+          >
             <strong>{t('article.disclaimer.title', 'en')}</strong>
             {t('article.disclaimer.body', 'en')}
           </div>
         </div>
 
         <!-- Contribution row -->
-        <div class="contribute-row">
+        <div class="my-8 flex flex-wrap gap-3">
           <a
             href={`https://github.com/frank890417/taiwan-md/edit/main/knowledge/ko/${categoryMapping[category as string]}/${slug}.md`}
             target="_blank"
             rel="noopener noreferrer"
-            class="contribute-btn contribute-btn--primary"
+            class="inline-flex items-center gap-[0.45rem] rounded-full bg-[#1a3c34] px-[1.1rem] py-[0.55rem] font-['Inter',system-ui,sans-serif] text-[0.82rem] font-medium text-[#f8f1e9] no-underline transition-all duration-200 hover:bg-[#243d36]"
           >
             <svg
               width="15"
@@ -505,7 +545,7 @@ const encodedTitle = encodeURIComponent(title);
             href={`https://github.com/frank890417/taiwan-md/issues/new?title=${encodeURIComponent(`Feedback: ${title}`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="contribute-btn contribute-btn--ghost"
+            class="inline-flex items-center gap-[0.45rem] rounded-full border border-[rgba(26,60,52,0.2)] bg-transparent px-[1.1rem] py-[0.55rem] font-['Inter',system-ui,sans-serif] text-[0.82rem] font-medium text-[#1a3c34] no-underline transition-all duration-200 hover:bg-[rgba(26,60,52,0.05)]"
           >
             <svg
               width="15"
@@ -524,13 +564,15 @@ const encodedTitle = encodeURIComponent(title);
         </div>
 
         <!-- Tags + bottom share row -->
-        <div class="bottom-meta">
+        <div
+          class="my-12 mb-8 flex flex-wrap items-center justify-between gap-4 border-t border-[rgba(26,60,52,0.08)] pt-8 max-[640px]:flex-col max-[640px]:items-start"
+        >
           {
             frontmatter.tags && frontmatter.tags.length > 0 && (
-              <div class="bottom-tags">
+              <div class="flex flex-wrap gap-[0.4rem]">
                 {frontmatter.tags.map((tag: string) => (
                   <span
-                    class="bottom-tag"
+                    class="rounded-full border px-[0.7rem] py-1 font-['Inter',system-ui,sans-serif] text-[0.75rem] font-medium"
                     style={`color:${categoryInfo.color}; background:${categoryInfo.colorLight}; border-color:${categoryInfo.color}28;`}
                   >
                     {tag}
@@ -540,13 +582,16 @@ const encodedTitle = encodeURIComponent(title);
             )
           }
 
-          <div class="bottom-share">
-            <span class="share-label">{t('article.shareLabel', 'en')}</span>
+          <div class="flex items-center gap-[0.4rem]">
+            <span
+              class="mr-1 font-['Inter',system-ui,sans-serif] text-[0.78rem] text-[#7a8b7e]"
+              >{t('article.shareLabel', 'en')}</span
+            >
             <a
               href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="share-btn"
+              class="inline-flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-full border-none bg-[rgba(26,60,52,0.06)] text-[#1a3c34] no-underline transition-[background,color] duration-200 hover:bg-[#1a3c34] hover:text-[#f8f1e9]"
               aria-label="Share on X"
             >
               <svg
@@ -563,7 +608,7 @@ const encodedTitle = encodeURIComponent(title);
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="share-btn"
+              class="inline-flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-full border-none bg-[rgba(26,60,52,0.06)] text-[#1a3c34] no-underline transition-[background,color] duration-200 hover:bg-[#1a3c34] hover:text-[#f8f1e9]"
               aria-label="Share on Facebook"
             >
               <svg
@@ -580,7 +625,7 @@ const encodedTitle = encodeURIComponent(title);
               href={`https://social-plugins.line.me/lineit/share?url=${encodedUrl}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="share-btn"
+              class="inline-flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-full border-none bg-[rgba(26,60,52,0.06)] text-[#1a3c34] no-underline transition-[background,color] duration-200 hover:bg-[#1a3c34] hover:text-[#f8f1e9]"
               aria-label="Share on LINE"
             >
               <svg
@@ -594,7 +639,7 @@ const encodedTitle = encodeURIComponent(title);
               >
             </a>
             <button
-              class="share-btn copy-btn-bottom"
+              class="copy-btn-bottom inline-flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-full border-none bg-[rgba(26,60,52,0.06)] text-[#1a3c34] no-underline transition-[background,color] duration-200 hover:bg-[#1a3c34] hover:text-[#f8f1e9]"
               type="button"
               aria-label={t('article.copyLink', 'en')}
               data-copied-text={t('article.copied', 'en')}
@@ -617,10 +662,10 @@ const encodedTitle = encodeURIComponent(title);
         </div>
 
         <!-- Return navigation -->
-        <div class="return-nav">
+        <div class="my-10 mb-4 flex flex-wrap gap-3 max-[640px]:flex-col">
           <a
             href={`/ko/${category}`}
-            class="return-btn return-btn--primary"
+            class="inline-flex items-center justify-center gap-[0.45rem] rounded-full px-5 py-[0.55rem] font-['Inter',system-ui,sans-serif] text-[0.82rem] font-medium text-[#f8f1e9] no-underline transition-all duration-200 hover:opacity-[0.88]"
             style={`background:${categoryInfo.color};`}
           >
             <svg
@@ -636,7 +681,10 @@ const encodedTitle = encodeURIComponent(title);
             {t('article.backToCategory', 'en')}
             {categoryNameEn}
           </a>
-          <a href="/en" class="return-btn return-btn--ghost">
+          <a
+            href="/ko"
+            class="inline-flex items-center justify-center gap-[0.45rem] rounded-full border border-[rgba(26,60,52,0.2)] bg-transparent px-5 py-[0.55rem] font-['Inter',system-ui,sans-serif] text-[0.82rem] font-medium text-[#1a3c34] no-underline transition-all duration-200 hover:bg-[rgba(26,60,52,0.06)]"
+          >
             <svg
               width="14"
               height="14"
@@ -676,13 +724,17 @@ const encodedTitle = encodeURIComponent(title);
     <!-- ── Related articles ───────────────────────────────────────── -->
     {
       relatedArticles.length > 0 && (
-        <section class="related-section">
-          <div class="related-inner">
-            <div class="section-header">
-              <p class="section-kicker">{t('article.furtherReading', 'en')}</p>
-              <h2 class="section-title">{t('article.moreInCategory', 'en')}</h2>
+        <section class="mt-8 bg-white px-8 py-20 max-[640px]:px-4 max-[640px]:py-14">
+          <div class="mx-auto max-w-[1280px]">
+            <div class="mb-12 text-center">
+              <p class="mb-[0.6rem] font-['Inter',system-ui,sans-serif] text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#9aa89e]">
+                {t('article.furtherReading', 'en')}
+              </p>
+              <h2 class="font-['Inter',serif] text-[clamp(1.5rem,3vw,2rem)] font-bold leading-[1.25] text-[#1a3c34]">
+                {t('article.moreInCategory', 'en')}
+              </h2>
             </div>
-            <div class="related-grid">
+            <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-6">
               {relatedArticles.map((article) => (
                 <RelatedArticleCard
                   title={article.title}
@@ -697,10 +749,10 @@ const encodedTitle = encodeURIComponent(title);
                 />
               ))}
             </div>
-            <div class="related-cta">
+            <div class="mt-10 text-center">
               <a
                 href={`/ko/${category}`}
-                class="view-all-btn"
+                class="inline-flex items-center gap-2 rounded-full border-[1.5px] px-6 py-[0.65rem] font-['Inter',system-ui,sans-serif] text-[0.88rem] font-medium no-underline transition-all duration-200 hover:bg-black/[0.04]"
                 style={`color:${categoryInfo.color}; border-color:${categoryInfo.color}30;`}
               >
                 {t('article.viewAll', 'en')} {categoryNameEn}{' '}
@@ -726,8 +778,12 @@ const encodedTitle = encodeURIComponent(title);
     <!-- ── Random explore ────────────────────────────────────────── -->
     {
       allArticles.length > 0 && (
-        <div class="random-explore-row">
-          <button class="random-btn" id="randomBtn" type="button">
+        <div class="flex justify-center bg-[#f8f1e9] px-8 py-10">
+          <button
+            class="inline-flex cursor-pointer items-center gap-[0.6rem] rounded-full border-[1.5px] border-[rgba(26,60,52,0.2)] bg-white px-7 py-3 font-['Inter',system-ui,sans-serif] text-[0.88rem] font-medium text-[#1a3c34] transition-all duration-200 hover:border-[#1a3c34] hover:bg-[#1a3c34] hover:text-[#f8f1e9]"
+            id="randomBtn"
+            type="button"
+          >
             <svg
               width="16"
               height="16"
@@ -751,29 +807,46 @@ const encodedTitle = encodeURIComponent(title);
     }
 
     <!-- ── Explore other categories ──────────────────────────────── -->
-    <section class="explore-section">
-      <div class="explore-inner">
-        <div class="section-header">
-          <p class="section-kicker">{t('article.exploreTaiwan', 'en')}</p>
-          <h2 class="section-title">{t('article.moreAspects', 'en')}</h2>
+    <section class="bg-[#f8f1e9] px-8 py-20 max-[640px]:px-4 max-[640px]:py-14">
+      <div class="mx-auto max-w-[1280px]">
+        <div class="mb-12 text-center">
+          <p
+            class="mb-[0.6rem] font-['Inter',system-ui,sans-serif] text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#9aa89e]"
+          >
+            {t('article.exploreTaiwan', 'en')}
+          </p>
+          <h2
+            class="font-['Inter',serif] text-[clamp(1.5rem,3vw,2rem)] font-bold leading-[1.25] text-[#1a3c34]"
+          >
+            {t('article.moreAspects', 'en')}
+          </h2>
         </div>
-        <div class="explore-grid">
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-5">
           {
             otherCategories.map((cat) => (
-              <a href={`/ko/${cat.key}`} class="explore-card">
+              <a
+                href={`/ko/${cat.key}`}
+                class="flex overflow-hidden rounded-2xl border border-[rgba(26,60,52,0.06)] bg-white no-underline shadow-[0_2px_8px_rgba(26,60,52,0.05)] transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(26,60,52,0.12)]"
+              >
                 <div
-                  class="explore-card-accent"
+                  class="w-[5px] flex-shrink-0"
                   style={`background:${cat.color};`}
                   aria-hidden="true"
                 />
-                <div class="explore-card-body">
-                  <span class="explore-cat-name" style={`color:${cat.color};`}>
+                <div class="flex flex-col gap-[0.4rem] px-6 py-[1.4rem]">
+                  <span
+                    class="font-['Inter',system-ui,sans-serif] text-[0.92rem] font-bold -tracking-[0.01em]"
+                    style={`color:${cat.color};`}
+                  >
                     {cat.name_en || cat.name}
                   </span>
-                  <p class="explore-cat-desc">
+                  <p class="m-0 font-['Inter',system-ui,sans-serif] text-[0.82rem] leading-[1.55] text-[#6a7d72]">
                     {cat.description_en || cat.description}
                   </p>
-                  <span class="explore-cta" style={`color:${cat.color};`}>
+                  <span
+                    class="mt-[0.35rem] inline-flex items-center gap-[0.3rem] font-['Inter',system-ui,sans-serif] text-[0.78rem] font-semibold"
+                    style={`color:${cat.color};`}
+                  >
                     {t('article.startExplore', 'en')}
                     <svg
                       width="12"
@@ -849,7 +922,7 @@ const encodedTitle = encodeURIComponent(title);
   if (btn && allArticles?.length) {
     btn.addEventListener('click', () => {
       const pick = allArticles[Math.floor(Math.random() * allArticles.length)];
-      window.location.href = '/ko/' + pick.category + '/' + pick.slug;
+      window.location.href = '/en/' + pick.category + '/' + pick.slug;
     });
   }
 </script>
@@ -860,7 +933,8 @@ const encodedTitle = encodeURIComponent(title);
     catColorLight: categoryInfo.colorLight,
   }}
 >
-  /* ── Reading progress ──────────────────────────────────────────────────── */
+  /* ── Reading progress (JS animates width via requestAnimationFrame,
+     and `var(--catColor)` comes from the `define:vars` block above) */
   .reading-progress {
     position: fixed;
     top: 0;
@@ -872,73 +946,9 @@ const encodedTitle = encodeURIComponent(title);
     transition: width 0.1s linear;
   }
 
-  /* ── Page background ───────────────────────────────────────────────────── */
-  .article-page {
-    background: #f8f1e9;
-    min-height: 100vh;
-  }
-
-  /* ── Three-column shell ────────────────────────────────────────────────── */
-  .article-shell {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 4rem 2rem 5rem;
-    display: grid;
-    grid-template-columns: 220px 1fr 200px;
-    grid-template-areas: 'toc body sidebar';
-    gap: 3.5rem;
-    align-items: start;
-  }
-
-  .col-toc {
-    grid-area: toc;
-  }
-  .col-body {
-    grid-area: body;
-    min-width: 0;
-  }
-  .col-sidebar {
-    grid-area: sidebar;
-  }
-
-  /* ── Article meta strip ────────────────────────────────────────────────── */
-  .article-meta-strip {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 2.5rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(26, 60, 52, 0.08);
-  }
-
-  .status-badge {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    padding: 0.25rem 0.75rem;
-    border-radius: 100px;
-  }
-
-  .meta-date {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.8rem;
-    color: #7a8b7e;
-  }
-
-  .meta-lang {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.75rem;
-    color: #9aa89e;
-    border: 1px solid rgba(26, 60, 52, 0.12);
-    padding: 0.2rem 0.6rem;
-    border-radius: 100px;
-    margin-left: auto;
-  }
-
-  /* ── Prose (article body) ──────────────────────────────────────────────── */
+  /* ── Prose (article body rendered via `set:html={processedContent}`
+     — these `:global()` rules are essential because the markdown
+     elements can't be reached by Tailwind classes) ─────────────── */
   .prose {
     font-family: 'Inter', 'Satoshi', system-ui, sans-serif;
     font-size: 1.05rem;
@@ -1095,380 +1105,5 @@ const encodedTitle = encodeURIComponent(title);
     border: none;
     border-top: 1.5px solid rgba(26, 60, 52, 0.1);
     margin: 3rem 0;
-  }
-
-  /* ── Sources ───────────────────────────────────────────────────────────── */
-  .sources-block {
-    margin: 3rem 0;
-    padding: 2rem;
-    background: rgba(26, 60, 52, 0.03);
-    border-radius: 16px;
-    border: 1px solid rgba(26, 60, 52, 0.08);
-  }
-  .sources-heading {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #1a3c34;
-    margin-bottom: 1rem;
-  }
-  .sources-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .source-link {
-    font-size: 0.82rem;
-    color: #006d77;
-    text-decoration: none;
-    word-break: break-all;
-  }
-  .source-link:hover {
-    text-decoration: underline;
-  }
-
-  /* ── AI Disclaimer ─────────────────────────────────────────────────────── */
-  .ai-disclaimer {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    margin: 3rem 0 2rem;
-    padding: 1.25rem 1.5rem;
-    background: rgba(193, 125, 94, 0.06);
-    border: 1px solid rgba(193, 125, 94, 0.18);
-    border-radius: 12px;
-  }
-  .disclaimer-icon {
-    flex-shrink: 0;
-    color: #c17d5e;
-    margin-top: 0.15rem;
-  }
-  .disclaimer-text {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.83rem;
-    color: #5a4a42;
-    line-height: 1.6;
-  }
-  .disclaimer-text strong {
-    display: block;
-    font-weight: 600;
-    color: #c17d5e;
-    margin-bottom: 0.3rem;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  /* ── Contribution row ──────────────────────────────────────────────────── */
-  .contribute-row {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin: 2rem 0;
-  }
-  .contribute-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.82rem;
-    font-weight: 500;
-    padding: 0.55rem 1.1rem;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .contribute-btn--primary {
-    background: #1a3c34;
-    color: #f8f1e9;
-  }
-  .contribute-btn--primary:hover {
-    background: #243d36;
-  }
-  .contribute-btn--ghost {
-    background: transparent;
-    color: #1a3c34;
-    border: 1px solid rgba(26, 60, 52, 0.2);
-  }
-  .contribute-btn--ghost:hover {
-    background: rgba(26, 60, 52, 0.05);
-  }
-
-  /* ── Bottom meta (tags + share) ────────────────────────────────────────── */
-  .bottom-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin: 3rem 0 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(26, 60, 52, 0.08);
-  }
-  .bottom-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-  .bottom-tag {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 500;
-    padding: 0.25rem 0.7rem;
-    border-radius: 100px;
-    border: 1px solid;
-  }
-  .bottom-share {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  .share-label {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.78rem;
-    color: #7a8b7e;
-    margin-right: 0.25rem;
-  }
-  .share-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: rgba(26, 60, 52, 0.06);
-    color: #1a3c34;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition:
-      background 0.2s,
-      color 0.2s;
-  }
-  .share-btn:hover {
-    background: #1a3c34;
-    color: #f8f1e9;
-  }
-
-  /* ── Return navigation ─────────────────────────────────────────────────── */
-  .return-nav {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin: 2.5rem 0 1rem;
-  }
-  .return-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.82rem;
-    font-weight: 500;
-    padding: 0.55rem 1.25rem;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .return-btn--primary {
-    color: #f8f1e9;
-  }
-  .return-btn--primary:hover {
-    opacity: 0.88;
-  }
-  .return-btn--ghost {
-    background: transparent;
-    color: #1a3c34;
-    border: 1px solid rgba(26, 60, 52, 0.2);
-  }
-  .return-btn--ghost:hover {
-    background: rgba(26, 60, 52, 0.06);
-  }
-
-  /* ── Related section ───────────────────────────────────────────────────── */
-  .related-section {
-    background: white;
-    padding: 5rem 2rem;
-    margin-top: 2rem;
-  }
-  .related-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-  .section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-  .section-kicker {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: #9aa89e;
-    margin-bottom: 0.6rem;
-  }
-  .section-title {
-    font-family: 'Inter', serif;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700;
-    color: #1a3c34;
-    line-height: 1.25;
-  }
-  .related-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-  .related-cta {
-    text-align: center;
-    margin-top: 2.5rem;
-  }
-  .view-all-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.88rem;
-    font-weight: 500;
-    padding: 0.65rem 1.5rem;
-    border-radius: 100px;
-    border: 1.5px solid;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .view-all-btn:hover {
-    background: rgba(0, 0, 0, 0.04);
-  }
-
-  /* ── Random explore ────────────────────────────────────────────────────── */
-  .random-explore-row {
-    display: flex;
-    justify-content: center;
-    padding: 2.5rem 2rem;
-    background: #f8f1e9;
-  }
-  .random-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.88rem;
-    font-weight: 500;
-    padding: 0.75rem 1.75rem;
-    border-radius: 100px;
-    border: 1.5px solid rgba(26, 60, 52, 0.2);
-    background: white;
-    color: #1a3c34;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .random-btn:hover {
-    background: #1a3c34;
-    color: #f8f1e9;
-    border-color: #1a3c34;
-  }
-
-  /* ── Explore section ───────────────────────────────────────────────────── */
-  .explore-section {
-    background: #f8f1e9;
-    padding: 5rem 2rem;
-  }
-  .explore-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-  .explore-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.25rem;
-    margin-top: 0;
-  }
-  .explore-card {
-    display: flex;
-    text-decoration: none;
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(26, 60, 52, 0.06);
-    box-shadow: 0 2px 8px rgba(26, 60, 52, 0.05);
-    transition:
-      transform 0.25s,
-      box-shadow 0.25s;
-  }
-  .explore-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(26, 60, 52, 0.12);
-  }
-  .explore-card-accent {
-    width: 5px;
-    flex-shrink: 0;
-  }
-  .explore-card-body {
-    padding: 1.4rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-  .explore-cat-name {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.92rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-  .explore-cat-desc {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.82rem;
-    color: #6a7d72;
-    line-height: 1.55;
-    margin: 0;
-  }
-  .explore-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    margin-top: 0.35rem;
-  }
-
-  /* ── Responsive ────────────────────────────────────────────────────────── */
-  @media (max-width: 1024px) {
-    .article-shell {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        'body'
-        'sidebar';
-      padding: 2.5rem 1.5rem 4rem;
-      gap: 2rem;
-    }
-    .col-toc {
-      display: none;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .article-shell {
-      padding: 1.5rem 1rem 3rem;
-    }
-    .bottom-meta {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .return-nav {
-      flex-direction: column;
-    }
-    .return-btn {
-      justify-content: center;
-    }
-    .related-section,
-    .explore-section {
-      padding: 3.5rem 1rem;
-    }
   }
 </style>
