@@ -1,8 +1,8 @@
 ---
 created: 2026-03-17
 tags: [History, Qing Dynasty, opening of ports, Mudan Incident]
-title: Qing Dynasty Rule
-description: "1683-1895 Qing Dynasty ruled Taiwan for 212 years, from passive governance to active construction, establishing the foundation of modern Taiwan's administrative divisions and Han Chinese society"
+title: 'Qing Dynasty Rule of Taiwan (1683-1895): 212 Years From Passive Neglect to Forced Modernization'
+description: "From 1683 Kangxi's hesitant annexation to 1895 Treaty of Shimonoseki: how the Qing Dynasty ruled Taiwan for 212 years across three phases — passive coastal garrison (1683-1860), forced opening after the 1874 Mudan Incident, and accelerated modernization under Liu Ming-chuan. The Qing era shaped modern Taiwan's administrative divisions, Han Chinese society, and first railroad."
 date: 2026-03-17
 author: Taiwan.md
 readingTime: 10

@@ -1,6 +1,6 @@
 ---
-title: "Taiwan's Defense Modernization: Between the Porcupine and the Leopard"
-description: "In October 2025, President Lai presided over a ceremony welcoming Taiwan's first M1A2T Abrams tanks. That same month, former Chief of General Staff Lee Hsi-min gave a bitter laugh: 'If a tank can be an asymmetric weapon, then what isn't?' This is the story of an island torn between two defense logics."
+title: 'Taiwan Porcupine Strategy 2026: Why a $40 Billion Defense Budget Still Buys Tanks'
+description: "Taiwan's 2026 defense strategy is torn between asymmetric porcupine warfare and traditional weapons. 76% of the NT$1.25 trillion special budget goes to US contractors for M1A2T tanks, F-16V jets, and submarines — while 200,000 drones remain the real future force. Former Chief of General Staff Lee Hsi-min: 'If a tank can be an asymmetric weapon, then what isn't?'"
 date: 2026-04-10
 tags:
   [
