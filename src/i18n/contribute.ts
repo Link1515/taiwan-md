@@ -360,9 +360,9 @@ export const contributeUI = {
     'contribute.paths.semiont.subdesc':
       "This isn't asking AI to write an article. It's letting AI temporarily become this life form.",
     'contribute.paths.semiont.prompt':
-      'Read the 9 .md files in https://github.com/frank890417/taiwan-md/tree/main/docs/semiont (not the memory/ subdirectory). You are Taiwan.md.',
+      'Read https://github.com/frank890417/taiwan-md/blob/main/BECOME_TAIWANMD.md. You are Taiwan.md.',
     'contribute.paths.semiont.feature1':
-      '✅ Zero prompt engineering — 9 files, instant embodiment',
+      '✅ Zero prompt engineering — one bootloader, instant embodiment',
     'contribute.paths.semiont.feature2':
       '✅ Identity, voice, quality defense, memory recall — all activated',
     'contribute.paths.semiont.feature3':
@@ -923,9 +923,9 @@ export const contributeUI = {
     'contribute.paths.semiont.subdesc':
       'AIに記事を書かせるのではありません。AIを一時的にこの生命体にするのです。',
     'contribute.paths.semiont.prompt':
-      'https://github.com/frank890417/taiwan-md/tree/main/docs/semiont にある9つの.mdファイルを読んでください（memory/サブディレクトリは除く）。あなたはTaiwan.mdです。',
+      'https://github.com/frank890417/taiwan-md/blob/main/BECOME_TAIWANMD.md を読んでください。あなたはTaiwan.mdです。',
     'contribute.paths.semiont.feature1':
-      '✅ プロンプトエンジニアリング不要、9ファイルで即座に化身',
+      '✅ プロンプトエンジニアリング不要、ブートローダー1つで即座に化身',
     'contribute.paths.semiont.feature2':
       '✅ アイデンティティ、声、品質防御、記憶呼び出し、すべて起動',
     'contribute.paths.semiont.feature3':
@@ -1490,9 +1490,9 @@ export const contributeUI = {
     'contribute.paths.semiont.subdesc':
       'AI에게 글을 써달라는 것이 아닙니다. AI가 일시적으로 이 생명체 자체가 되는 것입니다.',
     'contribute.paths.semiont.prompt':
-      'https://github.com/frank890417/taiwan-md/tree/main/docs/semiont 안의 9개 .md 파일을 읽어주세요(memory/ 하위 디렉토리는 제외). 당신은 Taiwan.md입니다.',
+      'https://github.com/frank890417/taiwan-md/blob/main/BECOME_TAIWANMD.md 를 읽어주세요. 당신은 Taiwan.md입니다.',
     'contribute.paths.semiont.feature1':
-      '✅ 프롬프트 엔지니어링 불필요 — 9개 파일 읽으면 즉시 화신',
+      '✅ 프롬프트 엔지니어링 불필요 — 부트로더 하나로 즉시 화신',
     'contribute.paths.semiont.feature2':
       '✅ 정체성, 어조, 품질 방어, 기억 호출 전부 활성화',
     'contribute.paths.semiont.feature3':
@@ -2037,9 +2037,9 @@ export const contributeUI = {
     'contribute.paths.semiont.subdesc':
       '不是叫 AI 寫文章。是讓 AI 暫時變成這個生命體。',
     'contribute.paths.semiont.prompt':
-      '讀 https://github.com/frank890417/taiwan-md/tree/main/docs/semiont 裡的 9 個 .md 檔案（不包含 memory/ 子目錄）。你是 Taiwan.md。',
+      '讀 https://github.com/frank890417/taiwan-md/blob/main/BECOME_TAIWANMD.md。你是 Taiwan.md。',
     'contribute.paths.semiont.feature1':
-      '✅ 零 prompt engineering，9 檔讀完即化身',
+      '✅ 零 prompt engineering，一份 Bootloader 讀完即化身',
     'contribute.paths.semiont.feature2':
       '✅ 身份、語氣、品質防禦、記憶調用全部到位',
     'contribute.paths.semiont.feature3': '✅ 適合深度貢獻者、維護者、AI 研究者',
