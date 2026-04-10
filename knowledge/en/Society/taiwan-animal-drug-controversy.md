@@ -32,7 +32,7 @@ On the morning of April 10, 2026, the Animal and Plant Health Inspection Agency 
 
 The chair was the agency's director-general. But the real protagonists in that room were two phrases: "human drug" and "animal protection drug."
 
-The day before — April 9 — more than 100,000 pet owners had signed a petition on Taiwan's Public Policy Online Participation Platform, demanding that the government delay the implementation of a rule called the _Administrative Rules for Using Human Drugs on Dogs, Cats, and Non-Economic Animals_[^2]. That rule was originally set to take effect on July 1, 2026, after a two-year grace period.
+The day before — April 9 — more than 100,000 pet owners had signed a petition on Taiwan's Public Policy Online Participation Platform, demanding that the government delay the implementation of a rule called the _Administrative Rules for Using Human Drugs on Dogs, Cats, and Non-Economic Animals_[^2]. The rule was jointly issued by the Ministry of Agriculture's Animal and Plant Health Inspection Agency and the Food and Drug Administration on February 26, 2024, and was set to take effect on July 1, 2026 — giving drug wholesalers more than two years to re-register their products as "animal protection drugs."
 
 Those two years had passed. Of the 701 approved human drugs on the list, only about 144 had been registered as "animal protection drugs"[^3]. Medical gases commonly used in emergency rooms — oxygen, carbon dioxide, nitrogen — were all at zero.
 
@@ -164,7 +164,7 @@ Angel's case proves two things at once. The current law traps well-meaning veter
 
 ## 2024: A New Rule and Its Two-Year Grace Period
 
-On February 26, 2024, the Ministry of Agriculture's Animal and Plant Health Inspection Agency and the FDA jointly published the official version of the _Administrative Rules for Using Human Drugs on Dogs, Cats, and Non-Economic Animals_, scheduled to take effect July 1, 2026[^24]. The two-year gap was a grace period: time for drug wholesalers to redesign packaging, remove the human-drug insert, and register their products as "animal protection drugs."
+On February 26, 2024, the Ministry of Agriculture's Animal and Plant Health Inspection Agency and the FDA jointly published the official version of the _Administrative Rules for Using Human Drugs on Dogs, Cats, and Non-Economic Animals_, scheduled to take effect July 1, 2026[^24]. The gap between publication and implementation — two years and four months — was a grace period: time for drug wholesalers to redesign packaging, remove the human-drug insert, and register their products as "animal protection drugs."
 
 The new rule uses a two-track design. Drugs registered as "animal protection drugs" can be supplied directly from wholesalers to animal clinics. Drugs not registered must be purchased by the pet owner, who brings a "purchase certificate" from the veterinarian to a pharmacy.
 
