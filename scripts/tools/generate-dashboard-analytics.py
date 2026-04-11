@@ -199,6 +199,25 @@ def build_sc_7d_section(sc_raw):
             "position": round(q.get("position", 0), 2),
         })
 
+    # Word cloud: every query with ≥1 impression, sorted by impressions desc,
+    # capped at 150 to prevent runaway render. Compact shape (query + impressions
+    # + clicks only) so the JSON stays small.
+    all_queries_raw = sorted(
+        [q for q in sc_raw.get("queries", []) if q.get("impressions", 0) > 0],
+        key=lambda q: q.get("impressions", 0),
+        reverse=True,
+    )
+    word_cloud = []
+    for q in all_queries_raw[:150]:
+        query_str = q.get("keys", [""])[0] if q.get("keys") else q.get("query", "")
+        if not query_str:
+            continue
+        word_cloud.append({
+            "query": query_str,
+            "impressions": int(q.get("impressions", 0)),
+            "clicks": int(q.get("clicks", 0)),
+        })
+
     ctr_pct = totals.get("ctr", 0)
     if ctr_pct <= 1:
         ctr_pct = round(ctr_pct * 100, 2)
@@ -215,12 +234,165 @@ def build_sc_7d_section(sc_raw):
         },
         "topQueries": top_queries,
         "opportunities": opportunities,
+        "wordCloud": word_cloud,
     }
+
+
+# ISO 3166 alpha-2 → display name (only the codes we commonly see in CF cache;
+# dashboard's countryFlags lookup table uses display names)
+COUNTRY_CODE_TO_NAME = {
+    "TW": "Taiwan",
+    "US": "United States",
+    "JP": "Japan",
+    "KR": "South Korea",
+    "CN": "China",
+    "HK": "Hong Kong",
+    "SG": "Singapore",
+    "MY": "Malaysia",
+    "TH": "Thailand",
+    "VN": "Vietnam",
+    "PH": "Philippines",
+    "ID": "Indonesia",
+    "IN": "India",
+    "AU": "Australia",
+    "NZ": "New Zealand",
+    "CA": "Canada",
+    "GB": "United Kingdom",
+    "IE": "Ireland",
+    "DE": "Germany",
+    "FR": "France",
+    "NL": "Netherlands",
+    "ES": "Spain",
+    "IT": "Italy",
+    "PL": "Poland",
+    "SE": "Sweden",
+    "FI": "Finland",
+    "NO": "Norway",
+    "DK": "Denmark",
+    "PT": "Portugal",
+    "RU": "Russia",
+    "BR": "Brazil",
+    "MX": "Mexico",
+    "PE": "Peru",
+}
+
+
+def build_ai_crawlers_dashboard(ai_raw):
+    """Convert fetch-cloudflare.py's ai_crawlers cache shape → dashboard JSON
+    shape that the template reads under `cloudflare.aiCrawlers`.
+
+    Cache shape:  {period, totals, crawlers: [{name, category, requests, http200}]}
+    Dashboard shape: {detectedRequests, http200, allowedRequests, unsuccessfulRequests,
+                      topCrawler, crawlers: [{name, requests}, ...]}
+    """
+    if not ai_raw:
+        return None
+    totals = ai_raw.get("totals") or {}
+    crawlers_raw = ai_raw.get("crawlers") or []
+    # Template reads crawlers as [{name, requests}] for the horizontal bars.
+    crawlers_simple = [
+        {
+            "name": c.get("name"),
+            "requests": c.get("requests", 0),
+            "http200": c.get("http200", 0),
+            "category": c.get("category"),
+        }
+        for c in crawlers_raw
+    ]
+    top = crawlers_simple[0] if crawlers_simple else None
+    return {
+        "detectedRequests": int(totals.get("detectedRequests", 0)),
+        "http200": int(totals.get("http200", 0)),
+        "allowedRequests": int(totals.get("allowedRequests", 0)),
+        "unsuccessfulRequests": int(totals.get("unsuccessfulRequests", 0)),
+        "topCrawler": top,
+        "crawlers": crawlers_simple,
+        "period": ai_raw.get("period"),
+    }
+
+
+def build_cloudflare_section(cf_raw, preserve_ai_crawlers=None):
+    """Map fetch-cloudflare.py cache (httpRequests1dGroups + ai_crawlers) into
+    the dashboard JSON shape. If the cache has fresh ai_crawlers data (from
+    httpRequestsAdaptiveGroups userAgent grouping), it takes precedence.
+    Otherwise falls back to the preserved stale copy from cloudflare24h.
+    """
+    if not cf_raw:
+        return None
+    period = cf_raw.get("period", {})
+    summary = cf_raw.get("summary", {}) or {}
+    status_raw = cf_raw.get("status_breakdown", {}) or {}
+    countries_raw = cf_raw.get("top_countries", {}) or {}
+
+    # Top countries → array of {country, requests} sorted desc
+    country_list = sorted(
+        [
+            {
+                "country": COUNTRY_CODE_TO_NAME.get(code, code),
+                "code": code,
+                "requests": int(info.get("requests", 0)),
+            }
+            for code, info in countries_raw.items()
+        ],
+        key=lambda c: c["requests"],
+        reverse=True,
+    )[:10]
+
+    # Status breakdown → list sorted by count desc
+    status_list = sorted(
+        [{"status": int(code), "count": int(count)} for code, count in status_raw.items()],
+        key=lambda s: s["count"],
+        reverse=True,
+    )
+
+    # 404 rate for quick diagnostic display
+    total_status = sum(status_raw.values()) if status_raw else 0
+    not_found = int(status_raw.get("404", 0))
+    rate_404 = round(not_found / total_status * 100, 2) if total_status else 0
+
+    days = period.get("days", 0)
+    label_bilingual = (
+        f"{period.get('start', '?')} to {period.get('end', '?')} ({days}d)"
+    )
+
+    out = {
+        "label": label_bilingual,
+        "startDate": period.get("start"),
+        "endDate": period.get("end"),
+        "days": days,
+        "summary": {
+            "requests": int(summary.get("requests", 0)),
+            "pageViews": int(summary.get("pageViews", 0)),
+            "uniques": int(summary.get("uniques", 0)),
+            "cachedRequests": int(summary.get("cachedRequests", 0)),
+            "threats": int(summary.get("threats", 0)),
+            "bytes": int(summary.get("bytes", 0)),
+        },
+        "statusBreakdown": status_list,
+        "fourOhFourRate": rate_404,
+        "traffic": {"topCountries": country_list},
+        "dailyBreakdown": cf_raw.get("daily_breakdown", []),
+    }
+
+    # AI crawlers: prefer fresh data from cache (httpRequestsAdaptiveGroups
+    # userAgent grouping, works on Free tier). If absent (e.g. token lacks
+    # permission or the feature was recently enabled), fall back to the
+    # preserved stale copy so the section still renders something.
+    fresh_ai = build_ai_crawlers_dashboard(cf_raw.get("ai_crawlers"))
+    if fresh_ai:
+        out["aiCrawlers"] = fresh_ai
+        out["aiCrawlersStale"] = False
+    elif preserve_ai_crawlers:
+        out["aiCrawlers"] = preserve_ai_crawlers
+        out["aiCrawlersStale"] = True
+
+    return out
 
 
 def main():
     ga_raw = load_json(CACHE / "ga4-latest.json")
     sc_raw = load_json(CACHE / "search-console-latest.json")
+    cf_raw = load_json(CACHE / "cloudflare-latest.json")
 
     if not TARGET.exists():
         print(f"⚠️  Target not found: {TARGET} — creating new file", file=sys.stderr)
@@ -230,6 +402,10 @@ def main():
 
     ga_section = build_ga_section(ga_raw)
     sc_7d_section = build_sc_7d_section(sc_raw)
+
+    # Preserve existing aiCrawlers from cloudflare24h (Free tier can't refresh it)
+    existing_ai_crawlers = existing.get("cloudflare24h", {}).get("aiCrawlers")
+    cf_section = build_cloudflare_section(cf_raw, preserve_ai_crawlers=existing_ai_crawlers)
 
     if ga_section:
         existing["ga"] = ga_section
@@ -242,9 +418,32 @@ def main():
 
     if sc_7d_section:
         existing["searchConsole7d"] = sc_7d_section
-        print(f"✅ searchConsole7d: {len(sc_7d_section['topQueries'])} queries")
+        print(f"✅ searchConsole7d: {len(sc_7d_section['topQueries'])} top queries, "
+              f"{len(sc_7d_section['wordCloud'])} word cloud entries")
     else:
         print("⚠️  Skipping searchConsole7d — no cache data", file=sys.stderr)
+
+    if cf_section:
+        # Write to a new field so the old cloudflare24h (with fresh aiCrawlers
+        # at the time it was hand-curated) stays untouched. The template
+        # reads cloudflare7d first and falls back to cloudflare24h.
+        existing["cloudflare7d"] = cf_section
+        print(
+            f"✅ cloudflare7d: {cf_section['summary']['requests']:,} requests, "
+            f"{len(cf_section['traffic']['topCountries'])} countries, "
+            f"404 rate {cf_section['fourOhFourRate']}% "
+            f"({cf_section['days']}d window)"
+        )
+        ai = cf_section.get("aiCrawlers")
+        stale = cf_section.get("aiCrawlersStale")
+        if ai:
+            print(
+                f"✅ cloudflare7d.aiCrawlers: {ai.get('detectedRequests', 0):,} "
+                f"detected across {len(ai.get('crawlers', []))} crawlers"
+                f"{' (STALE — no fresh cache)' if stale else ''}"
+            )
+    else:
+        print("⚠️  Skipping cloudflare7d — no cache data", file=sys.stderr)
 
     existing["lastUpdated"] = datetime.now().isoformat()
 

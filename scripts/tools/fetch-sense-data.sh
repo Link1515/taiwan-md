@@ -32,7 +32,7 @@ cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 #                also matches the scale you see in the dashboard pages list)
 #   SC         → 7 days (matches the "近 7 天" label on the dashboard)
 # Override any of them with env vars: CF_DAYS=7 GA4_DAYS=90 SC_DAYS=28 bash ...
-CF_DAYS="${CF_DAYS:-1}"
+CF_DAYS="${CF_DAYS:-7}"
 GA4_DAYS="${GA4_DAYS:-28}"
 SC_DAYS="${SC_DAYS:-7}"
 

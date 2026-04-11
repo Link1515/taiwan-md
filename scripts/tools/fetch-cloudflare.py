@@ -28,11 +28,44 @@ Token 需要的權限:
 """
 import json
 import os
+import re
 import sys
 import urllib.request
 import urllib.error
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+
+# AI crawler user-agent patterns (substring match, case-insensitive). First
+# match wins. Based on the vendors Cloudflare's AI Crawl Control dashboard
+# tracks — covers the major crawler families.
+AI_CRAWLER_PATTERNS = [
+    # (friendly name,          regex,                    vendor)
+    ("Amazonbot",              r"Amazonbot",             "Amazon"),
+    ("PetalBot",               r"PetalBot",              "Huawei"),
+    ("OAI-SearchBot",          r"OAI-SearchBot",         "OpenAI"),
+    ("ChatGPT-User",           r"ChatGPT-User",          "OpenAI"),
+    ("GPTBot",                 r"GPTBot",                "OpenAI"),
+    ("BingBot",                r"bingbot",               "Microsoft"),
+    ("PerplexityBot",          r"PerplexityBot",         "Perplexity"),
+    ("Perplexity-User",        r"Perplexity-User",       "Perplexity"),
+    ("Google-Extended",        r"Google-Extended",       "Google"),
+    ("Googlebot",              r"Googlebot",             "Google"),
+    ("anthropic-ai",           r"anthropic-ai",          "Anthropic"),
+    ("ClaudeBot",              r"ClaudeBot",             "Anthropic"),
+    ("Claude-Web",             r"Claude-Web",            "Anthropic"),
+    ("Claude-SearchBot",       r"Claude-SearchBot",      "Anthropic"),
+    ("Meta-ExternalAgent",     r"meta-externalagent",    "Meta"),
+    ("FacebookBot",            r"facebookexternalhit",   "Meta"),
+    ("Bytespider",             r"Bytespider",            "ByteDance"),
+    ("Applebot-Extended",      r"Applebot-Extended",     "Apple"),
+    ("Applebot",               r"Applebot",              "Apple"),
+    ("YandexBot",              r"YandexBot",             "Yandex"),
+    ("DuckDuckBot",            r"DuckDuckBot",           "DuckDuckGo"),
+    ("CCBot",                  r"CCBot",                 "CommonCrawl"),
+    ("cohere-ai",              r"cohere-ai",             "Cohere"),
+    ("Diffbot",                r"Diffbot",               "Diffbot"),
+]
 
 CONFIG_DIR = Path.home() / ".config" / "taiwan-md"
 CREDENTIALS_DIR = CONFIG_DIR / "credentials"
@@ -153,6 +186,173 @@ def fetch_daily_traffic(token, zone_tag, days=1):
     return cf_graphql(token, query, variables), start, end
 
 
+def _cf_graphql_soft(token, query, variables):
+    """Same as cf_graphql but returns (data, error_msg) instead of calling fail()."""
+    url = "https://api.cloudflare.com/client/v4/graphql"
+    body = json.dumps({"query": query, "variables": variables}).encode("utf-8")
+    req = urllib.request.Request(
+        url,
+        data=body,
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        return None, f"HTTP {e.code}: {e.read().decode('utf-8', errors='replace')[:300]}"
+    except urllib.error.URLError as e:
+        return None, f"unreachable: {e.reason}"
+    if data.get("errors"):
+        return None, json.dumps(data["errors"], ensure_ascii=False)[:400]
+    return data.get("data", {}), None
+
+
+def fetch_ai_crawlers(token, zone_tag, days=7):
+    """Query httpRequestsAdaptiveGroups grouped by (userAgent, edgeResponseStatus)
+    to derive AI crawler breakdown. Free tier limits this endpoint to a 1-day
+    time window per query, so we loop through each day and aggregate.
+
+    Works on Free tier — the earlier failure was specifically
+    `botManagementVerifiedBot` (paid Bot Management) but the `userAgent`
+    dimension is available on all plans.
+
+    Returns a dict shaped like the dashboard aiCrawlers section:
+        {
+            "totals": {detectedRequests, http200, allowedRequests, unsuccessfulRequests, topCrawler},
+            "crawlers": [{name, category, requests, http200}, ...],
+            "period": {start, end, days}
+        }
+    """
+    now = datetime.now(timezone.utc)
+
+    # No server-side userAgent filter: a `userAgent_like` SQL LIKE misses a
+    # lot of crawler UAs (capitalization, custom bot names, etc.). Fetch all
+    # request groups for the day and filter client-side via AI_CRAWLER_PATTERNS.
+    # taiwan.md scale: ~30k requests/day, ~200-500 unique UAs → well under
+    # the 10000 row limit.
+    query = """
+    query AICrawlersDay($zoneTag: String!, $start: Time!, $end: Time!) {
+      viewer {
+        zones(filter: { zoneTag: $zoneTag }) {
+          httpRequestsAdaptiveGroups(
+            filter: {
+              datetime_geq: $start,
+              datetime_leq: $end
+            }
+            limit: 10000
+            orderBy: [count_DESC]
+          ) {
+            count
+            dimensions {
+              userAgent
+              edgeResponseStatus
+            }
+          }
+        }
+      }
+    }
+    """
+
+    rows = []
+    days_fetched = 0
+    days_failed = 0
+    for offset in range(days):
+        day_end = now - timedelta(days=offset)
+        day_start = day_end - timedelta(days=1)
+        variables = {
+            "zoneTag": zone_tag,
+            "start": day_start.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "end": day_end.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        }
+        data, err = _cf_graphql_soft(token, query, variables)
+        if err:
+            print(
+                f"⚠️  AI crawler day {day_start.date()} failed: {err[:200]}",
+                file=sys.stderr,
+            )
+            days_failed += 1
+            continue
+        zones = data.get("viewer", {}).get("zones", [])
+        if zones:
+            day_rows = zones[0].get("httpRequestsAdaptiveGroups", []) or []
+            rows.extend(day_rows)
+            days_fetched += 1
+
+    if not rows:
+        return None
+
+    start = now - timedelta(days=days)
+    end = now
+
+    # Aggregate per crawler (first matching pattern wins).
+    # Also collect UA→requests for paths/samples diagnostic.
+    crawler_totals = {}  # name → {requests, http200, category}
+    unmatched_bot_requests = 0
+
+    for row in rows:
+        dims = row.get("dimensions", {}) or {}
+        ua = dims.get("userAgent", "") or ""
+        status = dims.get("edgeResponseStatus", 0) or 0
+        count = row.get("count", 0) or 0
+
+        matched = False
+        for name, pattern, category in AI_CRAWLER_PATTERNS:
+            if re.search(pattern, ua, re.IGNORECASE):
+                if name not in crawler_totals:
+                    crawler_totals[name] = {
+                        "requests": 0,
+                        "http200": 0,
+                        "category": category,
+                    }
+                crawler_totals[name]["requests"] += count
+                if status == 200:
+                    crawler_totals[name]["http200"] += count
+                matched = True
+                break
+        if not matched:
+            unmatched_bot_requests += count
+
+    # Sort crawlers by requests desc
+    crawlers = [
+        {
+            "name": name,
+            "category": info["category"],
+            "requests": info["requests"],
+            "http200": info["http200"],
+        }
+        for name, info in sorted(
+            crawler_totals.items(), key=lambda x: x[1]["requests"], reverse=True
+        )
+    ]
+
+    total_req = sum(c["requests"] for c in crawlers)
+    total_200 = sum(c["http200"] for c in crawlers)
+    totals = {
+        "detectedRequests": total_req,
+        "http200": total_200,
+        "allowedRequests": total_req,  # we don't block any crawler → all allowed
+        "unsuccessfulRequests": max(total_req - total_200, 0),
+        "topCrawler": crawlers[0] if crawlers else None,
+        "unmatchedBotRequests": unmatched_bot_requests,
+    }
+
+    return {
+        "period": {
+            "start": start.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "end": end.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "days": days,
+            "daysFetched": days_fetched,
+            "daysFailed": days_failed,
+        },
+        "totals": totals,
+        "crawlers": crawlers,
+    }
+
+
 def aggregate(days_data):
     """Aggregate multi-day data into totals + breakdowns."""
     total = {
@@ -262,6 +462,33 @@ def main():
 
     total, top_countries, top_statuses, top_content, top_browsers = aggregate(days_data)
 
+    # AI crawler breakdown via httpRequestsAdaptiveGroups (userAgent dimension).
+    # Isolated try so a transient failure here doesn't nuke the whole fetch.
+    print(f"📡 Fetching AI crawler breakdown ({args.days}d)...", file=sys.stderr)
+    try:
+        ai_crawlers = fetch_ai_crawlers(token, zone_tag, args.days)
+        if ai_crawlers and ai_crawlers["crawlers"]:
+            top = ai_crawlers["crawlers"][0]
+            print(
+                f"✅ AI crawlers: {ai_crawlers['totals']['detectedRequests']:,} detected, "
+                f"top = {top['name']} ({top['requests']:,})",
+                file=sys.stderr,
+            )
+        else:
+            print("⚠️  AI crawler fetch returned no data", file=sys.stderr)
+    except SystemExit:
+        # cf_graphql fail() propagates as SystemExit; the AI query may fail
+        # (e.g. userAgent_like not supported on some plans). Catch and continue.
+        print(
+            "⚠️  AI crawler query failed (userAgent_like may not be available "
+            "on your plan). Daily traffic still succeeded.",
+            file=sys.stderr,
+        )
+        ai_crawlers = None
+    except Exception as e:
+        print(f"⚠️  AI crawler query error: {type(e).__name__}: {e}", file=sys.stderr)
+        ai_crawlers = None
+
     output = {
         "fetched_at": datetime.now(timezone.utc).isoformat(),
         "zone_id": zone_tag[:8] + "..." + zone_tag[-4:],  # redacted for caching
@@ -270,6 +497,7 @@ def main():
             "end": end.strftime("%Y-%m-%d"),
             "days": args.days,
         },
+        "ai_crawlers": ai_crawlers,
         "daily_breakdown": [
             {
                 "date": d.get("dimensions", {}).get("date"),
@@ -288,9 +516,10 @@ def main():
         "content_types": top_content,
         "browser_families": top_browsers,
         "note": (
-            "Free-tier dataset. For crawler/bot breakdown (Meta, OpenAI, etc.), "
-            "Cloudflare requires Bot Management (paid add-on). This fetcher uses "
-            "httpRequests1dGroups which works on all plans."
+            "Traffic analytics via httpRequests1dGroups (Free tier). "
+            "AI crawler breakdown via httpRequestsAdaptiveGroups grouping by "
+            "userAgent — works on Free tier; the Enterprise-only fields are "
+            "botManagement.* (which we don't use)."
         ),
     }
 
