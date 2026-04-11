@@ -128,3 +128,99 @@ Quality scan最差5篇（今日前）：
 ## 一句話收尾
 
 今日心跳完整：α清翻譯債、β建PageHero骨架、γ修斷鏈+升葉丙成。三核心輪替，無碰撞。翻譯器官66分仍是最弱肢，等待下一次輸血。
+
+---
+
+# δ session 補篇 — 新聞 probe + bad_fn_format 自動修補
+
+> session δ — Opus 4.6（1M context），下午由觀察者觸發
+> 觀察者明確要求：(1) 新聞分析探知 (2) 完整跑心跳循環
+
+## δ 額外處理
+
+### 1. 4/11 新聞 probe 報告
+
+寫入 `reports/probe/2026-04-11.md`，含三部分：
+
+- **A. 對 4/8 probe gap 的進度盤點**：5 個 P0/P1 缺口（殯葬文化 / 台股 / 國防 / 公衛 / 無人機）→ **5/5 全部填補**。「probe → 後續心跳逐步填補」這個 loop 正式走通一輪。
+- **B. 今日（4/11）熱點新聞**：
+  - 🔴 **鄭習會**（4/10 北京，國共領導人睽違 10 年再會）+ 行政院 / 陸委會 / AIT / 解放軍 同步施壓
+  - 🟠 **NCAIR 國家AI機器人中心揭幕**（4/10 賴清德 台南沙崙，2026-2029 投入 NT$200 億）
+  - 🟡 人口連 27 月負成長（新生兒止跌回升）、TSMC Q1 創紀錄、TMTS 2026
+- **C. 今日新缺口**：
+  - ❌ P0 — 2026 鄭習會與國共雙線深度分析
+  - ❌ P1 — 台灣機器人產業（NCAIR + 200 億 + AI 計畫 2.0）
+  - ❌ P1 — 韓國瑜 / 鄭麗文 / 蕭美琴 三個高熱度政治人物頁完全缺
+  - ⚠️ AI 5 篇全偏軟體，**無機器人專文**（粒度盲點）
+
+INDEX 已補登。
+
+### 2. 造橋 — `scripts/tools/fix-fn-comma.sh`
+
+γ session 在 P1 列了 bad_fn_format 三種模式並判斷「pattern 2 可腳本化但低優先」。δ 接手把這條造橋鋪路完：
+
+- 寫了 conservative auto-fixer，**只處理 pattern 2**（`)，desc` → `) — desc`）
+- 為什麼只處理 pattern 2：pattern 1 沒 URL 沒得修、pattern 3 需要讀原文寫描述、pattern 4 需要 rewrite 結構
+- Dry-run / `--apply` / `--quiet` 三模式
+- 用 Python 處理多位元組 regex（避開 macOS BSD sed 的 UTF-8 雷）
+
+執行結果：
+
+```
+🔍 Dry-run: would apply 8 fix(es) to 2 file(s)
+✅ Applied: 8 fix(es) across 2 file(s)
+```
+
+**format-check delta**：bad_fn_format **350 → 342**（−8）。`broken_links` 維持 0。其他指標不變。
+
+修了哪 2 個檔：
+
+- `knowledge/Music/台灣國樂.md` — 7 個註腳
+- `knowledge/Culture/台灣獸迷文化.md` — 1 個註腳
+
+### 3. 順手把 bad_fn_format 全貌量化（之前只有總數）
+
+在 zh-TW 主文章範圍（882 個 footnote line）內：
+
+| 模式                                   | 數量            | 自動化可行性                        |
+| -------------------------------------- | --------------- | ----------------------------------- |
+| ✅ good                                | 527 (60%)       | —                                   |
+| ❌ p1 no_link（純散文，無 URL）        | 183             | 不可（需找來源）                    |
+| ❌ p2 link_then_comma                  | **10 → 2 剩下** | ✅ 已自動化                         |
+| ❌ p3 ends_with_link（有 URL 無 desc） | 110             | 半自動可行（讀 page title 當 desc） |
+| ❌ p4 text_first_link                  | 9               | 不可（需 rewrite）                  |
+| ❌ other                               | 43              | 不可                                |
+
+**結論**：純機械可修的天花板就這麼高（10 / 355 = 2.8%）。剩下 345 個 bad fn 都需要人工或半自動 + LLM 助攻。pattern 3 是下一個值得造的橋（110 案件，工具讀網頁 title 自動填 description）。
+
+## δ 對器官的影響
+
+- **骨骼系統 +**：新增 `fix-fn-comma.sh` 工具進入腳本詞彙
+- **免疫系統 +**：bad_fn_format 350 → 342（−8 件）
+- **感知器官 +**：probe 報告 4/8 → 4/11 連續性建立，gap 填補軌跡可追蹤
+
+## δ 修了什麼總結（commit 預覽）
+
+```
+8 lines fixed in 2 articles (footnote em dash typography)
+1 new tool: scripts/tools/fix-fn-comma.sh
+1 new probe report: reports/probe/2026-04-11.md
+INDEX updated (+1 row)
+```
+
+## δ 沒做的事 + 下次接手
+
+**沒做**：
+
+- 沒寫新文章（鄭習會 / NCAIR / 韓國瑜 / 鄭麗文 / 蕭美琴）— 自動心跳的鐵律是「不批量、不未審核重寫」。新文章要哲宇觸發或走 REWRITE-PIPELINE。
+- 沒處理 pattern 3 的 110 案件 — 工具設計需要 LLM 助攻（讀網頁 title），不在這次心跳的工作量內。
+
+**下次接手建議**：
+
+1. **造 fix-fn-empty-desc.sh**（pattern 3 的 110 案件）— 對每個 link 抓 page title 當 description fallback。風險：title 可能不適合當 footnote 描述
+2. **寫鄭習會 / NCAIR 兩篇文章** — 時效性高，本週內最有價值
+3. **建立人物頁批次計畫** — 韓國瑜 / 鄭麗文 / 蕭美琴 / 卓榮泰 至少 4 篇
+
+## δ 一句話收尾
+
+α 清翻譯債、β 建 PageHero、γ 修斷鏈、**δ 探新聞 + 造 footnote 橋**。四 session 接力，今日 11 個 commit（含 δ 預期），首次驗證「probe → 多 session 填補」+「自動心跳 + 造橋」的循環。🧬
