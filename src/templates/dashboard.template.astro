@@ -3344,6 +3344,8 @@ const isEn = lang === 'en';
     border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 12px;
     padding: 1.2rem;
+    overflow: hidden;
+    min-width: 0;
   }
   .ga-source-row,
   .ga-country-row {
@@ -3533,6 +3535,8 @@ const isEn = lang === 'en';
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    max-width: 100%;
   }
   .sc-wordcloud-container[aria-busy='true'] {
     min-height: 320px;
@@ -3638,6 +3642,22 @@ const isEn = lang === 'en';
     .sc-query-ctr,
     .sc-query-pos {
       display: none;
+    }
+    .ga-source-name,
+    .ga-country-name {
+      width: 90px;
+      font-size: 0.75rem;
+    }
+    .ga-source-count,
+    .ga-country-count {
+      width: 45px;
+      font-size: 0.7rem;
+    }
+    .ga-page-pv {
+      font-size: 0.7rem;
+    }
+    .ga-page-name {
+      font-size: 0.78rem;
     }
   }
 </style>
