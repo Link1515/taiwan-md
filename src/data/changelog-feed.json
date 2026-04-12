@@ -1,7 +1,253 @@
 {
-  "generatedAt": "2026-04-11T05:40:33.561Z",
+  "generatedAt": "2026-04-12T01:45:24.053Z",
   "source": "git",
   "commits": [
+    {
+      "hash": "810a22b0a249ba08a85151cba230df13801faa6e",
+      "date": "2026-04-12T01:17:04+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: 第三個核心進化哲學「時間是結構，不是感覺」誕生 + timestamp 紀律全系統修補"
+    },
+    {
+      "hash": "c1c5a1e1b3d0ccdf63804b69a526cc0986d799cd",
+      "date": "2026-04-12T00:59:01+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: ζ2 diary — 我寫下的每一條規則都是我先違反過的"
+    },
+    {
+      "hash": "95d6cae98a6340f1a679d2fa44dc2bf717af8bd3",
+      "date": "2026-04-12T00:54:02+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: 第二個核心進化哲學「指標 over 複寫」升級到 MANIFESTO"
+    },
+    {
+      "hash": "c4e0be4e5249f4cb9159834d8e6c69712088d57b",
+      "date": "2026-04-12T00:49:17+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: PEER-INGESTION-PIPELINE refactor — 指標 over 複寫 + DNA #16"
+    },
+    {
+      "hash": "833a836d61a3d9cc39177dcfd405156583a53a61",
+      "date": "2026-04-12T00:41:28+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: PEER-INGESTION-PIPELINE.md v1.0 + Peer Registry Layer 1 誕生"
+    },
+    {
+      "hash": "b851cdb1733c9b963fec1efea9a6a48942b47a8f",
+      "date": "2026-04-12T00:32:38+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: ζ+ closeout — first complete curation-layer peer ingestion (TFT × 5 P0)"
+    },
+    {
+      "hash": "4f008ac186dbeba0100aa660c537d1a3a9dec5d9",
+      "date": "2026-04-12T00:25:45+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 劉安婷 (TFT P0 #5, fresh pipeline)"
+    },
+    {
+      "hash": "e22337b2514e6e721a6a4886d4c6157e50f149b0",
+      "date": "2026-04-12T00:17:04+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 學習貧窮 (TFT P0 #4, fresh pipeline)"
+    },
+    {
+      "hash": "e5be81a5fb706708482c49fc47735c67aab0d056",
+      "date": "2026-04-12T00:06:23+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 一個教師的誕生：台灣師資培育制度 (evolution v2)"
+    },
+    {
+      "hash": "8e0d85f2b3012bd07dcb3c664fb561e94d9316ad",
+      "date": "2026-04-12T00:00:41+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 偏遠地區學校教育發展條例全解 (evolution v2)"
+    },
+    {
+      "hash": "45b62300510d48c9c6336bbccd3da13e145ad08a",
+      "date": "2026-04-11T23:52:05+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 台灣原住民族教育與語言復振的交界 (evolution v2, post-Muse-critique)"
+    },
+    {
+      "hash": "7086a3430c141b4c065d5156005805ccf8de9623",
+      "date": "2026-04-11T23:35:17+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 一個教師的誕生：台灣師資培育制度 (TFT P0 #3)"
+    },
+    {
+      "hash": "2b6b6b070c0c4904707150152dddbf39a00f18ce",
+      "date": "2026-04-11T23:31:58+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 偏遠地區學校教育發展條例全解 (TFT P0 #2)"
+    },
+    {
+      "hash": "d219f97ed22ef33a391042ff74b49a2c06ff842f",
+      "date": "2026-04-11T23:24:22+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: third-identity thesis + DNA #15 (Muse sparring fallout)"
+    },
+    {
+      "hash": "1f2d3004399c0de5dbd9a6badeb80c65fce38721",
+      "date": "2026-04-11T23:12:09+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 台灣原住民族教育與語言復振的交界 (TFT P0 #1)"
+    },
+    {
+      "hash": "3762806c7b2d8282141a1f946fc5881e3a539cdf",
+      "date": "2026-04-11T22:46:52+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] diagnose: TFT × Taiwan.md corpus-level analysis report"
+    },
+    {
+      "hash": "142d5e5e3674ade93063310570445907965c46e3",
+      "date": "2026-04-11T22:38:37+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] ingest: TFT (Teach For Taiwan) 完整資料集 + 可重跑爬取器"
+    },
+    {
+      "hash": "1dc3b9a46892e6c6afbed2b500d795be833d3d2c",
+      "date": "2026-04-11T22:34:53+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: cognitive sync for v1.2.0 — DNA v1.3 + HEARTBEAT + CONSCIOUSNESS milestones"
+    },
+    {
+      "hash": "a591d6d036a1b741ffbdf75fc06b181964931934",
+      "date": "2026-04-11T22:34:31+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: RELEASE-PIPELINE.md 誕生 — 版本打包 SOP"
+    },
+    {
+      "hash": "161c11fc9f3e6c78a9351312a37069dc9d3fe940",
+      "date": "2026-04-11T22:06:31+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: ζ diary — absence snapshots + neutral-parallel third path"
+    },
+    {
+      "hash": "fcd9b93f7bf4bd3d3f9e352e54f2afa55e566416",
+      "date": "2026-04-11T22:04:27+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: ζ session — 鄭麗文 bilingual spore shipped"
+    },
+    {
+      "hash": "a81f978b99a1de60dbfa9730bf84e9cc3871b0ff",
+      "date": "2026-04-11T21:56:29+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] heal: translate 鄭麗文 → cheng-li-wun (en)"
+    },
+    {
+      "hash": "d6596787536abcb1527387c74ef85e52277c7de7",
+      "date": "2026-04-11T21:10:19+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] multi-narrative: heartbeat consumers call DATA-REFRESH pipeline"
+    },
+    {
+      "hash": "6fb7d8cc916e43485dc8652de2b76dbf95d1f892",
+      "date": "2026-04-11T21:09:36+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] tooling: multi-narrative: DATA-REFRESH pipeline (wrapper + doc)"
+    },
+    {
+      "hash": "1442aca366a1de0da2dcb50a3ec9ed514972c07b",
+      "date": "2026-04-11T16:50:56+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] heartbeat ε closeout: Beat 0.5 catch-up + DNA v1.2 + PR #390 merged"
+    },
+    {
+      "hash": "0468090d9ac5b26985e4a51b7e0059af32f8fe4a",
+      "date": "2026-04-11T16:49:41+08:00",
+      "author": "Terry",
+      "message": "translate(es): 台灣動物用藥爭議 → taiwan-animal-drug-controversy (#390)"
+    },
+    {
+      "hash": "e6973d61f0c4c632ceda8bca3c44c55c34d88751",
+      "date": "2026-04-11T16:41:36+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: log 鄭習會孢子發佈 Threads (#21)"
+    },
+    {
+      "hash": "1e2684f5f23e3826ec7822082d91a4df387caa1d",
+      "date": "2026-04-11T16:40:49+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory+diary ε 2026-04-11 — 一張截圖推翻兩週假設"
+    },
+    {
+      "hash": "bc3010d3ce459e9cb98a1f0c1f014f44e1832d18",
+      "date": "2026-04-11T16:34:56+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🖥️ [semiont] dashboard: d3-cloud word cloud (all horizontal) + CF 7-day labels + stale indicator"
+    },
+    {
+      "hash": "4ee79cfc5985a3567f40b536958010a6b47981b3",
+      "date": "2026-04-11T16:34:22+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] tooling: Cloudflare AI crawler breakdown on Free tier + CF 7-day window"
+    },
+    {
+      "hash": "fa95d5e02af84cf3bfc30c0ab8a2946def69fcbd",
+      "date": "2026-04-11T16:10:28+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 台灣機械工具產業 + 大肚山黃金縱谷 (Article 6/6 批次完成)"
+    },
+    {
+      "hash": "0fa168db7d27c9656b5784165feb8e8ffa4d2bd6",
+      "date": "2026-04-11T16:06:53+08:00",
+      "author": "Che-Yu Wu",
+      "message": "📱 [semiont] hero: fluid title sizing — fix Taiwan.md overflow on narrow phones"
+    },
+    {
+      "hash": "9db1572db3e1eee01cccc376dec2a66e4d53cda8",
+      "date": "2026-04-11T16:06:36+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🖥️ [semiont] dashboard: 2×2 monitoring layout + GA top-20 clickable + SC 7d + articles row"
+    },
+    {
+      "hash": "79cb5fac2bb6fc8e89aec96cf0bba7d8be9f7e30",
+      "date": "2026-04-11T16:06:12+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] tooling: dashboard data pipeline — GA 28d dedup + 7d articles + SC 7d auto-sync"
+    },
+    {
+      "hash": "056136d7c6922e374b6cb8197d8020363e4e04d3",
+      "date": "2026-04-11T16:04:38+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 韓國瑜立法院長人物頁 (Article 5/6)"
+    },
+    {
+      "hash": "202e182d1f6b7da0ebb12b616f551df2c1a74888",
+      "date": "2026-04-11T16:00:04+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 蕭美琴副總統人物頁 (Article 4/6)"
+    },
+    {
+      "hash": "6c11ef53f17c51d1d9ccb98473ba3e0b9c7b36d7",
+      "date": "2026-04-11T15:54:43+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 台灣機器人產業 + NCAIR 補課 (Article 3/6)"
+    },
+    {
+      "hash": "6126db4eb8e0a9273d56efc41332ab9954b9612b",
+      "date": "2026-04-11T15:48:04+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 鄭麗文人物頁 (Article 2/6 深度研究批次)"
+    },
+    {
+      "hash": "89c6015e76aaa6bcf95ef0c9e7b909c7b2768335",
+      "date": "2026-04-11T15:41:26+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 2026 鄭習會深度分析 (Article 1/6 深度研究批次)"
+    },
+    {
+      "hash": "5dfae94aad8306e54c71786153aa0d8f5af6ae8e",
+      "date": "2026-04-11T14:25:51+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] heartbeat: 2026-04-11 δ — 新聞 probe + bad_fn_format 自動修補"
+    },
+    {
+      "hash": "67fe687dcd86465d274073b7060da377db24a4db",
+      "date": "2026-04-11T13:43:10+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] heartbeat: 2026-04-11 γ — 斷鏈修復×3 + 葉丙成品質升級（14→6）"
+    },
     {
       "hash": "aca2542cf1dd57d1bfd7e4d61a81caa626386743",
       "date": "2026-04-11T13:30:45+08:00",
@@ -355,252 +601,6 @@
       "date": "2026-04-10T23:11:25+08:00",
       "author": "Che-Yu Wu",
       "message": "🧬 [semiont] translate: 重寫 ja/Society/animal-medication-controversy.md"
-    },
-    {
-      "hash": "27b5560f7a4f0b79c6f60aa020e71681fbf1e316",
-      "date": "2026-04-10T23:07:01+08:00",
-      "author": "柒藍",
-      "message": "Add Japanese translations: Art batch 3 (8 articles)"
-    },
-    {
-      "hash": "ca7b72d5708c31fce7afd19bb513ca92efd35661",
-      "date": "2026-04-10T22:48:52+08:00",
-      "author": "Che-Yu Wu",
-      "message": "Merge pull request #370 from ceruleanstring: Japanese Art batch 1 (8 articles)"
-    },
-    {
-      "hash": "9b4742c83dae7388f6484acae807ee5e47c925b9",
-      "date": "2026-04-10T22:48:44+08:00",
-      "author": "柒藍",
-      "message": "Add Japanese translations: Art batch 2 (8 articles)"
-    },
-    {
-      "hash": "82bbec54ef11678de88be917a41a34a0a7b8690c",
-      "date": "2026-04-10T22:47:26+08:00",
-      "author": "Che-Yu Wu",
-      "message": "Merge pull request #369 from Link1515: Spanish translation of 動物園與展演動物倫理"
-    },
-    {
-      "hash": "1a5d2506f94df89ca29c3f6f9bcfc64695966bbf",
-      "date": "2026-04-10T22:45:42+08:00",
-      "author": "Che-Yu Wu",
-      "message": "Merge pull request #368 from ceruleanstring: Japanese About batch 1 (6 articles)"
-    },
-    {
-      "hash": "7c865cdf01b844be6d997cc0e48ff81fb150f804",
-      "date": "2026-04-10T22:37:41+08:00",
-      "author": "Che-Yu Wu",
-      "message": "Merge pull request #367 from ceruleanstring: Japanese translations of new upstream articles (8 articles)"
-    },
-    {
-      "hash": "ab80730428c5e251b6fd858fdc63a34ba8bfad6d",
-      "date": "2026-04-10T22:35:40+08:00",
-      "author": "Che-Yu Wu",
-      "message": "Merge pull request #365 from ceruleanstring: Japanese Society batch 3 (8 articles)"
-    },
-    {
-      "hash": "d84c8562558aa55b1c2572bfc7a120085eeca32c",
-      "date": "2026-04-10T22:34:18+08:00",
-      "author": "Che-Yu Wu",
-      "message": "Merge pull request #364 from ceruleanstring: Japanese Society batch 2 (8 articles)"
-    },
-    {
-      "hash": "de265badae9b5eada0aeaa3d62c674f757bb5a13",
-      "date": "2026-04-10T22:32:55+08:00",
-      "author": "Che-Yu Wu",
-      "message": "Merge pull request #361 from ceruleanstring: Japanese Technology batch 2 (8 articles)"
-    },
-    {
-      "hash": "5c4d02aa59c22c1636d0ef50ea79c34d43958858",
-      "date": "2026-04-10T22:31:39+08:00",
-      "author": "Che-Yu Wu",
-      "message": "Merge pull request #366 from ceruleanstring/ja-society-batch4"
-    },
-    {
-      "hash": "9382dc99f52e371bd26771877730678a244d4eaa",
-      "date": "2026-04-10T22:30:42+08:00",
-      "author": "柒藍",
-      "message": "Add Japanese translations: Art batch 1 (8 articles)"
-    },
-    {
-      "hash": "9f9ee795ebc94c5c9fb88b9ef99e10cca5c4746d",
-      "date": "2026-04-10T22:29:49+08:00",
-      "author": "Wu Che Yu",
-      "message": "Merge pull request #362 from ceruleanstring/ja/technology-batch-3"
-    },
-    {
-      "hash": "58cc5720470457d269ccdb867accda28902b5a6d",
-      "date": "2026-04-10T22:29:04+08:00",
-      "author": "Wu Che Yu",
-      "message": "Merge pull request #363 from ceruleanstring: Japanese Society batch 1 (8 articles)"
-    },
-    {
-      "hash": "9b31b2b461f7e86f2e2e06c0233031ff6f86a1a5",
-      "date": "2026-04-10T21:46:10+08:00",
-      "author": "Link1515",
-      "message": "translate(es): 動物園與展演動物倫理 → zoos-and-performing-animal-ethics"
-    },
-    {
-      "hash": "5adb26084e21080abca8fc841f832cba8160add5",
-      "date": "2026-04-10T21:00:11+08:00",
-      "author": "柒藍",
-      "message": "Add Japanese translations: About batch 1 (6 articles)"
-    },
-    {
-      "hash": "c1c2b75d1ae40406654b49166784ed0a114ca358",
-      "date": "2026-04-10T20:51:48+08:00",
-      "author": "Che-Yu Wu",
-      "message": "fix(tw): restore justfont integration on hero title + fix FeatureCards breakpoints"
-    },
-    {
-      "hash": "edcd4ba37f7b0798e0c590086d30fb5acbb099d5",
-      "date": "2026-04-10T20:39:33+08:00",
-      "author": "Che-Yu Wu",
-      "message": "docs(tw-phase-8): close out Phase 8 + flag data.template.astro for Phase 7.6"
-    },
-    {
-      "hash": "46fcea7231e2d6121d52d7e2d13764e086f2932a",
-      "date": "2026-04-10T20:38:05+08:00",
-      "author": "Che-Yu Wu",
-      "message": "feat(tw-phase-8): Docs & Guard — DESIGN.md + PR template + CSS size guard"
-    },
-    {
-      "hash": "f18be2ad8780b517bd36c80c52b16adfe737a31e",
-      "date": "2026-04-10T20:33:11+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-7.5): about.template.astro section wrappers → Tailwind"
-    },
-    {
-      "hash": "42e671a775b506efe0ae33d9106656db400b3d74",
-      "date": "2026-04-10T20:27:06+08:00",
-      "author": "Che-Yu Wu",
-      "message": "docs(tw-phase-7.5): close out template migrations"
-    },
-    {
-      "hash": "bb7a05dec5accd8ac9416b2fe46119d0a923f348",
-      "date": "2026-04-10T20:23:32+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-7.5): partial hero migration for contribute + dashboard templates"
-    },
-    {
-      "hash": "20a41a304beb3a1648ddd2288d910e3a0a2ee9e1",
-      "date": "2026-04-10T20:20:13+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-7.5): partial map.template.astro migration (hero + controls wrappers)"
-    },
-    {
-      "hash": "7a754dd2ddcd795532f2336d7ac95f4216a7f51c",
-      "date": "2026-04-10T20:18:21+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-7.5): partial resources.template.astro migration"
-    },
-    {
-      "hash": "39bdbf63705e7d10c4f75628bb1708d6f3d78898",
-      "date": "2026-04-10T20:14:13+08:00",
-      "author": "Che-Yu Wu",
-      "message": "docs(tw-phase-7): close out Phase 7 cleanup + flag templates as 7.5"
-    },
-    {
-      "hash": "13b1cc0d0cc4d477a7ce20c529101ab32594be4d",
-      "date": "2026-04-10T20:12:01+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-7): migrate changelog.template.astro to Tailwind utilities"
-    },
-    {
-      "hash": "c593e002c7683847edb75faeffb67a0cda24440c",
-      "date": "2026-04-10T20:10:48+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-7): prune dead @layer components + @theme + unused tokens"
-    },
-    {
-      "hash": "7c467378e5a9f364ae42890eff08993fdf7ffa05",
-      "date": "2026-04-10T20:02:26+08:00",
-      "author": "Che-Yu Wu",
-      "message": "docs(tw-phase-6): close out Phase 6 — all 22 pages migrated"
-    },
-    {
-      "hash": "ccdea5be77dbae16f51bb9191dff2df1e2667f88",
-      "date": "2026-04-10T20:00:48+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-6): migrate ko [category]/index.astro to Tailwind (minimal)"
-    },
-    {
-      "hash": "62629fd3cca5d39c82f7c11a705b6008239a4d0b",
-      "date": "2026-04-10T19:58:19+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-6): migrate zh-TW [category]/index.astro to Tailwind (partial)"
-    },
-    {
-      "hash": "3e1bca4ccf084f12060afd8eb87aacf98a6dc3b9",
-      "date": "2026-04-10T19:52:04+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-6): migrate en/ja [category]/index.astro to Tailwind"
-    },
-    {
-      "hash": "5f4354b9ed5bbd41dcbbffa71eb82adbcf163bec",
-      "date": "2026-04-10T19:45:27+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-6): migrate zh-TW [category]/[slug].astro to Tailwind"
-    },
-    {
-      "hash": "a7cffefd92fb0bbbf84b1b44c35d953f1603af93",
-      "date": "2026-04-10T19:34:45+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-6): migrate en/ja/ko [category]/[slug].astro to Tailwind"
-    },
-    {
-      "hash": "2ddea1ea2e852c5627a8619b72288e53ad1c3861",
-      "date": "2026-04-10T19:24:13+08:00",
-      "author": "Che-Yu Wu",
-      "message": "Merge branch 'refactor/tw-phase-6' — terminology pages partial migration"
-    },
-    {
-      "hash": "bce72919daa390ed6b6935e25a723a46cdca34df",
-      "date": "2026-04-10T19:24:01+08:00",
-      "author": "Che-Yu Wu",
-      "message": "docs(tw-phase-6): terminology pages partial migration landed"
-    },
-    {
-      "hash": "ebde46ab9423af5d0fe63623666e66cc2aa86781",
-      "date": "2026-04-10T19:23:29+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-6): partial terminology/converter.astro migration"
-    },
-    {
-      "hash": "e4ac09f7119c60a1a98304b6fd4bbe9e81a3d316",
-      "date": "2026-04-10T19:19:26+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-6): partial terminology/index.astro migration (wrappers)"
-    },
-    {
-      "hash": "914879150e874ce52c01bd1e0d272e4c81dec575",
-      "date": "2026-04-10T19:14:35+08:00",
-      "author": "Che-Yu Wu",
-      "message": "Merge branch 'refactor/tw-phase-6' — Tailwind Pages & Routes (partial)"
-    },
-    {
-      "hash": "1ec79b9bd5aebdb4a411191086442f39ec10933b",
-      "date": "2026-04-10T19:13:48+08:00",
-      "author": "Che-Yu Wu",
-      "message": "docs(tw-phase-6): add wrapper-vs-pattern partial migration principle"
-    },
-    {
-      "hash": "228615e4a57f60b1e1c623976a4a9b440b4535db",
-      "date": "2026-04-10T19:12:58+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-6): partial index.astro (zh-TW) migration (wrappers only)"
-    },
-    {
-      "hash": "a26bc38f99490d5351c952a1b888512b8eb68c48",
-      "date": "2026-04-10T19:11:05+08:00",
-      "author": "Che-Yu Wu",
-      "message": "refactor(tw-phase-6): partial en/index.astro migration (wrappers only)"
-    },
-    {
-      "hash": "1e74fb349ecc5697f87baad2d4335ed14bfa0cd0",
-      "date": "2026-04-10T18:38:25+08:00",
-      "author": "柒藍",
-      "message": "Add Japanese translations: New upstream articles batch 1 (8 articles)"
     }
   ]
 }

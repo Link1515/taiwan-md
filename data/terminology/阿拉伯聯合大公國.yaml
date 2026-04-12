@@ -1,22 +1,15 @@
-id: 阿拉伯聯合大公國
-category: names
-subcategory: 地名
-fork_type: B
+id: 阿拉伯聯合大公國
+category: daily-life
+fork_type: semantic
 
 display:
-  taiwan: 阿拉伯聯合大公國
-  china: 阿拉伯联合酋长国
-
-etymology:
-  origin: ''
-  taiwan_path: 台灣用法
-  china_path: 中國用法
-  fork_point: ''
+  taiwan: 阿位伯聯合酋長國
+  china: 阿拉伯聯合大公國
 
 notes: ''
 
 sources:
-  - 'rajatim/zhtw (MIT) — geography.json'
+  - 'fanhuaji-config'
 
-added: '2026-04-08'
-updated: '2026-04-08'
+added: '2026-03-31'
+updated: '2026-03-31'

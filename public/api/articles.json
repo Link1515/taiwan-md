@@ -1,5 +1,24 @@
 [
   {
+    "title": "2026 鄭習會：國共領導人十年再會的十分鐘",
+    "description": "2026 年 4 月 10 日，鄭麗文在北京見習近平，成為十年來第一位會見中共總書記的中華民國主要政黨領袖。會談十分鐘，同時台灣海峽有 100 艘解放軍船艦。這場「和平之旅」究竟在旅什麼？",
+    "category": "Society",
+    "tags": [
+      "兩岸關係",
+      "國共會談",
+      "鄭麗文",
+      "習近平",
+      "地緣政治",
+      "政治",
+      "2026"
+    ],
+    "url": "https://taiwan.md/Society/2026%E9%84%AD%E7%BF%92%E6%9C%83%E8%88%87%E5%9C%8B%E5%85%B1%E5%8D%81%E5%B9%B4%E5%86%8D%E6%9C%83",
+    "readingTime": 31,
+    "featured": true,
+    "date": "2026-04-11",
+    "path": "Society/2026鄭習會與國共十年再會.md"
+  },
+  {
     "title": "228 Incident",
     "description": "The major 1947 event that changed Taiwan's historical trajectory - from the outbreak to the long journey toward transitional justice",
     "category": "en",
@@ -26,6 +45,17 @@
     "featured": true,
     "date": "2026-03-18",
     "path": "en/Technology/taiwan-5g-digital-transformation.md"
+  },
+  {
+    "title": "一個教師的誕生：台灣師資培育制度的四十年改革與塌縮",
+    "description": "1994 年立法院通過《師資培育法》，把「師範體系一條龍」改成「開放多元師培」，當時被視為台灣教育史的進步里程碑。三十年後的數字很冷靜：原本 9 所教育大學被整併到只剩 3 所、109 學年全台師資培育機構招生不足額史上最高、112-113 年教師檢定通過率跌到 52%（近年新低）、近半師培生把師培課當備胎、42% 的人在拿到教師證前就放棄了。一個國家花了三十年改革師資制度，結果是：想當老師的人變少、能留下來的人被訓練得跟現場越來越遠。",
+    "category": "Society",
+    "tags": [],
+    "url": "https://taiwan.md/Society/%E4%B8%80%E5%80%8B%E6%95%99%E5%B8%AB%E7%9A%84%E8%AA%95%E7%94%9F%EF%BC%9A%E5%8F%B0%E7%81%A3%E5%B8%AB%E8%B3%87%E5%9F%B9%E8%82%B2%E5%88%B6%E5%BA%A6",
+    "readingTime": 42,
+    "featured": true,
+    "date": "2026-04-12",
+    "path": "Society/一個教師的誕生：台灣師資培育制度.md"
   },
   {
     "title": "九天玄女：從黃帝的軍師到台灣陣頭少年的守護神",
@@ -2641,7 +2671,7 @@
     "category": "History",
     "tags": ["民主", "轉型正義", "政治史", "人權", "社會運動"],
     "url": "https://taiwan.md/History/%E5%8F%B0%E7%81%A3%E6%B0%91%E4%B8%BB%E8%BD%89%E5%9E%8B",
-    "readingTime": 28,
+    "readingTime": 29,
     "featured": true,
     "date": "2026-03-24",
     "path": "History/台灣民主轉型.md"
@@ -3502,6 +3532,17 @@
     "featured": false,
     "date": "2026-03-20",
     "path": "Society/台灣原住民族土地正義與傳統領域.md"
+  },
+  {
+    "title": "台灣原住民族教育與語言復振的交界：小學護得住，中學接不住",
+    "description": "2012 年屏東泰武國小的排灣族老師查馬克·法拉屋樂用錄音筆從耆老口中採集古謠，率領孩子唱進金曲獎。2017 年《原住民族語言發展法》把族語升格為國家語言。2019 年《原住民族教育法》寫入「十年達標」的教師比例條文。國小階段的原住民族實驗學校從 25 所增加到 38 所。但上了國中之後，整個系統塌陷：全台灣原住民族實驗中學只有 6 所，大專原住民學生粗在學率 56.3%，比一般生少了 35.3 個百分點。查馬克 2021 年病逝，享年 42 歲。小學護得住，中學接不住。斷層還在那裡。",
+    "category": "Society",
+    "tags": [],
+    "url": "https://taiwan.md/Society/%E5%8F%B0%E7%81%A3%E5%8E%9F%E4%BD%8F%E6%B0%91%E6%97%8F%E6%95%99%E8%82%B2%E8%88%87%E8%AA%9E%E8%A8%80%E5%BE%A9%E6%8C%AF%E7%9A%84%E4%BA%A4%E7%95%8C",
+    "readingTime": 45,
+    "featured": true,
+    "date": "2026-04-11",
+    "path": "Society/台灣原住民族教育與語言復振的交界.md"
   },
   {
     "title": "台灣原住民族歷史與正名運動",
@@ -4529,6 +4570,28 @@
     "featured": true,
     "date": "2026-03-25",
     "path": "Lifestyle/台灣機車文化.md"
+  },
+  {
+    "title": "台灣機械工具產業",
+    "description": "從大肚山黃金縱谷到 TMTS 2026，台灣工具機產業的韌性、崩盤、重生，以及為什麼 2024 年從全球第 5 掉到第 7 的結構性焦慮。",
+    "category": "Economy",
+    "tags": [],
+    "url": "https://taiwan.md/Economy/%E5%8F%B0%E7%81%A3%E6%A9%9F%E6%A2%B0%E5%B7%A5%E5%85%B7%E7%94%A2%E6%A5%AD",
+    "readingTime": 30,
+    "featured": true,
+    "date": "2026-04-11",
+    "path": "Economy/台灣機械工具產業.md"
+  },
+  {
+    "title": "台灣機器人產業",
+    "description": "半導體世界第一的島嶼，為什麼在機器人時代要「補課」？從 2026 年 NCAIR 揭幕，回看台灣精密機械的奇蹟與盲點。",
+    "category": "Technology",
+    "tags": [],
+    "url": "https://taiwan.md/Technology/%E5%8F%B0%E7%81%A3%E6%A9%9F%E5%99%A8%E4%BA%BA%E7%94%A2%E6%A5%AD",
+    "readingTime": 25,
+    "featured": true,
+    "date": "2026-04-11",
+    "path": "Technology/台灣機器人產業.md"
   },
   {
     "title": "台灣獨立音樂：一間發不出薪水的唱片行，如何替一座島嶼打開耳朵",
@@ -6662,6 +6725,17 @@
     "path": "People/高俊明.md"
   },
   {
+    "title": "偏遠地區學校教育發展條例全解：國家花了 175 億，還是擋不住人口重力",
+    "description": "2016 年 11 月 21 日，立法院三讀通過《偏遠地區學校教育發展條例》全文 21 條。這部法律的存在本身是國家對自己制度失能的正式承認。八年過去，政府在偏鄉硬體投入累計 175 億元、18.6 億元改善師生宿舍。但 113 學年全國一口氣有 18 所國小停辦，是台灣教育史上最多的一年；屏東縣四年裁併七校；全國廢校率還在上升。條例救了法律，但擋不住人口重力。",
+    "category": "Society",
+    "tags": [],
+    "url": "https://taiwan.md/Society/%E5%81%8F%E9%81%A0%E5%9C%B0%E5%8D%80%E5%AD%B8%E6%A0%A1%E6%95%99%E8%82%B2%E7%99%BC%E5%B1%95%E6%A2%9D%E4%BE%8B%E5%85%A8%E8%A7%A3",
+    "readingTime": 51,
+    "featured": true,
+    "date": "2026-04-11",
+    "path": "Society/偏遠地區學校教育發展條例全解.md"
+  },
+  {
     "title": "動物園與展演動物倫理",
     "description": "從鐵籠裡的大象到 Xpark 的水母牆——台灣正在重新定義人與被展示動物的關係",
     "category": "Society",
@@ -7946,6 +8020,17 @@
     "path": "People/齊柏林.md"
   },
   {
+    "title": "劉安婷",
+    "description": "2008 年從台中女中進普林斯頓，2013 年 23 歲辭紐約顧問工作回台灣創辦 TFT 為台灣而教。2016 年在成大畢業典禮問了一句「你拿幸運做什麼？」，那句話變成整整一代人的集體語錄。但她最常講的另一句話是「不要相信我個人」。2024 年 10 週年後，她把 TFT 董事長交給林妍希，自己轉任董事。她最好的作品不是 TFT，是讓 TFT 可以不在她身上。",
+    "category": "People",
+    "tags": [],
+    "url": "https://taiwan.md/People/%E5%8A%89%E5%AE%89%E5%A9%B7",
+    "readingTime": 38,
+    "featured": true,
+    "date": "2026-04-12",
+    "path": "People/劉安婷.md"
+  },
+  {
     "title": "劉德音",
     "description": "台積電董事長，張忠謀接班人，地緣政治中的半導體外交家",
     "category": "People",
@@ -8274,6 +8359,28 @@
     "path": "People/鄭南榕.md"
   },
   {
+    "title": "鄭麗文",
+    "description": "從 1988 年台大校門為台獨絕食的學運女孩，到 2026 年在北京對習近平說「兩岸同胞都是中國人」的國民黨主席。這條軌跡上發生過什麼？",
+    "category": "People",
+    "tags": ["政治人物", "國民黨", "兩岸關係", "學運世代", "2026"],
+    "url": "https://taiwan.md/People/%E9%84%AD%E9%BA%97%E6%96%87",
+    "readingTime": 29,
+    "featured": true,
+    "date": "2026-04-11",
+    "path": "People/鄭麗文.md"
+  },
+  {
+    "title": "學習貧窮：坐在教室裡卻什麼都沒學到",
+    "description": "世界銀行 2019 年提出「Learning Poverty」這個新詞，用來描述一件比失學更難看見的事：一個 10 歲的孩子每天準時上學、乖乖坐著、作業都交，但讀不懂一段跟年齡相符的簡單故事。2023 年 2 月世界銀行更新全球學習貧窮率仍維持在 70%。台灣 PISA 2022 拿下全球前五，弱勢 20% 學生的數學分數追上 OECD 平均，表面看是大翻身。但同一份 PISA 報告顯示都會區 571 分對偏鄉 517 分仍差 54 分；博幼基金會 108 年調查 13 所偏鄉國中，6 所 70% 學生英文拿 C、5 所 70% 學生數學拿 C。台灣版本的學習貧窮就躲在這個落差裡，還沒有被正式量測。",
+    "category": "Society",
+    "tags": [],
+    "url": "https://taiwan.md/Society/%E5%AD%B8%E7%BF%92%E8%B2%A7%E7%AA%AE",
+    "readingTime": 40,
+    "featured": true,
+    "date": "2026-04-12",
+    "path": "Society/學習貧窮.md"
+  },
+  {
     "title": "戰後台灣文學",
     "description": "從語言失語到多元爆發，戰後台灣文學如何在身份認同的漩渦中找到自己的聲音？",
     "category": "Art",
@@ -8340,6 +8447,25 @@
     "path": "People/蕭青陽.md"
   },
   {
+    "title": "蕭美琴",
+    "description": "日本出生、台南小學、新澤西長大、歐柏林畢業的「戰貓」，如何成為台灣歷史上最成功的對美代表，然後坐上副總統大位？",
+    "category": "People",
+    "tags": [
+      "政治人物",
+      "副總統",
+      "民進黨",
+      "外交",
+      "駐美代表",
+      "花蓮",
+      "戰貓"
+    ],
+    "url": "https://taiwan.md/People/%E8%95%AD%E7%BE%8E%E7%90%B4",
+    "readingTime": 29,
+    "featured": true,
+    "date": "2026-04-11",
+    "path": "People/蕭美琴.md"
+  },
+  {
     "title": "蕭敬騰",
     "description": "從踢館魔王到金曲歌王，一個創造「雨神」傳說的台灣聲音",
     "category": "People",
@@ -8356,7 +8482,7 @@
     "category": "People",
     "tags": ["總統", "醫師", "政治人物", "民主進步黨", "公共衛生", "台南"],
     "url": "https://taiwan.md/People/%E8%B3%B4%E6%B8%85%E5%BE%B7",
-    "readingTime": 13,
+    "readingTime": 14,
     "featured": true,
     "date": "2026-03-19",
     "path": "People/賴清德.md"
@@ -8562,6 +8688,26 @@
     "featured": false,
     "date": "2026-03-19",
     "path": "People/鍾理和.md"
+  },
+  {
+    "title": "韓國瑜",
+    "description": "史上第一位被罷免的直轄市長，四年後當上立法院長。這是什麼樣的政治軌跡？",
+    "category": "People",
+    "tags": [
+      "政治人物",
+      "國民黨",
+      "立法院長",
+      "韓流",
+      "高雄",
+      "2018",
+      "2020",
+      "2024"
+    ],
+    "url": "https://taiwan.md/People/%E9%9F%93%E5%9C%8B%E7%91%9C",
+    "readingTime": 24,
+    "featured": true,
+    "date": "2026-04-11",
+    "path": "People/韓國瑜.md"
   },
   {
     "title": "擲筊：在 50% 的機率背後，聽見神明的聲音",
@@ -9262,6 +9408,17 @@
     "featured": false,
     "date": "2026-03-20",
     "path": "en/People/cheng-chao-tsun-javelin-asian-king.md"
+  },
+  {
+    "title": "Cheng Li-wun: From Hunger Strike for Taiwan Independence to Meeting Xi Jinping",
+    "description": "In 1988, a 19-year-old student fasted outside National Taiwan University to demand the release of a Taiwan independence activist. In 2026, she sat across from Xi Jinping in Beijing and said \"people on both sides of the strait are all Chinese.\" What happened in between?",
+    "category": "en",
+    "tags": [],
+    "url": "https://taiwan.md/en/People/cheng-li-wun",
+    "readingTime": 97,
+    "featured": true,
+    "date": "2026-04-11",
+    "path": "en/People/cheng-li-wun.md"
   },
   {
     "title": "Chi Cheng: The Flying Antelope",
@@ -10767,6 +10924,17 @@
     "featured": false,
     "date": "2026-03-19",
     "path": "en/People/kuo-hsing-chun-olympic-weightlifting-champion.md"
+  },
+  {
+    "title": "La controversia sobre los medicamentos de uso animal en Taiwán",
+    "description": "Una disputa legal, médica y social que expone la grieta entre una estructura regulatoria pensada para animales económicos y una sociedad que ya trata a perros y gatos como familia",
+    "category": "es",
+    "tags": [],
+    "url": "https://taiwan.md/es/Society/taiwan-animal-drug-controversy",
+    "readingTime": 147,
+    "featured": false,
+    "date": "2026-04-10",
+    "path": "es/Society/taiwan-animal-drug-controversy.md"
   },
   {
     "title": "La Industria de Animación Digital e Imagen de Taiwán",

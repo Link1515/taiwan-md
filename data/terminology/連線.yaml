@@ -1,11 +1,11 @@
-id: 連線
-category: business
-subcategory: 電子商務
+id: 連線
+category: daily
+subcategory: 日常生活
 fork_type: B
 
 display:
-  taiwan: 連線
-  china: 连麦
+  taiwan: 連線
+  china: 掛機
 
 etymology:
   origin: ''
@@ -16,7 +16,7 @@ etymology:
 notes: ''
 
 sources:
-  - 'rajatim/zhtw (MIT) — ecommerce.json'
+  - 'ThunderKO C2T / 《大陸用語檢索手冊》1997'
 
-added: '2026-04-08'
-updated: '2026-04-08'
+added: '2026-03-30'
+updated: '2026-03-30'

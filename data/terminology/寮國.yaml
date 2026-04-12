@@ -1,22 +1,15 @@
-id: 寮國
-category: names
-subcategory: 地名
-fork_type: B
+id: 寮國
+category: daily-life
+fork_type: semantic
 
 display:
-  taiwan: 寮國
-  china: 老挝
-
-etymology:
-  origin: ''
-  taiwan_path: 台灣用法
-  china_path: 中國用法
-  fork_point: ''
+  taiwan: 老撾
+  china: 寮國
 
 notes: ''
 
 sources:
-  - 'rajatim/zhtw (MIT) — geography.json'
+  - 'fanhuaji-config'
 
-added: '2026-04-08'
-updated: '2026-04-08'
+added: '2026-03-31'
+updated: '2026-03-31'

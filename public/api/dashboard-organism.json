@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-11T05:40:33.227Z",
+  "lastUpdated": "2026-04-12T01:45:23.745Z",
   "organs": [
     {
       "id": "heart",
@@ -10,9 +10,9 @@
       "score": 90,
       "trend": "up",
       "metrics": {
-        "articlesLast7Days": 65,
-        "articlesLast30Days": 414,
-        "totalArticles": 452
+        "articlesLast7Days": 68,
+        "articlesLast30Days": 425,
+        "totalArticles": 463
       }
     },
     {
@@ -24,8 +24,8 @@
       "score": 99,
       "trend": "up",
       "metrics": {
-        "humanReviewedCount": 446,
-        "totalArticles": 452,
+        "humanReviewedCount": 457,
+        "totalArticles": 463,
         "humanReviewedPercent": 98.7
       }
     },
@@ -94,17 +94,17 @@
       "nameZh": "語言器官",
       "metaphor": "多語言複製",
       "emoji": "🌐",
-      "score": 66,
+      "score": 65,
       "trend": "stable",
       "metrics": {
         "languageCoverage": {
-          "zh-TW": 452,
-          "en": 392,
-          "es": 35,
+          "zh-TW": 463,
+          "en": 393,
+          "es": 36,
           "ja": 257,
           "ko": 28
         },
-        "translationPct": 66,
+        "translationPct": 65,
         "langHealthDetails": {
           "en": {
             "ui": {
@@ -121,10 +121,10 @@
               "pct": 100
             },
             "articles": {
-              "count": 392,
-              "pct": 87
+              "count": 393,
+              "pct": 85
             },
-            "score": 95
+            "score": 94
           },
           "es": {
             "ui": {
@@ -141,7 +141,7 @@
               "pct": 100
             },
             "articles": {
-              "count": 35,
+              "count": 36,
               "pct": 8
             },
             "score": 23
@@ -162,9 +162,9 @@
             },
             "articles": {
               "count": 257,
-              "pct": 57
+              "pct": 56
             },
-            "score": 83
+            "score": 82
           },
           "ko": {
             "ui": {
