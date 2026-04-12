@@ -17,12 +17,6 @@
     "category": "about",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "about/taiwan-official-website-resources": {
-    "zhTitle": "台灣官方網站資源",
-    "enTitle": "Taiwan Official Website Resources",
-    "category": "about",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "about/why-taiwan-needs-its-own-knowledge-base": {
     "zhTitle": "為什麼台灣需要自己的知識庫",
     "enTitle": "Why Taiwan Needs Its Own Knowledge Base",
@@ -59,23 +53,11 @@
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "art/contemporary-taiwanese-literature-development": {
-    "zhTitle": "台灣當代文學發展",
-    "enTitle": "Contemporary Taiwanese Literature Development",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/contemporary-taiwanese-literature": {
-    "zhTitle": "當代台灣文學",
-    "enTitle": "Contemporary Taiwanese Literature",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "art/development-of-contemporary-taiwanese-literature": {
     "zhTitle": "台灣當代文學發展",
     "enTitle": "Development of Contemporary Taiwanese Literature",
     "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "art/development-of-contemporary-taiwanese-sculpture": {
     "zhTitle": "台灣當代雕塑發展",
@@ -86,12 +68,6 @@
   "art/history-of-taiwanese-literature": {
     "zhTitle": "台灣文學史",
     "enTitle": "A History of Taiwanese Literature",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/indigenous-literature-traditions-and-revival": {
-    "zhTitle": "原住民文學",
-    "enTitle": "Indigenous Literature Traditions And Revival",
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -107,24 +83,6 @@
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "art/literature-during-japanese-rule": {
-    "zhTitle": "日治時期文學",
-    "enTitle": "Literature During Japanese Rule",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/new-media-art-in-taiwan": {
-    "zhTitle": "台灣新媒體藝術",
-    "enTitle": "New Media Art In Taiwan",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/post-martial-law-literature-explosion-freedom": {
-    "zhTitle": "解嚴後台灣文學",
-    "enTitle": "Post Martial Law Literature Explosion Freedom",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "art/postwar-taiwanese-literature": {
     "zhTitle": "戰後台灣文學",
     "enTitle": "Postwar Taiwanese Literature",
@@ -134,18 +92,6 @@
   "art/taiwan-digital-animation-industry": {
     "zhTitle": "台灣數位影像與動畫產業",
     "enTitle": "Taiwan's Digital Animation and Imagery Industry",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/taiwan-new-media-art": {
-    "zhTitle": "台灣新媒體藝術",
-    "enTitle": "Taiwan New Media Art",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/taiwan-theater-and-performing-arts-island-stage": {
-    "zhTitle": "台灣劇場與表演藝術",
-    "enTitle": "Taiwan Theater And Performing Arts Island Stage",
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -167,24 +113,6 @@
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "art/taiwanese-cinema-from-new-wave-to-international-recognition": {
-    "zhTitle": "台灣電影",
-    "enTitle": "Taiwanese Cinema From New Wave To International Recognition",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/taiwanese-cinema-from-new-wave-to-international-stage": {
-    "zhTitle": "台灣電影",
-    "enTitle": "Taiwanese Cinema From New Wave To International Stage",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/taiwanese-cinema-new-wave-to-international-stage": {
-    "zhTitle": "台灣電影",
-    "enTitle": "Taiwanese Cinema New Wave To International Stage",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "art/taiwanese-cinema": {
     "zhTitle": "台灣電影",
     "enTitle": "Taiwan Cinema: How a Small Island Changed Global Film Language",
@@ -203,15 +131,9 @@
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "art/taiwanese-literature-after-martial-law": {
-    "zhTitle": "解嚴後台灣文學",
-    "enTitle": "Taiwanese Literature After Martial Law",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/taiwanese-literature-during-japanese-colonial-period": {
-    "zhTitle": "日治時期文學",
-    "enTitle": "Taiwanese Literature During Japanese Colonial Period",
+  "art/taiwanese-experimental-and-new-media-art": {
+    "zhTitle": "FAB DAO與百岳計畫",
+    "enTitle": "Taiwanese Experimental and New Media Art",
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -221,39 +143,15 @@
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "art/taiwanese-modern-poetry-island-lyricism": {
-    "zhTitle": "台灣現代詩",
-    "enTitle": "Taiwanese Modern Poetry Island Lyricism",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "art/taiwanese-modern-poetry": {
     "zhTitle": "台灣現代詩",
     "enTitle": "Modern Taiwanese Poetry: The Island's Lyricism",
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "art/taiwanese-new-media-art": {
-    "zhTitle": "台灣新媒體藝術",
-    "enTitle": "Taiwanese New Media Art",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/taiwanese-photography-light-shadow-island": {
-    "zhTitle": "台灣攝影",
-    "enTitle": "Taiwanese Photography Light Shadow Island",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "art/taiwanese-photography": {
     "zhTitle": "台灣攝影",
     "enTitle": "Taiwanese Photography",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/taiwanese-prose-depth-of-everyday": {
-    "zhTitle": "台灣散文",
-    "enTitle": "Taiwanese Prose Depth Of Everyday",
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -269,51 +167,9 @@
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "art/taiwanese-theater-performing-arts-island-stage": {
-    "zhTitle": "台灣劇場與表演藝術",
-    "enTitle": "Taiwanese Theater Performing Arts Island Stage",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/taiwanese-traditional-arts-folk-treasures": {
-    "zhTitle": "台灣傳統藝術",
-    "enTitle": "Taiwanese Traditional Arts Folk Treasures",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/taiwanese-traditional-arts": {
-    "zhTitle": "台灣傳統藝術",
-    "enTitle": "Taiwanese Traditional Arts",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/theater-and-performing-arts": {
-    "zhTitle": "台灣劇場與表演藝術",
-    "enTitle": "Theater And Performing Arts",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "art/traditional-arts-of-taiwan": {
     "zhTitle": "台灣傳統藝術",
     "enTitle": "Taiwan Traditional Arts",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/traditional-taiwanese-arts": {
-    "zhTitle": "台灣傳統藝術",
-    "enTitle": "Traditional Taiwanese Arts",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/台灣劇場與表演藝術": {
-    "zhTitle": "台灣劇場與表演藝術",
-    "enTitle": "台灣劇場與表演藝術",
-    "category": "art",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "art/台灣現代詩": {
-    "zhTitle": "台灣現代詩",
-    "enTitle": "台灣現代詩",
     "category": "art",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -326,6 +182,12 @@
   "culture/ethnic-groups": {
     "zhTitle": "族群（閩南客家原住民外省新住民）",
     "enTitle": "Taiwan's 5 Ethnic Groups: Minnan, Hakka, Indigenous, Mainlanders & New Immigrants",
+    "category": "culture",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "culture/guan-sheng-di-jun-belief": {
+    "zhTitle": "關聖帝君信仰",
+    "enTitle": "Guan Sheng Di Jun: How a Defeated General Became Taiwan's God of Everything",
     "category": "culture",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -395,6 +257,12 @@
     "category": "culture",
     "langs": ["zh-TW", "en", "ja"]
   },
+  "culture/taiwan-funeral-culture": {
+    "zhTitle": "台灣迷因",
+    "enTitle": "From Pole Dancers at Funerals to Ashes Under a Tree: Taiwan's Quiet Death Revolution",
+    "category": "culture",
+    "langs": ["zh-TW", "en", "ja"]
+  },
   "culture/taiwan-historic-streets-and-commercial-districts": {
     "zhTitle": "台灣老街文化與商業街區",
     "enTitle": "Taiwan Historic Streets and Commercial Districts",
@@ -407,21 +275,9 @@
     "category": "culture",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "culture/taiwan-incense-making-culture-heritage": {
-    "zhTitle": "台灣製香文化與香腳原鄉",
-    "enTitle": "Taiwan Incense Making Culture Heritage",
-    "category": "culture",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "culture/taiwan-kuaikuai-culture": {
     "zhTitle": "台灣乖乖文化",
     "enTitle": "Taiwan's Kuai Kuai Culture: How Green Snacks Became the Tech Industry's Guardian Spirit",
-    "category": "culture",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "culture/taiwan-new-religious-movements-and-spiritual-culture": {
-    "zhTitle": "台灣新興宗教與心靈文化",
-    "enTitle": "Taiwan New Religious Movements And Spiritual Culture",
     "category": "culture",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -429,7 +285,7 @@
     "zhTitle": "台灣宗教與寺廟文化",
     "enTitle": "Taiwan's Religion and Temple Culture: More Temples Than Convenience Stores",
     "category": "culture",
-    "langs": ["zh-TW", "en", "ja"]
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "culture/taiwan-street-art-and-graffiti-culture": {
     "zhTitle": "台灣街頭藝術與塗鴉文化",
@@ -461,12 +317,6 @@
     "category": "culture",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "culture/taiwanese-baseball-culture": {
-    "zhTitle": "台灣棒球文化",
-    "enTitle": "Taiwanese Baseball Culture",
-    "category": "culture",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "culture/taiwanese-homophone-taboos": {
     "zhTitle": "台灣諧音禁忌文化",
     "enTitle": "Taiwanese Homophone Taboos: Why the Number \"Four\" Makes an Entire Society Skip Floors",
@@ -483,11 +333,29 @@
     "zhTitle": "台灣感性",
     "enTitle": "Taiwanese Sensibility: How Korea Fell in Love with Taiwan's Streets",
     "category": "culture",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
+  "culture/taiwanese-tea-culture-and-living-aesthetics": {
+    "zhTitle": "台灣茶文化",
+    "enTitle": "Taiwanese Tea Culture and Living Aesthetics",
+    "category": "culture",
     "langs": ["zh-TW", "en", "ja"]
   },
   "culture/traditional-festivals-and-celebrations": {
     "zhTitle": "傳統節慶與慶典",
     "enTitle": "When Plague Became Fireworks: The Accidental Evolution of Taiwan's Festival Culture",
+    "category": "culture",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "culture/urban-character-and-regional-culture": {
+    "zhTitle": "城市特色與區域文化",
+    "enTitle": "Urban Character and Regional Culture: Taiwan's Six Megacities",
+    "category": "culture",
+    "langs": ["zh-TW", "en"]
+  },
+  "culture/wretch": {
+    "zhTitle": "無名小站",
+    "enTitle": "Wretch.cc: From Dorm Room \"Scavenging\" to Taiwan Digital Memory Keeper",
     "category": "culture",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -593,17 +461,11 @@
     "category": "economy",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "economy/industrial-transformation-taiwanese-economic-trajectory": {
-    "zhTitle": "產業轉型",
-    "enTitle": "Industrial Transformation Taiwanese Economic Trajectory",
+  "economy/industrial-transformation-from-manufacturing-to-innovation": {
+    "zhTitle": "台灣產業轉型升級",
+    "enTitle": "Taiwan's Industrial Transformation: From Manufacturing Powerhouse to Innovation Nation",
     "category": "economy",
-    "langs": ["zh-TW", "en"]
-  },
-  "economy/island-transformation-industrial-upgrading-and-economic-trajectory": {
-    "zhTitle": "產業轉型與經濟發展軌跡",
-    "enTitle": "Island Transformation Industrial Upgrading And Economic Trajectory",
-    "category": "economy",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ja"]
   },
   "economy/largan-precision-when-craftsmanship-meets-architectural-revolution": {
     "zhTitle": "台灣企業：大立光電",
@@ -623,12 +485,6 @@
     "category": "economy",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "economy/mega-financial-holding-taiwan-global-banking": {
-    "zhTitle": "台灣企業：兆豐金控",
-    "enTitle": "Mega Financial Holding Taiwan Global Banking",
-    "category": "economy",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "economy/night-market-economics": {
     "zhTitle": "夜市經濟學",
     "enTitle": "Night Market Economics: A Commercial Miracle Without Brands",
@@ -640,24 +496,6 @@
     "enTitle": "Pegatron Corporation - The Invisible Giant of Electronics Manufacturing",
     "category": "economy",
     "langs": ["zh-TW", "en", "ja"]
-  },
-  "economy/startup-ecosystem": {
-    "zhTitle": "新創生態系",
-    "enTitle": "Startup Ecosystem",
-    "category": "economy",
-    "langs": ["zh-TW", "en"]
-  },
-  "economy/taiwan-agricultural-modernization-development": {
-    "zhTitle": "台灣農業現代化發展",
-    "enTitle": "Taiwan Agricultural Modernization Development",
-    "category": "economy",
-    "langs": ["zh-TW", "en"]
-  },
-  "economy/taiwan-agriculture-and-rural-regeneration": {
-    "zhTitle": "台灣農業與農村再生",
-    "enTitle": "Taiwan Agriculture And Rural Regeneration",
-    "category": "economy",
-    "langs": ["zh-TW", "en"]
   },
   "economy/taiwan-cement-taipower-green-transformation": {
     "zhTitle": "台灣企業：台泥",
@@ -680,6 +518,12 @@
   "economy/taiwan-companies-giant-manufacturing": {
     "zhTitle": "台灣企業：巨大機械",
     "enTitle": "Taiwan Companies: Giant Manufacturing",
+    "category": "economy",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "economy/taiwan-creator-economy": {
+    "zhTitle": "台灣動畫代工",
+    "enTitle": "Taiwan's Creator Economy: A Fragmented Battlefield of 23 Million",
     "category": "economy",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -717,7 +561,7 @@
     "zhTitle": "台灣金融科技發展",
     "enTitle": "FinTech Development in Taiwan",
     "category": "economy",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "economy/taiwan-foreign-trade-and-global-supply-chain": {
     "zhTitle": "台灣外貿與全球供應鏈",
@@ -725,9 +569,21 @@
     "category": "economy",
     "langs": ["zh-TW", "en"]
   },
+  "economy/taiwan-international-trade-policy": {
+    "zhTitle": "台灣國際貿易政策",
+    "enTitle": "Taiwan's International Trade Policy: Finding Position in the Globalization Wave",
+    "category": "economy",
+    "langs": ["zh-TW", "en", "ja"]
+  },
   "economy/taiwan-smes-and-hidden-champions": {
     "zhTitle": "台灣中小企業與隱形冠軍",
     "enTitle": "Taiwan's SMEs and Hidden Champions",
+    "category": "economy",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "economy/taiwan-stock-market": {
+    "zhTitle": "台灣股市與資本市場",
+    "enTitle": "Taiwan's Stock Market and the Making of 13 Million Investors",
     "category": "economy",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -773,29 +629,11 @@
     "category": "economy",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "economy/台灣企業：台達電子": {
-    "zhTitle": "台灣企業：台達電子",
-    "enTitle": "台灣企業：台達電子",
-    "category": "economy",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "economy/台灣企業：大立光電": {
-    "zhTitle": "台灣企業：大立光電",
-    "enTitle": "台灣企業：大立光電",
-    "category": "economy",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "economy/台灣企業：富邦金控": {
-    "zhTitle": "台灣企業：富邦金控",
-    "enTitle": "台灣企業：富邦金控",
-    "category": "economy",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "food/beef-noodle-soup": {
     "zhTitle": "牛肉麵",
     "enTitle": "Beef Noodle Soup",
     "category": "food",
-    "langs": ["zh-TW", "en", "ja"]
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "food/braised-pork-rice": {
     "zhTitle": "台灣滷肉飯",
@@ -819,7 +657,7 @@
     "zhTitle": "台灣手搖飲文化",
     "enTitle": "Taiwan’s Hand-Shaken Drink Culture: From Bubble Tea to a Global Lifestyle",
     "category": "food",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "food/military-dependents-village-cuisine": {
     "zhTitle": "台灣眷村菜",
@@ -831,7 +669,7 @@
     "zhTitle": "夜市文化",
     "enTitle": "Night Market Culture",
     "category": "food",
-    "langs": ["zh-TW", "en", "ja"]
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "food/taiwan-banquet-culture": {
     "zhTitle": "台灣辦桌文化",
@@ -849,7 +687,7 @@
     "zhTitle": "台灣早餐文化",
     "enTitle": "Taiwan Breakfast Culture",
     "category": "food",
-    "langs": ["zh-TW", "en", "ja"]
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "food/taiwan-coffee-industry": {
     "zhTitle": "台灣咖啡產業",
@@ -881,12 +719,6 @@
     "category": "food",
     "langs": ["zh-TW", "en"]
   },
-  "food/taiwan-night-market-culture": {
-    "zhTitle": "夜市文化",
-    "enTitle": "Taiwan Night Market Culture",
-    "category": "food",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "food/taiwan-rice-cuisine-culture": {
     "zhTitle": "台灣米食文化",
     "enTitle": "Taiwan's Rice Food Culture",
@@ -915,25 +747,13 @@
     "zhTitle": "台灣手路菜",
     "enTitle": "Taiwan's Specialty Home Cooking (Shǒulù Cài): The Disappearing Taste Memory",
     "category": "food",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "food/taiwan-vegetarian-culture": {
     "zhTitle": "台灣素食文化",
     "enTitle": "Taiwan’s Vegetarian Culture",
     "category": "food",
     "langs": ["zh-TW", "en"]
-  },
-  "food/taiwanese-beef-noodle-soup": {
-    "zhTitle": "牛肉麵",
-    "enTitle": "Taiwanese Beef Noodle Soup",
-    "category": "food",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "food/taiwanese-breakfast-culture": {
-    "zhTitle": "台灣早餐文化",
-    "enTitle": "Taiwanese Breakfast Culture",
-    "category": "food",
-    "langs": ["zh-TW", "en", "ja"]
   },
   "food/taiwanese-ice-cream-culture": {
     "zhTitle": "台灣冰品文化",
@@ -944,12 +764,6 @@
   "food/taiwanese-new-immigrant-culinary-fusion": {
     "zhTitle": "台灣新住民美食融合",
     "enTitle": "Taiwanese New Immigrant Culinary Fusion",
-    "category": "food",
-    "langs": ["zh-TW", "en"]
-  },
-  "food/taiwanese-new-immigrant-food-fusion": {
-    "zhTitle": "台灣新住民美食融合",
-    "enTitle": "Taiwanese New Immigrant Food Fusion",
     "category": "food",
     "langs": ["zh-TW", "en"]
   },
@@ -969,25 +783,19 @@
     "zhTitle": "台灣小吃",
     "enTitle": "Taiwanese Street Food",
     "category": "food",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "food/tea-culture": {
     "zhTitle": "茶文化",
     "enTitle": "Echoes of the Golden Age：Taiwan Tea Culture Evolution and Craftsmanship",
     "category": "food",
-    "langs": ["zh-TW", "en"]
-  },
-  "geography/city-character-and-regional-cultures": {
-    "zhTitle": "城市特色與區域文化",
-    "enTitle": "City Character And Regional Cultures",
-    "category": "geography",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "geography/climate": {
     "zhTitle": "氣候",
     "enTitle": "Climate",
     "category": "geography",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "geography/geography-and-geology": {
     "zhTitle": "台灣島嶼地理特色與形成",
@@ -1067,12 +875,6 @@
     "category": "geography",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "geography/taiwan-urban-development-and-rural-urban-divide": {
-    "zhTitle": "台灣都市發展與城鄉差距",
-    "enTitle": "Taiwan Urban Development And Rural Urban Divide",
-    "category": "geography",
-    "langs": ["zh-TW", "en"]
-  },
   "geography/tectonic-plates-and-seismic-activity": {
     "zhTitle": "台灣板塊運動與地震活動",
     "enTitle": "Tectonic Plates and Seismic Activity",
@@ -1085,18 +887,6 @@
     "category": "geography",
     "langs": ["zh-TW", "en"]
   },
-  "geography/地形與地質": {
-    "zhTitle": "地形與地質",
-    "enTitle": "地形與地質",
-    "category": "geography",
-    "langs": ["zh-TW", "en"]
-  },
-  "geography/離島與海洋文化": {
-    "zhTitle": "離島與海洋文化",
-    "enTitle": "離島與海洋文化",
-    "category": "geography",
-    "langs": ["zh-TW", "en"]
-  },
   "history/228-incident": {
     "zhTitle": "二二八事件",
     "enTitle": "228 Incident",
@@ -1106,6 +896,12 @@
   "history/dutch-spanish-and-koxinga-era": {
     "zhTitle": "荷西明鄭時期",
     "enTitle": "Dutch, Spanish and Koxinga Era",
+    "category": "history",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "history/february-28-incident-and-white-terror-taiwan-authoritarian-rule-trauma-and-memory": {
+    "zhTitle": "二二八事件",
+    "enTitle": "February 28 Incident and White Terror: Trauma and Memory under Taiwan's Authoritarian Rule",
     "category": "history",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -1125,7 +921,7 @@
     "zhTitle": "國民政府遷台與戰後重建",
     "enTitle": "How the KMT Moved to Taiwan in 1949: Government Relocation and Post-War Reconstruction",
     "category": "history",
-    "langs": ["zh-TW", "en", "ja"]
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "history/martial-law-era": {
     "zhTitle": "戒嚴時期",
@@ -1151,6 +947,12 @@
     "category": "history",
     "langs": ["zh-TW", "en", "ja"]
   },
+  "history/taiwan-democratization": {
+    "zhTitle": "民主化",
+    "enTitle": "Taiwan's Democratic Transition: When Authoritarianism Dug Its Own Grave",
+    "category": "history",
+    "langs": ["zh-TW", "en", "ja"]
+  },
   "history/taiwan-economic-miracle-from-agriculture-to-asian-tiger": {
     "zhTitle": "台灣經濟奇蹟",
     "enTitle": "Taiwan's Economic Miracle Explained: How a Farm Island Became an Asian Tiger",
@@ -1160,6 +962,12 @@
   "history/taiwan-elections-and-party-politics": {
     "zhTitle": "台灣選舉與政黨政治",
     "enTitle": "Taiwan's Elections and Party Politics",
+    "category": "history",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "history/taiwan-island-historiography": {
+    "zhTitle": "台灣島史觀",
+    "enTitle": "Taiwan Island Historiography: The Island that Learned to Invent Its Own Subjectivity",
     "category": "history",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -1193,17 +1001,11 @@
     "category": "history",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "history/台灣眷村歷史": {
-    "zhTitle": "台灣眷村歷史",
-    "enTitle": "台灣眷村歷史",
-    "category": "history",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "lifestyle/education-system": {
-    "zhTitle": "台灣教育制度",
-    "enTitle": "Education System",
+  "lifestyle/convenience-store-culture": {
+    "zhTitle": "台灣便利商店文化",
+    "enTitle": "Convenience Store Culture",
     "category": "lifestyle",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ja"]
   },
   "lifestyle/history-of-taiwan-mrt-development": {
     "zhTitle": "台灣捷運發展史",
@@ -1229,12 +1031,6 @@
     "category": "lifestyle",
     "langs": ["zh-TW", "en"]
   },
-  "lifestyle/religion-folk-beliefs": {
-    "zhTitle": "宗教與民間信仰",
-    "enTitle": "Religion Folk Beliefs",
-    "category": "lifestyle",
-    "langs": ["zh-TW", "en"]
-  },
   "lifestyle/taiwan-arcade-culture-and-streetscapes": {
     "zhTitle": "台灣騎樓文化與街景",
     "enTitle": "Taiwan’s Arcade Culture and Streetscapes",
@@ -1245,19 +1041,7 @@
     "zhTitle": "台灣咖啡文化",
     "enTitle": "Taiwan Coffee Culture",
     "category": "lifestyle",
-    "langs": ["zh-TW", "en"]
-  },
-  "lifestyle/taiwan-convenience-store-culture": {
-    "zhTitle": "台灣便利商店文化",
-    "enTitle": "Taiwan Convenience Store Culture",
-    "category": "lifestyle",
-    "langs": ["zh-TW", "en"]
-  },
-  "lifestyle/taiwan-healthcare-and-national-health-insurance": {
-    "zhTitle": "台灣醫療與全民健保",
-    "enTitle": "Taiwan Healthcare And National Health Insurance",
-    "category": "lifestyle",
-    "langs": ["zh-TW", "en", "ja"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "lifestyle/taiwan-parks-and-everyday-leisure": {
     "zhTitle": "台灣公園與日常休閒",
@@ -1287,31 +1071,7 @@
     "zhTitle": "台灣交通系統",
     "enTitle": "Transportation System",
     "category": "lifestyle",
-    "langs": ["zh-TW", "en"]
-  },
-  "lifestyle/台灣捷運發展史": {
-    "zhTitle": "台灣捷運發展史",
-    "enTitle": "台灣捷運發展史",
-    "category": "lifestyle",
-    "langs": ["zh-TW", "en"]
-  },
-  "lifestyle/台灣教育制度": {
-    "zhTitle": "台灣教育制度",
-    "enTitle": "台灣教育制度",
-    "category": "lifestyle",
-    "langs": ["zh-TW", "en"]
-  },
-  "lifestyle/宗教與民間信仰": {
-    "zhTitle": "宗教與民間信仰",
-    "enTitle": "宗教與民間信仰",
-    "category": "lifestyle",
-    "langs": ["zh-TW", "en"]
-  },
-  "lifestyle/溫泉文化": {
-    "zhTitle": "溫泉文化",
-    "enTitle": "溫泉文化",
-    "category": "lifestyle",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "music/Taiwan Folk Music and Songs": {
     "zhTitle": "台灣民謠與歌謠",
@@ -1324,6 +1084,12 @@
     "enTitle": "Contemporary Indigenous Singer‑Songwriters in Taiwan",
     "category": "music",
     "langs": ["zh-TW", "en"]
+  },
+  "music/golden-melodies-legacy-taiwan-pop-music": {
+    "zhTitle": "台灣流行音樂",
+    "enTitle": "The Legacy of Golden Melodies: A Cultural History of Taiwan Pop",
+    "category": "music",
+    "langs": ["zh-TW", "en", "ja"]
   },
   "music/indigenous-music-traditions": {
     "zhTitle": "台灣原住民音樂傳統",
@@ -1343,12 +1109,6 @@
     "category": "music",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "music/soundscape-of-taiwan": {
-    "zhTitle": "台灣聲音地景",
-    "enTitle": "Soundscape Of Taiwan",
-    "category": "music",
-    "langs": ["zh-TW", "en"]
-  },
   "music/taiwan-campus-folk-song-movement": {
     "zhTitle": "台灣民歌運動",
     "enTitle": "Taiwan’s Campus Folk Song Movement: Singing Our Own Songs",
@@ -1358,12 +1118,6 @@
   "music/taiwan-electronic-music-and-party-culture": {
     "zhTitle": "台灣電子音樂與派對文化",
     "enTitle": "Taiwan’s Electronic Music & Party Culture: From Underground Raves to Global Stages",
-    "category": "music",
-    "langs": ["zh-TW", "en"]
-  },
-  "music/taiwan-folk-songs-and-ballads": {
-    "zhTitle": "台灣民謠與歌謠",
-    "enTitle": "Taiwan Folk Songs And Ballads",
     "category": "music",
     "langs": ["zh-TW", "en"]
   },
@@ -1378,6 +1132,12 @@
     "enTitle": "Taiwan Hip‑Hop and Rap: From Imported Beats to a Local Voice",
     "category": "music",
     "langs": ["zh-TW", "en"]
+  },
+  "music/taiwan-independent-music-scene-evolution": {
+    "zhTitle": "台灣獨立音樂",
+    "enTitle": "The Evolution of Taiwan's Independent Music Scene",
+    "category": "music",
+    "langs": ["zh-TW", "en", "ja"]
   },
   "music/taiwan-instrument-making-from-houli-saxophones-to-global-music-factories": {
     "zhTitle": "台灣樂器製造",
@@ -1425,13 +1185,7 @@
     "zhTitle": "台灣國樂",
     "enTitle": "Taiwan's Traditional Chinese Orchestra Music: How Erhu and Pipa Found a New Voice",
     "category": "music",
-    "langs": ["zh-TW", "en"]
-  },
-  "music/台灣民謠與歌謠": {
-    "zhTitle": "台灣民謠與歌謠",
-    "enTitle": "台灣民謠與歌謠",
-    "category": "music",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "nature/Taiwan Hot Springs and Geothermal Energy": {
     "zhTitle": "台灣溫泉與地熱",
@@ -1463,6 +1217,12 @@
     "category": "nature",
     "langs": ["zh-TW", "en"]
   },
+  "nature/island-summits-and-seas-taiwan-national-parks-ecology-and-landscapes": {
+    "zhTitle": "台灣國家公園",
+    "enTitle": "Island Summits and Seas: Taiwan’s National Parks as Living Ecological Archives",
+    "category": "nature",
+    "langs": ["zh-TW", "en", "ja"]
+  },
   "nature/marine-pollution-governance-and-conservation": {
     "zhTitle": "台灣海洋污染治理與保育挑戰",
     "enTitle": "Marine Pollution Governance and Conservation in Taiwan",
@@ -1491,13 +1251,19 @@
     "zhTitle": "台灣黑熊",
     "enTitle": "The Formosan Black Bear: Last King of the Forests",
     "category": "nature",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "nature/taiwan-blue-magpie": {
     "zhTitle": "台灣藍鵲",
     "enTitle": "Taiwan Blue Magpie: The Blue Gang of the Mountains",
     "category": "nature",
     "langs": ["zh-TW", "en"]
+  },
+  "nature/taiwan-climate-change-net-zero-transition": {
+    "zhTitle": "台灣氣候危機與淨零轉型",
+    "enTitle": "Taiwan's Climate Change and Net-Zero Transition",
+    "category": "nature",
+    "langs": ["zh-TW", "en", "ja"]
   },
   "nature/taiwan-environmental-movement-history": {
     "zhTitle": "台灣環境運動史",
@@ -1511,45 +1277,9 @@
     "category": "nature",
     "langs": ["zh-TW", "en"]
   },
-  "nature/taiwan-hot-springs-and-geothermal-energy": {
-    "zhTitle": "台灣溫泉與地熱",
-    "enTitle": "Taiwan Hot Springs And Geothermal Energy",
-    "category": "nature",
-    "langs": ["zh-TW", "en"]
-  },
-  "nature/taiwan-leopard-cat-conservation": {
-    "zhTitle": "台灣石虎保育",
-    "enTitle": "Taiwan Leopard Cat Conservation",
-    "category": "nature",
-    "langs": ["zh-TW", "en"]
-  },
-  "nature/taiwan-marine-conservation-and-challenges": {
-    "zhTitle": "台灣海洋保育與挑戰",
-    "enTitle": "Taiwan Marine Conservation And Challenges",
-    "category": "nature",
-    "langs": ["zh-TW", "en"]
-  },
-  "nature/taiwan-marine-ecology-coral-reef-conservation": {
-    "zhTitle": "台灣海洋生態與珊瑚礁保育",
-    "enTitle": "Taiwan Marine Ecology Coral Reef Conservation",
-    "category": "nature",
-    "langs": ["zh-TW", "en"]
-  },
   "nature/taiwan-marine-ecology": {
     "zhTitle": "台灣海洋生態",
     "enTitle": "Taiwan Marine Ecology",
-    "category": "nature",
-    "langs": ["zh-TW", "en"]
-  },
-  "nature/taiwan-mountains-and-hiking-culture": {
-    "zhTitle": "台灣山岳與登山文化",
-    "enTitle": "Taiwan Mountains And Hiking Culture",
-    "category": "nature",
-    "langs": ["zh-TW", "en"]
-  },
-  "nature/taiwan-pangolin": {
-    "zhTitle": "台灣穿山甲",
-    "enTitle": "Taiwan Pangolin",
     "category": "nature",
     "langs": ["zh-TW", "en"]
   },
@@ -1557,7 +1287,7 @@
     "zhTitle": "台灣黑熊",
     "enTitle": "Taiwanese Black Bear",
     "category": "nature",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "nature/taiwanese-indigenous-ecological-wisdom-conservation": {
     "zhTitle": "台灣原住民生態智慧與環境保育",
@@ -1576,18 +1306,6 @@
     "enTitle": "Trail Culture and Civic Stewardship in Taiwan",
     "category": "nature",
     "langs": ["zh-TW", "en"]
-  },
-  "nature/台灣海洋保育與挑戰": {
-    "zhTitle": "台灣海洋保育與挑戰",
-    "enTitle": "台灣海洋保育與挑戰",
-    "category": "nature",
-    "langs": ["zh-TW", "en"]
-  },
-  "nature/國家公園": {
-    "zhTitle": "國家公園",
-    "enTitle": "國家公園",
-    "category": "nature",
-    "langs": ["zh-TW", "en", "ja"]
   },
   "people/a-mei": {
     "zhTitle": "張惠妹",
@@ -1835,12 +1553,6 @@
     "category": "people",
     "langs": ["zh-TW", "en"]
   },
-  "people/jam-hsiao-rain-god-pop-star": {
-    "zhTitle": "蕭敬騰",
-    "enTitle": "Jam Hsiao Rain God Pop Star",
-    "category": "people",
-    "langs": ["zh-TW", "en"]
-  },
   "people/jamie-lin-ai-industry-pioneer": {
     "zhTitle": "簡立峰",
     "enTitle": "Jamie Lin (Chien-Li Feng)",
@@ -1857,13 +1569,13 @@
     "zhTitle": "黃仁勳",
     "enTitle": "Jensen Huang",
     "category": "people",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "people/jeremy-lin": {
     "zhTitle": "林書豪",
     "enTitle": "Jeremy Lin",
     "category": "people",
-    "langs": ["zh-TW", "en"]
+    "langs": ["zh-TW", "en", "ko"]
   },
   "people/jimmy-liao": {
     "zhTitle": "幾米",
@@ -1894,6 +1606,12 @@
     "enTitle": "Kevin Lin (Lin Yi-jie)",
     "category": "people",
     "langs": ["zh-TW", "en"]
+  },
+  "people/ko-wen-je": {
+    "zhTitle": "柯文哲",
+    "enTitle": "Ko Wen-je",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja"]
   },
   "people/kuo-hsing-chun-olympic-weightlifting-champion": {
     "zhTitle": "郭婞淳",
@@ -2045,6 +1763,12 @@
     "category": "people",
     "langs": ["zh-TW", "en"]
   },
+  "people/shen-sheng-po": {
+    "zhTitle": "沈聖博",
+    "enTitle": "Shen Sheng-Po",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja"]
+  },
   "people/shih-ming-te": {
     "zhTitle": "施明德",
     "enTitle": "Shih Ming-te",
@@ -2134,6 +1858,12 @@
     "enTitle": "Tung Tzu-hsien (童子賢)",
     "category": "people",
     "langs": ["zh-TW", "en"]
+  },
+  "people/tzuyu": {
+    "zhTitle": "周子瑜",
+    "enTitle": "Tzuyu",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja"]
   },
   "people/wei-te-sheng-taiwanese-epic-filmmaker": {
     "zhTitle": "魏德聖",
@@ -2255,54 +1985,6 @@
     "category": "people",
     "langs": ["zh-TW", "en"]
   },
-  "people/呂秀蓮": {
-    "zhTitle": "呂秀蓮",
-    "enTitle": "呂秀蓮",
-    "category": "people",
-    "langs": ["zh-TW", "en"]
-  },
-  "people/施振榮": {
-    "zhTitle": "施振榮",
-    "enTitle": "施振榮",
-    "category": "people",
-    "langs": ["zh-TW", "en"]
-  },
-  "people/李登輝": {
-    "zhTitle": "李登輝",
-    "enTitle": "李登輝",
-    "category": "people",
-    "langs": ["zh-TW", "en"]
-  },
-  "people/林義傑": {
-    "zhTitle": "林義傑",
-    "enTitle": "林義傑",
-    "category": "people",
-    "langs": ["zh-TW", "en"]
-  },
-  "people/蔡依林": {
-    "zhTitle": "蔡依林",
-    "enTitle": "蔡依林",
-    "category": "people",
-    "langs": ["zh-TW", "en"]
-  },
-  "people/陳偉殷": {
-    "zhTitle": "陳偉殷",
-    "enTitle": "陳偉殷",
-    "category": "people",
-    "langs": ["zh-TW", "en"]
-  },
-  "people/高俊明": {
-    "zhTitle": "高俊明",
-    "enTitle": "高俊明",
-    "category": "people",
-    "langs": ["zh-TW", "en"]
-  },
-  "people/齊柏林": {
-    "zhTitle": "齊柏林",
-    "enTitle": "齊柏林",
-    "category": "people",
-    "langs": ["zh-TW", "en"]
-  },
   "society/breakfast-shops-and-community-intelligence-network": {
     "zhTitle": "早餐店阿姨與社區情報網",
     "enTitle": "The Breakfast Shop 'Aunty' and the Community Intelligence Network",
@@ -2379,6 +2061,18 @@
     "zhTitle": "太陽花學運",
     "enTitle": "The Sunflower Movement",
     "category": "society",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
+  "society/taiwan-animal-drug-controversy": {
+    "zhTitle": "台灣動物用藥爭議",
+    "enTitle": "Taiwan's Animal Drug Controversy: Where an Island Treats Pets as Family but Pet Medicines as Commodities",
+    "category": "society",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "society/taiwan-defense-modernization": {
+    "zhTitle": "台灣國防與軍事現代化",
+    "enTitle": "Taiwan Porcupine Strategy 2026: Why a $40 Billion Defense Budget Still Buys Tanks",
+    "category": "society",
     "langs": ["zh-TW", "en", "ja"]
   },
   "society/taiwan-diplomatic-allies-and-international-relations": {
@@ -2390,12 +2084,6 @@
   "society/taiwan-environmental-justice-nimby-conflicts": {
     "zhTitle": "台灣環境正義與鄰避爭議",
     "enTitle": "Taiwan Environmental Justice and NIMBY Conflicts",
-    "category": "society",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "society/taiwan-long-term-care-development": {
-    "zhTitle": "台灣長期照顧制度發展",
-    "enTitle": "Taiwan Long Term Care Development",
     "category": "society",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -2416,6 +2104,24 @@
     "enTitle": "Taiwan’s Political Landscape and Electoral System",
     "category": "society",
     "langs": ["zh-TW", "en", "ja"]
+  },
+  "society/taiwan-public-health-epidemic-response": {
+    "zhTitle": "台灣公共衛生與防疫體系",
+    "enTitle": "How One Hospital Disaster Gave Taiwan the World's Best Pandemic Response",
+    "category": "society",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "society/taiwan-slash-generation": {
+    "zhTitle": "為台灣而教TFT",
+    "enTitle": "Taiwan's Slash Generation — Surviving on Multiple Jobs",
+    "category": "society",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "society/taiwan-urban-development-and-rural-urban-divide": {
+    "zhTitle": "台灣都市發展與城鄉差距",
+    "enTitle": "Taiwan's Urban Development and the Rural-Urban Divide",
+    "category": "society",
+    "langs": ["zh-TW", "en"]
   },
   "society/taiwans-labeling-in-international-standards": {
     "zhTitle": "台灣在國際標準中的標示問題",
@@ -2439,30 +2145,6 @@
     "zhTitle": "動物園與展演動物倫理",
     "enTitle": "Zoos and Exhibition Animal Ethics in Taiwan",
     "category": "society",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "society/台灣同婚與性別平權": {
-    "zhTitle": "台灣同婚與性別平權",
-    "enTitle": "台灣同婚與性別平權",
-    "category": "society",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "society/自助餐阿姨的謎之目測精算能力": {
-    "zhTitle": "自助餐阿姨的謎之目測精算能力",
-    "enTitle": "自助餐阿姨的謎之目測精算能力",
-    "category": "society",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "technology/5g-network-and-digital-transformation": {
-    "zhTitle": "台灣5G網路建設與數位轉型",
-    "enTitle": "5g Network And Digital Transformation",
-    "category": "technology",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "technology/ai-development": {
-    "zhTitle": "AI發展",
-    "enTitle": "Ai Development",
-    "category": "technology",
     "langs": ["zh-TW", "en", "ja"]
   },
   "technology/artificial-intelligence-development-strategy": {
@@ -2513,15 +2195,15 @@
     "category": "technology",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "technology/semiconductor-industry": {
-    "zhTitle": "半導體產業",
-    "enTitle": "Semiconductor Industry",
-    "category": "technology",
-    "langs": ["zh-TW", "en", "ja"]
-  },
   "technology/taiwan-5g-digital-transformation": {
     "zhTitle": "台灣5G網路建設與數位轉型",
     "enTitle": "5G in Taiwan: From TSMC Chips to Smart Factories and Digital Healthcare",
+    "category": "technology",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "technology/taiwan-ai-in-daily-life": {
+    "zhTitle": "台灣AI日常",
+    "enTitle": "AI in Taiwan's Daily Life — When Artificial Intelligence Moves Into Every Street Corner",
     "category": "technology",
     "langs": ["zh-TW", "en", "ja"]
   },
@@ -2543,17 +2225,11 @@
     "category": "technology",
     "langs": ["zh-TW", "en", "ja"]
   },
-  "technology/taiwan-digital-imaging-and-animation-industry": {
-    "zhTitle": "台灣數位影像與動畫產業",
-    "enTitle": "Taiwan Digital Imaging And Animation Industry",
+  "technology/taiwan-drone-industry": {
+    "zhTitle": "台灣電視產業史",
+    "enTitle": "Taiwan's Drone Industry: From Toy Planes to Pentagon Procurement",
     "category": "technology",
-    "langs": ["zh-TW", "en", "ja"]
-  },
-  "technology/taiwan-digital-imaging-animation-industry": {
-    "zhTitle": "台灣數位影像與動畫產業",
-    "enTitle": "Taiwan Digital Imaging Animation Industry",
-    "category": "technology",
-    "langs": ["zh-TW", "en", "ja"]
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "technology/taiwan-electric-vehicle-industry-chain": {
     "zhTitle": "台灣電動車產業鏈發展",
@@ -2564,6 +2240,18 @@
   "technology/taiwan-gaming-industry": {
     "zhTitle": "台灣遊戲產業與數位娛樂",
     "enTitle": "Taiwan Gaming Industry and Digital Entertainment",
+    "category": "technology",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "technology/taiwan-online-community-migration": {
+    "zhTitle": "台灣網路社群遷徙史",
+    "enTitle": "Thirty Years of Platform Hopping: How Taiwan Keeps Moving — and Forgetting",
+    "category": "technology",
+    "langs": ["zh-TW", "en", "ja"]
+  },
+  "technology/taiwan-open-source-spirit": {
+    "zhTitle": "台灣開源精神",
+    "enTitle": "Taiwan's Open Source Spirit — The Engineers Powered by Love",
     "category": "technology",
     "langs": ["zh-TW", "en", "ja"]
   },
