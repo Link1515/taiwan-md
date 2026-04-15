@@ -2554,7 +2554,7 @@ const t = useTranslations(lang);
     padding: 1rem 0;
   }
   .sponsor-card-logo {
-    flex: 0 0 20%;
+    flex: 0 0 25%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -2563,13 +2563,17 @@ const t = useTranslations(lang);
   .sponsor-card-logo a {
     display: block;
     width: 100%;
-    max-width: 140px;
+    max-width: 160px;
     text-decoration: none;
+  }
+  /* 蓋掉全域 a[target=_blank]::after 的 ↗ + 底線 — logo 不需要外連符號 */
+  .sponsor-card-logo a::after {
+    content: none !important;
   }
   .sponsor-card-logo img {
     display: block;
     width: 100%;
-    max-width: 140px;
+    max-width: 160px;
     height: auto;
   }
   .sponsor-card-content {
@@ -2759,8 +2763,8 @@ const t = useTranslations(lang);
     }
     .sponsor-card-logo {
       flex: 0 0 auto;
-      width: 140px;
-      max-width: 140px;
+      width: 160px;
+      max-width: 160px;
       align-self: flex-start;
     }
     .sponsor-contact {
