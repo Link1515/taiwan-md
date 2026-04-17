@@ -1,5 +1,36 @@
 [
   {
+    "title": "台灣五大地形與地理結構：從山脈到平原的島嶼風貌",
+    "slug": "台灣五大地形與地理結構",
+    "category": "geography",
+    "subcategory": "地形與地質",
+    "date": "2026-03-18",
+    "lastModified": "2026-04-16",
+    "lastVerified": "2026-03-19",
+    "lastHumanReview": "false",
+    "featured": true,
+    "wordCount": 2686,
+    "tagCount": 6,
+    "tags": ["地理", "地形", "山脈", "平原", "台灣", "自然地理"],
+    "translations": {
+      "en": true,
+      "ja": false,
+      "ko": true,
+      "es": false,
+      "fr": true
+    },
+    "revision": 9,
+    "commitHash": "79d016b9",
+    "commitSubject": "fix: correct facts in article 台灣五大地形與地理結構",
+    "description": "探索台灣獨特的地理結構，從中央山脈到西部平原，認識這座島嶼的地形多樣性",
+    "healthScore": 97,
+    "qualityScore": 0,
+    "formatIssues": 1,
+    "hasOverview": true,
+    "hasReading": false,
+    "fnCount": 0
+  },
+  {
     "title": "小虎隊",
     "slug": "小虎隊",
     "category": "music",
@@ -6065,7 +6096,7 @@
   },
   {
     "title": "捐款永動機：FAB DAO 與百岳計畫的社會實驗",
-    "slug": "FAB%20DAO與百岳計畫",
+    "slug": "FAB-DAO與百岳計畫",
     "category": "art",
     "subcategory": "digital-art",
     "date": "2026-03-24",
@@ -13787,37 +13818,6 @@
     "fnCount": 0
   },
   {
-    "title": "台灣五大地形與地理結構：從山脈到平原的島嶼風貌",
-    "slug": "台灣五大地形與地理結構",
-    "category": "geography",
-    "subcategory": "地形與地質",
-    "date": "2026-03-18",
-    "lastModified": "2026-03-18",
-    "lastVerified": "2026-03-19",
-    "lastHumanReview": "false",
-    "featured": true,
-    "wordCount": 2685,
-    "tagCount": 6,
-    "tags": ["地理", "地形", "山脈", "平原", "台灣", "自然地理"],
-    "translations": {
-      "en": true,
-      "ja": false,
-      "ko": true,
-      "es": false,
-      "fr": true
-    },
-    "revision": 8,
-    "commitHash": "5ffad273",
-    "commitSubject": "content: auto-sprint — Geography 補強（台灣五大地形與地理結構、台灣河川系統與水文特色）+ Technology 新增（電子商務與數位支付生態系）",
-    "description": "探索台灣獨特的地理結構，從中央山脈到西部平原，認識這座島嶼的地形多樣性",
-    "healthScore": 97,
-    "qualityScore": 0,
-    "formatIssues": 1,
-    "hasOverview": true,
-    "hasReading": false,
-    "fnCount": 0
-  },
-  {
     "title": "台灣板塊運動與地震活動",
     "slug": "台灣板塊運動與地震活動",
     "category": "geography",
@@ -15404,9 +15404,9 @@
       "中華職棒"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15443,9 +15443,9 @@
       "台灣"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15482,9 +15482,9 @@
       "高雄"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15521,9 +15521,9 @@
       "台灣"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15561,9 +15561,9 @@
       "台灣"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15600,9 +15600,9 @@
       "Passion Sisters"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15639,9 +15639,9 @@
       "中華職棒"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15678,9 +15678,9 @@
       "Dragon Beauties"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15717,9 +15717,9 @@
       "中華職棒"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15756,9 +15756,9 @@
       "中華職棒"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15795,9 +15795,9 @@
       "台灣"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15834,9 +15834,9 @@
       "中華職棒"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15874,9 +15874,9 @@
       "台灣"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15913,9 +15913,9 @@
       "台灣"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15952,9 +15952,9 @@
       "台灣"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -15991,9 +15991,9 @@
       "中華職棒"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -16022,9 +16022,9 @@
     "tagCount": 6,
     "tags": ["流行人物", "鄭智善", "韓國", "黑白大廚", "餐飲聯名", "台灣"],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -16053,9 +16053,9 @@
     "tagCount": 7,
     "tags": ["流行人物", "金太星", "韓國", "黑白大廚", "餐飲", "十盛", "台灣"],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -16092,9 +16092,9 @@
       "台灣"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },
@@ -16131,9 +16131,9 @@
       "台灣"
     ],
     "translations": {
-      "en": false,
-      "ja": false,
-      "ko": false,
+      "en": true,
+      "ja": true,
+      "ko": true,
       "es": false,
       "fr": false
     },

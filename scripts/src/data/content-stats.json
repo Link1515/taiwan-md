@@ -11,7 +11,7 @@
     "Lifestyle": 58,
     "Music": 88,
     "Nature": 84,
-    "People": 462,
+    "People": 502,
     "Society": 162,
     "Technology": 118,
     "resources": 4,
@@ -128,12 +128,16 @@
     },
     {
       "date": "2026-04-14",
-      "count": 112
+      "count": 168
     },
     {
       "date": "2026-04-15",
-      "count": 16
+      "count": 30
+    },
+    {
+      "date": "2026-04-16",
+      "count": 1
     }
   ],
-  "updated": "2026-04-15"
+  "updated": "2026-04-17"
 }

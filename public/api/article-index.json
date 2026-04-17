@@ -1325,6 +1325,18 @@
     "category": "people",
     "langs": ["zh-TW", "en", "ko"]
   },
+  "people/ahn-ji-hyun": {
+    "zhTitle": "安芝儇",
+    "enTitle": "Ahn Ji-hyun",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
+  "people/ahn-sung-jae": {
+    "zhTitle": "安成宰",
+    "enTitle": "Ahn Sung-jae",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
   "people/andre-chiang-taiwanese-culinary-innovator": {
     "zhTitle": "江振誠",
     "enTitle": "André Chiang: Taiwanese Culinary Innovator",
@@ -1349,6 +1361,12 @@
     "category": "people",
     "langs": ["zh-TW", "en", "ja", "ko"]
   },
+  "people/baek-jong-won": {
+    "zhTitle": "白種元",
+    "enTitle": "Baek Jong-won",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
   "people/bobby-chen-indie-music-pioneer": {
     "zhTitle": "陳昇",
     "enTitle": "Bobby Chen (陳昇)",
@@ -1360,6 +1378,12 @@
     "enTitle": "Brigitte Lin: From Romance Icon to Martial Arts Legend",
     "category": "people",
     "langs": ["zh-TW", "en", "ko"]
+  },
+  "people/byun-ha-yul": {
+    "zhTitle": "邊荷律",
+    "enTitle": "Byun Ha-yul",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "people/cc-wei": {
     "zhTitle": "魏哲家",
@@ -1463,6 +1487,12 @@
     "category": "people",
     "langs": ["zh-TW", "en", "ko"]
   },
+  "people/choi-hyun-seok": {
+    "zhTitle": "崔鉉碩",
+    "enTitle": "Choi Hyun-seok",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
   "people/chu-ching-wu": {
     "zhTitle": "朱經武",
     "enTitle": "Chu Ching-Wu (朱經武)",
@@ -1498,6 +1528,12 @@
     "enTitle": "Du Congming: Founder of Modern Medicine in Taiwan",
     "category": "people",
     "langs": ["zh-TW", "en", "ko"]
+  },
+  "people/edward-lee-chef": {
+    "zhTitle": "愛德華李",
+    "enTitle": "Edward Lee",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "people/ethan-tu": {
     "zhTitle": "杜奕瑾",
@@ -1595,6 +1631,12 @@
     "category": "people",
     "langs": ["zh-TW", "en", "ko"]
   },
+  "people/jin-enoki": {
+    "zhTitle": "金針菇",
+    "enTitle": "Jin (Golden Mushroom)",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
   "people/jj-lin-singaporean-mandopop-king": {
     "zhTitle": "林俊傑",
     "enTitle": "JJ Lin (Lin Jun Jie)",
@@ -1607,6 +1649,18 @@
     "category": "people",
     "langs": ["zh-TW", "en", "ko"]
   },
+  "people/jun-lee-chef": {
+    "zhTitle": "李駿",
+    "enTitle": "Jun Lee",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
+  "people/jung-ji-sun": {
+    "zhTitle": "鄭智善",
+    "enTitle": "Jung Ji-sun",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
   "people/kao-chun-ming": {
     "zhTitle": "高俊明",
     "enTitle": "Kao Chun-ming",
@@ -1618,6 +1672,18 @@
     "enTitle": "Kevin Lin (Lin Yi-jie)",
     "category": "people",
     "langs": ["zh-TW", "en", "ko"]
+  },
+  "people/kim-do-yoon": {
+    "zhTitle": "金度潤",
+    "enTitle": "Kim Do-yoon",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
+  "people/kim-tae-sung": {
+    "zhTitle": "金太星",
+    "enTitle": "Kim Tae-sung",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "people/ko-wen-je": {
     "zhTitle": "柯文哲",
@@ -1636,6 +1702,36 @@
     "enTitle": "Lai Ching-te (賴清德): Taiwan’s President Since 2024 — From Mining Town Doctor to Head of State",
     "category": "people",
     "langs": ["zh-TW", "en", "ko"]
+  },
+  "people/lee-ah-young": {
+    "zhTitle": "李雅英",
+    "enTitle": "Lee Ah-young",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
+  "people/lee-da-hye": {
+    "zhTitle": "李多慧",
+    "enTitle": "Lee Da-hye",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
+  "people/lee-ho-jung": {
+    "zhTitle": "李晧禎",
+    "enTitle": "Lee Ho-jung",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
+  "people/lee-ju-eun": {
+    "zhTitle": "李珠珢",
+    "enTitle": "Lee Ju-eun",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
+  "people/lee-mi-young": {
+    "zhTitle": "李美英",
+    "enTitle": "Lee Mi-young",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "people/lee-teng-hui": {
     "zhTitle": "李登輝",
@@ -1745,6 +1841,18 @@
     "category": "people",
     "langs": ["zh-TW", "en", "ko"]
   },
+  "people/muscle-mountain": {
+    "zhTitle": "肌肉山山",
+    "enTitle": "Muscle Mountain",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
+  "people/nam-min-jung": {
+    "zhTitle": "南珉貞",
+    "enTitle": "Nam Min-jung",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
   "people/nieh-yung-jen": {
     "zhTitle": "聶永真",
     "enTitle": "Nieh Yung-jen (聶永真)",
@@ -1762,6 +1870,18 @@
     "enTitle": "Pai Hsien-yung (白先勇)",
     "category": "people",
     "langs": ["zh-TW", "en", "ko"]
+  },
+  "people/park-min-seo": {
+    "zhTitle": "朴旻曙",
+    "enTitle": "Park Min-seo (Mingo)",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
+  },
+  "people/park-sung-eun": {
+    "zhTitle": "朴星垠",
+    "enTitle": "Park Sung-eun",
+    "category": "people",
+    "langs": ["zh-TW", "en", "ja", "ko"]
   },
   "people/ray-youtuber": {
     "zhTitle": "Ray",

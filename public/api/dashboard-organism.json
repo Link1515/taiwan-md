@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-15T22:39:52.712Z",
+  "lastUpdated": "2026-04-17T01:45:08.900Z",
   "organs": [
     {
       "id": "heart",
@@ -10,8 +10,8 @@
       "score": 90,
       "trend": "up",
       "metrics": {
-        "articlesLast7Days": 68,
-        "articlesLast30Days": 437,
+        "articlesLast7Days": 61,
+        "articlesLast30Days": 432,
         "totalArticles": 494
       }
     },
@@ -72,7 +72,7 @@
       "score": 85,
       "trend": "up",
       "metrics": {
-        "recentContributors": 55
+        "recentContributors": 54
       }
     },
     {
@@ -94,18 +94,18 @@
       "nameZh": "語言器官",
       "metaphor": "多語言複製",
       "emoji": "🌐",
-      "score": 90,
+      "score": 92,
       "trend": "up",
       "metrics": {
         "languageCoverage": {
           "zh-TW": 494,
-          "en": 395,
-          "ja": 256,
-          "ko": 471,
+          "en": 415,
+          "ja": 276,
+          "ko": 491,
           "es": 36,
           "fr": 479
         },
-        "translationPct": 90,
+        "translationPct": 92,
         "langHealthDetails": {
           "en": {
             "ui": {
@@ -122,10 +122,10 @@
               "pct": 100
             },
             "articles": {
-              "count": 395,
-              "pct": 80
+              "count": 415,
+              "pct": 84
             },
-            "score": 92
+            "score": 94
           },
           "ja": {
             "ui": {
@@ -142,10 +142,10 @@
               "pct": 100
             },
             "articles": {
-              "count": 256,
-              "pct": 52
+              "count": 276,
+              "pct": 56
             },
-            "score": 81
+            "score": 82
           },
           "ko": {
             "ui": {
@@ -162,10 +162,10 @@
               "pct": 100
             },
             "articles": {
-              "count": 471,
-              "pct": 95
+              "count": 491,
+              "pct": 99
             },
-            "score": 98
+            "score": 100
           },
           "es": {
             "ui": {

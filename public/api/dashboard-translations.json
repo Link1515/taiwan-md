@@ -6,16 +6,16 @@
       "percentage": 100
     },
     "en": {
-      "total": 395,
-      "percentage": 80
+      "total": 415,
+      "percentage": 84
     },
     "ja": {
-      "total": 256,
-      "percentage": 51.8
+      "total": 276,
+      "percentage": 55.9
     },
     "ko": {
-      "total": 471,
-      "percentage": 95.3
+      "total": 491,
+      "percentage": 99.4
     },
     "es": {
       "total": 36,
@@ -109,9 +109,9 @@
     },
     "people": {
       "zh-TW": 156,
-      "en": 115,
-      "ja": 26,
-      "ko": 135,
+      "en": 135,
+      "ja": 46,
+      "ko": 155,
       "es": 10,
       "fr": 135
     },
@@ -245,29 +245,10 @@
       "Economy/台灣農業與農村再生.md",
       "History/戰後經濟發展.md",
       "Economy/台灣農業現代化發展.md",
-      "Economy/新創生態系.md",
-      "People/南珉貞.md",
-      "People/安成宰.md",
-      "People/安芝儇.md",
-      "People/崔鉉碩.md",
-      "People/愛德華李.md",
-      "People/朴旻曙.md",
-      "People/朴星垠.md",
-      "People/李多慧.md",
-      "People/李晧禎.md",
-      "People/李珠珢.md",
-      "People/李美英.md",
-      "People/李雅英.md",
-      "People/李駿.md",
-      "People/白種元.md",
-      "People/肌肉山山.md",
-      "People/邊荷律.md",
-      "People/鄭智善.md",
-      "People/金太星.md",
-      "People/金度潤.md",
-      "People/金針菇.md"
+      "Economy/新創生態系.md"
     ],
     "ja": [
+      "Geography/台灣五大地形與地理結構：從山脈到平原的島嶼風貌.md",
       "People/李洋.md",
       "History/大罷免.md",
       "Lifestyle/台灣 YouBike 文化與城市微交通革命.md",
@@ -469,7 +450,6 @@
       "Economy/台灣循環經濟與資源再利用.md",
       "Economy/台灣農業與農村再生.md",
       "Economy/農業科技與精緻農業.md",
-      "Geography/台灣五大地形與地理結構：從山脈到平原的島嶼風貌.md",
       "Geography/台灣板塊運動與地震活動.md",
       "Geography/台灣河川系統與水文特色：短急流與季節變遷的水文地理.md",
       "Geography/城市特色與區域文化.md",
@@ -488,56 +468,17 @@
       "Lifestyle/台灣市場文化與傳統市場.md",
       "Nature/台灣海洋污染治理與保育挑戰.md",
       "Nature/台灣鳥類窗殺議題：隱形的都市殺手.md",
-      "People/Ray(YouTuber).md",
-      "People/南珉貞.md",
-      "People/安成宰.md",
-      "People/安芝儇.md",
-      "People/崔鉉碩.md",
-      "People/愛德華李.md",
-      "People/朴旻曙.md",
-      "People/朴星垠.md",
-      "People/李多慧.md",
-      "People/李晧禎.md",
-      "People/李珠珢.md",
-      "People/李美英.md",
-      "People/李雅英.md",
-      "People/李駿.md",
-      "People/白種元.md",
-      "People/肌肉山山.md",
-      "People/邊荷律.md",
-      "People/鄭智善.md",
-      "People/金太星.md",
-      "People/金度潤.md",
-      "People/金針菇.md"
+      "People/Ray(YouTuber).md"
     ],
     "ko": [
       "People/李洋.md",
       "Lifestyle/台灣 YouBike 文化與城市微交通革命.md",
       "People/戴資穎.md",
       "Geography/台灣氣候.md",
-      "History/History of Railways in Taiwan.md",
-      "People/南珉貞.md",
-      "People/安成宰.md",
-      "People/安芝儇.md",
-      "People/崔鉉碩.md",
-      "People/愛德華李.md",
-      "People/朴旻曙.md",
-      "People/朴星垠.md",
-      "People/李多慧.md",
-      "People/李晧禎.md",
-      "People/李珠珢.md",
-      "People/李美英.md",
-      "People/李雅英.md",
-      "People/李駿.md",
-      "People/白種元.md",
-      "People/肌肉山山.md",
-      "People/邊荷律.md",
-      "People/鄭智善.md",
-      "People/金太星.md",
-      "People/金度潤.md",
-      "People/金針菇.md"
+      "History/History of Railways in Taiwan.md"
     ],
     "es": [
+      "Geography/台灣五大地形與地理結構：從山脈到平原的島嶼風貌.md",
       "Music/小虎隊.md",
       "People/李洋.md",
       "History/大罷免.md",
@@ -929,7 +870,6 @@
       "Economy/台灣循環經濟與資源再利用.md",
       "Economy/台灣農業與農村再生.md",
       "Economy/農業科技與精緻農業.md",
-      "Geography/台灣五大地形與地理結構：從山脈到平原的島嶼風貌.md",
       "Geography/台灣板塊運動與地震活動.md",
       "Geography/台灣河川系統與水文特色：短急流與季節變遷的水文地理.md",
       "Geography/城市特色與區域文化.md",
