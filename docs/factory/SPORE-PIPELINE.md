@@ -554,6 +554,80 @@ https://taiwan.md/og/<category>/<slug>/
 
 ---
 
+## Step 4.5: 發佈後追蹤（POST-PUBLISH TRACKING）
+
+> 2026-04-18 ζ session 新增。Chrome MCP 讓 AI 自主讀孢子 insights 成為可能，d+0 6h decision gate + d+7 harvest 變成 canonical 追蹤節奏。
+
+### 4.5a Platform allocation（發佈前決定）
+
+**不是 mirror，是 allocation**。2026-04-18 ζ Chrome MCP 實測 Threads vs X 平台差：
+
+| 內容類型                 | Threads | X    | 差距 | 建議                                     |
+| ------------------------ | ------- | ---- | ---- | ---------------------------------------- |
+| zh 人物型（張懸與安溥）  | 190K    | 373  | 510x | **Threads only**（X 浪費精力）           |
+| zh 音樂/文化（草東）     | 9,961   | 47   | 212x | **Threads only**                         |
+| zh 政治人物（韓國瑜）    | 8,524   | 293  | 29x  | **Threads 主，X 次**（中等明星可兼）     |
+| zh 奧運/當下熱度（李洋） | 300K    | 135K | 2.2x | **Threads + X 並行**（熱度突破平台壁壘） |
+| en 所有類型              | —       | —    | —    | **X 主**（英文觀眾在 X）                 |
+| 技術/開源                | —       | —    | —    | **X + Hacker News**                      |
+
+**規則**：發佈前先問「這則孢子的受眾 primary 在哪？」—— zh 一般人物 default Threads only，特殊情況（當下熱度 / 英文 / 技術）才 X。不要 default mirror 兩邊。
+
+### 4.5b Hook tier（寫作時自檢）
+
+三級 hook hierarchy（2026-04-18 ζ data-driven 驗證）：
+
+| Tier | 類型       | 開場特徵                        | d+0 6h 擴散預期 | 案例                                                         |
+| ---- | ---------- | ------------------------------- | --------------- | ------------------------------------------------------------ |
+| 1a   | 知名度槓桿 | 已知品牌/人物 + 當下事件        | >10K            | 「2024 金曲獎，草東沒有派對拿下最佳樂團」→ 6h 9,961 views    |
+| 1b   | 具體性槓桿 | 具體人物 + 具體畫面 + 具體矛盾  | 5K-50K          | 「1988 年冬天，台大校門口有個 19 歲女大學生在絕食」→ d+7 49K |
+| 3    | 意境型     | 時空場景/比喻先行，主角延後出場 | <500            | 「2009 年，一個鋼琴手看著莫拉克颱風的新聞開始作曲」→ 6h 207  |
+
+**規則**：如果目標文章是「相對冷門人物」（知名度低但故事深），hook 必須走 Tier 1b（具體性槓桿）；如果是「已知人物」，Tier 1a 優先。**永遠不要用 Tier 3**——即使文章題材是意境型（環境、山川、聲音），hook 仍要有「具體的人、具體的時刻」。
+
+對應 MANIFESTO §我怎麼說話「開場要有一個具體的人、一個具體的時刻」的量化證明（229x / 48x / 83x）。
+
+### 4.5c d+0 harvest cadence（發佈後自動）
+
+發佈後主動 harvest：
+
+| 時間點 | 動作                                                                 |
+| ------ | -------------------------------------------------------------------- |
+| d+0 1h | Chrome MCP 首次 harvest → SPORE-LOG 追蹤表新增 row                   |
+| d+0 3h | 第二次 harvest → 更新「最後 harvest」時間戳                          |
+| d+0 6h | **Decision gate**：views < 500 → 觸發 re-hook opportunity（見 4.5d） |
+| d+1    | d+1 harvest → 更新 trajectory                                        |
+| d+7    | d+7 harvest（主要 KPI）→ 成效追蹤表填 7d 觸及 / 7d 互動              |
+| d+30   | d+30 harvest（長尾確認）                                             |
+
+**AI 自主邊界**（DNA #26 v2）：所有 harvest 皆 AI 自主用 Chrome MCP 跑；re-hook reply **必須 human post**（AI 準備 draft，human 確認並發）。
+
+### 4.5d Re-hook opportunity（d+0 6h 救援）
+
+**不是刪除重發，是補強**。如果 d+0 6h < 500 views：
+
+1. 診斷 hook tier：是 Tier 3 意境型嗎？
+2. 從原文章挑出最強的「具體人物 + 具體畫面」
+3. AI 寫 150 字 reply 草稿用 Tier 1b 具體性槓桿
+4. **handoff human**：「建議在主貼下面發這則 reply: [草稿]」
+5. Human 確認 + post → 重新 seed 觸及
+
+**案例**：#31 Cicada d+0 6h 207 views → 若要 re-hook，抽出「江致潔在蘭嶼海底聽到的那句話：你能控制的只有你的呼吸」+「吉他手巽洋說『像紀錄片』」作為 reply。
+
+### 4.5e Harvest 資料流
+
+```
+Chrome MCP harvest
+  → SPORE-LOG.md 成效追蹤表（7d 觸及 / 互動 / 最後 harvest timestamp）
+  → dashboard-spores.json （refresh-data 觸發 generate-dashboard-spores.py）
+  → Dashboard 成效排行 / GA 放大倍數 section
+  → 新洞察 → LESSONS-INBOX
+```
+
+**canonical 時間戳格式**：`YYYY-MM-DD HH:MM +0800 (session)`，對應 MANIFESTO §時間是結構 per-record provenance。
+
+---
+
 ## Step 5: 英文版（EN SPORE）
 
 > **中文孢子完成後自動觸發。** 不是可選步驟，是產線的一部分。

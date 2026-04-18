@@ -1481,15 +1481,28 @@ const isEn = lang === 'en';
           (isEn ? 'No amplification data yet.' : '尚未累積放大倍數資料。') +
           '</p>';
       } else {
-        const maxMul = Math.max(...items.map((i) => i.multiplier || 1), 1);
+        // 決定 bar 長度的 metric：優先用 multiplier（有 ga_before 基線的），
+        // fallback 用 ga_7d_after（絕對 GA 7d views）—— 這確保長度反映真實量級差異
+        const hasAnyMul = items.some((i) => i.multiplier);
+        const maxMetric = hasAnyMul
+          ? Math.max(...items.map((i) => i.multiplier || 0), 1)
+          : Math.max(...items.map((i) => i.ga_7d_after || 0), 1);
         amp.innerHTML =
           '<div class="spore-amp-list">' +
           items
             .map((i) => {
-              const mul = i.multiplier || 1;
-              const pct = Math.min((mul / maxMul) * 100, 100);
+              const metric = hasAnyMul ? i.multiplier || 0 : i.ga_7d_after || 0;
+              // log scale for ga_7d_after（因為差 100x 常見，linear 會讓小的看不見）
+              const pct = hasAnyMul
+                ? Math.min((metric / maxMetric) * 100, 100)
+                : Math.min(
+                    (Math.log(Math.max(metric, 1)) /
+                      Math.log(Math.max(maxMetric, 2))) *
+                      100,
+                    100,
+                  );
               const label = i.multiplier
-                ? mul +
+                ? i.multiplier +
                   'x (' +
                   (i.ga_before || '?') +
                   ' → ' +

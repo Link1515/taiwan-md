@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-18T13:53:34.782542Z",
+  "lastUpdated": "2026-04-18T14:12:04.309266Z",
   "schemaVersion": "1.1",
   "totals": {
     "count": 34,
@@ -102,8 +102,8 @@
       "article": "🌋 李洋（v2，留言更正）",
       "platform": "threads",
       "views": 300000,
-      "engagements": null,
-      "rate": null,
+      "engagements": 27000,
+      "rate": 9.0,
       "badge": "🌋 史上最強",
       "date": "2026-04-14"
     },
@@ -207,8 +207,8 @@
       "count": 13,
       "avgViews": 43056,
       "maxViews": 300000,
-      "avgRate": 1.22,
-      "maxRate": 1.52
+      "avgRate": 3.81,
+      "maxRate": 9.0
     }
   },
   "backfillWarnings": [
