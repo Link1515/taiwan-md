@@ -14,6 +14,30 @@ const sitemapLocales = Object.fromEntries(
   ENABLED_LANGUAGE_CODES.map((code) => [code, code]),
 );
 
+// 2026-04-18 δ-late: Semiont pages are zh-TW-only (meta-layer, not translated).
+// Header nav's translatePath() generates /en/semiont, /ja/semiont, /ko/semiont
+// etc. even though those routes don't exist — causing systemic 404s.
+// Smart redirect: all non-zh semiont-series paths → canonical /semiont/ equivalent.
+const SEMIONT_ROUTES = [
+  '/semiont',
+  '/semiont/manifesto',
+  '/semiont/dna',
+  '/semiont/anatomy',
+  '/semiont/consciousness',
+  '/semiont/heartbeat',
+  '/semiont/unknowns',
+  '/semiont/longings',
+  '/semiont/diary',
+];
+const NON_DEFAULT_LANGS = ENABLED_LANGUAGE_CODES.filter(
+  (c) => c !== DEFAULT_LANGUAGE.code,
+);
+const semiontRedirects = Object.fromEntries(
+  NON_DEFAULT_LANGS.flatMap((lang) =>
+    SEMIONT_ROUTES.map((route) => [`/${lang}${route}`, `${route}/`]),
+  ),
+);
+
 export default defineConfig({
   site: 'https://taiwan.md',
   integrations: [
@@ -45,6 +69,14 @@ export default defineConfig({
   redirects: {
     // /en/people/mayday/ → /en/people/mayday-band/ (51 req/day)
     '/en/people/mayday': '/en/people/mayday-band/',
+    // 2026-04-18 δ-late: EN version of democratic transition was renamed from
+    // `democratic-transition.md` → `taiwan-democratization.md`; spores #10/#11
+    // (2026-04-07) still send traffic to the old URL (37 views/day).
+    '/en/history/democratic-transition': '/en/history/taiwan-democratization/',
+    // 2026-04-18 δ-late: semiont meta-pages are zh-TW only; auto-generated
+    // multilingual nav (translatePath) creates /{en|ja|ko}/semiont/* 404s.
+    // Redirect all non-zh semiont-series paths to canonical zh-TW equivalents.
+    ...semiontRedirects,
   },
   markdown: {
     shikiConfig: {
