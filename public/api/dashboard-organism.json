@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-18T02:02:23.157Z",
+  "lastUpdated": "2026-04-18T12:04:51.871Z",
   "organs": [
     {
       "id": "heart",
@@ -10,9 +10,9 @@
       "score": 90,
       "trend": "up",
       "metrics": {
-        "articlesLast7Days": 62,
-        "articlesLast30Days": 418,
-        "totalArticles": 503
+        "articlesLast7Days": 69,
+        "articlesLast30Days": 425,
+        "totalArticles": 510
       }
     },
     {
@@ -24,8 +24,8 @@
       "score": 99,
       "trend": "up",
       "metrics": {
-        "humanReviewedCount": 497,
-        "totalArticles": 503,
+        "humanReviewedCount": 504,
+        "totalArticles": 510,
         "humanReviewedPercent": 98.8
       }
     },
@@ -69,10 +69,14 @@
       "nameZh": "繁殖系統",
       "metaphor": "社群繁殖力",
       "emoji": "🧫",
-      "score": 85,
+      "score": 100,
       "trend": "up",
       "metrics": {
-        "recentContributors": 45
+        "recentContributors": 42,
+        "recentSpores": 29,
+        "topPerformerCount": 5,
+        "topPerformerAvgViews": 82557,
+        "hasBlockbuster": true
       }
     },
     {
@@ -98,7 +102,7 @@
       "trend": "up",
       "metrics": {
         "languageCoverage": {
-          "zh-TW": 503,
+          "zh-TW": 510,
           "en": 415,
           "ja": 276,
           "ko": 491,
@@ -123,9 +127,9 @@
             },
             "articles": {
               "count": 415,
-              "pct": 83
+              "pct": 81
             },
-            "score": 93
+            "score": 92
           },
           "ja": {
             "ui": {
@@ -143,7 +147,7 @@
             },
             "articles": {
               "count": 276,
-              "pct": 55
+              "pct": 54
             },
             "score": 82
           },
@@ -163,9 +167,9 @@
             },
             "articles": {
               "count": 491,
-              "pct": 98
+              "pct": 96
             },
-            "score": 99
+            "score": 98
           },
           "es": {
             "ui": {
@@ -203,7 +207,7 @@
             },
             "articles": {
               "count": 479,
-              "pct": 95
+              "pct": 94
             },
             "score": 43
           }

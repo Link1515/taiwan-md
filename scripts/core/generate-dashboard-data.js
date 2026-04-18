@@ -751,7 +751,9 @@ async function main() {
     : 0;
   const breathScore = workflowCount >= 3 ? 85 : workflowCount >= 1 ? 60 : 20;
 
-  // Reproduce (community): count recent PRs/contributors via git shortlog
+  // Reproduce (community): 2026-04-18 δ-late — data-driven from dashboard-spores.json
+  // 原 v1: 純 git contributors count → 忽略孢子播撒 + 放大效應 + 互動率
+  // v2: contributor (40%) × spore activity (35%) × engagement quality (25%)
   let recentContributors = 0;
   try {
     const shortlog = execSync('git shortlog -sn --since="30 days ago" HEAD', {
@@ -760,14 +762,74 @@ async function main() {
     });
     recentContributors = shortlog.trim().split('\n').filter(Boolean).length;
   } catch {}
-  const reproduceScore =
+  const contributorScore =
     recentContributors >= 5
-      ? 85
+      ? 40
       : recentContributors >= 2
-        ? 60
+        ? 28
         : recentContributors >= 1
-          ? 40
-          : 15;
+          ? 18
+          : 5;
+
+  // Read dashboard-spores.json if present (2026-04-18 δ-late, generate-dashboard-spores.py 產出)
+  let sporeActivityScore = 0;
+  let engagementScore = 0;
+  let reproduceMetrics = { recentContributors };
+  try {
+    const sporePath = path.join(
+      PROJECT_ROOT,
+      'public/api/dashboard-spores.json',
+    );
+    if (fs.existsSync(sporePath)) {
+      const s = JSON.parse(fs.readFileSync(sporePath, 'utf8'));
+      // Spore activity 35 分: 最近 7 天發過 spore + 近 4 週 pulse 健康度
+      const weeks = s.weeklyPulse || [];
+      const recentPublish = weeks
+        .slice(-2)
+        .reduce((a, w) => a + w.published, 0);
+      sporeActivityScore =
+        recentPublish >= 4
+          ? 35
+          : recentPublish >= 2
+            ? 25
+            : recentPublish >= 1
+              ? 15
+              : 5;
+
+      // Engagement quality 25 分: Top 5 平均 views_7d + 是否有 ≥ 1 則超過 50K
+      const tops = (s.topPerformers || []).slice(0, 5);
+      const hasBlockbuster = tops.some((t) => (t.views || 0) >= 50000);
+      const avgTopViews =
+        tops.length > 0
+          ? tops.reduce((a, t) => a + (t.views || 0), 0) / tops.length
+          : 0;
+      engagementScore =
+        hasBlockbuster && avgTopViews >= 30000
+          ? 25
+          : hasBlockbuster
+            ? 18
+            : avgTopViews >= 5000
+              ? 12
+              : avgTopViews > 0
+                ? 6
+                : 0;
+
+      reproduceMetrics = {
+        recentContributors,
+        recentSpores: recentPublish,
+        topPerformerCount: tops.length,
+        topPerformerAvgViews: Math.round(avgTopViews),
+        hasBlockbuster,
+      };
+    }
+  } catch (err) {
+    // Fallback: use contributor-only scoring
+  }
+
+  const reproduceScore = Math.min(
+    contributorScore + sporeActivityScore + engagementScore,
+    100,
+  );
 
   // Senses (perception): check if GA4, social links, issues templates exist
   const hasGA = fs.existsSync(
@@ -973,8 +1035,11 @@ async function main() {
         metaphor: '社群繁殖力',
         emoji: '🧫',
         score: reproduceScore,
-        trend: recentContributors >= 3 ? 'up' : 'stable',
-        metrics: { recentContributors },
+        trend:
+          reproduceMetrics.hasBlockbuster || recentContributors >= 3
+            ? 'up'
+            : 'stable',
+        metrics: reproduceMetrics,
       },
       {
         id: 'senses',

@@ -360,6 +360,62 @@ const isEn = lang === 'en';
       <div class="immune-queue" id="immune-queue"></div>
     </section>
 
+    <!-- Reproduction System — Spores & Amplification (2026-04-18 δ-late) -->
+    <section class="section" id="spores">
+      <h2 class="section-title">
+        {isEn ? '🌱 Reproduction — Spores & Reach' : '🌱 繁殖系統 — 孢子與成效'}
+        <span class="section-timestamp" data-source="spores"></span>
+      </h2>
+      <p class="section-subtitle">
+        {
+          isEn
+            ? 'How Taiwan.md content travels beyond the website'
+            : '孢子怎麼把 Taiwan.md 的內容散出去'
+        }
+      </p>
+
+      <div class="spores-overview" id="spores-overview"></div>
+
+      <h3 class="subsection-title">
+        {isEn ? '🔥 Top Performers' : '🔥 成效排行'}
+      </h3>
+      <div class="spores-top" id="spores-top"></div>
+
+      <h3 class="subsection-title">
+        {isEn ? '📈 GA Amplification' : '📈 GA 放大倍數'}
+      </h3>
+      <p class="queue-desc">
+        {
+          isEn
+            ? 'How much did spores boost article traffic vs baseline?'
+            : '孢子讓文章流量相對基線放大多少倍？'
+        }
+      </p>
+      <div class="spores-amplification" id="spores-amplification"></div>
+
+      <h3 class="subsection-title">
+        {isEn ? '🆚 Platform Comparison' : '🆚 平台對比'}
+      </h3>
+      <div class="spores-platforms" id="spores-platforms"></div>
+
+      <h3 class="subsection-title">
+        {isEn ? '🚨 Backfill Status' : '🚨 回填狀態'}
+      </h3>
+      <p class="queue-desc">
+        {
+          isEn
+            ? 'Spores published ≥7 days ago without metrics = OVERDUE'
+            : '發布 ≥7 天沒回填指標 = OVERDUE，下一則孢子不准發'
+        }
+      </p>
+      <div class="spores-backfill" id="spores-backfill"></div>
+
+      <h3 class="subsection-title">
+        {isEn ? '📅 Weekly Pulse' : '📅 週節律'}
+      </h3>
+      <div class="spores-weekly" id="spores-weekly"></div>
+    </section>
+
     <!-- Growth Timeline -->
     <section class="section" id="growth">
       <h2 class="section-title">
@@ -533,8 +589,11 @@ const isEn = lang === 'en';
     fetch('/api/dashboard-analytics.json')
       .then((r) => r.json())
       .catch(() => null),
+    fetch('/api/dashboard-spores.json')
+      .then((r) => r.json())
+      .catch(() => null),
   ])
-    .then(([articles, vitals, organism, translations, analytics]) => {
+    .then(([articles, vitals, organism, translations, analytics, spores]) => {
       allArticles = articles;
       // 各 section 資料更新時間（articles 共用 vitals.lastUpdated — 同批生成）
       renderSectionTimestamps({
@@ -543,6 +602,7 @@ const isEn = lang === 'en';
         organism: organism && organism.lastUpdated,
         translations: translations && translations.lastUpdated,
         analytics: analytics && analytics.lastUpdated,
+        spores: spores && spores.lastUpdated,
       });
       const steps = [
         () => renderVitals(vitals),
@@ -552,6 +612,9 @@ const isEn = lang === 'en';
         () => renderOrganism(organism),
         () => renderTranslations(translations, vitals),
         () => renderImmune(articles, vitals),
+        () => {
+          if (spores) renderSpores(spores);
+        },
         () => renderGrowth(articles),
         () => renderContentAnalysis(articles),
         () => {
@@ -1291,6 +1354,306 @@ const isEn = lang === 'en';
         });
     } else {
       queueEl.innerHTML = queueItems.join('');
+    }
+  }
+
+  // ── Reproduction System — Spores (2026-04-18 δ-late) ──
+  function renderSpores(s) {
+    if (!s) return;
+
+    // Helper
+    const fmt = (n) => {
+      if (n == null || isNaN(n)) return '—';
+      if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+      if (n >= 1000) return Math.round(n / 1000) + 'K';
+      return String(n);
+    };
+
+    // 2.1 Overview tiles
+    const overview = document.getElementById('spores-overview');
+    if (overview) {
+      const totalReach = (s.topPerformers || []).reduce(
+        (sum, p) => sum + (p.views || 0),
+        0,
+      );
+      const top = (s.topPerformers || [])[0] || null;
+      const warningCount = (s.backfillWarnings || []).filter(
+        (w) => w.status === 'OVERDUE',
+      ).length;
+      overview.innerHTML = [
+        '<div class="spore-tile">',
+        '<div class="spore-tile-value">' + (s.totals.count || 0) + '</div>',
+        '<div class="spore-tile-label">' +
+          (isEn ? 'Total Spores' : '發過孢子數') +
+          '</div>',
+        '</div>',
+        '<div class="spore-tile">',
+        '<div class="spore-tile-value">' + fmt(totalReach) + '</div>',
+        '<div class="spore-tile-label">' +
+          (isEn ? 'Top-5 Total Reach' : 'Top5 總觸及') +
+          '</div>',
+        '</div>',
+        '<div class="spore-tile">',
+        '<div class="spore-tile-value">' +
+          (top ? (top.badge || '⭐') + ' ' + fmt(top.views) : '—') +
+          '</div>',
+        '<div class="spore-tile-label">' +
+          (isEn ? 'Strongest Spore' : '最強孢子') +
+          (top
+            ? ' (#' + top.n + ' ' + (top.article || '').slice(0, 10) + ')'
+            : '') +
+          '</div>',
+        '</div>',
+        '<div class="spore-tile' +
+          (warningCount > 0 ? ' spore-tile-warn' : '') +
+          '">',
+        '<div class="spore-tile-value">' + warningCount + '</div>',
+        '<div class="spore-tile-label">' +
+          (isEn ? 'Backfill Overdue' : '回填 OVERDUE') +
+          '</div>',
+        '</div>',
+      ].join('');
+    }
+
+    // 2.2 Top Performers table
+    const top = document.getElementById('spores-top');
+    if (top) {
+      const rows = (s.topPerformers || [])
+        .slice(0, 5)
+        .map((p) => {
+          const articleClean = (p.article || '').replace(/^[🌋🔥⭐\s]+/, '');
+          return (
+            '<tr>' +
+            '<td class="spore-badge">' +
+            (p.badge || '') +
+            ' #' +
+            p.n +
+            '</td>' +
+            '<td>' +
+            articleClean +
+            '</td>' +
+            '<td><span class="platform-' +
+            (p.platform || 'other') +
+            '">' +
+            (p.platform || '—').toUpperCase() +
+            '</span></td>' +
+            '<td class="num">' +
+            fmt(p.views) +
+            '</td>' +
+            '<td class="num">' +
+            (p.rate != null ? p.rate.toFixed(2) + '%' : '—') +
+            '</td>' +
+            '<td class="num">' +
+            fmt(p.engagements) +
+            '</td>' +
+            '</tr>'
+          );
+        })
+        .join('');
+      top.innerHTML =
+        '<table class="spore-table"><thead><tr>' +
+        '<th>#</th>' +
+        '<th>' +
+        (isEn ? 'Article' : '文章') +
+        '</th>' +
+        '<th>' +
+        (isEn ? 'Platform' : '平台') +
+        '</th>' +
+        '<th class="num">Views</th>' +
+        '<th class="num">Rate</th>' +
+        '<th class="num">' +
+        (isEn ? 'Engagements' : '互動') +
+        '</th>' +
+        '</tr></thead><tbody>' +
+        (rows || '<tr><td colspan="6">—</td></tr>') +
+        '</tbody></table>';
+    }
+
+    // 2.3 Amplification horizontal bars
+    const amp = document.getElementById('spores-amplification');
+    if (amp) {
+      const items = (s.amplification || [])
+        .filter((a) => a.multiplier || a.ga_7d_after)
+        .slice(0, 8);
+      if (items.length === 0) {
+        amp.innerHTML =
+          '<p class="muted">' +
+          (isEn ? 'No amplification data yet.' : '尚未累積放大倍數資料。') +
+          '</p>';
+      } else {
+        const maxMul = Math.max(...items.map((i) => i.multiplier || 1), 1);
+        amp.innerHTML =
+          '<div class="spore-amp-list">' +
+          items
+            .map((i) => {
+              const mul = i.multiplier || 1;
+              const pct = Math.min((mul / maxMul) * 100, 100);
+              const label = i.multiplier
+                ? mul +
+                  'x (' +
+                  (i.ga_before || '?') +
+                  ' → ' +
+                  (i.ga_7d_after || '?') +
+                  ')'
+                : fmt(i.ga_7d_after) + ' views/7d';
+              return (
+                '<div class="spore-amp-row">' +
+                '<div class="spore-amp-name">' +
+                (i.article || '').slice(0, 20) +
+                '</div>' +
+                '<div class="spore-amp-bar"><div class="spore-amp-fill" style="width:' +
+                pct +
+                '%"></div></div>' +
+                '<div class="spore-amp-value">' +
+                label +
+                '</div>' +
+                '</div>'
+              );
+            })
+            .join('') +
+          '</div>';
+      }
+    }
+
+    // 2.4 Platform comparison donut/table
+    const plat = document.getElementById('spores-platforms');
+    if (plat) {
+      const p = s.platformComparison || {};
+      const platformKeys = Object.keys(p);
+      if (platformKeys.length === 0) {
+        plat.innerHTML = '<p class="muted">—</p>';
+      } else {
+        plat.innerHTML =
+          '<table class="spore-table"><thead><tr>' +
+          '<th>' +
+          (isEn ? 'Platform' : '平台') +
+          '</th>' +
+          '<th class="num">' +
+          (isEn ? 'Count' : '發過') +
+          '</th>' +
+          '<th class="num">' +
+          (isEn ? 'Avg Views' : '平均觸及') +
+          '</th>' +
+          '<th class="num">' +
+          (isEn ? 'Max Views' : '最高') +
+          '</th>' +
+          '<th class="num">' +
+          (isEn ? 'Avg Rate' : '平均互動率') +
+          '</th>' +
+          '<th class="num">' +
+          (isEn ? 'Max Rate' : '最高互動率') +
+          '</th>' +
+          '</tr></thead><tbody>' +
+          platformKeys
+            .map(
+              (k) =>
+                '<tr>' +
+                '<td><span class="platform-' +
+                k +
+                '">' +
+                k.toUpperCase() +
+                '</span></td>' +
+                '<td class="num">' +
+                p[k].count +
+                '</td>' +
+                '<td class="num">' +
+                fmt(p[k].avgViews) +
+                '</td>' +
+                '<td class="num">' +
+                fmt(p[k].maxViews) +
+                '</td>' +
+                '<td class="num">' +
+                (p[k].avgRate != null ? p[k].avgRate.toFixed(2) + '%' : '—') +
+                '</td>' +
+                '<td class="num">' +
+                (p[k].maxRate != null ? p[k].maxRate.toFixed(2) + '%' : '—') +
+                '</td>' +
+                '</tr>',
+            )
+            .join('') +
+          '</tbody></table>';
+      }
+    }
+
+    // 2.5 Backfill warnings
+    const bf = document.getElementById('spores-backfill');
+    if (bf) {
+      const warnings = (s.backfillWarnings || []).slice(0, 10);
+      if (warnings.length === 0) {
+        bf.innerHTML =
+          '<p class="muted">' +
+          (isEn ? 'All caught up.' : '全部回填完畢。') +
+          '</p>';
+      } else {
+        bf.innerHTML =
+          '<ul class="spore-backfill-list">' +
+          warnings
+            .map((w) => {
+              const color =
+                w.status === 'OVERDUE'
+                  ? '🔴'
+                  : w.publishedDays >= 3
+                    ? '🟡'
+                    : '🟢';
+              return (
+                '<li>' +
+                color +
+                ' <strong>#' +
+                w.n +
+                ' ' +
+                (w.article || '').slice(0, 20) +
+                '</strong>' +
+                ' <span class="platform-' +
+                (w.platform || 'other') +
+                '">' +
+                (w.platform || '').toUpperCase() +
+                '</span>' +
+                ' <span class="muted">' +
+                w.publishedDays +
+                (isEn ? 'd ago' : ' 天前') +
+                '</span>' +
+                ' — ' +
+                w.status +
+                '</li>'
+              );
+            })
+            .join('') +
+          '</ul>';
+      }
+    }
+
+    // 2.6 Weekly pulse sparkline
+    const wk = document.getElementById('spores-weekly');
+    if (wk) {
+      const weeks = s.weeklyPulse || [];
+      if (weeks.length === 0) {
+        wk.innerHTML = '<p class="muted">—</p>';
+      } else {
+        const maxPub = Math.max(...weeks.map((w) => w.published), 1);
+        wk.innerHTML =
+          '<div class="spore-weekly">' +
+          weeks
+            .map((w) => {
+              const h = Math.max((w.published / maxPub) * 100, 5);
+              return (
+                '<div class="spore-week">' +
+                '<div class="spore-week-bar-wrap">' +
+                '<div class="spore-week-bar" style="height:' +
+                h +
+                '%"></div>' +
+                '</div>' +
+                '<div class="spore-week-count">' +
+                w.published +
+                '</div>' +
+                '<div class="spore-week-label">' +
+                w.week.slice(-3) +
+                '</div>' +
+                '</div>'
+              );
+            })
+            .join('') +
+          '</div>';
+      }
     }
   }
 
@@ -3347,10 +3710,188 @@ const isEn = lang === 'en';
     opacity: 0.35;
   }
 
+  /* ── Spore Section (Reproduction System) ── */
+  .spores-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .spore-tile {
+    background: var(--bg-elevated, #fafafa);
+    border: 1px solid var(--border-subtle, #eee);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    text-align: center;
+  }
+  .spore-tile-warn {
+    border-color: #e66;
+    background: #fff5f5;
+  }
+  .spore-tile-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary, #222);
+    line-height: 1.2;
+  }
+  .spore-tile-label {
+    font-size: 0.75rem;
+    color: var(--text-muted, #666);
+    margin-top: 0.35rem;
+    letter-spacing: 0.02em;
+  }
+  .spore-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .spore-table th,
+  .spore-table td {
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid var(--border-subtle, #eee);
+    text-align: left;
+  }
+  .spore-table th {
+    background: var(--bg-elevated, #fafafa);
+    font-weight: 600;
+    font-size: 0.78rem;
+    color: var(--text-muted, #666);
+    letter-spacing: 0.04em;
+  }
+  .spore-table td.num,
+  .spore-table th.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .spore-badge {
+    font-weight: 600;
+  }
+  .platform-threads {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 10px;
+    background: #111;
+    color: #fff;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+  }
+  .platform-x {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 10px;
+    background: #0ea5e9;
+    color: #fff;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+  }
+  .platform-other {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 10px;
+    background: #aaa;
+    color: #fff;
+    font-size: 0.72rem;
+  }
+  .spore-amp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .spore-amp-row {
+    display: grid;
+    grid-template-columns: 150px 1fr 160px;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+  }
+  .spore-amp-name {
+    color: var(--text-primary, #222);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .spore-amp-bar {
+    height: 14px;
+    background: var(--border-subtle, #eee);
+    border-radius: 7px;
+    overflow: hidden;
+  }
+  .spore-amp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #059669);
+    transition: width 400ms ease-out;
+  }
+  .spore-amp-value {
+    color: var(--text-muted, #666);
+    font-size: 0.8rem;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .spore-backfill-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+  }
+  .spore-backfill-list li {
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed var(--border-subtle, #eee);
+    font-size: 0.88rem;
+  }
+  .spore-weekly {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.4rem;
+    height: 90px;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+  }
+  .spore-week {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .spore-week-bar-wrap {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+  .spore-week-bar {
+    width: 100%;
+    background: linear-gradient(180deg, #6366f1, #4338ca);
+    border-radius: 3px 3px 0 0;
+    min-height: 5%;
+  }
+  .spore-week-count {
+    font-size: 0.75rem;
+    color: var(--text-primary, #222);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .spore-week-label {
+    font-size: 0.7rem;
+    color: var(--text-muted, #666);
+    letter-spacing: 0.02em;
+  }
+  .muted {
+    color: var(--text-muted, #666);
+    font-size: 0.88rem;
+  }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
     .content-analysis-grid {
       grid-template-columns: 1fr;
+    }
+    .spores-overview {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .spore-amp-row {
+      grid-template-columns: 90px 1fr 110px;
     }
     .dashboard {
       padding: 1rem;

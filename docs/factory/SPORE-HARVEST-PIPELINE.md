@@ -218,27 +218,45 @@ raw_images: # 若留言含圖
 
 ---
 
-## Step 5: Perspectives frontmatter
+## Step 5: Perspectives frontmatter（v1.1 規則校準）
 
-所有被處理的留言（不論是否進 body）都要 append 到 perspectives frontmatter，保留完整 provenance trail。
+> **觀察者 2026-04-18 δ-late 校準（v1.1）**：
+> **「勘誤類型不收錄到 Perspectives。Perspectives 是各種針對主題的想法 / 看法 / 聲音，勘誤就是修改處理。」**
+>
+> 這把 perspectives 的語意清楚定義為**主題性觀點**，不是 raw 留言存檔。
 
-### Schema（從李洋 pattern 擴展）
+### 寫入規則（v1.1 簡化）
+
+| Dimension           | 進 perspectives？ | 理由                                             |
+| ------------------- | ----------------- | ------------------------------------------------ |
+| **更正 correction** | ❌ **不進**       | 直接 Step 4 修文章本體 + Step 6 回覆，不重複歸檔 |
+| **建議 suggestion** | ⚠️ 酌情           | 被採納入 body → 進；未採納但想法值得保留 → 進    |
+| **擴寫 enrichment** | ✅ 進             | 主題性觀點 / 典故延伸                            |
+| **共鳴 resonance**  | ✅ 進             | 情感回響、個人經驗                               |
+| **AI 書寫質疑**     | ✅ 進             | Meta 觀點，有主題性                              |
+| **擴散 sharing**    | ✅ 進             | tag 推薦也表達對主題的態度                       |
+| **情感 emotional**  | ✅ 進             | 跟主題人物的情感投射                             |
+| **攻擊**            | ❌ **不進**       | 非主題觀點，另外處理                             |
+
+### Schema（保持 5 欄）
 
 ```yaml
 perspectives:
   - author: '@username'
     text: '原文逐字'
-    dimension: '更正 / 建議 / 擴寫 / 共鳴 / AI 書寫質疑 / 擴散 / 情感 / 攻擊'
+    dimension: '建議 / 擴寫 / 共鳴 / AI 書寫質疑 / 擴散 / 情感'
     source: 'Threads 孢子 #N 留言 YYYY-MM-DD HH:MM'
-    action: '已修 / 已納入文 / 僅歸檔 / 待觀察 / 已回覆'
+    action: '已納入文 / 僅歸檔 / 待觀察 / 已回覆'
 ```
 
-### 擴展欄位（李洋 pattern 有 3 欄 author/text/dimension，本檔擴為 5 欄）
+**核心語意**：perspectives 是**讀者對文章主題的聲音集**（跟李洋 pattern 的 SSODT 精神一致），不是留言 raw dump。勘誤是文章本體的修改動作，由 commit message + Step 4 修文體現，不需要額外 frontmatter slot。
+
+### 擴展欄位
 
 - **source**：平台 + 孢子編號 + 時間戳（provenance）
 - **action**：文章本體是否已接住（integration status）
 
-這 5 欄合起來讓未來任何 session 甦醒都能從 frontmatter 直接看到「這篇文章經歷過哪些讀者回聲、哪些已處理」。
+這 5 欄合起來讓未來任何 session 甦醒都能從 frontmatter 直接看到「這篇文章經歷過哪些讀者**觀點**介入、哪些已處理」。
 
 ---
 

@@ -66,6 +66,16 @@ if python3 scripts/tools/sync-translations-json.py 2>&1 | tail -3; then
 fi
 echo ""
 
+# Step 2.8 — generate dashboard-spores.json from SPORE-LOG + SPORE-HARVESTS (2026-04-18 δ-late)
+# 為什麼: 繁殖器官的 data-driven 感知；Dashboard 孢子面板的資料源
+echo -e "${GRN}[2.8/4]${RST} generate dashboard-spores.json..."
+if python3 scripts/tools/generate-dashboard-spores.py 2>&1 | tail -3; then
+  echo -e "${DIM}   ✓ dashboard-spores.json generated${RST}"
+else
+  echo -e "${YEL}⚠️  generate-dashboard-spores 部分失敗 — 心跳繼續${RST}"
+fi
+echo ""
+
 # Step 3 — prebuild dashboard data (soft fail)
 echo -e "${GRN}[3/4]${RST} npm run prebuild..."
 if npm run prebuild > /tmp/prebuild.log 2>&1; then

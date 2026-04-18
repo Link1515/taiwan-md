@@ -1,5 +1,5 @@
 {
-  "totalArticles": 2211,
+  "totalArticles": 2218,
   "totalCategories": 21,
   "estimatedContributors": 148,
   "totalTags": 5162,
@@ -42,7 +42,7 @@
     },
     {
       "name": "People",
-      "count": 159
+      "count": 166
     },
     {
       "name": "Art",
@@ -172,8 +172,8 @@
     }
   ],
   "languageDistribution": {
-    "zh-TW": 2211,
+    "zh-TW": 2218,
     "en": 0
   },
-  "lastUpdated": "2026-04-18T02:02:22.282Z"
+  "lastUpdated": "2026-04-18T12:04:51.021Z"
 }
