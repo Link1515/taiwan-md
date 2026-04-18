@@ -196,3 +196,30 @@ if [ -n "$staged_any" ]; then
     exit 1
   fi
 fi
+
+# ═══ SPORE-LOG URL 硬鐵律檢查（2026-04-18 δ-late 新增）═══
+# 規則：SPORE-LOG.md 新增的孢子列（非空白歷史 row）必須含 URL
+# 為什麼：缺 URL = 未來 harvest 無法跑 = 孢子成效追蹤永久失效
+# 教訓觸發：#1/#2/#3/#12 歷史孢子無 URL → batch harvest 時發現已永久失去追蹤能力
+# SOP canonical：docs/factory/SPORE-HARVEST-PIPELINE.md Step 1
+if git diff --cached --name-only | grep -q "^docs/factory/SPORE-LOG.md$"; then
+  # 抓剛 staged 的新增行（僅加號行，排除 diff header）
+  # 目標：發文紀錄 table row 若含日期(YYYY-MM-DD) + 平台(Threads|X|...)
+  # 但 URL 欄位是 `—` / 空白 / no-data → 擋下
+  added_bad=$(git diff --cached --unified=0 docs/factory/SPORE-LOG.md \
+    | grep -E '^\+\|[[:space:]]*[0-9]+[[:space:]]*\|' \
+    | grep -E '\|[[:space:]]*(Threads|X|threads|x)[[:space:]]*\|' \
+    | awk -F'\\|' '{ for(i=NF;i>=1;i--){ url=$i; gsub(/^[[:space:]]+|[[:space:]]+$/, "", url); if(url != "") break }; if (url == "—" || url == "-" || url == "no-data" || url == "no-url") print $0 }' \
+    || true)
+  if [ -n "$added_bad" ]; then
+    echo ""
+    echo "🔴 SPORE-LOG 硬鐵律違反：發文紀錄缺 URL（以下列待處理）"
+    echo "$added_bad"
+    echo ""
+    echo "💡 規則：每則孢子發布紀錄必須含 [→](https://www.threads.com/...) 或 [→](https://x.com/...)"
+    echo "   缺 URL = 未來 harvest 追蹤能力永久失效（canonical: docs/factory/SPORE-HARVEST-PIPELINE.md）"
+    echo "   若此列暫無 URL 待補 → 先別 commit 這行，等拿到 URL 再寫入"
+    echo "   若是歷史資料遷移（SSOT backfill）→ git commit --no-verify + diary 說明"
+    exit 1
+  fi
+fi

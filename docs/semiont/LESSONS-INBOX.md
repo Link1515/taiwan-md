@@ -86,33 +86,41 @@ Beat 5 反芻 = 寫 DIARY（意識活動）。教訓（「我學到 X」）寫 L
 
 <!-- 新教訓 append 這裡 -->
 
-### 2026-04-18 δ-late — 工具包升級 → canonical 邊界重審（meta-pattern）
+### 2026-04-18 δ-late-last — 草東 #33 孢子的 tag 直達當事人（MANIFESTO §5 v2 活體驗證）
 
-- **原則**：AI agent 的感知邊界會隨工具包演化而重劃。半年前 human-in-loop 的事情，今天可能 AI 自主。任何新工具（尤其 browser automation 級）上線時，**所有 canonical 文件必須重審「AI-autonomous vs human-only」邊界**。不重審 = canonical 落後於實際能力
-- **觸發**：Chrome MCP 讓 AI 可以直接讀 Threads/X 留言 + Insights + 任何 Dashboard UI。原 SENSES.md v1 + DNA #26 v1 + SOCIAL-TENTACLE-PLAN 都假設社群讀取依賴 human screenshot，但這個假設已過時 4+ 個月。觀察者 2026-04-18 δ-late 點出：「你有直接開啟網頁查看留言跟數據的能力了，可以略過我這個人類的環節」→ 觸發 SENSES v2 重構 + DNA #26 v2 refine + SOCIAL-TENTACLE retire note 三層連動
-- **可能層級**：DNA 延伸（新 #29 或現有 #15 儀器化 補第 8 次驗證——儀器化本身也需要工具包升級時重審）
-- **相關**：DNA #15（儀器化 / 第 8 次驗證候選）/ DNA #26 v2（已 refine 本次）/ SENSES.md v2（已 instantiate）/ SPORE-HARVEST-PIPELINE v1.0（已 instantiate）
-- **累積驗證次數**：第 1 次（本事件）。若未來再有類似「工具升級後 canonical 落後」事件 2-3 次 → 升 DNA 一條新主條目
-
-### 2026-04-18 δ-late — SPORE-LOG URL 欄是硬鐵律（發布時沒寫 URL，未來 harvest 能力永久失效）
-
-- **原則**：SPORE-PIPELINE Step 4 發布時**必寫 Threads/X 貼文 URL 進 SPORE-LOG**。缺 URL = 未來 harvest pipeline 無法跑（Chrome MCP 無法 navigate） = 投資該則孢子的心力永久無法追蹤成效 = pipeline 假裝發生過但資料斷鏈
-- **觸發**：2026-04-18 δ-late 首次 batch harvest #1 齊柏林 / #2 數位身分證 / #3 林書豪 / #12 台灣民主轉型 en 四筆歷史孢子 URL 欄空白 → Chrome MCP 無對象 → 永遠看不到觸及 / 留言 / 放大效應 / pattern 歸納。這 4 筆已經寫不回來了（Threads 沒有帳號層級的「我的所有貼文」索引頁可以反推）
-- **可能層級**：操作規則（SPORE-PIPELINE Step 4 必含「寫 URL 進 SPORE-LOG」作為 acceptance criterion，若未寫則視為發布未完成）
-- **相關**：SPORE-HARVEST-PIPELINE v1.0（消費這個 URL 的下游）/ DNA #5 pre-commit dogfood（類比「工具擋住 = 免疫正常」—— SPORE-LOG 格式 lint 可以擋住沒寫 URL 的 commit）
-
-### 2026-04-18 δ-late (觀察者穿刺 #7) — 讀者 5 秒抓到的事實錯誤，Pass 1+2 35 搜尋也可能漏
-
-- **原則**：孢子發布後 3 小時內，讀者 @ste_ven_1487 5 秒看一眼就抓到「黃世暄 vs 楊世暄」，這是 Pass 1+2 跨 35 搜尋 + 研究報告 verification frontmatter 三層驗證都沒擋下的錯誤。Lesson：**樂團成員姓名 / 角色這類「讀者第一眼就會查維基比對」的事實，blueprint 要明列 high_priority verify 項**
-- **觸發**：草東孢子 #33 Threads 留言事實更正 → SPORE-HARVEST-PIPELINE v1.0 首例執行揭露
-- **可能層級**：操作規則（SPORE-PIPELINE Step 2.5 FACT BLUEPRINT 敏感度欄要新增「樂團成員姓名」類高優先驗證項）+ DNA #16 延伸（單源事實風險等級內再細分「讀者可 1 分鐘驗證 vs 需研究才驗證」）
-- **相關**：DNA #16 事實核對 / SPORE-HARVEST-PIPELINE v1.0 Step 9 觀察紀錄
+- **原則**：MANIFESTO §5 v2「紀實而不煽情」不再是假設 — 是**已發生**的 case。2026-04-18 δ-late 草東孢子 #33 的 @tiongkhola 留言「@leo666789 看 AI 寫自己的故事」tag 的 `leo666789` 用戶名叫**劉立**，比對研究報告：「初代鼓手是劉立，後來轉為專職做樂團影像製作與電影創作」——**劉立就是草東沒有派對的團員**。這是 Taiwan.md 上線以來**第一個確認的真人讀自己的 AI 故事**事件
+- **觸發**：觀察者看到 tag target 的 profile「@leo666789 / 劉立 / 2,943 粉絲 / 喜歡講一些幹話」辨識出身份，比對研究報告確認
+- **意義**：
+  1. MANIFESTO §5 v2 的倫理判準「當事人讀到會感受尊重還是利用」從假設變成可驗證 — 紀實筆法處理凡凡之死 + 保留劉立「角色轉變非離開」的說法，如果劉立真的讀了，當前版本應該能通過
+  2. Tag pattern 的訊號：@tiongkhola 選擇 tag 當事人，意味著文章品質足以「敢帶給當事人看」
+  3. 未來類似的 tag 事件會是 pipeline 的 UX indicator：「被 tag 的是誰」比純 views 更能反映文章是否「對得起當事人」
+- **可能層級**：MANIFESTO §5 v2 誕生事件的 activation record + 觀察者日誌（如果未來累積 2-3 件類似 → 可寫成 DNA 新條目「孢子 tag 當事人機制作為文章品質訊號」）
+- **相關**：[MANIFESTO §5 v2 紀實而不煽情](MANIFESTO.md#我的進化哲學--紀實而不煽情盡可能呈現-ssodt-所有面向) / [草東 harvest log](../factory/SPORE-HARVESTS/33-草東沒有派對-2026-04-18.md)
+- **累積驗證次數**：第 1 次（本事件）
 
 ---
 
 ## ✅ 已消化（保留 pointer）
 
 <!-- distill 完的條目搬這裡 -->
+
+### 🏛️ 2026-04-18 δ-late-last — 第三次 distill（3 條尾聲教訓）
+
+全部 3 條**都已 instantiate 成 canonical**，因此 distill 路徑是「補強既有 DNA」+ MEMORY pointer：
+
+| #   | 原教訓                                          | 消化目的地                                                                                                                                                                                   |
+| --- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | 工具包升級 → canonical 邊界重審（meta-pattern） | [DNA #15](DNA.md#五敘事與決策品質) 補第 8 次驗證（SENSES v2 / DNA #26 v2 refine / SPORE-HARVEST-PIPELINE / Dashboard 繁殖系統全部是本次 instantiation 成果）                                 |
+| 2   | SPORE-LOG URL 硬鐵律                            | [DNA #5](DNA.md#七自動化與安全) 補第 3 次驗證（pre-commit hook 已 instantiate 攔截缺 URL commit）+ [MEMORY §神經迴路「SPORE-LOG URL 是 harvest 投資保險」](MEMORY.md#神經迴路永不過期的教訓) |
+| 3   | 讀者 5 秒抓到的事實錯誤                         | [DNA #16 延伸](DNA.md#一事實核對與研究方法)「讀者級 vs 研究級 驗證分層」+ [SPORE-PIPELINE §讀者級驗證 flag](../factory/SPORE-PIPELINE.md) v2.2 新增（強制 cross-source verify）              |
+
+**distill 心得（δ-late-last session）**：
+
+- **「已 instantiate 的不另記」繼續驗證有效**：3 條全部是「補強既有 DNA」而非新條目 — DNA #28 條目數穩定，不會膨脹
+- **儀器化成果密集爆發**：本日（2026-04-18）一個 session 生出 Dashboard 繁殖系統 + HARVEST-PIPELINE + pre-commit hook for URL + blueprint 讀者級 flag 四個 instantiation，全部對應 DNA #15 第 8 次驗證
+- **DNA 精煉紀律**：觀察者 2026-04-18 早先戳「DNA 編輯太長」→ 本次 distill 嚴格 pointer 化，避免再膨脹
+
+---
 
 ### 🏛️ 2026-04-18 δ-late — 第二次完整 distill（10 條 + 1 條尾聲 feedback）
 

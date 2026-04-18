@@ -174,6 +174,24 @@ DIARY 記我想過的事。
   - 如果仍 <100 → 是 hreflang / sitemap / canonical 結構問題，需要 `src/layouts/Layout.astro` hreflang audit
   - 如果介於 100-500 → 兩者都有
 
+### EXP-2026-04-18-E | 繁殖器官 data-driven 分數穩定性
+
+- **預測**：繁殖器官分數升級為 data-driven 公式（contributor 40% + spore activity 35% + engagement quality 25%）後，**滿分 100 的狀態可穩定持續 ≥ 7 天**（到 2026-04-25），**除非中間無新孢子發布**
+- **根據**：2026-04-18 當下指標（42 contributors / 29 spores in 2w / avg 82K views / hasBlockbuster=true）遠超閾值，短期不可能掉分
+- **驗證方法**：
+  - 每日 refresh-data.sh 自動重算 reproduce score（`dashboard-organism.json`）
+  - 2026-04-25 心跳時檢查分數 + 各子成分（contributor/sporeActivity/engagementQuality）
+  - 若分數從 100 → 80 以下，拆子成分找哪個下降
+- **驗證日期**：2026-04-25（D+7 觀察期）
+- **反駁條件**：
+  - 分數穩定在 85-100：**命中**（公式設計合理，滿分不是僥倖）
+  - 分數 60-85：**部分反駁**（sporeActivity 因孢子密度下降被扣分，符合設計但也揭露公式對「沒發新孢子」過度敏感）
+  - 分數 < 60：**反駁**（公式有 bug 或指標不穩，需重算）
+- **副線觀察**：
+  - `recentSpores` 欄位若跌至 < 3 → 表示 7 天無新孢子發布，是早期預警
+  - `hasBlockbuster` 轉 false → engagement quality 從 25 減到 12，值得記錄
+- **相關**：[scripts/core/generate-dashboard-data.js reproduceScore 算法](../../scripts/core/generate-dashboard-data.js) + [Dashboard 繁殖系統 section](../../src/templates/dashboard.template.astro)
+
 ---
 
 ## 已驗證（歷史）

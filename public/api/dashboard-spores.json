@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-04-18T12:13:12.953964Z",
-  "schemaVersion": "1.0",
+  "lastUpdated": "2026-04-18T12:34:33.505636Z",
+  "schemaVersion": "1.1",
   "totals": {
     "count": 34,
     "platforms": {
@@ -215,70 +215,6 @@
   },
   "backfillWarnings": [
     {
-      "n": 2,
-      "article": "齊柏林",
-      "platform": "threads",
-      "publishedDays": 25,
-      "status": "OVERDUE",
-      "url": null
-    },
-    {
-      "n": 1,
-      "article": "數位身分證與個資爭議",
-      "platform": "threads",
-      "publishedDays": 25,
-      "status": "OVERDUE",
-      "url": null
-    },
-    {
-      "n": 3,
-      "article": "林書豪",
-      "platform": "threads",
-      "publishedDays": 14,
-      "status": "OVERDUE",
-      "url": null
-    },
-    {
-      "n": 12,
-      "article": "台灣民主轉型",
-      "platform": "threads",
-      "publishedDays": 11,
-      "status": "OVERDUE",
-      "url": null
-    },
-    {
-      "n": 20,
-      "article": "台灣動物用藥爭議",
-      "platform": null,
-      "publishedDays": 8,
-      "status": "OVERDUE",
-      "url": null
-    },
-    {
-      "n": 19,
-      "article": "台灣動物用藥爭議",
-      "platform": null,
-      "publishedDays": 8,
-      "status": "OVERDUE",
-      "url": null
-    },
-    {
-      "n": 18,
-      "article": "台灣國防與軍事現代化",
-      "platform": null,
-      "publishedDays": 8,
-      "status": "OVERDUE",
-      "url": null
-    },
-    {
-      "n": 17,
-      "article": "台灣國防與軍事現代化",
-      "platform": null,
-      "publishedDays": 8,
-      "status": "OVERDUE",
-      "url": null
-    },
-    {
       "n": 22,
       "article": "鄭麗文",
       "platform": "threads",
@@ -311,14 +247,6 @@
       "url": "https://x.com/taiwandotmd/status/2043538858886017091"
     },
     {
-      "n": 25,
-      "article": "張懸與安溥",
-      "platform": "threads",
-      "publishedDays": 5,
-      "status": "waiting",
-      "url": "https://www.threads.com/@taiwandotmd/post/DXDq1FZkddO"
-    },
-    {
       "n": 24,
       "article": "韓國瑜",
       "platform": "threads",
@@ -327,12 +255,74 @@
       "url": "https://www.threads.com/@taiwandotmd/post/DXDpQqyETkf"
     },
     {
-      "n": 30,
-      "article": "李洋（v3 場景修正）",
-      "platform": "x",
+      "n": 28,
+      "article": "李洋（⚠️ 已撤回）",
+      "platform": "threads",
       "publishedDays": 4,
       "status": "waiting",
-      "url": "https://x.com/taiwandotmd/status/2043976162813325344"
+      "url": "https://www.threads.com/@taiwandotmd/post/DXGo_9REaGS"
+    },
+    {
+      "n": 34,
+      "article": "草東沒有派對（v2.1 首例）",
+      "platform": "x",
+      "publishedDays": 0,
+      "status": "waiting",
+      "url": "https://x.com/taiwandotmd/status/2045412116665172331"
+    },
+    {
+      "n": 33,
+      "article": "草東沒有派對（v2.1 首例）",
+      "platform": "threads",
+      "publishedDays": 0,
+      "status": "waiting",
+      "url": "https://www.threads.com/@taiwandotmd/post/DXQ_in_Ew0_"
+    },
+    {
+      "n": 32,
+      "article": "Cicada（inline 連結實驗）",
+      "platform": "x",
+      "publishedDays": 0,
+      "status": "waiting",
+      "url": "https://x.com/taiwandotmd/status/2045363785347612934"
+    },
+    {
+      "n": 31,
+      "article": "Cicada（inline 連結實驗）",
+      "platform": "threads",
+      "publishedDays": 0,
+      "status": "waiting",
+      "url": "https://www.threads.com/@taiwandotmd/post/DXQph5okwOu"
+    }
+  ],
+  "noUrlHistorical": [
+    {
+      "n": 12,
+      "article": "台灣民主轉型",
+      "platform": "threads",
+      "publishedDays": 11,
+      "status": "NO_URL"
+    },
+    {
+      "n": 3,
+      "article": "林書豪",
+      "platform": "threads",
+      "publishedDays": 14,
+      "status": "NO_URL"
+    },
+    {
+      "n": 2,
+      "article": "齊柏林",
+      "platform": "threads",
+      "publishedDays": 25,
+      "status": "NO_URL"
+    },
+    {
+      "n": 1,
+      "article": "數位身分證與個資爭議",
+      "platform": "threads",
+      "publishedDays": 25,
+      "status": "NO_URL"
     }
   ],
   "weeklyPulse": [

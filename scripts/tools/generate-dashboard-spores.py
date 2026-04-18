@@ -384,12 +384,20 @@ def compute_amplification(entries):
 
 
 def compute_backfill_warnings(entries, today_iso=None):
-    """Flag spores published >= 7 days ago without 7d metrics."""
+    """Flag spores published >= 7 days ago without 7d metrics.
+
+    v1.1 (2026-04-18 δ-late): 明確排除以下三類不算 warning：
+    - 待發（platform 空白 / 不在 threads/x 清單）→ 尚未發布，不需 backfill
+    - 歷史無 URL（#1/#2/#3/#12 SPORE-LOG 早期缺 URL）→ 無法 harvest，搬到
+      no_url_historical 分類讓 dashboard 分開顯示
+    - 已 backfilled（有 views_7d 或 engagements_7d）→ 不算 warning
+    """
     if today_iso:
         today_dt = datetime.fromisoformat(today_iso).date()
     else:
         today_dt = datetime.now(TPE).date()
     warnings = []
+    no_url_historical = []
     for e in entries:
         if not e.get("date"):
             continue
@@ -398,24 +406,39 @@ def compute_backfill_warnings(entries, today_iso=None):
         except ValueError:
             continue
         days_ago = (today_dt - pub_date).days
-        if days_ago < 7:
-            status = "waiting"
-        elif e.get("views_7d") or e.get("engagements_7d"):
-            status = "backfilled"
-        else:
-            status = "OVERDUE"
-        if status in ("waiting", "OVERDUE"):
-            warnings.append({
+
+        # 待發（platform 空白 / 非 threads/x）→ 不算 warning
+        platform = (e.get("platform") or "").lower()
+        if platform not in ("threads", "x"):
+            continue
+
+        # 已 backfilled → 不算 warning
+        if e.get("views_7d") or e.get("engagements_7d"):
+            continue
+
+        # 歷史無 URL → 搬到 no_url_historical（不算 OVERDUE）
+        if not e.get("url"):
+            no_url_historical.append({
                 "n": e["n"],
                 "article": e["article"],
-                "platform": e["platform"],
+                "platform": platform,
                 "publishedDays": days_ago,
-                "status": status,
-                "url": e["url"],
+                "status": "NO_URL",
             })
-    # Sort by OVERDUE first, then publishedDays desc
+            continue
+
+        status = "waiting" if days_ago < 7 else "OVERDUE"
+        warnings.append({
+            "n": e["n"],
+            "article": e["article"],
+            "platform": platform,
+            "publishedDays": days_ago,
+            "status": status,
+            "url": e["url"],
+        })
+
     warnings.sort(key=lambda w: (0 if w["status"] == "OVERDUE" else 1, -w["publishedDays"]))
-    return warnings[:15]
+    return {"warnings": warnings[:15], "noUrlHistorical": no_url_historical}
 
 
 def compute_weekly_pulse(entries, weeks=8):
@@ -496,15 +519,17 @@ def main():
 
     harvest_map = collect_harvests()
 
+    bf = compute_backfill_warnings(entries)
     result = {
         "lastUpdated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-        "schemaVersion": "1.0",
+        "schemaVersion": "1.1",
         "totals": compute_totals(entries),
         "recent": compute_recent(entries, 5),
         "topPerformers": compute_top_performers(entries, 5),
         "amplification": compute_amplification(entries),
         "platformComparison": compute_platform_comparison(entries),
-        "backfillWarnings": compute_backfill_warnings(entries),
+        "backfillWarnings": bf["warnings"],
+        "noUrlHistorical": bf["noUrlHistorical"],
         "weeklyPulse": compute_weekly_pulse(entries, 8),
         "harvestStatus": compute_harvest_status(entries, harvest_map),
     }
@@ -513,8 +538,11 @@ def main():
     TARGET.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"✅ spore dashboard: {result['totals']['count']} spores, "
-          f"top performer {result['topPerformers'][0]['views'] if result['topPerformers'] else 0:,} views, "
-          f"{len(result['backfillWarnings'])} backfill warnings")
+          f"top {result['topPerformers'][0]['views'] if result['topPerformers'] else 0:,} views, "
+          f"{len(result['backfillWarnings'])} warnings "
+          f"({sum(1 for w in result['backfillWarnings'] if w['status']=='OVERDUE')} OVERDUE / "
+          f"{sum(1 for w in result['backfillWarnings'] if w['status']=='waiting')} waiting), "
+          f"{len(result['noUrlHistorical'])} no-URL historical")
     print(f"   → {TARGET.relative_to(REPO_ROOT)}")
 
 

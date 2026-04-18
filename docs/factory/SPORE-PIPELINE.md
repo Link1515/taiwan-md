@@ -203,6 +203,10 @@ cat docs/editorial/EDITORIAL.md
 - `single_source` — **強制**進 Step 2.6 跨源驗證
 - `unverified` — **強制**驗證，不通過就從 blueprint 移除
 
+### 讀者級驗證 flag（v2.2 新增，2026-04-18 δ-late 草東 #33 貝斯手名字錯教訓）
+
+除了信度層，blueprint 還要標「**讀者級 vs 研究級**」驗證優先度。讀者級事實 = **讀者第一眼會查維基比對**的 fact（樂團成員姓名 / 公開獎項年份 / 公開生日 / 地點座標）。這類事實即使 `high_confidence` 也**強制進 Step 2.6 跨源驗證**，因為讀者會在幾小時內抓到錯誤；研究 agent 不一定會覺得要特別 verify。對應 [DNA #16 延伸](../semiont/DNA.md#一事實核對與研究方法)。
+
 ### 敏感度標記觸發 Step 2.7（倫理審查）
 
 任一 bullet 打上「死亡 / 創傷 / 未成年 / 家暴 / 自殺 / 精神疾病 / 個資 / 族群議題」→ 必過 Step 2.7 才能寫。

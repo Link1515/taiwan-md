@@ -1575,15 +1575,29 @@ const isEn = lang === 'en';
       }
     }
 
-    // 2.5 Backfill warnings
+    // 2.5 Backfill warnings + no-URL historical footer
     const bf = document.getElementById('spores-backfill');
     if (bf) {
       const warnings = (s.backfillWarnings || []).slice(0, 10);
+      const noUrl = s.noUrlHistorical || [];
+      const noUrlFooter =
+        noUrl.length > 0
+          ? '<p class="muted" style="margin-top:0.8rem;font-size:0.8rem">🔒 ' +
+            (isEn
+              ? noUrl.length +
+                ' historical spore(s) lack URL (permanent harvest gap): '
+              : noUrl.length + ' 筆歷史孢子缺 URL（永久 harvest 缺口）：') +
+            noUrl
+              .map((w) => '#' + w.n + ' ' + (w.article || '').slice(0, 10))
+              .join(' / ') +
+            '</p>'
+          : '';
       if (warnings.length === 0) {
         bf.innerHTML =
           '<p class="muted">' +
           (isEn ? 'All caught up.' : '全部回填完畢。') +
-          '</p>';
+          '</p>' +
+          noUrlFooter;
       } else {
         bf.innerHTML =
           '<ul class="spore-backfill-list">' +
@@ -1618,7 +1632,8 @@ const isEn = lang === 'en';
               );
             })
             .join('') +
-          '</ul>';
+          '</ul>' +
+          noUrlFooter;
       }
     }
 

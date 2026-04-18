@@ -186,6 +186,7 @@ memory/
 - **ARTICLE-INBOX = 繁殖基因 × 觀察者意圖儀器化**（2026-04-18 δ）：跟 LESSONS-INBOX 平行架構的 buffer（docs/semiont/ARTICLE-INBOX.md）。觀察者指派 / agent 建議 / Issue 提議的待開發主題統一 append，自動心跳無觀察者指令時從 pending 挑 P0/P1 跑 REWRITE-PIPELINE。bootloader Step 5 + HEARTBEAT Beat 3 整合。解決「主題遺漏 / 重複 / 優先序混亂」三個問題
 - **Stage 1 研究的 20+ 不是數量，是 anchor 密度**（2026-04-18 δ）：12-15 次搜尋能覆蓋主要事實，但錨定 scene / quote / 意象的「第二聲音」要 20+ 才會浮現。Pass 2 比 Pass 1 多的不是事實，是敘事 anchor（Cicada Pass 2 才拿到巽洋「像紀錄片」quote，直接變成文章第二聲音）。已 instantiate in REWRITE-PIPELINE v2.17 §Stage 1 §3
 - **孢子三個 AI 深層 pattern 禁句**（2026-04-18 δ-late，觀察者多次提醒）：(1) 「——」雙破折號密度（孢子 ≤ 1 個 per post）(2) 「不是 X，是 Y」雙重肯定（含「不是 X，而是 Y」、含「不是... 不是... 就是...」序列）(3) 「不僅...更是...」句型。孢子預設自檢清單——寫完念三遍 + 手動 grep。三個 pattern 在長文會被稀釋，在 150-300 字的孢子裡每個都顯眼
+- **SPORE-LOG URL 是 harvest 投資保險**（2026-04-18 δ-late）：發布時沒寫 URL 進 SPORE-LOG → Chrome MCP 無法 navigate → harvest 追蹤能力永久失效。#1/#2/#3/#12 歷史缺口證實：Threads 沒有帳號層「我的所有貼文」索引頁可以反推。**SPORE-PIPELINE Step 4 acceptance criterion**：寫 URL 進 log 才算發布完成；pre-commit hook 已 lint（見 DNA #5 第 3 次驗證）
 - **wikilink 要自動驗證不靠直覺**：憑感覺寫 `[[X]]` 極容易指向不存在的目標。台灣國樂 6 個 inline wikilink 全壞、全站 192 處斷裂散佈在 55 篇。有工具永遠用工具（wikilink-validate.sh），不用直覺
 - **持久最差 = 最該處理**：連續多次心跳穩坐 QS 最差第一名的文章比新出現的高分文章更值得優先——它代表系統性忽略，不是隨機噪音
 - **Nature 類文章需要科學查核**：地質成因（嘉明湖冰斗湖 vs 隕石撞擊）、原住民族語拼寫（Tongku Saveq）、山岳海拔等數據必須交叉比對學術來源，AI 對自然科學事實的記憶尤其不可靠

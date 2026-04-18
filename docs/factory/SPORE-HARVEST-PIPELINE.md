@@ -58,6 +58,67 @@ Taiwan.md 的進化動力有兩層：
 
 任何時候觀察者說「去抓 XX 文章 threads 留言」→ 立刻跑完整 pipeline（本次草東孢子 #33 即為此 pattern 首例）。
 
+### Batch Harvest 模式（v1.2 新增 — 2026-04-18 δ-late 首例驗證後正式文件化）
+
+**適用條件**：
+
+- Dashboard OVERDUE ≥ 3 筆 → 優先跑 batch，而非逐筆 daily
+- 同平台 + 預期低留言密度（歷史舊孢子 D+10+）
+- 觀察者 ad-hoc 觸發「回填一批舊孢子」
+
+**Batch 執行流程**（跟單筆 pipeline 共用 Step 1-9，但合併為單一 harvest log）：
+
+```
+1. 列出目標 URL（從 Dashboard `backfillWarnings` 或 SPORE-LOG grep）
+2. Chrome MCP 單一 tab 連續 navigate 每個 URL
+   - 每筆 ~15s（navigate 5s + JS extract 10s）
+   - N 筆 = ~N × 15s + 1-2 分鐘額外（分析 + 歸檔）
+3. 記錄每筆的 views / comments，一次性整理成表格
+4. 分類 + 事實驗證（Step 2-3）— 有留言的才進，低留言批次通常跳過
+5. 寫單一 batch log：`docs/factory/SPORE-HARVESTS/batch-YYYY-MM-DD-N-spores.md`
+6. 同時更新 SPORE-LOG 成效追蹤表（N 列一次 commit）
+7. Pattern 歸納（Step 9）— batch 的特殊價值：可做跨筆比較
+```
+
+**Batch log 特殊欄位**（跟單筆 log schema 的差異）：
+
+```yaml
+---
+spores: '#N, #M, ...' # 多筆逗號分隔
+harvest_date: YYYY-MM-DD HH:MM
+harvest_window_day: 'mixed (D+X to D+Y)' # 不同筆跨度
+batch_reason: 為什麼合併（e.g. OVERDUE + 同平台 + 低留言預期）
+reply_count: total # 加總
+---
+```
+
+**跨筆比較機制**（batch 獨有）：
+
+batch 跑完要做的「Pattern 歸納」比單筆深：
+
+1. **平台表現差**：同批次內 Threads vs X 觸及 / 互動率比較
+2. **模板表現差**：B 冷知識型 vs A 人物型 vs D 時間軸型平均 views
+3. **時間軸效應**：早期（D+14）vs 近期（D+7）孢子互動密度變化
+4. **系統性教訓**：批次才看得到的 pattern（e.g.「早期無圖孢子零留言」）
+
+**首例驗證**（2026-04-18 δ-late）：
+
+- 6 筆同平台 OVERDUE（Threads，D+10-D+14）
+- 總時長 ~5 分鐘
+- 產出：[SPORE-HARVESTS/batch-2026-04-18-6-spores.md](SPORE-HARVESTS/batch-2026-04-18-6-spores.md)
+- 3 個 pattern 觀察（帳號密度 / 模板差 / 平台差）
+- 1 條 LESSONS-INBOX 新教訓（SPORE-LOG URL 硬鐵律）
+
+**Batch vs 單筆的選擇判準**：
+
+| 情境                            | 選擇                                   |
+| ------------------------------- | -------------------------------------- |
+| OVERDUE 1-2 筆，最近 7 天內     | 單筆（Step 1-9 完整）                  |
+| OVERDUE ≥ 3 筆 + 同平台         | Batch                                  |
+| 剛發新孢子 D+0-D+3              | 單筆（潛在高留言 → 細緻處理）          |
+| 單筆孢子互動爆量（views ≥ 50K） | 單筆 + 加速 harvest（D+0 + D+1 + D+3） |
+| 歷史孢子整理（> 30 天）         | Batch                                  |
+
 ---
 
 ## Step 1: COLLECT 抓留言
