@@ -23,9 +23,13 @@
 ### 結尾（v2.0 更新）
 
 - **連結處理**：Threads/X 演算法會壓含連結貼文的觸及。三種方案 A/B 測試中（詳見 [SOCIAL-TENTACLE-PLAN §二](../semiont/SOCIAL-TENTACLE-PLAN.md)）。預設用方案 B（純故事 + 自己 reply 放連結）
-- URL 必須完整（中文 slug 要 encode）+ **必須加 UTM**：`?utm_source=threads&utm_medium=spore&utm_campaign=s{number}`
+- **URL 強制規則**（v1.6 新增，2026-04-18 δ-late 草東 #33/#34 觀察者修正）：
+  - **必須 `https://` 前綴**。不可用 bare TLD（`taiwan.md/...`）— Threads/X 雖多半會 auto-linkify，但某些 app 版本/貼上情境會斷連結
+  - 中文 slug 必須 URL-encode（`草東沒有派對` → `%E8%8D%89%E6%9D%B1%E6%B2%92%E6%9C%89%E6%B4%BE%E5%B0%8D`）
+  - 必須加 UTM：`?utm_source=threads&utm_medium=spore&utm_campaign=s{number}`
+  - **UTM 的 `{number}` 對應 SPORE-LOG 該則 entry 編號**；Threads + X 是兩個獨立 entry → 兩個不同 s{n}
 - 不加 hashtag（最多 2-3 個，通常不加）
-- 格式：`taiwan.md/{category}/{slug}/?utm_source=...`（不用「完整故事 👉」前綴）
+- 格式：`https://taiwan.md/{category}/{slug}/?utm_source=...`（不用「完整故事 👉」前綴）
 
 ### 可選互動收尾
 

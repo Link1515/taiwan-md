@@ -10,6 +10,8 @@
 
 | #   | 日期       | 語言 | 平台    | 文章 slug                 | 分類       | 模板        | URL                                                                                                                           |
 | --- | ---------- | ---- | ------- | ------------------------- | ---------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| 34  | 2026-04-18 | zh   | X       | 草東沒有派對（v2.1 首例） | people     | A2 首尾呼應 | [→](https://x.com/taiwandotmd/status/2045412116665172331) — **SPORE-PIPELINE v2.1 首例（blueprint + 跨源驗證 + 倫理閘）**     |
+| 33  | 2026-04-18 | zh   | Threads | 草東沒有派對（v2.1 首例） | people     | A2 首尾呼應 | [→](https://www.threads.com/@taiwandotmd/post/DXQ_in_Ew0_) — **SPORE-PIPELINE v2.1 首例（blueprint + 跨源驗證 + 倫理閘）**    |
 | 32  | 2026-04-18 | zh   | X       | Cicada（inline 連結實驗） | people     | A 人物型    | [→](https://x.com/taiwandotmd/status/2045363785347612934) — **實驗：inline link（非分兩篇）A/B**                              |
 | 31  | 2026-04-18 | zh   | Threads | Cicada（inline 連結實驗） | people     | A 人物型    | [→](https://www.threads.com/@taiwandotmd/post/DXQph5okwOu) — **實驗：inline link（非分兩篇）A/B**                             |
 | 30  | 2026-04-14 | zh   | X       | 李洋（v3 場景修正）       | people     | A2 首尾呼應 | [→](https://x.com/taiwandotmd/status/2043976162813325344) — **112K views / ~29h** 🔥 **X 史上最強孢子**                       |
