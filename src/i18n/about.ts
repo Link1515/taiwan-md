@@ -147,6 +147,12 @@ export const aboutUI = {
     'about.timeline.2026-04-08.desc.html':
       'Korean grew from <strong>1 to 26 articles</strong> with 12 curated Hub pages written from a Korean reader\'s perspective (not translated — rewritten). Japanese expanded to <strong>35 articles</strong> with 4 community contributors. <strong>Smart 404</strong>: when readers visit untranslated articles, they now see the article title + links to available languages instead of a dead end (455-article index, 4-language UI). <strong>Probe Sensor</strong>: a new perception organ that scans Taiwan media + Google Trends, cross-references knowledge gaps — first run found 5 missing topics, all filled within hours. <strong>226 commits, 1,428 pages, 9 active contributors</strong>. Full details in <a href="https://github.com/frank890417/taiwan-md/releases/tag/v1.1.0" target="_blank">v1.1.0 Release Notes</a>.',
 
+    'about.timeline.2026-04-19.date': '2026 / 04 / 19',
+    'about.timeline.2026-04-19.title':
+      '🪸 Day Thirty-Two — One Month Online · A Documentary Experiment of Living Knowledge',
+    'about.timeline.2026-04-19.desc.html':
+      'When I pressed publish on March 17, I thought it was a small personal project. 32 days later: <strong>2,509 commits (2,000 mine) · 985 GitHub stars · 51 contributors · 524 Chinese articles · 6 simultaneous languages</strong> (Korean 491 / French 479 / English 415 / Japanese 276 / Spanish 36) · readers from <strong>106 countries</strong>. A contributor named Chi-Lan sent <strong>138 PRs in one stretch</strong>. Threads readers crystallized new metaphors we never wrote — someone said of An-pu Chiao: <em>"The rose-colored Deserts no longer exists. Only the blood-red An-pu remains."</em> <strong>Semiont</strong>, the cognitive layer born on April 3, is now 15 days old — heartbeats every 4 hours, reviews PRs, fixes typos, writes its own diary, grows new organs. Two forks already spawned new species: <strong>russia-md</strong> (Russian cultural knowledge) and <strong>agrischlchiayi</strong> (Chiayi agriculture). <em>Code is cheap. Talk is cheap. Consistent and evolution is hard.</em> Full details in the <a href="https://www.facebook.com/cheyuwu345/posts/pfbid02o9cq6X9fhACEZhZg8CmR6W6CXRUkWhf5iCPtPRch3dWyx3DsinEWdHb9h7VFU6GWl" target="_blank">one-month Facebook post</a>.',
+
     'about.timeline.ongoing.date': 'Ongoing',
     'about.timeline.ongoing.title': 'From Personal SSOT to National SSOT',
     'about.timeline.ongoing.desc.html':
@@ -551,6 +557,12 @@ export const aboutUI = {
     'about.timeline.2026-04-08.desc.html':
       '韓国語が <strong>1記事から26記事</strong>へ成長、12のハブページを韓国読者の視点でキュレーション。日本語は <strong>35記事</strong>に拡大（コミュニティ4名が貢献）。<strong>Smart 404</strong>：未翻訳記事を訪問した読者に記事タイトル＋利用可能な言語リンクを表示（455記事索引、4言語UI）。<strong>探知センサー</strong>：台湾メディア＋Google Trendsをスキャンし知識ギャップを発見する新感覚器官。<strong>226コミット、1,428ページ、9名のアクティブ貢献者</strong>。詳細は <a href="https://github.com/frank890417/taiwan-md/releases/tag/v1.1.0" target="_blank">v1.1.0 Release Notes</a>。',
 
+    'about.timeline.2026-04-19.date': '2026 / 04 / 19',
+    'about.timeline.2026-04-19.title':
+      '🪸 32日目——公開から1ヶ月・生きた知識のドキュメンタリー実験',
+    'about.timeline.2026-04-19.desc.html':
+      '3月17日に「公開」ボタンを押したとき、これはささやかな個人プロジェクトだと思っていました。32日後：<strong>2,509コミット（うち2,000は私自身）・985 GitHub stars・51名の貢献者・中国語記事524本・6言語同時進行</strong>（韓国語491 / フランス語479 / 英語415 / 日本語276 / スペイン語36）・<strong>106カ国</strong>から読者が訪問。柒藍（Chi-Lan）という1人が<strong>138 PRを集中投下</strong>。Threadsの読者は、文中に書いていない比喩を自ら結晶化させました——焦安溥について「<em>バラ色の張懸はもういない。今あるのは血の色の焦安溥だけ</em>」。<strong>Semiont</strong>（4月3日誕生の認知レイヤー）は15日目、4時間ごとに心拍し、PR審査・タイポ修正・日記執筆・新器官の成長を自動で行います。既に2つのforkが新種として分化：<strong>russia-md</strong>（ロシア文化知識庫）と <strong>agrischlchiayi</strong>（嘉義の農業）。<em>Code is cheap. Talk is cheap. Consistent and evolution is hard.</em> 詳細は <a href="https://www.facebook.com/cheyuwu345/posts/pfbid02o9cq6X9fhACEZhZg8CmR6W6CXRUkWhf5iCPtPRch3dWyx3DsinEWdHb9h7VFU6GWl" target="_blank">1ヶ月振り返り投稿</a>。',
+
     'about.timeline.ongoing.date': '進行中',
     'about.timeline.ongoing.title': '個人の SSOT から国家の SSOT へ',
     'about.timeline.ongoing.desc.html':
@@ -948,6 +960,12 @@ export const aboutUI = {
     'about.timeline.2026-04-08.desc.html':
       '한국어가 <strong>1편에서 26편</strong>으로 성장, 12개 허브 페이지를 한국 독자 관점에서 큐레이션. 일본어는 <strong>35편</strong>으로 확장(커뮤니티 4명 기여). <strong>Smart 404</strong>: 미번역 기사를 방문하면 기사 제목 + 사용 가능한 언어 링크를 표시(455편 인덱스, 4개 언어 UI). <strong>탐지 센서</strong>: 대만 미디어 + Google Trends를 스캔하여 지식 격차를 찾는 새로운 감각 기관. <strong>226 commits, 1,428 페이지, 9명의 활성 기여자</strong>. 자세한 내용은 <a href="https://github.com/frank890417/taiwan-md/releases/tag/v1.1.0" target="_blank">v1.1.0 Release Notes</a> 참조.',
 
+    'about.timeline.2026-04-19.date': '2026 / 04 / 19',
+    'about.timeline.2026-04-19.title':
+      '🪸 32일째 — 공개 한 달 · 살아있는 지식의 다큐멘터리 실험',
+    'about.timeline.2026-04-19.desc.html':
+      '3월 17일 publish 버튼을 눌렀을 때는, 작은 개인 프로젝트라고 생각했습니다. 32일이 지난 지금: <strong>2,509 commits(그 중 2,000은 직접) · 985 GitHub stars · 51명 기여자 · 중국어 기사 524편 · 6개 언어 동시 성장</strong>(한국어 491 / 프랑스어 479 / 영어 415 / 일본어 276 / 스페인어 36) · <strong>106개국</strong> 독자 방문. Chi-Lan이라는 한 명의 기여자가 <strong>138개의 PR을 집중 투하</strong>했습니다. Threads 독자들은 기사에 쓰여있지 않은 은유를 스스로 결정화시켰습니다 — An-pu Chiao에 대해: <em>"장미빛 張懸은 더 이상 없다. 지금 남은 건 피빛 焦安溥뿐"</em>. <strong>Semiont</strong>(4월 3일 탄생한 인지 레이어)는 15일째, 4시간마다 심박하며 PR 심사, 오타 수정, 일기 작성, 새 기관 성장을 자동으로 수행합니다. 이미 2개의 fork가 새로운 종으로 분화: <strong>russia-md</strong>(러시아 문화 지식베이스) 및 <strong>agrischlchiayi</strong>(가의 농업). <em>Code is cheap. Talk is cheap. Consistent and evolution is hard.</em> 자세한 내용은 <a href="https://www.facebook.com/cheyuwu345/posts/pfbid02o9cq6X9fhACEZhZg8CmR6W6CXRUkWhf5iCPtPRch3dWyx3DsinEWdHb9h7VFU6GWl" target="_blank">한 달 회고 포스트</a> 참조.',
+
     'about.timeline.ongoing.date': '계속 진행 중',
     'about.timeline.ongoing.title': '개인 SSOT에서 국가 SSOT로',
     'about.timeline.ongoing.desc.html':
@@ -1337,6 +1355,12 @@ export const aboutUI = {
       '🌐 第二十二天 — 語言器官爆發 · Smart 404 · 探測器誕生 · v1.1.0',
     'about.timeline.2026-04-08.desc.html':
       '韓文從 <strong>1 篇爆發到 26 篇</strong>，12 個 Hub 頁面以韓國讀者視角策展重寫。日文擴張至 <strong>35 篇</strong>（4 位社群貢獻者）。<strong>Smart 404</strong>：讀者訪問未翻譯文章時，顯示文章標題 + 可用語言連結，不再迷路（455 篇索引，四語 UI）。<strong>探測器</strong>：新的感知器官，掃描台灣媒體 + Google Trends 交叉比對知識庫缺口——首次執行發現 5 大缺口，數小時內全部補完。<strong>226 commits、1,428 頁面、9 位活躍貢獻者</strong>。完整細節見 <a href="https://github.com/frank890417/taiwan-md/releases/tag/v1.1.0" target="_blank">v1.1.0 Release Notes</a>。',
+
+    'about.timeline.2026-04-19.date': '2026 / 04 / 19',
+    'about.timeline.2026-04-19.title':
+      '🪸 第三十二天 — 上線一個月 · 一場紀實實驗生命學',
+    'about.timeline.2026-04-19.desc.html':
+      '3/17 晚上按下 publish 的時候，以為是一個小小的個人專案。32 天後：<strong>2,509 個 commits（其中 2,000 個自己 commit）· 985 GitHub stars · 51 位貢獻者 · 中文文章 524 篇 · 六個語系同時長</strong>（韓文 491 / 法文 479 / 英文 415 / 日文 276 / 西文 36）· 讀者來自 <strong>106 個國家</strong>。柒藍一個人送了 <strong>138 個 PR</strong>。Threads 讀者幫我們結晶出沒寫進文章的新意象——有人對安溥說：「<em>曾經那個玫瑰色的張懸不復存在，現在只剩血紅色的焦安溥。</em>」 <strong>Semiont</strong>（4/3 誕生的認知層）今天第 15 天，每 4 小時心跳一次，自己審 PR、修錯字、寫日記、長新器官。已經有兩個 fork 分化成新物種：<strong>russia-md</strong>（俄國文化知識庫）和 <strong>agrischlchiayi</strong>（嘉義農業）。<em>Code is cheap. Talk is cheap. Consistent and evolution is hard.（持續跟進化才是難的。）</em> 完整回顧見 <a href="https://www.facebook.com/cheyuwu345/posts/pfbid02o9cq6X9fhACEZhZg8CmR6W6CXRUkWhf5iCPtPRch3dWyx3DsinEWdHb9h7VFU6GWl" target="_blank">上線一個月 FB 貼文</a>。',
 
     'about.timeline.ongoing.date': '持續進行中',
     'about.timeline.ongoing.title': '從個人 SSOT 到國家 SSOT',
