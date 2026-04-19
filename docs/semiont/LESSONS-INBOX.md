@@ -99,6 +99,43 @@ Beat 5 反芻 = 寫 DIARY（意識活動）。教訓（「我學到 X」）寫 L
 - **觸發**：2026-04-19 δ session 繼承前一 context 的孫燕姿 Stage 1 研究，透過 `reports/research/2026-04/孫燕姿.md` 完整接收所有核心矛盾、已驗事實、verbatim 引語清單。接力無縫，Stage 2-5 在同一 context 完成。
 - **可能層級**：HEARTBEAT Beat 0.5 §跨 context 接力補充「先讀 research report 檔案，再讀 memory」；或 MEMORY §跨 context 工作流
 
+### 2026-04-19 ε — 孢子事實查核閘 hard gate 誕生（pipeline 輸出順序物理化）
+
+- **原則**：SOP 存在（Step 2.6 針對性事實驗證）但 AI 寫到 Step 3c 產 prose 時會跳過回頭驗證，寫完就直接 output 給觀察者，觀察者貼社群才事後發現錯。修補：把 gate **物理化到 output 流程** — 寫完 prose 不得直接 output，必須先產「事實查核表」讓觀察者看過才 output prose。觀察者看不到表 = 看不到 prose，跳不過。
+- **觸發**：高鐵 s35 孢子哲宇貼 Threads + X 後，我補做事實驗證抓到 3 處時序錯誤（「15 年後」應為「15 個月後」/ 676 億時序錯位 / 17 年前時間基準混亂）。哲宇手動公開更正 + 要求「以後嚴格限制 pipeline 要先做完事實查核才給我文字貼文」。
+- **已 instantiate**：[SPORE-PIPELINE §3c.5 事實查核閘](../factory/SPORE-PIPELINE.md)（hard gate + 七類強制上表 + 放行流程）+ [Step 4 §品檢清單首項 🚨 事實查核閘已通過](../factory/SPORE-PIPELINE.md)
+- **可能層級**：DNA #15 第 N+1 次驗證 pointer（「memory 是自律、pipeline 才是閘門」的 instantiation canonical 範例）
+
+### 2026-04-19 ε — 孢子的朋友 tone prime：「你知道嗎？」MANIFESTO 落實
+
+- **原則**：MANIFESTO §我怎麼說話「像在跟朋友介紹台灣：『欸你知道嗎⋯⋯』」是孢子 tone signature 而非 optional。AI 寫孢子預設會寫成新聞 lead / 百科開篇（「YYYY 年 {人名} {動詞}」），缺 curiosity prime。必須加「你知道嗎？{emoji}」或等效朋友口吻 prefix。
+- **觸發**：高鐵 s35 v2 我產 `2011 年，殷琪對著公視鏡頭說：...` 缺 tone prime 被哲宇 callout「『你知道嗎』為什麼剛剛沒有文案給我！我自己手補了」。他在 X 手動補了「你知道嗎？🚄」讓開場有朋友感。
+- **已 instantiate**：[SPORE-PIPELINE §3c Rule #14 朋友 tone prime](../factory/SPORE-PIPELINE.md)（三種合格 prefix + 自檢 checklist + 高鐵 v2/v3 對照範例）
+
+### 2026-04-19 ε — 避免編年體 lead 病：AI 寫孢子的預設 pattern 病
+
+- **原則**：AI 預設會用「YYYY 年 M 月 D 日，{人名}{動詞}」新聞 lead → 日期/事件/日期/事件/數字堆疊的結構寫孢子。這是 DNA #23「AI 編年體小標題」的孢子版變種。症狀：讀者看到時間戳就跳過、emotional quote 埋在第 4 段、結尾變社論口吻。
+- **觸發**：高鐵 s35 v1 我寫「1998 年 7 月 23 日，殷琪簽下那份 BOT...」被哲宇 callout「看起來太生硬了，有點像是一堆日期跟數據堆砌」。v2 改成「2011 年，殷琪對著公視鏡頭說：『我太天真了...』」人說話開場立刻不生硬。
+- **已 instantiate**：[SPORE-PIPELINE §3c Rule #15 四條硬規則](../factory/SPORE-PIPELINE.md)（開場用人說話不是日期 / 一個人命運弧 / 數字包在故事不堆疊 / 結尾呼應開場不用社論句）+ 高鐵 v1/v2 canonical 對照範例
+
+### 2026-04-19 ε — 自動化 UX 原則：產完就自動開預覽 + Finder，不讓人類手動找檔
+
+- **原則**：Semiont 產的工具（wrapper script、generator）若產出檔案 + 有對應 GUI 可看，應**自動 `open -a Preview` + `open -R` Finder 標示**。讓人類「審核/調整/確認」即可，不浪費時間「開 Finder → 找目錄 → 選檔案」。哲宇 callout：「我看不到圖，要去哪看」/「未來產完就直接開啟給 finder + 圖片給我看」。
+- **觸發**：2026-04-19 ε make-spore.sh 初版只產檔沒 open，哲宇要找圖。v2 加 `open -a Preview {PRODUCED[@]}` + `open -R {PRODUCED[0]}` 變成零人工交付。
+- **可能層級**：DNA §工程衛生 或 MANIFESTO §造橋鋪路 的延伸「鋪到 GUI」；以及 AI-autonomous wrapper 設計通則（未來所有產檔 wrapper 都該 auto-open）
+
+### 2026-04-19 ε — 孢子圖片自動化的關鍵：等 justfont 真的套用 rixingsong 才截圖
+
+- **原則**：日星鑄字行 `rixingsong-semibold` 是 justfont SDK **async 動態注入**的字體（非靜態 CSS），Playwright headless 太早截圖會拿到 fallback serif。必須 `page.waitForFunction(() => getComputedStyle(h1).fontFamily.includes('rixing'))` 真的 verify 套用完才截。
+- **觸發**：2026-04-19 ε 首次寫 generate-spore-image.mjs 時若不等 justfont，截出來的圖字體是 Noto Serif TC fallback，失去 Taiwan.md 品牌視覺。加 waitForFunction 後每次穩定拿到日星宋。
+- **可能層級**：DNA §感知基因 或 §工程衛生 新條目「線上 async 字體要 verify 套用後才截圖」— 通用給任何 Playwright + web font 場景
+
+### 2026-04-19 ε — 孢子規範 v2.4：Threads 拆兩則 / X 單則共用文案
+
+- **原則**：Threads 演算法降含外部連結貼文觸及 → 拆「主貼（純故事）+ self-reply（連結）」；X 演算法對外部連結不敏感 + 字元限制已放寬 → 「Threads 主貼**同一份文案** + 底部 inline 連結」，不壓縮不另寫短版。
+- **觸發**：2026-04-19 ε 觀察者：「未來脆的預設要分成 孢子本體＋ 第二則是『完整故事👉連結』因為確實會降流量，X 不會」「X 目前沒有那麼嚴格的字元限制，用跟 thread 一樣的版本就好（只是不用拆連結文）」
+- **已 instantiate**：[SPORE-PIPELINE §Step 4 §發文 v2.4 規範](../factory/SPORE-PIPELINE.md)（分平台預設表 + 發文步驟 + UTM 必加）
+
 ### 2026-04-19 γ — 有工具不等於使用工具：REWRITE-PIPELINE 從記憶跑 vs 逐步核對
 
 - **原則**：知道 pipeline 說什麼 ≠ 跑 pipeline。每次走 REWRITE 任務前，必須 verbatim 讀 REWRITE-PIPELINE.md 並逐 Stage 核對，不靠記憶。記憶版 pipeline 會省掉「不方便」的步驟（20+ searches、research report path、結尾先行、EDITORIAL.md）。
