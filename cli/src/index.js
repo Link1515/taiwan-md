@@ -15,6 +15,17 @@ import { ragCommand } from './commands/rag.js';
 import { contributeCommand } from './commands/contribute.js';
 import { validateCommand } from './commands/validate.js';
 import { terminologyCommand } from './commands/terminology.js';
+// v0.6 — canonical sync (MANIFESTO #10 + Stage 3.5 + ARTICLE-INBOX + SPORE-LOG)
+import { auditCommand } from './commands/audit.js';
+import { inboxCommand } from './commands/inbox.js';
+import { sporeCommand } from './commands/spore.js';
+// v0.8 — organism introspection
+import { organsCommand } from './commands/organs.js';
+import { supportersCommand } from './commands/supporters.js';
+import { senseCommand } from './commands/sense.js';
+import { citeCommand } from './commands/cite.js';
+// v0.7 preview
+import { mcpCommand } from './commands/mcp.js';
 
 const program = new Command();
 
@@ -23,9 +34,9 @@ program
   .description(
     'Taiwan.md — 台灣知識庫 CLI\nSearch, read, and explore 900+ curated articles about Taiwan.',
   )
-  .version('0.5.0');
+  .version('0.6.0');
 
-// Register all commands
+// v0.5 — existing commands
 searchCommand(program);
 readCommand(program);
 listCommand(program);
@@ -41,5 +52,19 @@ ragCommand(program);
 contributeCommand(program);
 validateCommand(program);
 terminologyCommand(program);
+
+// v0.6 — canonical sync release
+auditCommand(program);
+inboxCommand(program);
+sporeCommand(program);
+
+// v0.8 — organism introspection (shipped early with v0.6 since data is ready)
+organsCommand(program);
+supportersCommand(program);
+senseCommand(program);
+citeCommand(program);
+
+// v0.7 — MCP server preview
+mcpCommand(program);
 
 program.parse();

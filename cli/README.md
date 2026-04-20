@@ -72,6 +72,101 @@ taiwanmd stats                         # Formatted display
 taiwanmd stats --json                  # JSON output
 ```
 
+### `taiwanmd audit <slug>` 🧬 **v0.6**
+
+Run Stage 3.5 Hallucination Audit locally — enforces MANIFESTO §10 幻覺鐵律 before PR.
+Detects 5 hallucination patterns: award claims, names+precise numbers, location displacement, fabricated direct quotes, co-creator omission.
+
+```bash
+taiwanmd audit 王新仁                  # Run audit on article
+taiwanmd audit 珍珠奶茶 --json         # Structured output for CI
+taiwanmd audit 台積電 --strict         # Treat warnings as failures
+```
+
+Exit code 1 on HIGH-severity flags (blocks merge in CI).
+
+### `taiwanmd inbox` 📥 **v0.6**
+
+Read/manage ARTICLE-INBOX.md (pending / in-progress / blocked articles).
+
+```bash
+taiwanmd inbox                         # All states grouped
+taiwanmd inbox --state pending
+taiwanmd inbox claim <slug>            # [scaffold] lock as in-progress
+taiwanmd inbox release <slug>          # [scaffold] release lock
+taiwanmd inbox done <slug>             # [scaffold] move to DONE-LOG
+```
+
+### `taiwanmd spore` 🌱 **v0.6**
+
+社群孢子 pipeline — SPORE-LOG reader + draft/harvest scaffold.
+
+```bash
+taiwanmd spore                         # Summary (total/published/by-platform)
+taiwanmd spore log                     # Recent spores
+taiwanmd spore log --platform X        # Filter X only
+taiwanmd spore log --json
+taiwanmd spore new <slug>              # [scaffold] generate draft
+taiwanmd spore harvest <id>            # [scaffold] pull d+N engagement
+```
+
+### `taiwanmd organs` 🧬 **v0.6**
+
+Show Semiont vital signs (8 organ health scores from `dashboard-organism.json`).
+
+```bash
+taiwanmd organs                        # Colored bar chart
+taiwanmd organs --lang en              # English labels
+taiwanmd organs --json
+```
+
+### `taiwanmd supporters` 💚 **v0.6**
+
+Show Portaly supporter stats (PII-scrubbed by default).
+
+```bash
+taiwanmd supporters                    # Totals + recent
+taiwanmd supporters --since 2026-04-01
+taiwanmd supporters --limit 20 --json
+```
+
+### `taiwanmd sense` 👁️ **v0.6**
+
+Show sense data: GA4 pageviews / Search Console queries / Cloudflare traffic.
+Named after Semiont's §感知器官 (perception organs).
+
+```bash
+taiwanmd sense                         # 7d snapshot, all sources
+taiwanmd sense --range 24h             # 24h window
+taiwanmd sense --source sc             # Filter to Search Console only
+taiwanmd sense --limit 5               # Top 5 per section
+```
+
+### `taiwanmd cite <query>` 📎 **v0.6**
+
+Anti-hallucination primitive — return verified claims + source URLs instead of generated sentences.
+Complements `rag` (full body) with surgical per-claim attribution.
+
+```bash
+taiwanmd cite "王新仁 Art Blocks"       # Top 3 cited claims
+taiwanmd cite "台灣高鐵" --limit 5
+taiwanmd cite "Good Vibrations" --json
+```
+
+Only returns claims that have `[^N]` footnote attached in the source article.
+
+### `taiwanmd mcp` 🔌 **v0.7 preview**
+
+Model Context Protocol server scaffold — Claude Desktop / Cursor integration.
+
+```bash
+taiwanmd mcp install                   # Print Claude Desktop config snippet
+taiwanmd mcp install --client cursor
+taiwanmd mcp serve                     # [scaffold] start MCP server on stdio
+```
+
+Server implementation pending `@modelcontextprotocol/sdk` integration. Config snippet works today.
+
 ### `taiwanmd sync`
 
 Sync the knowledge base locally for offline access.
