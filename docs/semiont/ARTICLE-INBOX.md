@@ -128,13 +128,16 @@ BECOME_TAIWANMD.md Step 5 新增：
 - **Type**: NEW
 - **Category**: People (Music)
 - **Priority**: P1
-- **Status**: pending
+- **Status**: done
 - **Requested**: 2026-04-18 by 觀察者 (session δ)
+- **Dev log**:
+  - 2026-04-20 by β session: Stage 1-6 completed, article at knowledge/People/柯智棠.md, research at reports/research/2026-04/柯智棠.md
 - **Notes**:
   - Kowen Ko，創作歌手
-  - 20+ 搜尋 / 小標題先行 / 關鍵歌曲 YouTube link
+  - 維護者校準：原 inbox 類型誤寫「R&B」，實為英倫民謠 / indie folk；無製作人身份紀錄
+  - Hook: 房間裡的七年 + 2024《My Nova》鋼琴重啟 + 2025 金鐘〈神的回信〉
 - **Reference**: 觀察者批次指定
-- **Pre-research**: 尚未啟動
+- **Pre-research**: reports/research/2026-04/柯智棠.md
 
 ### 林宥嘉（EVOLVE）
 
@@ -222,6 +225,25 @@ BECOME_TAIWANMD.md Step 5 新增：
 <!-- 鄭宜農 P1 已完成 2026-04-18 κ → 搬到 §✅ Done -->
 
 <!-- 楊丞琳 已完成 → 搬到 §✅ Done -->
+
+### 蕭上農（Nuomi）
+
+- **Type**: `NEW`
+- **Category**: People (Technology)
+- **Priority**: `P1`
+- **Status**: `pending`
+- **Requested**: 2026-04-20 by 觀察者 (session β)
+- **Notes**:
+  - 台灣網路圈人物，可能別名「Nuomi」「諾米」（需確認）
+  - 可能身份線索：INSIDE 硬塞網路趨勢觀察站創辦人／編輯？早期台灣網路社群（MMDays、Mr. Jamie）脈絡？
+  - 若為 INSIDE 創辦人路線：Stage 1 必驗 INSIDE 成立年份（約 2009-2010）、共同創辦人、後來併入 KK-Stream 或其他媒體集團的脈絡
+  - 身份釐清是 Stage 1 第一步（有可能跟其他同名人物混淆）
+  - 若涉及網路觀察家 / KOL 路線：注意避免只寫履歷，要找「他對台灣網路文化提出的論述」作為內容骨架
+  - 必驗事實：全名、出生年、現職、代表作／媒體／專欄
+- **Reference**:
+  - INSIDE 官網 <https://www.inside.com.tw/>（若屬此路線）
+  - 觀察者批次指定
+- **Pre-research**: 尚未啟動
 
 ### 紀柏豪（Pohao Chi）
 
