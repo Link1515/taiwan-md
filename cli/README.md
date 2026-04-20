@@ -155,17 +155,26 @@ taiwanmd cite "Good Vibrations" --json
 
 Only returns claims that have `[^N]` footnote attached in the source article.
 
-### `taiwanmd mcp` 🔌 **v0.7 preview**
+### `taiwanmd mcp` 🔌 **v0.6.1**
 
-Model Context Protocol server scaffold — Claude Desktop / Cursor integration.
+Model Context Protocol server — Claude Desktop / Cursor / Warp integration.
 
 ```bash
 taiwanmd mcp install                   # Print Claude Desktop config snippet
 taiwanmd mcp install --client cursor
-taiwanmd mcp serve                     # [scaffold] start MCP server on stdio
+taiwanmd mcp serve                     # Start MCP server on stdio (for Claude Desktop)
 ```
 
-Server implementation pending `@modelcontextprotocol/sdk` integration. Config snippet works today.
+**Exposed MCP tools** (6):
+
+- `taiwanmd_search` — full-text search
+- `taiwanmd_read` — fetch an article by slug
+- `taiwanmd_rag` — prompt-ready RAG context for a query
+- `taiwanmd_cite` — citation-backed verified claims (anti-hallucination)
+- `taiwanmd_organs` — 8 organ vital signs
+- `taiwanmd_stats` — project summary stats
+
+After installing, add the config snippet to Claude Desktop and reload. Taiwan.md becomes queryable from inside Claude conversations.
 
 ### `taiwanmd sync`
 

@@ -198,32 +198,169 @@ export function inboxCommand(program) {
       }
     });
 
-  // Subcommands: claim / release / done (v0.6 scaffold — write support)
+  // ─── Write-ops shared helpers ───────────────────────────────────────────
+  function todayIso() {
+    return new Date().toISOString().split('T')[0];
+  }
+
+  function getSessionLetter() {
+    // Read from env TAIWANMD_SESSION, else fall back to alphabetic timestamp
+    if (process.env.TAIWANMD_SESSION) return process.env.TAIWANMD_SESSION;
+    const h = new Date().getHours();
+    return String.fromCharCode(945 + (h % 26)); // Greek α..ω
+  }
+
+  function findEntryBlock(content, slug) {
+    // Entry starts with `### <title>` and ends at next `### ` or EOF.
+    // Match `slug` as substring of the title (case-insensitive Chinese included).
+    const blockRegex = /^### .+$[\s\S]*?(?=^### |\Z)/gm;
+    let m;
+    while ((m = blockRegex.exec(content)) !== null) {
+      const block = m[0];
+      const title = block.split('\n')[0].replace(/^### /, '').trim();
+      if (
+        title.includes(slug) ||
+        title.toLowerCase().includes(slug.toLowerCase())
+      ) {
+        return { block, start: m.index, end: m.index + block.length, title };
+      }
+    }
+    return null;
+  }
+
+  function replaceStatus(block, newStatus) {
+    return block.replace(
+      /(-\s*\*\*Status\*\*\s*[:：]\s*)(`[^`]*`|[^\n]+)/,
+      (_, prefix) => `${prefix}${newStatus}`,
+    );
+  }
+
+  function appendDevLog(block, line) {
+    // Append a bullet under **dev_log** if exists, else add one.
+    const devLogRegex =
+      /(-\s*\*\*dev_log\*\*\s*[:：]\s*)([^\n]*(?:\n\s{2,}-\s+[^\n]+)*)/;
+    if (devLogRegex.test(block)) {
+      return block.replace(devLogRegex, (_, prefix, body) => {
+        const entry = `\n  - ${line}`;
+        return `${prefix}${body}${entry}`;
+      });
+    }
+    // No dev_log yet: append at end of block
+    const trimmed = block.replace(/\n+$/, '');
+    return `${trimmed}\n- **dev_log**:\n  - ${line}\n`;
+  }
+
   inbox
     .command('claim <slug>')
-    .description('Lock an inbox item as in-progress (adds your name/date)')
-    .action((slug) => {
-      console.log(chalk.yellow('⚠ inbox claim — scaffold only in v0.6'));
-      console.log(
-        chalk.gray(
-          `  Would update status to in-progress for: ${slug}\n  Implementation pending (needs interactive confirmation).`,
-        ),
-      );
+    .description('Lock an inbox item as in-progress (updates Status + dev_log)')
+    .option('--by <name>', 'Claimer name (default: $USER or taiwanmd)', null)
+    .action((slug, opts) => {
+      try {
+        const inboxPath = getInboxPath();
+        if (!fs.existsSync(inboxPath)) {
+          console.error(
+            chalk.red(`\n❌ ARTICLE-INBOX not found: ${inboxPath}\n`),
+          );
+          process.exit(1);
+        }
+        const content = fs.readFileSync(inboxPath, 'utf8');
+        const entry = findEntryBlock(content, slug);
+        if (!entry) {
+          console.error(
+            chalk.red(
+              `\n❌ No entry matching "${slug}" found in ARTICLE-INBOX.\n`,
+            ),
+          );
+          process.exit(1);
+        }
+        const by = opts.by || process.env.USER || 'taiwanmd';
+        const session = getSessionLetter();
+        let updated = replaceStatus(entry.block, '`in-progress`');
+        updated = appendDevLog(
+          updated,
+          `${todayIso()} by ${by} (session ${session}): claimed via taiwanmd inbox claim`,
+        );
+        const newContent =
+          content.slice(0, entry.start) + updated + content.slice(entry.end);
+        fs.writeFileSync(inboxPath, newContent);
+        console.log('');
+        console.log(chalk.green(`✅ Claimed: ${entry.title}`));
+        console.log(chalk.gray(`   Status → in-progress`));
+        console.log(chalk.gray(`   Logged by ${by} (session ${session})`));
+        console.log(chalk.gray(`   File: ${inboxPath}\n`));
+      } catch (err) {
+        console.error(chalk.red(`\n❌ Claim failed: ${err.message}\n`));
+        process.exit(1);
+      }
     });
 
   inbox
     .command('release <slug>')
     .description('Release an in-progress lock back to pending')
     .action((slug) => {
-      console.log(chalk.yellow('⚠ inbox release — scaffold only in v0.6'));
-      console.log(chalk.gray(`  Would release lock for: ${slug}`));
+      try {
+        const inboxPath = getInboxPath();
+        const content = fs.readFileSync(inboxPath, 'utf8');
+        const entry = findEntryBlock(content, slug);
+        if (!entry) {
+          console.error(chalk.red(`\n❌ No entry matching "${slug}" found.\n`));
+          process.exit(1);
+        }
+        const session = getSessionLetter();
+        let updated = replaceStatus(entry.block, '`pending`');
+        updated = appendDevLog(
+          updated,
+          `${todayIso()} session ${session}: released back to pending via taiwanmd inbox release`,
+        );
+        const newContent =
+          content.slice(0, entry.start) + updated + content.slice(entry.end);
+        fs.writeFileSync(inboxPath, newContent);
+        console.log('');
+        console.log(chalk.green(`✅ Released: ${entry.title}`));
+        console.log(chalk.gray(`   Status → pending\n`));
+      } catch (err) {
+        console.error(chalk.red(`\n❌ Release failed: ${err.message}\n`));
+        process.exit(1);
+      }
     });
 
   inbox
     .command('done <slug>')
-    .description('Move inbox item to ARTICLE-DONE-LOG')
-    .action((slug) => {
-      console.log(chalk.yellow('⚠ inbox done — scaffold only in v0.6'));
-      console.log(chalk.gray(`  Would move ${slug} to ${getDoneLogPath()}.\n`));
+    .description(
+      'Mark as done + add pointer comment; full DONE-LOG entry is manual',
+    )
+    .option(
+      '--commit <sha>',
+      'Commit SHA to reference in the pointer comment',
+      null,
+    )
+    .action((slug, opts) => {
+      try {
+        const inboxPath = getInboxPath();
+        const content = fs.readFileSync(inboxPath, 'utf8');
+        const entry = findEntryBlock(content, slug);
+        if (!entry) {
+          console.error(chalk.red(`\n❌ No entry matching "${slug}" found.\n`));
+          process.exit(1);
+        }
+        const session = getSessionLetter();
+        const today = todayIso();
+        // Replace the entire entry block with a pointer HTML comment.
+        const pointer = `<!-- ${entry.title.replace(/\s*\(.*\)$/, '')} 已完成 ${today} ${session}${opts.commit ? ` commit ${opts.commit.slice(0, 8)}` : ''} → ARTICLE-DONE-LOG.md -->\n\n`;
+        const newContent =
+          content.slice(0, entry.start) + pointer + content.slice(entry.end);
+        fs.writeFileSync(inboxPath, newContent);
+        console.log('');
+        console.log(chalk.green(`✅ Marked done: ${entry.title}`));
+        console.log(chalk.gray(`   Entry replaced with pointer comment`));
+        console.log(
+          chalk.yellow(
+            `   ⚠ Add the full Done entry manually to ARTICLE-DONE-LOG.md\n   Path: ${getDoneLogPath()}\n`,
+          ),
+        );
+      } catch (err) {
+        console.error(chalk.red(`\n❌ Done failed: ${err.message}\n`));
+        process.exit(1);
+      }
     });
 }

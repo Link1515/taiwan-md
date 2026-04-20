@@ -48,25 +48,19 @@ export function mcpCommand(program) {
 
   mcp
     .command('serve')
-    .description('Start MCP server on stdio (scaffold — not yet functional)')
-    .action(() => {
-      console.log(
-        chalk.yellow('\n⚠ MCP server not yet implemented (v0.7 preview).'),
-      );
-      console.log('');
-      console.log(chalk.gray('  Planned tool surface:'));
-      console.log(chalk.gray('    - search(query, limit)'));
-      console.log(chalk.gray('    - read(slug, lang?)'));
-      console.log(chalk.gray('    - rag(query, limit)'));
-      console.log(chalk.gray('    - cite(topic)'));
-      console.log(chalk.gray('    - stats() / organs() / sense()'));
-      console.log('');
-      console.log(chalk.gray('  Dependency to add: @modelcontextprotocol/sdk'));
-      console.log(
-        chalk.gray('  Transport: stdio (local) → later SSE/HTTP (remote).'),
-      );
-      console.log('');
-      process.exit(2);
+    .description('Start MCP server on stdio (for Claude Desktop / Cursor)')
+    .action(async () => {
+      try {
+        const { startMcpServer } = await import('../lib/mcp-server.js');
+        await startMcpServer();
+        // startMcpServer connects and keeps process alive via stdio.
+      } catch (err) {
+        console.error(
+          chalk.red(`\n❌ MCP server failed to start: ${err.message}\n`),
+        );
+        console.error(chalk.gray(err.stack));
+        process.exit(1);
+      }
     });
 
   mcp

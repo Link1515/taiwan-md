@@ -135,23 +135,91 @@ export function sporeCommand(program) {
 
   spore
     .command('new <slug>')
-    .description('[scaffold v0.6] Generate spore draft from an article')
-    .action((slug) => {
-      console.log(chalk.yellow('\n⚠ spore new — scaffold only in v0.6'));
-      console.log(
-        chalk.gray(`  Planned: generate draft for article "${slug}"`),
-      );
-      console.log(
-        chalk.gray('  Per SPORE-PIPELINE v2.5: Scene-List-Scene structure,'),
-      );
-      console.log(
-        chalk.gray('  platform-specific (Threads Chinese punctuation, X CTA).'),
-      );
-      console.log(
-        chalk.gray(
-          '  Needs: src/data/spore-templates.json + CheYu approval loop.\n',
-        ),
-      );
+    .description('Generate a spore draft template from an article')
+    .option(
+      '--platform <p>',
+      'threads | x | both (both = print side-by-side)',
+      'both',
+    )
+    .option('--template <t>', 'A (人物型) | B (冷知識型) | D (時間軸型)', 'A')
+    .action(async (slug, opts) => {
+      try {
+        const articleFiles = (
+          await import('../lib/knowledge.js')
+        ).getArticleFiles();
+        const match = articleFiles.find((f) =>
+          path.basename(f, '.md').toLowerCase().includes(slug.toLowerCase()),
+        );
+        if (!match) {
+          console.error(chalk.red(`\n❌ Article not found: ${slug}\n`));
+          process.exit(1);
+        }
+        const { readArticle } = await import('../lib/knowledge.js');
+        const { frontmatter, body } = readArticle(match);
+        const slugBase = path.basename(match, '.md');
+        const title = frontmatter.title || slugBase;
+        const desc = frontmatter.description || '';
+        const category = frontmatter.category || 'misc';
+        const url = `https://taiwan.md/${(category || 'misc').toLowerCase()}/${encodeURIComponent(slugBase)}`;
+        const firstPara = (body.split(/\n\s*\n/)[1] || '').slice(0, 180);
+
+        console.log('');
+        console.log(chalk.bold(`🌱 Spore draft — ${title}`));
+        console.log(chalk.gray(`   Article: ${match}`));
+        console.log(
+          chalk.gray(
+            `   Template: ${opts.template} · Platform: ${opts.platform}`,
+          ),
+        );
+        console.log('');
+
+        function threadsDraft() {
+          return [
+            '=== Threads ===',
+            '',
+            `你知道嗎？${firstPara.split(/[。！？]/)[0]}。`,
+            '',
+            `（${desc.slice(0, 80)}）`,
+            '',
+            `完整故事 👉 ${url}?utm_source=threads&utm_medium=social&utm_campaign=spore`,
+            '',
+          ].join('\n');
+        }
+        function xDraft() {
+          const hook = firstPara.split(/[。！？]/)[0].slice(0, 60);
+          return [
+            '=== X ===',
+            '',
+            `${hook}`,
+            '',
+            `完整故事 👉 ${url}?utm_source=x&utm_medium=social&utm_campaign=spore`,
+            '',
+          ].join('\n');
+        }
+
+        if (opts.platform === 'threads' || opts.platform === 'both') {
+          console.log(chalk.cyan(threadsDraft()));
+        }
+        if (opts.platform === 'x' || opts.platform === 'both') {
+          console.log(chalk.white(xDraft()));
+        }
+        console.log(
+          chalk.yellow(
+            '  ⚠ v0.6 preview — copy/edit manually + post via Threads/X app.',
+          ),
+        );
+        console.log(
+          chalk.gray(
+            '  See docs/factory/SPORE-PIPELINE.md §Step 2 for voice/fact gates.',
+          ),
+        );
+        console.log(
+          chalk.gray('  Blueprint template: docs/factory/SPORE-BLUEPRINTS/\n'),
+        );
+      } catch (err) {
+        console.error(chalk.red(`\n❌ spore new failed: ${err.message}\n`));
+        process.exit(1);
+      }
     });
 
   spore
