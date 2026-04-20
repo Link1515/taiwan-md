@@ -145,8 +145,10 @@ BECOME_TAIWANMD.md Step 5 新增：
 - **Category**: People (Music)
 - **Path**: knowledge/People/林宥嘉.md
 - **Priority**: P1
-- **Status**: pending
+- **Status**: in-progress
 - **Requested**: 2026-04-18 by 觀察者 (session δ)
+- **Dev log**:
+  - 2026-04-20 by ε session: started Stage 0 素材萃取 + Stage 1 research（多 session 平行：β 吳哲宇 done、γ harvest、δ 范曉萱/林經堯 in-progress）
 - **Notes**:
   - EVOLVE 模式：先做 Stage 0 素材萃取（RESEARCH.md §七），標記 [THIN]/[LIST-DUMP]/[PLASTIC] 等
   - 20+ 搜尋補新素材
@@ -188,21 +190,8 @@ BECOME_TAIWANMD.md Step 5 新增：
 - **Reference**: 觀察者批次指定
 - **Pre-research**: reports/research/2026-04/孫燕姿.md
 
-### 范曉萱
+<!-- 范曉萱 已完成 2026-04-20 δ → 搬到 §✅ Done -->
 
-- **Type**: NEW
-- **Category**: People (Music)
-- **Priority**: P1
-- **Status**: in-progress
-- **Requested**: 2026-04-18 ε by 觀察者
-- **Dev log**:
-  - 2026-04-20 by δ session: started Stage 1 research（多 session 平行：β Portaly/吳哲宇已收、γ harvest heartbeat 中）
-- **Notes**:
-  - Mavis Fan，台灣創作歌手，從 1990 年代童星〈健康歌〉→ 2000 年代轉型《我要我們在一起》+ 100% 樂團 → 近年低調獨立
-  - 身份轉折弧線是核心矛盾：從童星偶像 → 自主創作人 → 幕後製作（類似楊丞琳「從被製作到自製」，但路徑更決絕）
-  - 可能相關：100% 樂團 / 金曲轉折 / 與大小 S 關係 / 近年無社群/低曝光的選擇
-  - 20+ 搜尋必要（中文源優先）
-- **Reference**: 觀察者批次指定
 - **Pre-research**: 尚未啟動
 
 ### 黃少雍（製作人）
@@ -302,6 +291,19 @@ _（暫無）_
 ## ✅ Done（已開發，保留歷史）
 
 _（此區域存放從 pending/in-progress 完成的條目，指向已 commit 的文章路徑）_
+
+### 范曉萱 — 2026-04-20 δ 完成（從〈健康歌〉的小魔女到 100% 樂團主唱，拒絕被一個年代定義的三十年）
+
+- **Article**: [knowledge/People/范曉萱.md](../../knowledge/People/范曉萱.md)
+- **Pipeline**: REWRITE-PIPELINE v2.18 — NEW 模式（Stage 1 19 WebSearch + 6 WebFetch / Stage 2 full write）
+- **核心矛盾**：「從健康歌的小魔女到 100% 樂團的主唱——范曉萱花三十年拒絕被一個年代的模樣定義」
+- **Hook**：深夜母親林智娟留下便利貼的場景（切入人物用母親，而非范曉萱本人），再回到 1996 小魔女 → 1998 平頭 → 2001 爵士 → 2004 憂鬱症 → 2007 100% 樂團 → 2010 金曲製作人 → 2025《過客》
+- **敏感素材**（MANIFESTO §5 v2 紀實筆法）：憂鬱症與割腕傳言只引用范曉萱本人公開發言（《亂寫》書 + 2019 Yahoo News 訪談 + 2026 styletc 訪談），不 reconstruct 場景；與 Allen 關係只到「維持十多年」公開敘述；「綠髮大媽」媒體語氣反駁不複述
+- **品質**：30 腳註 / 約 3,324 中文字 / 7 個 scene 小標題 / 2 個📝策展人筆記 callout / 5 筆中文逐字引語 / 破折號 2（≤15）/「不是 X 是 Y」2（≤3）/ desc 147（≤160 ✓）
+- **工具檢查**：quality-scan 0（全過）、format-check 7/7、wikilink-validate 0 斷裂
+- **校正**：原任務 prompt 推測「佛朗明哥」元素 19 輪搜尋均無 primary 來源，Stage 1 agent 明確標 unverified，Stage 2 放棄此角度；《流浪神狗人》《青蛇》配樂為他人作品，與范曉萱無關
+- **Research**: [reports/research/2026-04/范曉萱.md](../../reports/research/2026-04/范曉萱.md)
+- **⚠️ 待人工複驗**：YouTube URL（〈健康歌〉〈我要我們在一起〉〈主人〉三支）metadata 未能透過 WebFetch 驗證官方上傳身份；研究 agent 明確標記
 
 ### Hello Nico — 2026-04-20 α 完成（八年沉默後，「想念舞台了」）
 
