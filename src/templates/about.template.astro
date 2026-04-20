@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import ProticoScript from '../components/ProticoScript.astro';
+import SupporterGrid from '../components/SupporterGrid.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -1373,6 +1374,7 @@ const t = useTranslations(lang);
                 <span set:html={t('about.sponsors.howie.text.html')} />
               </a>
             </div>
+            <SupporterGrid />
           </div>
         </div>
 

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "last_updated": "2026-04-20T03:25:32.576Z",
+  "last_fetched": "2026-04-20T10:45:00+08:00",
+  "totals": {
+    "total_received_twd": 2700,
+    "transaction_count": 3,
+    "supporter_count": 3,
+    "monthly_subscriptions": 2,
+    "one_time": 1,
+    "anonymous_ratio": 0.6666666666666666
+  },
+  "first_date": "2026-04-19",
+  "latest_date": "2026-04-20",
+  "by_month": {
+    "2026-04": 2700
+  },
+  "timeline": [
+    {
+      "date": "2026-04-19",
+      "timestamp": "2026-04-19T12:25:00Z",
+      "amount": 200,
+      "currency": "TWD",
+      "type": "monthly",
+      "anonymous": false,
+      "running_total": 200
+    },
+    {
+      "date": "2026-04-19",
+      "timestamp": "2026-04-19T15:31:30Z",
+      "amount": 500,
+      "currency": "TWD",
+      "type": "monthly",
+      "anonymous": true,
+      "running_total": 700
+    },
+    {
+      "date": "2026-04-20",
+      "timestamp": "2026-04-20T02:57:06Z",
+      "amount": 2000,
+      "currency": "TWD",
+      "type": "one-time",
+      "anonymous": true,
+      "running_total": 2700
+    }
+  ]
+}

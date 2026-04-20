@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "last_fetched": "2026-04-20T10:45:00+08:00",
+  "notes": "Layer 1 SSOT — append-only 流水帳，每筆 transaction 為基本單位。id = Portaly 支持編號（stable dedupe key）。Derived views 由 scripts/core/generate-supporters-data.js 從本檔聚合。禁止手動編輯 id / gmail_message_id。privacy：絕不存 email / 付款方式 / 信用卡資訊。",
+  "transactions": [
+    {
+      "id": "3zTJ9F6pJaoEwi5Yh1wh",
+      "source": "portaly",
+      "timestamp": "2026-04-19T12:25:00Z",
+      "date": "2026-04-19",
+      "name": "沈宗杰",
+      "anonymous": false,
+      "amount": 200,
+      "currency": "TWD",
+      "type": "monthly",
+      "message": "謝謝！",
+      "subscription_id": null,
+      "status": "received",
+      "gmail_message_id": "19da5b3a11e3f332"
+    },
+    {
+      "id": "2BEUGnxwRCQeA3ITfqT2",
+      "source": "portaly",
+      "timestamp": "2026-04-19T15:31:30Z",
+      "date": "2026-04-19",
+      "name": "匿名",
+      "anonymous": true,
+      "amount": 500,
+      "currency": "TWD",
+      "type": "monthly",
+      "message": "雖然看完介紹還似懂非懂，但感覺好佩服好厲害，也好感謝有這樣的發想且願意付出的您們",
+      "subscription_id": null,
+      "status": "received",
+      "gmail_message_id": "19da65e5b4261972"
+    },
+    {
+      "id": "ZvDoaKm6laEae7Vq4dkb",
+      "source": "portaly",
+      "timestamp": "2026-04-20T02:57:06Z",
+      "date": "2026-04-20",
+      "name": "匿名",
+      "anonymous": true,
+      "amount": 2000,
+      "currency": "TWD",
+      "type": "one-time",
+      "message": "感謝你們",
+      "subscription_id": null,
+      "status": "received",
+      "gmail_message_id": "19da8d20d8a6a234"
+    }
+  ]
+}

@@ -111,6 +111,18 @@ grep -A3 "EXP-" ~/.config/taiwan-md/cache/fetch.log 2>/dev/null | tail -20
 - **AI 自主邊界**（對應 DNA #26 v2）：讀取 + 回填皆 AI 自主；若需要 **post 留言更正** 則 handoff 給 human
 - Workflow 簡寫：`read spores.json → Chrome MCP harvest → Edit SPORE-LOG → (optional) append LESSONS-INBOX`
 
+0c. **💚 Portaly 贊助信件 harvest（AI 自主，2026-04-20 α 加入 canonical）**
+
+- 用 Gmail MCP `search_threads` 抓 `from:service@portaly.cc newer_than:7d`（或距上次 `last_fetched` 的時間窗）
+- 對每筆 subject 符合 `X 支持了您 NT$Y 元` pattern 的 thread：
+  - `get_thread` 取 `plaintextBody`
+  - 組成 JSON array `[{ gmail_message_id, date, subject, plaintextBody }, ...]`
+  - pipe 給 `python3 scripts/tools/fetch-portaly-supporters.py`（parser + dedupe + append [`data/supporters/transactions.json`](../../data/supporters/transactions.json)）
+- **privacy 鐵律**：MCP 回傳的 email 本身不 commit、不複述到 chat / memory / diary；**絕不**從 Gmail 擷取 email address / payment info；parser 只取支持編號 / 名稱 / 金額 / 類型 / 留言 / 時間戳
+- **AI 自主邊界**（DNA #26 v2）：讀取 + parse + commit 皆 AI 自主（內部操作）；**post 公開感謝留言**屬對外動作 → human-only
+- 無新信 → 跳過；有新信 → prebuild 會自動重算 `public/api/{dashboard,about}-supporters.json`
+- Workflow 簡寫：`gmail search → get_thread × N → pipe JSON → fetch-portaly-supporters.py → prebuild`
+
 1. **讀取生命徵象**（資料已經是今天的了）
    - `cat public/api/dashboard-vitals.json` — 8 器官分數 + 基本生理
    - `cat public/api/dashboard-organism.json` — 各器官子分數

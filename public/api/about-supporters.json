@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "last_updated": "2026-04-20T03:25:32.577Z",
+  "last_fetched": "2026-04-20T10:45:00+08:00",
+  "supporter_count": 3,
+  "tier_counts": {
+    "canopy": 0,
+    "grove": 1,
+    "sprout": 2
+  },
+  "tier_config": [
+    {
+      "id": "canopy",
+      "emoji": "🌳",
+      "label": "大樹",
+      "label_en": "Canopy",
+      "desc": "累計 NT$5,000 以上"
+    },
+    {
+      "id": "grove",
+      "emoji": "🌿",
+      "label": "小樹",
+      "label_en": "Grove",
+      "desc": "累計 NT$1,000 以上"
+    },
+    {
+      "id": "sprout",
+      "emoji": "🌱",
+      "label": "新芽",
+      "label_en": "Sprout",
+      "desc": "第一個支持"
+    }
+  ],
+  "supporters": [
+    {
+      "display_name": "匿名支持者",
+      "anonymous": true,
+      "first_date": "2026-04-20",
+      "last_date": "2026-04-20",
+      "transaction_count": 1,
+      "active_monthly": false,
+      "messages": [
+        {
+          "date": "2026-04-20",
+          "text": "感謝你們",
+          "type": "one-time"
+        }
+      ],
+      "tier": {
+        "id": "grove",
+        "emoji": "🌿",
+        "label": "小樹",
+        "label_en": "Grove"
+      }
+    },
+    {
+      "display_name": "沈宗杰",
+      "anonymous": false,
+      "first_date": "2026-04-19",
+      "last_date": "2026-04-19",
+      "transaction_count": 1,
+      "active_monthly": true,
+      "messages": [
+        {
+          "date": "2026-04-19",
+          "text": "謝謝！",
+          "type": "monthly"
+        }
+      ],
+      "tier": {
+        "id": "sprout",
+        "emoji": "🌱",
+        "label": "新芽",
+        "label_en": "Sprout"
+      }
+    },
+    {
+      "display_name": "匿名支持者",
+      "anonymous": true,
+      "first_date": "2026-04-19",
+      "last_date": "2026-04-19",
+      "transaction_count": 1,
+      "active_monthly": true,
+      "messages": [
+        {
+          "date": "2026-04-19",
+          "text": "雖然看完介紹還似懂非懂，但感覺好佩服好厲害，也好感謝有這樣的發想且願意付出的您們",
+          "type": "monthly"
+        }
+      ],
+      "tier": {
+        "id": "sprout",
+        "emoji": "🌱",
+        "label": "新芽",
+        "label_en": "Sprout"
+      }
+    }
+  ]
+}
