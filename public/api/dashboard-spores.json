@@ -1,25 +1,86 @@
 {
-  "lastUpdated": "2026-04-20T01:08:15.613695Z",
+  "lastUpdated": "2026-04-20T07:13:49.161988Z",
   "schemaVersion": "1.1",
   "totals": {
-    "count": 36,
+    "count": 40,
     "platforms": {
-      "x": 13,
-      "threads": 19,
+      "x": 15,
+      "threads": 21,
       "other": 4
     },
     "languages": {
-      "zh": 29,
+      "zh": 33,
       "en": 7
     },
     "templates": {
+      "A": 15,
+      "other": 2,
       "B": 15,
       "A2": 4,
-      "A": 13,
       "D": 4
     }
   },
   "recent": [
+    {
+      "n": 40,
+      "date": "2026-04-20",
+      "platform": "x",
+      "article": "謝德慶",
+      "articleSlug": "謝德慶",
+      "category": "art",
+      "template": "A 人物型",
+      "url": "https://x.com/taiwandotmd/status/2046066338138104130",
+      "highlight": "**SPORE-PIPELINE v2.5 首例（Rule #16 Scene-List-Scene + Rule #17 全形標點 + X CTA「完整故事 👉」）**。綜合單版（非 3-angle），UTM `campaign=s37` 沿用（off-by-one）",
+      "views_7d": null,
+      "engagements_7d": null,
+      "rate_7d": null,
+      "backfilled": false
+    },
+    {
+      "n": 39,
+      "date": "2026-04-20",
+      "platform": "threads",
+      "article": "謝德慶",
+      "articleSlug": "謝德慶",
+      "category": "art",
+      "template": "A 人物型",
+      "url": "https://www.threads.com/@taiwandotmd/post/DXVpBlLk4oE",
+      "highlight": "**SPORE-PIPELINE v2.5 首例（單弧 → 直接綜合，Scene-List-Scene）**：開場釘木籠+律師公證 → 中段四件 one-year 壓縮 list → 結尾布魯克林剪貼字母白紙",
+      "views_7d": null,
+      "engagements_7d": null,
+      "rate_7d": null,
+      "backfilled": false
+    },
+    {
+      "n": 38,
+      "date": "2026-04-20",
+      "platform": "x",
+      "article": "Portaly 首兩筆贊助感謝（站方 announcement）",
+      "articleSlug": "Portaly 首兩筆贊助感謝",
+      "category": "meta",
+      "template": "感謝/站方",
+      "url": "https://x.com/taiwandotmd/status/2046054177093382449",
+      "highlight": "**站方公告型孢子**：Taiwan.md 上線 33 天首兩筆贊助（200+500 元）感謝 + Portaly CTA。共用 Threads 主貼文案 + 底部 inline 連結（v2.4 X 策略）。UTM `campaign=s36` 沿用（off-by-one，SPORE-LOG 實際 #38）",
+      "views_7d": null,
+      "engagements_7d": null,
+      "rate_7d": null,
+      "backfilled": false
+    },
+    {
+      "n": 37,
+      "date": "2026-04-20",
+      "platform": "threads",
+      "article": "Portaly 首兩筆贊助感謝（站方 announcement）",
+      "articleSlug": "Portaly 首兩筆贊助感謝",
+      "category": "meta",
+      "template": "感謝/站方",
+      "url": "https://www.threads.com/@taiwandotmd/post/DXVjW6pEzeg",
+      "highlight": "**站方公告型孢子**：Taiwan.md 上線 33 天首兩筆贊助（200+500 元）感謝 + Portaly CTA + 珊瑚礁比喻首尾呼應。觀察者 finalize 時加「也特別感謝 @portaly.cc」段",
+      "views_7d": null,
+      "engagements_7d": null,
+      "rate_7d": null,
+      "backfilled": false
+    },
     {
       "n": 36,
       "date": "2026-04-19",
@@ -28,71 +89,11 @@
       "articleSlug": "台灣高鐵",
       "category": "history",
       "template": "B 冷知識型",
-      "url": "https://x.com/taiwandotmd/status/2045792352388927872",
-      "highlight": "**SPORE-PIPELINE v2.4 首例（事實查核閘通過後才發出）；加「你知道嗎？🚄」+ utm_source=x（觀察者 edit 後版本）**",
-      "views_7d": null,
-      "engagements_7d": null,
-      "rate_7d": null,
-      "backfilled": false
-    },
-    {
-      "n": 35,
-      "date": "2026-04-19",
-      "platform": "threads",
-      "article": "台灣高鐵（v3 事實修正版）",
-      "articleSlug": "台灣高鐵",
-      "category": "history",
-      "template": "B 冷知識型",
-      "url": "https://www.threads.com/@taiwandotmd/post/DXTr5QLkfgp",
-      "highlight": "**SPORE-PIPELINE v2.4 首例（朋友 tone prime + 避免編年體 lead + 事實查核閘）**",
-      "views_7d": null,
-      "engagements_7d": null,
-      "rate_7d": null,
-      "backfilled": false
-    },
-    {
-      "n": 34,
-      "date": "2026-04-18",
-      "platform": "x",
-      "article": "草東沒有派對（v2.1 首例）",
-      "articleSlug": "草東沒有派對",
-      "category": "people",
-      "template": "A2 首尾呼應",
-      "url": "https://x.com/taiwandotmd/status/2045412116665172331",
-      "highlight": "**SPORE-PIPELINE v2.1 首例（blueprint + 跨源驗證 + 倫理閘）**",
-      "views_7d": 106,
-      "engagements_7d": 7,
-      "rate_7d": 6.6,
-      "backfilled": true
-    },
-    {
-      "n": 33,
-      "date": "2026-04-18",
-      "platform": "threads",
-      "article": "草東沒有派對（v2.1 首例）",
-      "articleSlug": "草東沒有派對",
-      "category": "people",
-      "template": "A2 首尾呼應",
-      "url": "https://www.threads.com/@taiwandotmd/post/DXQ_in_Ew0_",
-      "highlight": "**SPORE-PIPELINE v2.1 首例（blueprint + 跨源驗證 + 倫理閘）**",
-      "views_7d": null,
-      "engagements_7d": 734,
-      "rate_7d": null,
-      "backfilled": true
-    },
-    {
-      "n": 32,
-      "date": "2026-04-18",
-      "platform": "x",
-      "article": "Cicada（inline 連結實驗）",
-      "articleSlug": "Cicada",
-      "category": "people",
-      "template": "A 人物型",
-      "url": "https://x.com/taiwandotmd/status/2045363785347612934",
-      "highlight": "**實驗：inline link（非分兩篇）A/B**",
-      "views_7d": 1253,
-      "engagements_7d": 70,
-      "rate_7d": 5.59,
+      "url": "https://x.com/taiwandotmd/status/2045793882970227009",
+      "highlight": "**SPORE-PIPELINE v2.4 首例（事實查核閘通過後才發出）；加「你知道嗎？🚄」+ utm_source=x（觀察者 edit 後版本 v2；v1 URL `2045792352388927872` 已被 X 取代，只有 9 views）**",
+      "views_7d": 48072,
+      "engagements_7d": 450,
+      "rate_7d": 0.94,
       "backfilled": true
     }
   ],
@@ -128,6 +129,16 @@
       "date": "2026-04-14"
     },
     {
+      "n": 35,
+      "article": "台灣高鐵（v3 事實修正版）",
+      "platform": "threads",
+      "views": 55000,
+      "engagements": 379,
+      "rate": 0.69,
+      "badge": "⭐ 高峰",
+      "date": "2026-04-19"
+    },
+    {
       "n": 22,
       "article": "鄭麗文",
       "platform": "threads",
@@ -136,16 +147,6 @@
       "rate": 0.91,
       "badge": null,
       "date": "2026-04-11"
-    },
-    {
-      "n": 24,
-      "article": "韓國瑜",
-      "platform": "threads",
-      "views": 8524,
-      "engagements": null,
-      "rate": null,
-      "badge": null,
-      "date": "2026-04-13"
     }
   ],
   "amplification": [
@@ -197,44 +198,52 @@
   ],
   "platformComparison": {
     "x": {
-      "count": 12,
-      "avgViews": 11510,
+      "count": 13,
+      "avgViews": 14615,
       "maxViews": 135433,
-      "avgRate": 4.99,
+      "avgRate": 4.34,
       "maxRate": 10.71
     },
     "threads": {
-      "count": 12,
-      "avgViews": 45817,
+      "count": 14,
+      "avgViews": 45204,
       "maxViews": 300000,
-      "avgRate": 3.81,
+      "avgRate": 3.27,
       "maxRate": 9.0
     }
   },
   "backfillWarnings": [
     {
-      "n": 28,
-      "article": "李洋（⚠️ 已撤回）",
-      "platform": "threads",
-      "publishedDays": 6,
-      "status": "waiting",
-      "url": "https://www.threads.com/@taiwandotmd/post/DXGo_9REaGS"
-    },
-    {
-      "n": 36,
-      "article": "台灣高鐵（v3 事實修正版）",
+      "n": 40,
+      "article": "謝德慶",
       "platform": "x",
-      "publishedDays": 1,
+      "publishedDays": 0,
       "status": "waiting",
-      "url": "https://x.com/taiwandotmd/status/2045792352388927872"
+      "url": "https://x.com/taiwandotmd/status/2046066338138104130"
     },
     {
-      "n": 35,
-      "article": "台灣高鐵（v3 事實修正版）",
+      "n": 39,
+      "article": "謝德慶",
       "platform": "threads",
-      "publishedDays": 1,
+      "publishedDays": 0,
       "status": "waiting",
-      "url": "https://www.threads.com/@taiwandotmd/post/DXTr5QLkfgp"
+      "url": "https://www.threads.com/@taiwandotmd/post/DXVpBlLk4oE"
+    },
+    {
+      "n": 38,
+      "article": "Portaly 首兩筆贊助感謝（站方 announcement）",
+      "platform": "x",
+      "publishedDays": 0,
+      "status": "waiting",
+      "url": "https://x.com/taiwandotmd/status/2046054177093382449"
+    },
+    {
+      "n": 37,
+      "article": "Portaly 首兩筆贊助感謝（站方 announcement）",
+      "platform": "threads",
+      "publishedDays": 0,
+      "status": "waiting",
+      "url": "https://www.threads.com/@taiwandotmd/post/DXVjW6pEzeg"
     }
   ],
   "noUrlHistorical": [
@@ -286,10 +295,55 @@
     {
       "week": "2026-W16",
       "published": 13,
-      "avgViews": 70692
+      "avgViews": 64262
+    },
+    {
+      "week": "2026-W17",
+      "published": 4,
+      "avgViews": 0
     }
   ],
   "harvestStatus": [
+    {
+      "n": 40,
+      "article": "謝德慶",
+      "platform": "x",
+      "publishDate": "2026-04-20",
+      "daysSincePublish": 0,
+      "withinHarvestWindow": true,
+      "harvestCount": 0,
+      "lastHarvest": null
+    },
+    {
+      "n": 39,
+      "article": "謝德慶",
+      "platform": "threads",
+      "publishDate": "2026-04-20",
+      "daysSincePublish": 0,
+      "withinHarvestWindow": true,
+      "harvestCount": 0,
+      "lastHarvest": null
+    },
+    {
+      "n": 38,
+      "article": "Portaly 首兩筆贊助感謝（站方 announcement）",
+      "platform": "x",
+      "publishDate": "2026-04-20",
+      "daysSincePublish": 0,
+      "withinHarvestWindow": true,
+      "harvestCount": 0,
+      "lastHarvest": null
+    },
+    {
+      "n": 37,
+      "article": "Portaly 首兩筆贊助感謝（站方 announcement）",
+      "platform": "threads",
+      "publishDate": "2026-04-20",
+      "daysSincePublish": 0,
+      "withinHarvestWindow": true,
+      "harvestCount": 0,
+      "lastHarvest": null
+    },
     {
       "n": 36,
       "article": "台灣高鐵（v3 事實修正版）",

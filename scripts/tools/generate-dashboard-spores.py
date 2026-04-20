@@ -391,7 +391,11 @@ def compute_backfill_warnings(entries, today_iso=None):
     - 歷史無 URL（#1/#2/#3/#12 SPORE-LOG 早期缺 URL）→ 無法 harvest，搬到
       no_url_historical 分類讓 dashboard 分開顯示
     - 已 backfilled（有 views_7d 或 engagements_7d）→ 不算 warning
+
+    v1.2 (2026-04-20 γ): 再排除「已撤回」孢子（article 含 `已撤回` / `撤回` / `withdrawn`）。
+    觸發：#28 李洋（事實錯誤撤回）連續 6 天當 waiting 顯示，dashboard 噪音。
     """
+    withdrawn_markers = ("已撤回", "撤回", "withdrawn")
     if today_iso:
         today_dt = datetime.fromisoformat(today_iso).date()
     else:
@@ -414,6 +418,11 @@ def compute_backfill_warnings(entries, today_iso=None):
 
         # 已 backfilled → 不算 warning
         if e.get("views_7d") or e.get("engagements_7d"):
+            continue
+
+        # 已撤回 → 不算 warning（v1.2）
+        article = e.get("article") or ""
+        if any(m in article for m in withdrawn_markers):
             continue
 
         # 歷史無 URL → 搬到 no_url_historical（不算 OVERDUE）
