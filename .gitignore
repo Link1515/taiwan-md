@@ -4,6 +4,9 @@ dist/
 .astro/
 # generated spore images (produced by scripts/tools/generate-spore-image.mjs)
 public/spore-images/
+# generated OG images (produced by scripts/core/generate-og-images.mjs)
+# CI 或本地按需產生，不入 repo — 避免 500+ 文章 × 4 語言 × binary 膨脹
+public/og-images/
 
 # dependencies
 node_modules/

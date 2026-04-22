@@ -174,6 +174,32 @@ BECOME_TAIWANMD.md Step 5 新增：
 - **Reference**: 觀察者批次指定
 - **Pre-research**: 尚未啟動
 
+### 台灣新媒體藝術（EVOLVE — P0，已檢出事實錯誤）
+
+- **Type**: `EVOLVE`
+- **Category**: Art
+- **Path**: knowledge/Art/台灣新媒體藝術.md
+- **Priority**: `P0`
+- **Status**: `pending`
+- **Requested**: 2026-04-22 by 觀察者 (session β) — PR #590 王福瑞生年補充觸發事實查核，發現更大的歸功錯誤
+- **Notes**:
+  - **已檢出兩個事實錯誤（必修）：**
+    1. 原文「1995 年，他（王福瑞）創辦『在地實驗』（Etat）」→ **錯**。在地實驗是**黃文浩**於 1995 年創辦，王福瑞 2000 年才加入（佐證：Etat FB 粉專 ETAT1995 / TCAA 藝術家資料庫 / 文化部活動頁）
+    2. 原文「他策劃的『失聲祭』系列自 2007 年起運作」→ **錯**。失聲祭 2007 年 7 月由**姚仲涵**與北藝大新媒系同儕（王仲堃、葉廷皓、牛俊強）創立。王福瑞是他們的老師 / 精神指導，不是策劃者
+  - **已驗證正確事實**：王福瑞 1969 年生台北、Golden Gate University 資工碩士、1993 年創辦 Noise 實驗音樂廠牌
+  - **必查其他宣稱**：袁廣鳴生年（1965）/ 陳界仁生年（1960）/ 各代表作年份 / 台北市立美術館威尼斯雙年展策展起始年（1995）/ 陳界仁《魂魄暴亂》年份（1996-1999）
+  - **敏感度**：新媒體藝術家圈子小，錯誤歸功會直接得罪當事人（黃文浩、姚仲涵）— 這篇必須查到底
+  - **方向補位**：現有條目 SSODT 單向（只寫菁英藝術家），需補「地下 / 民間 / 工具民主化」視角（VJ 文化、開源硬體社群、Raspberry Pi makerspace 等）
+  - **血緣連結**：[[People/王福瑞]]（待建 or 檢查存在）/ [[People/黃文浩]]（同）/ [[People/姚仲涵]]（同）/ [[Art/聲音藝術]]（待建）/ [[Technology/台灣獨立遊戲]]
+- **Reference**:
+  - PR #590: <https://github.com/frank890417/taiwan-md/pull/590>
+  - Etat 官方 FB: <https://www.facebook.com/ETAT1995/>
+  - TCAA 王福瑞: <https://tcaaarchive.org/Artist/Detail/1235>
+  - ART PRESS 王福瑞專訪（2020）: <https://theartpressasia.com/2020/12/02/about-experimental-sound-theres-no-playlist-interview-with-sound-artist-wang-fujui/>
+  - 失聲祭官網: <http://lsf-taiwan.blogspot.com/>
+  - 北藝大新媒系王福瑞頁: <https://nma.tnua.edu.tw/faculty/fulltime/ukGokGMjud>
+- **Pre-research**: 尚未建 reports/research/2026-04/台灣新媒體藝術.md（由 Stage 1 agent 建）
+
 ### 蕭上農（Nuomi）
 
 - **Type**: `NEW`
