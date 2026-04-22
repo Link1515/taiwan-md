@@ -22,6 +22,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      # 把檔案 mtime 從 git log 還原（修「每次 CI 都全量重產 OG」bug）
+      # git checkout 會把所有檔案 mtime 設成 checkout 當下，這步讓 mtime 改回
+      # 最後 commit 該檔的時間，讓 og:generate 的 mtime incremental 能正確運作
+      - name: Restore file mtimes from git history
+        uses: chetan/git-restore-mtime-action@v2
       - name: Setup Node
         uses: actions/setup-node@v4
         with:

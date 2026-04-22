@@ -1,39 +1,33 @@
 #!/usr/bin/env node
 /**
- * generate-og-images.mjs — 多語言 OG 圖片批次產生器
+ * generate-og-images.mjs — 多語言 OG 圖片批次產生器 v3
  *
- * 架構（2026-04-22 β 統一）：
- *   1. 不走獨立 `/og/[cat]/[slug]` 路由，改用文章頁 `?shot=1` 模式
- *      （與 scripts/tools/generate-spore-image.mjs 共用同一個渲染源
- *       — poster-style hero、justfont rixingsong-semibold、hide chrome）
- *   2. 輸出 **JPG 85** 而不是 PNG：1200×630 社交圖 PNG vs JPG 在 FB/
- *      Threads/X 視覺無差別，但體積降約 70%（150-300 KB → 40-80 KB）
- *   3. `public/og-images/` 不進 git（已加 .gitignore）— CI 或本地按需產生
+ * 架構（2026-04-22 β v3 修正多語言 slug 路由）：
+ *   1. 渲染源：文章頁 `?shot=1` 模式（shot-mode CSS/JS 在 Layout.astro，四語言共用）
+ *   2. 字體：Google Fonts Noto Serif TC（shot-mode.css 強制 override）
+ *   3. 輸出：JPG 85 到 public/og-images/[lang]/[category]/[slug].jpg
+ *   4. Incremental：md mtime 或模板 mtime 比 JPG 新才重產
+ *   5. 平行化：預設 4 worker（OG_WORKERS 覆寫）
+ *
+ * **多語言 URL slug 規則（2026-04-22 β v3 修正）**：
+ *   - zh-TW：URL 用 Chinese filename（如 /people/李洋/）
+ *   - en：URL 用 en filename（如 /en/food/beef-noodle-soup/）
+ *   - ja/ko/其他：URL 用 **en slug**（via _translations.json 映射），
+ *     因為 [slug].astro 要求 en 版本存在才產 route。沒 en 對應的文章跳過。
  *
  * 用法：
- *   前置：在另一個 shell 跑 `npm run dev`（本腳本走 http://localhost:4321）
+ *   前置：`npm run dev`（另一個 shell）
  *
- *   npm run og:generate                              # 所有語言全掃（incremental）
- *   npm run og:generate -- --lang zh-TW              # 只產 zh-TW
- *   npm run og:generate -- --lang ko --category food # 只產 ko/food
- *   npm run og:generate -- --slug 李洋               # 只產指定 slug（所有語言）
- *   npm run og:generate -- --force                   # 忽略 mtime 全部重產
- *
- * Incremental 邏輯：若 JPG 存在且 mtime ≥ 來源 md mtime → 跳過
- *
- * 輸出路徑：
- *   - zh-TW（default）：public/og-images/[category]/[slug].jpg
- *   - 其他語言        ：public/og-images/[lang]/[category]/[slug].jpg
- *
- * 為什麼用 `?shot=1` 而不是 `/og/[...path]` 獨立路由：
- *   一處維護：spore 與 OG 共用 article page 的 hero shot 樣式，品牌一致、
- *   不會出現「spore 好看但 OG 太樸素」或反向問題。獨立 /og/ 路由仍保留
- *   在 src/pages/og/[...path].astro，未來有需要時可以作為備用模板，但不
- *   再是 OG meta 的主要來源。
+ *   npm run og:generate                               # 全掃（incremental）
+ *   npm run og:generate -- --lang zh-TW               # 只產 zh-TW
+ *   npm run og:generate -- --lang ko --category food  # 只產 ko/food
+ *   npm run og:generate -- --slug 李洋                # 指定 URL slug（跨語言）
+ *   npm run og:generate -- --force                    # 全部重產
+ *   OG_WORKERS=2 npm run og:generate                  # 降 worker 數
  */
 
 import { chromium } from 'playwright';
-import { statSync, mkdirSync, existsSync } from 'node:fs';
+import { statSync, mkdirSync, existsSync, readFileSync } from 'node:fs';
 import { readdir, stat } from 'node:fs/promises';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -44,6 +38,7 @@ const repoRoot = join(__dirname, '..', '..');
 
 const knowledgeDir = join(repoRoot, 'knowledge');
 const outDir = join(repoRoot, 'public', 'og-images');
+const translationsPath = join(knowledgeDir, '_translations.json');
 
 const CATEGORY_MAP = {
   About: 'about',
@@ -64,12 +59,22 @@ const CATEGORY_MAP = {
 const LANGUAGES = ['zh-TW', 'en', 'ja', 'ko'];
 const DEFAULT_LANG = 'zh-TW';
 
-const baseUrl = process.env.BASE_URL || 'http://localhost:4321';
+// 影響 shot=1 畫面的模板 — 任一個 mtime 比 JPG 新 → 全量重產
+const TEMPLATE_FILES = [
+  'src/pages/[category]/[slug].astro',
+  'src/pages/en/[category]/[slug].astro',
+  'src/pages/ja/[category]/[slug].astro',
+  'src/pages/ko/[category]/[slug].astro',
+  'src/components/ArticleHero.astro',
+  'src/layouts/Layout.astro',
+  'src/styles/shot-mode.css',
+];
 
-// OG 標準 1200×630（~1.905:1）— 社交平台共通規格
+const baseUrl = process.env.BASE_URL || 'http://localhost:4321';
 const VIEWPORT = { width: 1200, height: 630 };
 const JPEG_QUALITY = 85;
-const FONT_WAIT_MS = 12000;
+const FONT_WAIT_MS = 8000;
+const WORKERS = Number(process.env.OG_WORKERS || 4);
 
 async function checkServer() {
   try {
@@ -83,37 +88,90 @@ async function checkServer() {
   }
 }
 
+/**
+ * 建立 translation index：
+ *   - translations: en/ja/ko key → zh canonical value（_translations.json 原始）
+ *   - zhToLang: zh canonical → { ja: 'ja/Cat/x.md', ko: 'ko/Cat/x.md', ... }
+ */
+function loadTranslationIndex() {
+  const raw = readFileSync(translationsPath, 'utf-8');
+  const translations = JSON.parse(raw);
+  const zhToLang = {};
+  for (const [langFile, zhFile] of Object.entries(translations)) {
+    const lang = langFile.split('/')[0];
+    if (!zhToLang[zhFile]) zhToLang[zhFile] = {};
+    zhToLang[zhFile][lang] = langFile;
+  }
+  return { translations, zhToLang };
+}
+
 async function findMarkdownFiles(filterLang, filterCategory) {
   const results = [];
-  const dirs = Object.keys(CATEGORY_MAP);
+  const { translations, zhToLang } = loadTranslationIndex();
   const langsToScan = filterLang ? [filterLang] : LANGUAGES;
 
   for (const lang of langsToScan) {
-    const isDefault = lang === DEFAULT_LANG;
-    const langBasePath = isDefault ? knowledgeDir : join(knowledgeDir, lang);
-    if (!existsSync(langBasePath)) continue;
-
-    for (const folderName of dirs) {
-      const categorySlug = CATEGORY_MAP[folderName];
+    for (const [folderName, categorySlug] of Object.entries(CATEGORY_MAP)) {
       if (filterCategory && categorySlug !== filterCategory) continue;
 
-      const folderPath = join(langBasePath, folderName);
-      if (!existsSync(folderPath)) continue;
-
-      const files = await readdir(folderPath);
-      for (const file of files) {
-        if (!file.endsWith('.md') || file.startsWith('_')) continue;
-        const filePath = join(folderPath, file).normalize('NFC');
-        const fileStat = await stat(filePath);
-        results.push({
-          lang,
-          folderName,
-          file,
-          filePath,
-          mtimeMs: fileStat.mtimeMs,
-          categorySlug,
-          slug: basename(file, '.md'),
-        });
+      if (lang === 'zh-TW') {
+        // zh-TW URL 用 Chinese filename
+        const folderPath = join(knowledgeDir, folderName);
+        if (!existsSync(folderPath)) continue;
+        const files = await readdir(folderPath);
+        for (const file of files) {
+          if (!file.endsWith('.md') || file.startsWith('_')) continue;
+          const filePath = join(folderPath, file).normalize('NFC');
+          const fileStat = await stat(filePath);
+          results.push({
+            lang,
+            categorySlug,
+            urlSlug: basename(file, '.md'),
+            filePath,
+            mtimeMs: fileStat.mtimeMs,
+          });
+        }
+      } else if (lang === 'en') {
+        // en URL 用 en filename
+        const folderPath = join(knowledgeDir, 'en', folderName);
+        if (!existsSync(folderPath)) continue;
+        const files = await readdir(folderPath);
+        for (const file of files) {
+          if (!file.endsWith('.md') || file.startsWith('_')) continue;
+          const filePath = join(folderPath, file).normalize('NFC');
+          const fileStat = await stat(filePath);
+          results.push({
+            lang,
+            categorySlug,
+            urlSlug: basename(file, '.md'),
+            filePath,
+            mtimeMs: fileStat.mtimeMs,
+          });
+        }
+      } else {
+        // ja/ko/其他：URL 用 en slug，須同時有 en + 目標語言 翻譯
+        const enFolderPath = join(knowledgeDir, 'en', folderName);
+        if (!existsSync(enFolderPath)) continue;
+        const enFiles = await readdir(enFolderPath);
+        for (const enFile of enFiles) {
+          if (!enFile.endsWith('.md') || enFile.startsWith('_')) continue;
+          const enKey = `en/${folderName}/${enFile}`;
+          const zhFile = translations[enKey];
+          if (!zhFile) continue;
+          const langMap = zhToLang[zhFile];
+          if (!langMap || !langMap[lang]) continue;
+          const langFile = langMap[lang];
+          const langFilePath = join(knowledgeDir, langFile).normalize('NFC');
+          if (!existsSync(langFilePath)) continue;
+          const fileStat = await stat(langFilePath);
+          results.push({
+            lang,
+            categorySlug,
+            urlSlug: basename(enFile, '.md'),
+            filePath: langFilePath,
+            mtimeMs: fileStat.mtimeMs,
+          });
+        }
       }
     }
   }
@@ -126,18 +184,69 @@ function outputPathFor(entry) {
   const categoryOutDir = join(outDir, langPath, entry.categorySlug);
   return {
     dir: categoryOutDir,
-    jpg: join(categoryOutDir, `${entry.slug}.jpg`),
+    jpg: join(categoryOutDir, `${entry.urlSlug}.jpg`),
   };
 }
 
 function articleUrlFor(entry) {
   const isDefault = entry.lang === DEFAULT_LANG;
-  const encodedSlug = encodeURIComponent(entry.slug);
-  // 注意：zh-TW 沒有 /zh-TW 前綴（default language mount at root）
+  const encodedSlug = encodeURIComponent(entry.urlSlug);
   const base = isDefault
     ? `${baseUrl}/${entry.categorySlug}/${encodedSlug}/`
     : `${baseUrl}/${entry.lang}/${entry.categorySlug}/${encodedSlug}/`;
   return `${base}?shot=1`;
+}
+
+function getTemplateMtimeMs() {
+  return Math.max(
+    0,
+    ...TEMPLATE_FILES.map((f) => {
+      const full = join(repoRoot, f);
+      return existsSync(full) ? statSync(full).mtimeMs : 0;
+    }),
+  );
+}
+
+async function screenshotOne(ctx, entry, skipFontWait) {
+  const { dir, jpg } = outputPathFor(entry);
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+
+  const url = articleUrlFor(entry);
+  const page = await ctx.newPage();
+  try {
+    await page.goto(url, { waitUntil: 'networkidle', timeout: 20000 });
+
+    let fontOk = true;
+    if (!skipFontWait) {
+      try {
+        await page.evaluate(() =>
+          document.fonts.load('900 52px "Noto Serif TC"'),
+        );
+        await page.waitForFunction(
+          () => document.fonts.check('900 52px "Noto Serif TC"'),
+          { timeout: FONT_WAIT_MS, polling: 200 },
+        );
+      } catch (_) {
+        fontOk = false;
+      }
+    }
+
+    await page.waitForTimeout(250);
+
+    await page.screenshot({
+      path: jpg,
+      type: 'jpeg',
+      quality: JPEG_QUALITY,
+      clip: { x: 0, y: 0, width: VIEWPORT.width, height: VIEWPORT.height },
+      animations: 'disabled',
+    });
+
+    return { ok: true, fontOk };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  } finally {
+    await page.close();
+  }
 }
 
 async function main() {
@@ -156,27 +265,43 @@ async function main() {
   const force = hasFlag('force');
   const skipFontWait = hasFlag('no-font-wait');
 
-  console.log(`\n🖼️  OG Image Generator (shot=1 mode, JPG ${JPEG_QUALITY})`);
+  console.log(
+    `\n🖼️  OG Image Generator v3 (shot=1 / Noto Serif TC / JPG ${JPEG_QUALITY})`,
+  );
   console.log(`   target  : ${baseUrl}`);
   console.log(`   viewport: ${VIEWPORT.width}×${VIEWPORT.height}`);
-  console.log(`   output  : public/og-images/`);
+  console.log(`   workers : ${WORKERS}`);
   if (filterLang) console.log(`   lang    : ${filterLang}`);
   if (filterCategory) console.log(`   category: ${filterCategory}`);
   if (filterSlug) console.log(`   slug    : ${filterSlug}`);
-  if (force) console.log(`   mode    : --force (regenerate all)`);
+  if (force) console.log(`   mode    : --force`);
   console.log('');
 
   const serverOk = await checkServer();
   if (!serverOk) process.exit(1);
 
+  const templateMtimeMs = getTemplateMtimeMs();
   const entries = await findMarkdownFiles(filterLang, filterCategory);
 
+  // 語言分組統計
+  const byLang = entries.reduce((acc, e) => {
+    acc[e.lang] = (acc[e.lang] || 0) + 1;
+    return acc;
+  }, {});
+  console.log(
+    `📂 ${entries.length} routable articles: ` +
+      Object.entries(byLang)
+        .map(([l, n]) => `${l}=${n}`)
+        .join(', '),
+  );
+
   const toUpdate = entries.filter((entry) => {
-    if (filterSlug && entry.slug !== filterSlug) return false;
+    if (filterSlug && entry.urlSlug !== filterSlug) return false;
     if (force) return true;
     const { jpg } = outputPathFor(entry);
     if (!existsSync(jpg)) return true;
-    return entry.mtimeMs > statSync(jpg).mtimeMs;
+    const jpgMtime = statSync(jpg).mtimeMs;
+    return entry.mtimeMs > jpgMtime || templateMtimeMs > jpgMtime;
   });
 
   if (toUpdate.length === 0) {
@@ -186,79 +311,60 @@ async function main() {
   console.log(`📝 ${toUpdate.length} images queued.\n`);
 
   const browser = await chromium.launch({ headless: true });
-  const context = await browser.newContext({
-    viewport: VIEWPORT,
-    deviceScaleFactor: 1, // OG 不需 retina，CDN 體積優先
-    reducedMotion: 'reduce',
-  });
-
-  let succeeded = 0;
-  let failed = 0;
   const startTime = Date.now();
 
-  try {
-    for (let i = 0; i < toUpdate.length; i++) {
-      const entry = toUpdate[i];
-      const { dir, jpg } = outputPathFor(entry);
-      if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  let succeeded = 0;
+  let fontFallback = 0;
+  let failed = 0;
+  let processedCount = 0;
+  const queue = [...toUpdate];
 
-      const url = articleUrlFor(entry);
-      const progress = `[${i + 1}/${toUpdate.length}]`;
-      process.stdout.write(
-        `${progress} ${entry.lang}/${entry.categorySlug}/${entry.slug} ... `,
-      );
-
-      const page = await context.newPage();
-      try {
-        await page.goto(url, { waitUntil: 'networkidle', timeout: 20000 });
-
-        // Wait for justfont rixingsong-semibold（與 spore pipeline 一致）
-        if (!skipFontWait) {
-          try {
-            await page.waitForFunction(
-              () => {
-                const h1 = document.querySelector('.hero-title');
-                if (!h1) return false;
-                const ff = getComputedStyle(h1).fontFamily || '';
-                return ff.toLowerCase().includes('rixing');
-              },
-              { timeout: FONT_WAIT_MS, polling: 200 },
-            );
-          } catch (_) {
-            // fallback serif — 繼續產圖，警告但不中止
-            process.stdout.write(`(font-timeout) `);
+  async function worker(id) {
+    const ctx = await browser.newContext({
+      viewport: VIEWPORT,
+      deviceScaleFactor: 1,
+      reducedMotion: 'reduce',
+    });
+    try {
+      while (queue.length > 0) {
+        const entry = queue.shift();
+        if (!entry) break;
+        const idx = ++processedCount;
+        const label = `[${idx}/${toUpdate.length}] w${id} ${entry.lang}/${entry.categorySlug}/${entry.urlSlug}`;
+        const result = await screenshotOne(ctx, entry, skipFontWait);
+        if (result.ok) {
+          if (result.fontOk) {
+            succeeded++;
+            console.log(`${label} ... ✓`);
+          } else {
+            fontFallback++;
+            console.log(`${label} ... ✓ (font-fallback)`);
           }
+        } else {
+          failed++;
+          console.log(`${label} ... ✗ ${result.error}`);
         }
-
-        // extra paint settle
-        await page.waitForTimeout(300);
-
-        await page.screenshot({
-          path: jpg,
-          type: 'jpeg',
-          quality: JPEG_QUALITY,
-          clip: { x: 0, y: 0, width: VIEWPORT.width, height: VIEWPORT.height },
-          animations: 'disabled',
-        });
-
-        console.log(`✓`);
-        succeeded++;
-      } catch (err) {
-        console.log(`✗ ${err.message}`);
-        failed++;
-      } finally {
-        await page.close();
       }
+    } finally {
+      await ctx.close();
     }
+  }
+
+  try {
+    await Promise.all(Array.from({ length: WORKERS }, (_, i) => worker(i + 1)));
   } finally {
     await browser.close();
   }
 
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-  const rate = (succeeded / parseFloat(elapsed)).toFixed(2);
+  const total = succeeded + fontFallback;
+  const rate = elapsed > 0 ? (total / parseFloat(elapsed)).toFixed(2) : '0';
   const mark = failed === 0 ? '✅' : '⚠️';
   console.log(
-    `\n${mark}  ${succeeded}/${toUpdate.length} generated in ${elapsed}s (${rate} img/s)${failed ? `, ${failed} failed` : ''}\n`,
+    `\n${mark}  ${total}/${toUpdate.length} in ${elapsed}s (${rate} img/s, ${WORKERS} workers)` +
+      (fontFallback ? `, ${fontFallback} font-fallback` : '') +
+      (failed ? `, ${failed} failed` : '') +
+      '\n',
   );
 }
 

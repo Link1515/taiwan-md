@@ -1,8 +1,10 @@
 ---
 import '../styles/global.css';
+import '../styles/shot-mode.css';
 import SEO from '../components/SEO.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import BrandMark from '../components/BrandMark.astro';
 
 import type { Lang } from '../config/languages';
 
@@ -111,6 +113,55 @@ const jfClass = [
       slug={slug}
       categorySlug={propCategorySlug}
     />
+    <!-- Screenshot mode (?shot=1) — early toggle to avoid flash ──────────
+         在 paint 之前就把 data-shot 屬性打上 <html>/<main>，讓 shot-mode.css
+         的 global overrides 立刻生效。支援 ?title= / ?desc= query override。
+         與 scripts/core/generate-og-images.mjs + generate-spore-image.mjs 協作。
+         原本寫在 src/pages/[category]/[slug].astro，2026-04-22 β 搬到 Layout
+         讓四語言 article page 全部共用。 ─────────────────────────────────── -->
+    <script is:inline>
+      (function () {
+        try {
+          var qs = new URLSearchParams(location.search);
+          if (qs.get('shot') !== '1') return;
+          document.documentElement.setAttribute('data-shot', '1');
+          // DOM 還沒 parse 完，先 queue，等 body 可 query 再貼
+          var apply = function () {
+            var m = document.querySelector('main.article-page');
+            if (m) m.setAttribute('data-shot', '1');
+            var titleOverride = qs.get('title');
+            if (titleOverride) {
+              var h1 = document.querySelector('.hero-title');
+              if (h1) h1.textContent = titleOverride;
+            }
+            var descOverride = qs.get('desc');
+            if (descOverride) {
+              var p = document.querySelector(
+                'main.article-page > section > div:nth-child(2) > p',
+              );
+              if (p) {
+                p.textContent = descOverride;
+              } else {
+                var inner = document.querySelector(
+                  'main.article-page > section > div:nth-child(2)',
+                );
+                var hero = inner && inner.querySelector('.hero-title');
+                if (inner && hero) {
+                  var np = document.createElement('p');
+                  np.textContent = descOverride;
+                  hero.insertAdjacentElement('afterend', np);
+                }
+              }
+            }
+          };
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', apply);
+          } else {
+            apply();
+          }
+        } catch (_) {}
+      })();
+    </script>
     <script
       is:inline
       async
@@ -701,6 +752,14 @@ const jfClass = [
         _tryInit();
       }
     </script>
+
+    <!-- Screenshot mode (?shot=1) watermark — BrandMark (light variant) 固定右下角。
+         display: none 由 shot-mode.css 控制，只在 ?shot=1 時顯示。
+         必須在 <main> 之外，避免被「hide everything inside main except hero section」
+         規則吞掉。2026-04-22 β 從 zh-TW [slug].astro 搬來 Layout，四語言共用。 -->
+    <div class="shot-watermark" aria-hidden="true">
+      <BrandMark variant="light" size={1.8} />
+    </div>
 
     <main role="main">
       <slot />
