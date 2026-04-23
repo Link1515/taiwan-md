@@ -13,26 +13,41 @@
 
 ## 🔜 Phase 2：配圖自動化
 
-### ✅ 動態 OG Image (v3 自動化, 2026-04-23)
+### ✅ 動態 OG Image (v3.2 自動化, 2026-04-23)
 
-每篇文章現在都有獨立的動態 OG image，分享連結時自動顯示。
+每篇文章現在都有獨立的動態 OG image，分享連結時自動顯示。四語言都產。
 
-- **解決方案 (v3)**：Build-time 產圖。採用 `?shot=1` 模式直接從文章頁截圖，確保設計一致性。
-- **效能優化**：切換至 **JPG 85** 壓縮，單圖體積減少 70%，大幅節省 dist 容量。
-- **CI 自動化**：已整合進 GitHub Actions (`deploy.yml`)，偵測 md 變動增量生成，不再需要手動 commit 圖檔。
-- **SEO 整合**：`SEO.astro` 已自動連動產出的圖片路徑，並具備 default fallback 機制。
+- **解決方案 (v3)**：Build-time 產圖。採用 `?shot=1` 模式直接從文章頁截圖，與 `generate-spore-image.mjs` **共用同一個渲染源**（poster-style hero、justfont rixingsong-semibold、hide chrome），確保 OG 圖跟孢子圖的視覺品牌完全一致。
+- **四語言共用**：`shot-mode.css` 抽出到 `src/styles/`，JS toggle 搬到 `src/layouts/Layout.astro`。原本只有 zh-TW 的 poster 模式，現在 en/ja/ko 文章頁也跑同一套。
+- **效能優化**：切換至 **JPG 85** 壓縮，單圖體積減少 70%（150-300 KB PNG → 40-80 KB JPG），大幅節省 dist 容量。視覺在 FB/Threads/X 平台看不出差別。
+- **CI 自動化**：已整合進 GitHub Actions (`deploy.yml`)。Flow：起 dev server → 跑 og:generate（mtime 增量）→ 關 server → `npm run build`（會複製 `public/og-images/` 到 `dist/`）。
+- **Incremental 三層鎖**：
+  1. `actions/cache@v4` 按 md + 文章模板 hash 快取 `public/og-images/`，cache hit 直接用
+  2. `chetan/git-restore-mtime-action@v2` 把 `git clone` 重設的 mtime 還原到最後 commit 時間，避免誤判全部「新檔」
+  3. 腳本內部再比對 md mtime + 模板 mtime（`shot-mode.css` / `ArticleHero.astro` / `Layout.astro` 等），任一比 JPG 新才重產
+- **4 平行 worker**：`generate-og-images.mjs` 用 Playwright multi-context 平行產圖，首次 CI 預估 ~17 分（1700+ 張）。可用 `OG_WORKERS=2` 環境變數降級。
+- **ja/ko URL 規則**：ja/ko 文章 URL 使用 **en slug**（透過 `knowledge/_translations.json` 映射），沒 en 對應的翻譯會跳過避免 404。
+- **SEO 整合**：`SEO.astro` 用 `existsSync` 在 build time 檢查檔案，若 `.jpg` 不存在 → fallback 到 `/images/taiwan-social.jpg` 預設卡，永遠不會 404。
+- **CI 穩定性**：Playwright install 拆成 `install-deps`（系統套件）+ `install chromium`（binary）兩步各 5 分 timeout + `DEBIAN_FRONTEND=noninteractive`，避免 silent hang（吸取 2026-04-22 單次 6 小時卡死教訓）。
+- **Local graceful skip**：`prebuild:og` 在 `npm run build` 時若 dev server 未開 → warn + skip（不 fail build）。CI 有獨立 step 處理。
 
 #### 使用方式：
 
 ```bash
-npm run og:generate                    # 增量產圖 (本地預覽用)
+npm run og:generate                    # 全量產圖 (本地需先 npm run dev)
+npm run og:generate -- --lang zh-TW    # 只產 zh-TW
+npm run og:generate -- --slug 李洋     # 指定 slug（跨語言）
+npm run og:generate -- --force         # 忽略 mtime 全部重產
+OG_WORKERS=2 npm run og:generate       # 降 worker 數
 ```
 
 **技術細節：**
 
-- **渲染源**：`https://taiwan.md/[category]/[slug]/?shot=1`
-- **儲存路徑**：`public/og-images/[category]/[slug].jpg`
-- **自動清理**：舊有的 `.png` 檔案已全數移除，由 `.jpg` 統一取代。
+- **渲染源**：`https://taiwan.md/[category]/[slug]/?shot=1`（四語言共用模式）
+- **儲存路徑**：
+  - zh-TW：`public/og-images/[category]/[slug].jpg`（root）
+  - 其他語言：`public/og-images/[lang]/[category]/[slug].jpg`
+- **死碴清理**：舊 `/og/[...path].astro` 獨立路由已刪，舊 PNG 檔（491 ko）已清，統一到 `.jpg`。
 
 ## 🔜 Phase 3：自動發佈
 

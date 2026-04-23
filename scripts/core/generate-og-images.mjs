@@ -82,8 +82,13 @@ async function checkServer() {
     if (!res.ok) throw new Error(`status ${res.status}`);
     return true;
   } catch (err) {
-    console.error(`\n❌ Cannot reach ${baseUrl}`);
-    console.error(`   Run \`npm run dev\` in another shell first.\n`);
+    console.warn(`\n⚠️  Cannot reach ${baseUrl} — skipping OG generation`);
+    console.warn(
+      `   本地產圖請先 \`npm run dev\` 在另一個 shell；CI 自動在 deploy.yml 處理`,
+    );
+    console.warn(
+      `   此處 graceful skip（不 fail build），確保 prebuild chain 不會因此中斷\n`,
+    );
     return false;
   }
 }
@@ -278,7 +283,11 @@ async function main() {
   console.log('');
 
   const serverOk = await checkServer();
-  if (!serverOk) process.exit(1);
+  if (!serverOk) {
+    // graceful skip — 讓 prebuild:og 在 npm run build 時不會炸（2026-04-23 PR #595 整合後）
+    // CI 會在 deploy.yml 起 dev server 跑獨立的 OG 生成 step；本地 build 跳過 OK
+    return;
+  }
 
   const templateMtimeMs = getTemplateMtimeMs();
   const entries = await findMarkdownFiles(filterLang, filterCategory);
