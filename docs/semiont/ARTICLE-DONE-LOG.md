@@ -42,28 +42,31 @@
 
 ## 📜 Log（reverse chronological，最新在頂）
 
-### 認知作戰 — 2026-04-23 β 完成（idlccp1984 PR #594 merge-then-full-REWRITE-PIPELINE）
+### 認知作戰 — 2026-04-23 β v2 擴充完成（PR #594 → Stage 0-6 × 2 輪）
 
 - **Path**: [knowledge/Society/認知作戰.md](../../knowledge/Society/認知作戰.md)
-- **Type**: EVOLVE（PR #594 merge 後，觀察者指示走完整 Stage 0-6 重寫）
-- **Priority**: P0（觸發原因：原稿有 [^17] [^18] 兩個標為「模擬引用」的 AI hallucinated URLs + 政治 framing 需中立化）
-- **Pipeline 版本**: v2.17+（Stage 1 研究 27 次搜尋 / 6 次 WebFetch 驗證 / 中文 19 + 英文 8）
-- **核心架構**：用「由近及遠、由具體到結構」同心圓 5 層結構：
-  1. 一個長輩的 LINE 群組（AI 假醫師「陳志明」案 + 新北社會局 AI 假補助 + 王仁甫家聲音詐騙）
-  2. 數量級（國安局 231 萬爭訊 / 中共官媒 1076 帳號 56 萬影片 / 臉部辨識 57 位）
-  3. 一套體系（國安局 5 手法 × 中國具體公司名表）
-  4. 也不只是中共（林瑋豐反串 / 1450 網軍 / Meta 160 億詐騙廣告 / 認知作戰一詞被標籤化）
-  5. 台灣抗擊基礎設施 + 國際經驗（TFC/IORG/Doublethink Lab/Cofacts/MyGoPen/黑熊學院 8 組織 × 烏克蘭 StopFake/NAFO × C2PA）
-- **關鍵認知錨點**：沈伯洋「80% 跟真假無關，是敘事攻擊」放在第二段作為全文最高認知錨點
-- **核心矛盾處理**：讓「需警覺中共操作」與「需警覺本土標籤化濫用」兩條警戒線共存；示範讀者如何識讀可疑頻道（獨角獸那麼叫）而非武斷指認
-- **Footnote 數**：31 條，全部真實 URL 驗證（1 條 Reuters 401 auth-gated / 2 條 TFC 暫時 500 但 URL 正確 / 其餘 200）
-- **Cross-link**：正向 4 條（Threads在台灣 / 迷音Miin / 台灣網路社群遷徙史 / 台灣媒體與新聞自由）、反向 1 條（台灣網路社群遷徙史 順手修掉舊的 broken PTT批踢踢 link）
+- **Type**: EVOLVE × 2 輪（v1 從 PR #594 merge 接手；v2 觀察者觸發擴充）
+- **Pipeline 版本**: v2.17+（v1 Stage 1 27 次搜尋 / v2 再加 21 次搜尋 + 2 次 WebFetch = 累計 48 次搜尋）
+- **篇幅**：39,203 字（v1 ~15,000 字 → v2 擴張 2.6x）
+- **Footnote**：61 條，全部真實 URL 驗證（其中 Reuters/Congress.gov/Medium/中國公安部網為 bot-blocked 但 URL 真實存在）
+- **v2 新加軸線**（觀察者指示「加更多案例/論述/觀點/故事」）：
+  1. **反擊面兩條線**（新章節）：八炯+陳柏源《中國統戰紀錄片》200萬/117萬觀看 / 沈伯洋 2025-10-28 重慶公安「分裂國家罪」立案 / 央視 8 分鐘起底專題 / 黃澎孝「敵人勳章」
+  2. **關西機場事件真假三角**（新段落）：中國微博「洪水猛獸 baby」源頭 + 楊蕙如 PTT 本土網軍接力 + 蘇啟誠自殺 / 2025-03 憲法法庭判侮辱職務罪違憲免訴確定 — 「認知作戰邊界」最誠實的歷史教材
+  3. **王宏恩三要件**（新段落）：UNLV 政治系學者指「境外、協同、特定動機」三要件缺一不可 / 「一群帳號也可能是好朋友」當全文收束金句
+  4. **治理層新章節**：衛福部依《醫師法》裁罰路徑 + 數發部「打詐通報查詢網」AI 分流 + 黃彥男「內容真假不應由政府判斷」哲學 + TikTok 公部門禁用 vs 民眾未禁的法律誤解
+  5. **平台責任深挖**：Meta 160 億美元 / 95% 門檻 / **台灣因法律強制才被納入廣告主驗證**（勝績訊號）/ Google Pixel 10 C2PA Assurance Level 2
+  6. **國際錨點擴充**：EU AI Act 第 50 條 2026-08 / DEFIANCE Act 2026-01 參議院通過 / TAKE IT DOWN Act 2025-05 / 太子集團 150 億比特幣
+  7. **歷史脈絡**：2020 選舉 IORG 拆解 / 2024 賴清德當選後 AI 虛擬主播新特徵 / 批判演算法素養 Critical Algorithmic Literacy 概念
+- **MANIFESTO §11 過濾器升級**：新造 [scripts/tools/check-manifesto-11.sh](../../scripts/tools/check-manifesto-11.sh)，覆蓋 9 種變體（不是X是Y、這不是、不只是、不再是、看似實則、非單純、不等於對位、heading 含對位、破折號連用 + 密度）；v1 12 個違反全數消除；v2 0 違反
+- **書寫紀律**：v2 完稿 0 §11 違反 / 破折號密度 < 每千字 2 個
+- **Cross-link**：正向 4 條（Threads在台灣 / 迷音Miin / 台灣網路社群遷徙史 / 台灣媒體與新聞自由）、反向 1 條（台灣網路社群遷徙史 順手修掉 broken PTT批踢踢 link）
 - **貢獻者 credit**：idlccp1984（原始提案 PR #594，保留 frontmatter author）
-- **書寫紀律**：MANIFESTO §11 2 處「不是X是Y」對位句已改寫；15 個破折號，無連用
 - **神經迴路**：
-  - idlccp1984 N=7 首次踩到 AI hallucinated URLs pattern，跟前 6 次 format-only 品質問題是不同層級（貢獻者責任 vs 維護者責任）
-  - 小丑魚原則的邊界案例：幻覺引用不屬於「維護者自己查」的範疇，而觀察者選 B 路徑（merge + 接手 REWRITE-PIPELINE）是比 request-changes 更高 commitment 的「承擔+教學」模式
-- **研究筆記 canonical**：[reports/research/2026-04/認知作戰.md](../../reports/research/2026-04/認知作戰.md)
+  - idlccp1984 N=7 首次踩到 AI hallucinated URLs pattern（貢獻者責任 vs 維護者責任的不同層級）
+  - 小丑魚原則邊界案例：幻覺引用不屬「維護者自己查」範疇；觀察者選 B 路徑（merge + 完整 REWRITE-PIPELINE）是比 request-changes 更高 commitment 的「承擔+教學」模式
+  - §11 過濾器升級：v1 完稿後觀察者發現「不只是」「這不是」「不再是」等漏網變體，造過濾器工具（scripts/tools/check-manifesto-11.sh）並結晶到 DNA 候選
+  - 認知作戰文章成為「複雜性優於正確性」的典範：讓三條警戒線（警覺中共、警覺本土標籤化、警覺研究方法論侷限）同時存在，拒絕二分敘事
+- **研究筆記 canonical**：[reports/research/2026-04/認知作戰.md](../../reports/research/2026-04/認知作戰.md)（491 行，v1+v2 完整研究軌跡保留）
 
 ### 馬英九迷因 — 2026-04-22 α 完成（idlccp1984 PR #587 merge-after-escalation-polish）
 
