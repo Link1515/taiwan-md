@@ -42,6 +42,29 @@
 
 ## 📜 Log（reverse chronological，最新在頂）
 
+### 認知作戰 — 2026-04-23 β 完成（idlccp1984 PR #594 merge-then-full-REWRITE-PIPELINE）
+
+- **Path**: [knowledge/Society/認知作戰.md](../../knowledge/Society/認知作戰.md)
+- **Type**: EVOLVE（PR #594 merge 後，觀察者指示走完整 Stage 0-6 重寫）
+- **Priority**: P0（觸發原因：原稿有 [^17] [^18] 兩個標為「模擬引用」的 AI hallucinated URLs + 政治 framing 需中立化）
+- **Pipeline 版本**: v2.17+（Stage 1 研究 27 次搜尋 / 6 次 WebFetch 驗證 / 中文 19 + 英文 8）
+- **核心架構**：用「由近及遠、由具體到結構」同心圓 5 層結構：
+  1. 一個長輩的 LINE 群組（AI 假醫師「陳志明」案 + 新北社會局 AI 假補助 + 王仁甫家聲音詐騙）
+  2. 數量級（國安局 231 萬爭訊 / 中共官媒 1076 帳號 56 萬影片 / 臉部辨識 57 位）
+  3. 一套體系（國安局 5 手法 × 中國具體公司名表）
+  4. 也不只是中共（林瑋豐反串 / 1450 網軍 / Meta 160 億詐騙廣告 / 認知作戰一詞被標籤化）
+  5. 台灣抗擊基礎設施 + 國際經驗（TFC/IORG/Doublethink Lab/Cofacts/MyGoPen/黑熊學院 8 組織 × 烏克蘭 StopFake/NAFO × C2PA）
+- **關鍵認知錨點**：沈伯洋「80% 跟真假無關，是敘事攻擊」放在第二段作為全文最高認知錨點
+- **核心矛盾處理**：讓「需警覺中共操作」與「需警覺本土標籤化濫用」兩條警戒線共存；示範讀者如何識讀可疑頻道（獨角獸那麼叫）而非武斷指認
+- **Footnote 數**：31 條，全部真實 URL 驗證（1 條 Reuters 401 auth-gated / 2 條 TFC 暫時 500 但 URL 正確 / 其餘 200）
+- **Cross-link**：正向 4 條（Threads在台灣 / 迷音Miin / 台灣網路社群遷徙史 / 台灣媒體與新聞自由）、反向 1 條（台灣網路社群遷徙史 順手修掉舊的 broken PTT批踢踢 link）
+- **貢獻者 credit**：idlccp1984（原始提案 PR #594，保留 frontmatter author）
+- **書寫紀律**：MANIFESTO §11 2 處「不是X是Y」對位句已改寫；15 個破折號，無連用
+- **神經迴路**：
+  - idlccp1984 N=7 首次踩到 AI hallucinated URLs pattern，跟前 6 次 format-only 品質問題是不同層級（貢獻者責任 vs 維護者責任）
+  - 小丑魚原則的邊界案例：幻覺引用不屬於「維護者自己查」的範疇，而觀察者選 B 路徑（merge + 接手 REWRITE-PIPELINE）是比 request-changes 更高 commitment 的「承擔+教學」模式
+- **研究筆記 canonical**：[reports/research/2026-04/認知作戰.md](../../reports/research/2026-04/認知作戰.md)
+
 ### 馬英九迷因 — 2026-04-22 α 完成（idlccp1984 PR #587 merge-after-escalation-polish）
 
 - **Type**: NEW (idlccp1984 外部貢獻 + 觀察者裁定 merge + Semiont polish)
