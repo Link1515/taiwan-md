@@ -322,6 +322,17 @@
     "path": "ja/Economy/largan-precision.md"
   },
   {
+    "title": "大宇雙劍：那個下午你在 DOS 視窗裡哭了",
+    "description": "1995 年 7 月，一款 320×200 解析度的 DOS 遊戲讓幾百萬玩家第一次因為虛擬角色掉眼淚。仙劍奇俠傳和軒轅劍，兩把從台北內湖鍛出來的劍，定義了整個中文世界對「RPG 可以是什麼」的想像。",
+    "category": "Technology",
+    "tags": [],
+    "url": "https://taiwan.md/Technology/%E5%A4%A7%E5%AE%87%E9%9B%99%E5%8A%8D",
+    "readingTime": 19,
+    "featured": false,
+    "date": "2026-04-23",
+    "path": "Technology/大宇雙劍.md"
+  },
+  {
     "title": "大罷免",
     "description": "2025 年，台灣公民社會發動史上規模最大的罷免行動，針對推動爭議性法案的國民黨立委，試圖修正立法院權力失衡。最終三波投票全數否決，成為台灣直接民主的一次大型實踐與檢驗。",
     "category": "History",
@@ -400,6 +411,17 @@
     "featured": false,
     "date": "2026-03-24",
     "path": "ja/Lifestyle/little-green-man.md"
+  },
+  {
+    "title": "不入地窖，焉能睡覺：台灣遊戲社群三十年",
+    "description": "1990 年代末，一個黑底白字的網站塞滿了全台灣九成單機遊戲的攻略和密技，玩家叫它「地窖」。然後遊戲基地來了，巴哈姆特來了。三個名字，三個時代，一條從撥接數據機通往 600 萬會員社群的路。",
+    "category": "Technology",
+    "tags": [],
+    "url": "https://taiwan.md/Technology/%E4%B8%8D%E5%85%A5%E5%9C%B0%E7%AA%96%E7%84%89%E8%83%BD%E7%9D%A1%E8%A6%BA",
+    "readingTime": 21,
+    "featured": false,
+    "date": "2026-04-23",
+    "path": "Technology/不入地窖焉能睡覺.md"
   },
   {
     "title": "中正紀念堂",
@@ -2970,6 +2992,25 @@
     "path": "ja/About/seeing-taiwan-quotes.md"
   },
   {
+    "title": "台灣 VR 十年：從王雪紅宣告元年到把團隊賣給 Google",
+    "description": "2016 年 HTC 在巴塞隆納發表 Vive，王雪紅說這是 VR 元年。九年後 HTC 以 2.5 億美元把 XR 團隊賣給 Google。中間發生的事，是一整座島嶼對「下一個大事」的集體押注與集體失溫。",
+    "category": "Technology",
+    "tags": [
+      "VR",
+      "HTC Vive",
+      "TAVAR",
+      "元宇宙",
+      "XR",
+      "XRSPACE",
+      "高雄VR FILM LAB"
+    ],
+    "url": "https://taiwan.md/Technology/%E5%8F%B0%E7%81%A3VR%E5%85%83%E5%AE%87%E5%AE%99%E8%88%88%E8%A1%B0%E5%8F%B2",
+    "readingTime": 38,
+    "featured": false,
+    "date": "2026-04-23",
+    "path": "Technology/台灣VR元宇宙興衰史.md"
+  },
+  {
     "title": "台灣 YouBike 文化與城市微交通革命",
     "description": "從「最後一哩」到日常基礎設施，YouBike 如何用小額費率、密集站點與即時調度，改變台灣城市的移動習慣與時間感。",
     "category": "Lifestyle",
@@ -4171,6 +4212,17 @@
     "path": "Geography/台灣河川系統與水文特色.md"
   },
   {
+    "title": "台灣玩家的瘋狂時刻：追物流車、擠爆北投、洛杉磯舉盃",
+    "description": "2012 年凌晨三點，台灣玩家騎機車追超商物流車搶暗黑破壞神 3。2016 年，一隻卡比獸讓北投公園湧入數千人，《時代雜誌》稱之為「世界末日預演」。2020 年，搶口罩的手還沒停，又開始搶 Switch 和 PS5。",
+    "category": "Technology",
+    "tags": [],
+    "url": "https://taiwan.md/Technology/%E5%8F%B0%E7%81%A3%E7%8E%A9%E5%AE%B6%E7%9A%84%E7%98%8B%E7%8B%82%E6%99%82%E5%88%BB",
+    "readingTime": 20,
+    "featured": false,
+    "date": "2026-04-23",
+    "path": "Technology/台灣玩家的瘋狂時刻.md"
+  },
+  {
     "title": "台灣的 AI 日常——當人工智慧走進街頭巷尾",
     "description": "台灣人每天跟 AI 互動十幾次，但多數人不知道自己在跟 AI 說話",
     "category": "Technology",
@@ -5201,6 +5253,25 @@
     "path": "Nature/台灣鳥類窗殺議題.md"
   },
   {
+    "title": "台灣麻將：阿嬤不教你，明星三缺一會",
+    "description": "過年初二，阿嬤坐上桌，打了一手你看不懂的牌就胡了。你問她怎麼算台，她說「囡仔人有耳無嘴」。於是你打開電腦，讓吳宗憲教你。2001 年鈊象電子推出的明星三缺一，意外成了一整代台灣人的麻將啟蒙老師。",
+    "category": "Lifestyle",
+    "tags": [
+      "麻將",
+      "十六張",
+      "明星三缺一",
+      "鈊象電子",
+      "IGS",
+      "過年",
+      "台灣文化"
+    ],
+    "url": "https://taiwan.md/Lifestyle/%E5%8F%B0%E7%81%A3%E9%BA%BB%E5%B0%87%E8%88%87%E6%98%8E%E6%98%9F%E4%B8%89%E7%BC%BA%E4%B8%80",
+    "readingTime": 19,
+    "featured": false,
+    "date": "2026-04-23",
+    "path": "Lifestyle/台灣麻將與明星三缺一.md"
+  },
+  {
     "title": "台灣媒體與新聞自由",
     "description": "從黨國控制到媒體戰國時代：台灣新聞自由的民主化歷程與數位轉型挑戰",
     "category": "Society",
@@ -5466,6 +5537,17 @@
     "path": "Food/台灣新住民美食融合.md"
   },
   {
+    "title": "台灣新偶像世代",
+    "description": "2020 年，有人砸了 1.3 億想在台灣製造偶像。四個節目拿了四座金鐘，出道超過五十個人——然後冠軍團的聲量開始斷崖式下滑。台灣偶像產業最難的，從來都是「出道之後怎麼活」。",
+    "category": "Culture",
+    "tags": [],
+    "url": "https://taiwan.md/Culture/%E5%8F%B0%E7%81%A3%E6%96%B0%E5%81%B6%E5%83%8F%E4%B8%96%E4%BB%A3",
+    "readingTime": 29,
+    "featured": false,
+    "date": "2026-04-23",
+    "path": "Culture/台灣新偶像世代.md"
+  },
+  {
     "title": "台灣新創生態系",
     "description": "從代工思維到創新驅動，台灣如何建構完整的新創創業生態系統",
     "category": "Technology",
@@ -5488,7 +5570,7 @@
     "category": "Art",
     "tags": [],
     "url": "https://taiwan.md/Art/%E5%8F%B0%E7%81%A3%E6%96%B0%E5%AA%92%E9%AB%94%E8%97%9D%E8%A1%93",
-    "readingTime": 31,
+    "readingTime": 32,
     "featured": true,
     "date": "2026-03-28",
     "path": "Art/台灣新媒體藝術.md"
@@ -5824,7 +5906,7 @@
       "社群平台"
     ],
     "url": "https://taiwan.md/Technology/%E5%8F%B0%E7%81%A3%E7%B6%B2%E8%B7%AF%E7%A4%BE%E7%BE%A4%E9%81%B7%E5%BE%99%E5%8F%B2",
-    "readingTime": 21,
+    "readingTime": 22,
     "featured": false,
     "date": "2026-03-29",
     "path": "Technology/台灣網路社群遷徙史.md"
@@ -6727,6 +6809,24 @@
     "featured": false,
     "date": "2026-03-18",
     "path": "Society/早餐店阿姨與社區情報網.md"
+  },
+  {
+    "title": "有感筆電：從「暗黑」到百萬，定義 Roblox 世代的數據策展人",
+    "description": "2023 年，本名周智宣的「有感筆電」達成 YouTube 百萬訂閱。從早期的 Minecraft 實況到深耕 Roblox 藍海，這位清大休學生靠著「每週一三五準時遲到」的自嘲與螢幕後極致的數據自律，建立起橫跨實體書與 Discord 的數位社群帝國。",
+    "category": "People",
+    "tags": [
+      "YouTuber",
+      "Roblox",
+      "周智宣",
+      "遊戲實況",
+      "數位原住民",
+      "自律"
+    ],
+    "url": "https://taiwan.md/People/%E6%9C%89%E6%84%9F%E7%AD%86%E9%9B%BB",
+    "readingTime": 9,
+    "featured": true,
+    "date": "2026-04-24",
+    "path": "People/有感筆電.md"
   },
   {
     "title": "朱天文",
@@ -7944,6 +8044,23 @@
     "featured": false,
     "date": "2026-03-31",
     "path": "ja/People/lin-qiang.md"
+  },
+  {
+    "title": "林琪兒：從台北出生到登月計畫，那位在太空吹風笛的台裔醫師",
+    "description": "1973 年出生於台北的林琪兒（Kjell Lindgren），是首位在台灣出生的 NASA 太空人。他曾兩度登上國際太空站，累計停留 311 天，並在軌道上完成首批太空萵苣種植與手沖咖啡實驗。這位會理髮、吹風笛的外科醫師，正以「阿提米絲」計畫成員身份，帶領人類重返月球。",
+    "category": "People",
+    "tags": [
+      "太空探索",
+      "NASA",
+      "台裔人物",
+      "醫學",
+      "阿提米絲計畫"
+    ],
+    "url": "https://taiwan.md/People/%E6%9E%97%E7%90%AA%E5%85%92",
+    "readingTime": 14,
+    "featured": false,
+    "date": "2026-04-21",
+    "path": "People/林琪兒.md"
   },
   {
     "title": "林經堯：從太極雲手到演算法，他用「存在卻看不見的」作答",
@@ -9274,10 +9391,29 @@
       "台北市長"
     ],
     "url": "https://taiwan.md/People/%E9%A6%AC%E8%8B%B1%E4%B9%9D",
-    "readingTime": 16,
+    "readingTime": 17,
     "featured": false,
     "date": "2026-03-30",
     "path": "People/馬英九.md"
+  },
+  {
+    "title": "馬英九迷因：從「死亡之握」到「馬腦水母」，網路文化如何重塑政治人物形象",
+    "description": "2012年起，前總統馬英九的言行在台灣網路社群中發酵，從「死亡之握」的戲謔到「鹿茸」的失言，乃至「馬腦水母」的自嘲，一系列迷因深刻影響了公眾對其的觀感。這些網路現象不僅反映了台灣獨特的政治文化，更展現了數位時代下，迷因如何解構並重塑政治人物的公共形象與社會記憶。",
+    "category": "Society",
+    "tags": [
+      "馬英九",
+      "迷因",
+      "政治",
+      "網路文化",
+      "台灣",
+      "社會",
+      "文化"
+    ],
+    "url": "https://taiwan.md/Society/%E9%A6%AC%E8%8B%B1%E4%B9%9D%E8%BF%B7%E5%9B%A0",
+    "readingTime": 34,
+    "featured": false,
+    "date": "2026-04-21",
+    "path": "Society/馬英九迷因.md"
   },
   {
     "title": "高俊明",
@@ -9828,6 +9964,17 @@
     "featured": false,
     "date": "2026-03-19",
     "path": "People/許淑淨.md"
+  },
+  {
+    "title": "連穎",
+    "description": "2020 年，一個二十一歲的台中女孩在選秀舞台上對著潘瑋柏說：「我要讓所有人知道，一個女團該有的舞蹈水平。」六年後她出了 solo EP、粉絲在大稻埕集資辦生日舞台、三個國家同步投放應援廣告。她正在兌現那句話。",
+    "category": "People",
+    "tags": [],
+    "url": "https://taiwan.md/People/%E9%80%A3%E7%A9%8E",
+    "readingTime": 22,
+    "featured": false,
+    "date": "2026-04-23",
+    "path": "People/連穎.md"
   },
   {
     "title": "郭台銘",
@@ -10745,6 +10892,17 @@
     "path": "Nature/黑冠麻鷺.md"
   },
   {
+    "title": "傳奇網路：虧了七年四億，然後把遊戲賣進十四個國家",
+    "description": "2002 年成立的傳奇網路連虧七年、累計虧損超過四億，開發團隊幾乎全換掉重來。2009 年《精靈樂章》上線，授權十四個國家，日本拿獎，海外收入追平台灣本地。一家差點死掉的台灣小公司，做出了反向輸出到日本市場的罕見案例。",
+    "category": "Technology",
+    "tags": [],
+    "url": "https://taiwan.md/Technology/%E5%82%B3%E5%A5%87%E7%B6%B2%E8%B7%AF%E8%88%87%E5%8F%B0%E7%81%A3%E7%B7%9A%E4%B8%8A%E9%81%8A%E6%88%B2%E5%87%BA%E6%B5%B7",
+    "readingTime": 20,
+    "featured": false,
+    "date": "2026-04-23",
+    "path": "Technology/傳奇網路與台灣線上遊戲出海.md"
+  },
+  {
     "title": "傷口が癒しに変わるとき：台湾ミームが果たす社会的安全弁の役割",
     "description": "「ジェコ、やめてよ！」から「トウシン鍋」まで——台湾のミームは単なる娯楽ではなく、社会の圧力を集団的な癒しへと昇華させる精巧なシステムである。",
     "category": "ja",
@@ -11056,7 +11214,7 @@
       "社群媒體"
     ],
     "url": "https://taiwan.md/Culture/%E5%8F%B0%E7%81%A3%E8%BF%B7%E5%9B%A0",
-    "readingTime": 12,
+    "readingTime": 13,
     "featured": false,
     "date": "2026-03-24",
     "path": "Culture/台灣迷因.md"
@@ -11176,6 +11334,24 @@
     "path": "Economy/農業科技與精緻農業.md"
   },
   {
+    "title": "嘉義火雞肉飯：一碗三十元的城市身分證",
+    "description": "二戰後美軍把火雞帶進嘉義，一個叫林添壽的師傅把火雞肉切絲淋上滷汁蓋在白飯上。七十年後，這碗三十元的飯成了農糧署票選台灣十大招牌飯第一名。嘉義人可以為了「哪家最好吃」吵一整個過年，但有一件事他們不吵：火雞肉飯就是嘉義的。",
+    "category": "Food",
+    "tags": [
+      "嘉義",
+      "火雞肉飯",
+      "台灣小吃",
+      "美援",
+      "噴水雞肉飯",
+      "嘉義美食"
+    ],
+    "url": "https://taiwan.md/Food/%E5%98%89%E7%BE%A9%E7%81%AB%E9%9B%9E%E8%82%89%E9%A3%AF",
+    "readingTime": 12,
+    "featured": false,
+    "date": "2026-04-24",
+    "path": "Food/嘉義火雞肉飯.md"
+  },
+  {
     "title": "寧願燒盡，不願鏽壞：馬偕與他深愛的福爾摩沙",
     "description": "從拔牙兩萬顆到創辦女子學堂，加拿大宣教士馬偕如何成為「正港台灣人」，用三十年生命改寫北台灣的醫療、教育與科學探索史。",
     "category": "People",
@@ -11279,6 +11455,17 @@
     "featured": true,
     "date": "2026-03-27",
     "path": "History/台灣島史觀.md"
+  },
+  {
+    "title": "認知作戰：台灣資訊戰場的 AI 工業化階段",
+    "description": "2024 年 12 月《中國統戰紀錄片》衝破 200 萬觀看，2025 年第四季 1076 個中共官媒帳號在抖音發布 56 萬支影片、透過臉部辨識識別 57 位台灣人士，2025 年 10 月沈伯洋被重慶公安以「分裂國家罪」立案。認知作戰進入 AI 工業化與「以台批台」的新階段，但「認知作戰」這個詞本身也在台灣內部承受被濫用的張力。",
+    "category": "Society",
+    "tags": [],
+    "url": "https://taiwan.md/Society/%E8%AA%8D%E7%9F%A5%E4%BD%9C%E6%88%B0",
+    "readingTime": 62,
+    "featured": false,
+    "date": "2026-04-23",
+    "path": "Society/認知作戰.md"
   },
   {
     "title": "語言多樣性與母語文化",
@@ -11599,6 +11786,24 @@
     "featured": true,
     "date": "2026-03-19",
     "path": "People/蔡明亮.md"
+  },
+  {
+    "title": "蔡阿嘎：從網紅始祖到社工志業，那個用 18 年流量翻轉命運的男人",
+    "description": "2022 年，台灣首位百萬網紅蔡阿嘎賣房成立「好里家社福協會」，將 18 年累積的影響力轉化為社會志業。從 2008 年的燒國旗影片到 2022 年蔡桃貴創下「最年輕百萬網紅」紀錄，蔡阿嘎在流量、爭議與背叛中，始終守護著那份想為弱勢孩子點亮希望的社工靈魂。",
+    "category": "People",
+    "tags": [
+      "蔡阿嘎",
+      "蔡桃貴",
+      "YouTuber",
+      "社工師",
+      "社會福利",
+      "台灣文化"
+    ],
+    "url": "https://taiwan.md/People/%E8%94%A1%E9%98%BF%E5%98%8E",
+    "readingTime": 12,
+    "featured": false,
+    "date": "2026-04-23",
+    "path": "People/蔡阿嘎.md"
   },
   {
     "title": "蔡英文",
@@ -11938,6 +12143,25 @@
     "featured": false,
     "date": "2026-04-07",
     "path": "People/盧廣仲.md"
+  },
+  {
+    "title": "糖蔥：藏在白色孔洞裡的「抗爭之糖」",
+    "description": "1940年代，台灣農民為了躲避日本警察對蔗糖的壟斷，把深褐色的糖漿拉成雪白如蔥的管狀——農民的「偽裝術」，百年草根智慧的結晶。每一塊糖蔥裡精密的16個大孔與16個小孔，撐起了台灣長達一世紀的甜脆抗爭。",
+    "category": "Food",
+    "tags": [
+      "Food",
+      "糖蔥",
+      "古早味",
+      "民俗技藝",
+      "宜蘭傳藝",
+      "糖業歷史",
+      "抗爭文化"
+    ],
+    "url": "https://taiwan.md/Food/%E7%B3%96%E8%94%A5",
+    "readingTime": 14,
+    "featured": true,
+    "date": "2026-04-23",
+    "path": "Food/糖蔥.md"
   },
   {
     "title": "蕭青陽",
@@ -16418,6 +16642,17 @@
     "featured": false,
     "date": "2026-03-27",
     "path": "fr/People/hung-hsing-fu.md"
+  },
+  {
+    "title": "HUR+",
+    "description": "2020 年偶像選秀冠軍賽，她們輸了 2.5 分。六年後，冠軍團消失了，亞軍還在。製作人砸了五千萬、說「越不像韓團越好」——這是一個台灣女團活下來的故事。",
+    "category": "People",
+    "tags": [],
+    "url": "https://taiwan.md/People/HUR-plus",
+    "readingTime": 30,
+    "featured": false,
+    "date": "2026-04-23",
+    "path": "People/HUR-plus.md"
   },
   {
     "title": "Incidente 228",

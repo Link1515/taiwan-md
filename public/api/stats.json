@@ -1,8 +1,8 @@
 {
-  "totalArticles": 2255,
+  "totalArticles": 2271,
   "totalCategories": 21,
-  "estimatedContributors": 51,
-  "totalTags": 5215,
+  "estimatedContributors": 152,
+  "totalTags": 5250,
   "categories": [
     {
       "name": "ko",
@@ -10,7 +10,7 @@
     },
     {
       "name": "Society",
-      "count": 41
+      "count": 43
     },
     {
       "name": "en",
@@ -22,7 +22,7 @@
     },
     {
       "name": "Culture",
-      "count": 49
+      "count": 50
     },
     {
       "name": "ja",
@@ -30,7 +30,7 @@
     },
     {
       "name": "People",
-      "count": 183
+      "count": 188
     },
     {
       "name": "Music",
@@ -41,8 +41,12 @@
       "count": 51
     },
     {
+      "name": "Technology",
+      "count": 35
+    },
+    {
       "name": "Lifestyle",
-      "count": 19
+      "count": 20
     },
     {
       "name": "Art",
@@ -50,11 +54,7 @@
     },
     {
       "name": "Food",
-      "count": 32
-    },
-    {
-      "name": "Technology",
-      "count": 30
+      "count": 34
     },
     {
       "name": "Nature",
@@ -115,15 +115,15 @@
       "count": 27
     },
     {
+      "name": "台灣",
+      "count": 26
+    },
+    {
       "name": "経済",
       "count": 25
     },
     {
       "name": "ODM",
-      "count": 25
-    },
-    {
-      "name": "台灣",
       "count": 25
     },
     {
@@ -164,7 +164,7 @@
     },
     {
       "name": "文化",
-      "count": 18
+      "count": 19
     },
     {
       "name": "g0v",
@@ -172,13 +172,8 @@
     }
   ],
   "languageDistribution": {
-    "zh-TW": 2255,
+    "zh-TW": 2271,
     "en": 0
   },
-  "lastUpdated": "2026-04-21T10:05:26.552Z",
-  "stars": 946,
-  "forks": 139,
-  "zhPages": 1835,
-  "enPages": 420,
-  "totalPages": 2255
+  "lastUpdated": "2026-04-24T01:33:15.853Z"
 }

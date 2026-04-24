@@ -233,7 +233,7 @@ HUR+ 正在證明這個假設。還沒有完全證明，但每多活一年、每
 
 [^13]: [本土女歌手車禍骨折打石膏唱跳 - Yahoo 新聞](https://tw.news.yahoo.com/本土女歌手開唱前車禍骨折-坐輪椅登台-打石膏唱跳-網驚呆-145100166.html) — Yahoo 2026 報導，C.Holly 於 2026.02.24 車禍骨折，三天後仍登上 Zepp New Taipei《9 of 9：ARCANA CONCERT》演唱會，打石膏坐輪椅演唱〈三不娶〉並一度站起熱舞。
 
-[^14]: [HUR+ 官方 Instagram 曼谷演出公告](https://www.instagram.com/hur_official_tw/) — 2026.04.25-26 曼谷兩場演出：IC45 Birthday Stage 2026（Lot of Live）、You're My Safe Zone（The Street Ratchada），HUR+ 首次登上東南亞舞台。
+[^14]: HUR+ × Perfume Prod. 曼谷演出公告 — 2026.04.25-26 曼谷兩場：IC45 Birthday Stage 2026（Lot of Live）、You're My Safe Zone（The Street Ratchada），HUR+ 首次東南亞公演。
 
 [^15]: [HUR+ Hong Kong Fan Club - Instagram @hurhkfc](https://www.instagram.com/hurhkfc/) — HUR+ 香港後援會，1.1 萬追蹤、269 篇貼文，口號「加入 Thunder，永遠不會遲」。
 
