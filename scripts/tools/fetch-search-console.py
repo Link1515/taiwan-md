@@ -217,12 +217,93 @@ def main():
     }
 
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    # 2026-04-24 β3: 404 偵測常態化
+    # 抽 SC pages 對照 dist/sitemap-0.xml URL set，找出可能是 404 的 URL
+    # （Google 嘗試 crawl 但 site 已不存在的頁面仍會在 SC pages dim 中出現）
+    site_url_set = set()
+    sitemap_path = Path.cwd() / "dist" / "sitemap-0.xml"
+    if sitemap_path.exists():
+        try:
+            sitemap_xml = sitemap_path.read_text()
+            # 抽所有 <loc>...</loc> 內的 URL
+            import re
+            loc_urls = re.findall(r"<loc>(https://taiwan\.md[^<]+)</loc>", sitemap_xml)
+            for u in loc_urls:
+                # Normalize: strip query string, trailing punctuation
+                clean = u.split("?")[0].rstrip("/")
+                site_url_set.add(clean)
+                site_url_set.add(clean + "/")
+            # 抽 hreflang alternate URLs（這些也是 site claims to have）
+            href_urls = re.findall(
+                r'<xhtml:link[^>]+href="(https://taiwan\.md[^"]+)"', sitemap_xml
+            )
+            for u in href_urls:
+                clean = u.split("?")[0].rstrip("/")
+                site_url_set.add(clean)
+                site_url_set.add(clean + "/")
+        except Exception as e:
+            print(f"⚠️  Sitemap 解析失敗: {e}", file=sys.stderr)
+
+    potential_404 = []
+    if site_url_set:
+        for p in output["pages"]:
+            page_url = p["keys"][0]
+            clean = page_url.split("?")[0].rstrip("/")
+            if clean not in site_url_set and clean + "/" not in site_url_set:
+                potential_404.append({
+                    "url": page_url,
+                    "impressions": p["impressions"],
+                    "clicks": p["clicks"],
+                    "position": p["position"],
+                })
+        # Sort by impressions desc — biggest 404 leak first
+        potential_404.sort(key=lambda x: -x["impressions"])
+
+    # 統計各語言 404 分佈（從 URL prefix 推 lang）
+    lang_404_count = {}
+    for p in potential_404:
+        url = p["url"]
+        if "/en/" in url:
+            lang = "en"
+        elif "/ja/" in url:
+            lang = "ja"
+        elif "/ko/" in url:
+            lang = "ko"
+        elif "/fr/" in url:
+            lang = "fr"
+        elif "/es/" in url:
+            lang = "es"
+        else:
+            lang = "zh-TW"
+        lang_404_count[lang] = lang_404_count.get(lang, 0) + 1
+
+    output["potential_404"] = {
+        "total": len(potential_404),
+        "by_lang": lang_404_count,
+        "top_50": potential_404[:50],
+        "_note": (
+            "URLs 出現在 SC impressions 但不在 sitemap 內 = "
+            "Google 仍嘗試 crawl 已不存在的頁面。修法：加 redirect 或讓 sitemap 重新 indexable。"
+        ),
+    }
+
     latest_path = CACHE_DIR / "search-console-latest.json"
     dated_path = CACHE_DIR / f"search-console-{datetime.now().strftime('%Y-%m-%d')}.json"
     latest_path.write_text(json.dumps(output, indent=2, ensure_ascii=False))
     dated_path.write_text(json.dumps(output, indent=2, ensure_ascii=False))
 
     print(f"✅ SC: {total_clicks:,} clicks / {total_impressions:,} impressions ({args.days}d)", file=sys.stderr)
+    if site_url_set:
+        print(
+            f"🔍 SC 404 偵測: {len(potential_404)} 個 SC URLs 不在 sitemap "
+            f"({sum(p['impressions'] for p in potential_404):,} impressions 流失)",
+            file=sys.stderr,
+        )
+        if lang_404_count:
+            for lang, cnt in sorted(lang_404_count.items(), key=lambda x: -x[1]):
+                print(f"   {lang}: {cnt}", file=sys.stderr)
+    else:
+        print(f"⚠️  Sitemap 不存在或解析失敗，跳過 404 偵測", file=sys.stderr)
     print(f"   → {latest_path}", file=sys.stderr)
 
     # Find high-impression, low-CTR opportunities (Bamboo Drum metric)

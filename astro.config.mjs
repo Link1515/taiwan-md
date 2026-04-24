@@ -8,6 +8,65 @@ import {
   ENABLED_LANGUAGE_CODES,
   DEFAULT_LANGUAGE,
 } from './src/config/languages.mjs';
+import { readdirSync, statSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+
+// 2026-04-24 β3: Build existing URL set from src/content/ to filter sitemap
+// hreflang alternate to only include actually-existing language versions.
+// Without this, @astrojs/sitemap auto-generates hreflang for ALL enabled
+// locales for EVERY page — causing 1,705+ fake hreflang URLs (Google crawls
+// them → 404 → SC reports 404). This pre-build scan + serialize() hook fix
+// the systemic SEO leak.
+//
+// URL mapping convention:
+//   src/content/{lang}/{category}/{slug}.md →
+//     {lang === 'zh-TW' ? '' : '/' + lang}/{category}/{slug}/
+function buildExistingUrlSet() {
+  const set = new Set();
+  const contentRoot = './src/content';
+  for (const lang of ENABLED_LANGUAGE_CODES) {
+    const langPath = join(contentRoot, lang);
+    if (!existsSync(langPath)) continue;
+    let cats;
+    try {
+      cats = readdirSync(langPath);
+    } catch {
+      continue;
+    }
+    for (const cat of cats) {
+      const catPath = join(langPath, cat);
+      let isDir = false;
+      try {
+        isDir = statSync(catPath).isDirectory();
+      } catch {
+        continue;
+      }
+      if (!isDir) continue;
+      let files;
+      try {
+        files = readdirSync(catPath);
+      } catch {
+        continue;
+      }
+      for (const f of files) {
+        if (!f.endsWith('.md')) continue;
+        if (f.startsWith('_')) continue; // skip _Hub etc
+        const slug = f.replace(/\.md$/, '');
+        const prefix = lang === DEFAULT_LANGUAGE.code ? '' : `/${lang}`;
+        set.add(`${prefix}/${cat}/${slug}/`);
+      }
+    }
+    // Also add language landing pages (/en/, /ja/, /ko/) and zh-TW root
+    const prefix = lang === DEFAULT_LANGUAGE.code ? '/' : `/${lang}/`;
+    set.add(prefix);
+  }
+  return set;
+}
+
+const existingUrlSet = buildExistingUrlSet();
+console.log(
+  `[sitemap-hreflang-filter] Loaded ${existingUrlSet.size} existing URL paths for hreflang validation`,
+);
 
 // Build sitemap i18n locales map: { 'zh-TW': 'zh-TW', en: 'en', ... }
 const sitemapLocales = Object.fromEntries(
@@ -59,6 +118,34 @@ export default defineConfig({
       i18n: {
         defaultLocale: DEFAULT_LANGUAGE.code,
         locales: sitemapLocales,
+      },
+      // 2026-04-24 β3: Filter hreflang alternate links to only include
+      // actually-existing language versions. Without this filter,
+      // @astrojs/sitemap auto-generates alternate hreflang for ALL enabled
+      // locales for EVERY page—even when the target language version doesn't
+      // exist—causing systemic 404s reported in Search Console.
+      //
+      // Pre-fix data: 3,031 hreflang tags vs 1,800 actual content files
+      //   → 1,705 fake hreflang (en +675 / ja +432 / ko +598)
+      //
+      // serialize() runs per sitemap item before XML emission. We filter
+      // item.links to only include alternates whose path exists in
+      // existingUrlSet (built from src/content/ filesystem scan above).
+      serialize(item) {
+        if (!item.links || item.links.length === 0) return item;
+        const filteredLinks = item.links.filter((link) => {
+          try {
+            const path = new URL(link.url).pathname;
+            return existingUrlSet.has(path);
+          } catch {
+            // Malformed URL; drop conservatively
+            return false;
+          }
+        });
+        // Astro types: links is optional; empty array is fine but undefined
+        // signals "no alternate" cleanly
+        item.links = filteredLinks.length > 0 ? filteredLinks : undefined;
+        return item;
       },
     }),
   ],
