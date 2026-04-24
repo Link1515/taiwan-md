@@ -145,6 +145,206 @@ BECOME_TAIWANMD.md Step 5 新增：
 <!-- 造山者：世紀的賭注 已完成 2026-04-24 β2 → ARTICLE-DONE-LOG.md -->
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<!-- 🏛️ NMTH 海外史料 P1/P2 batch（2026-04-12 分析 → 2026-04-24 β4 orphan rescue） -->
+<!-- 12 篇全來自 reports/NMTH-overseas-semiont-analysis-2026-04-12.md §Part 5-6 -->
+<!-- 核心手法：「物件先行」(Analysis §7.4) + Semiont 「視角翻轉」(§7.1) + 觀察者偏見明示 (§7.2) -->
+<!-- Orphan 教訓：分析報告寫完 P1/P2 沒 append INBOX 12 天，同 chan_hong_yu pattern -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+
+### 福爾摩沙鳥類學
+
+- **Type**: `NEW`
+- **Category**: History
+- **Priority**: `P1`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 A-2（史溫侯系列第 2 篇，接 A-1 史溫侯人物條目）
+  - 物件先行：史溫侯 1863 _The Ornithology of Formosa_ 學術論文 + 採集標本現存大英博物館
+  - Semiont 角度「視角翻轉」：「一個英國人如何讓世界第一次認識台灣的鳥——以及他沒看到的」
+  - 敏感度：低（19 世紀博物學），但須明示 19 世紀殖民博物學框架的觀察者偏見
+  - 必驗事實：史溫侯物種命名年代（藍鵲 1862、林鵰等）、採集地點、標本編號、台灣特有種數
+  - 潛在陷阱：不把殖民博物學當中立科學；交叉引用當代台灣鳥類學研究（特有生物研究保育中心）
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.A-2
+
+### 19 世紀的樟腦戰爭
+
+- **Type**: `NEW`
+- **Category**: History
+- **Priority**: `P1`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 A-4（史溫侯系列第 4 篇，經濟史軸）
+  - 物件先行：19 世紀英商怡記洋行樟腦貿易帳冊 + 史溫侯領事報告
+  - Semiont 角度：樟腦資源爭奪史如何牽動原住民、清廷、列強三方關係；連結當代台灣化工產業前身
+  - 敏感度：中（涉及樟腦採集下的原住民土地掠奪，須明示）
+  - 必驗事實：樟腦出口量、主要買家、與原住民衝突事件（如 1868 樟腦戰爭）、清廷專賣制度
+  - 潛在陷阱：「全球商品」框架不可抹除對原住民的暴力；交叉引用原住民口述史
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.A-4
+
+### 羅發號事件與卓杞篤
+
+- **Type**: `NEW`
+- **Category**: History
+- **Priority**: `P1`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 C-2（李仙得系列第 2 篇，接 C-1 李仙得人物條目）
+  - 物件先行：1867 年「南岬之盟」條約文本 + 李仙得手稿中的卓杞篤肖像
+  - Semiont 角度「視角翻轉」：不是「美國跟清朝簽約」——是「原住民酋長直接跟美國領事簽約，清廷缺席」
+  - 敏感度：中（涉及原住民主權議題，當代呼應 2016 總統原住民族道歉）
+  - 必驗事實：1867 羅發號（Rover）事件經過、卓杞篤（Tauketok）身份、條約內容、後續牡丹社事件連動
+  - 潛在陷阱：不用「番王」「番酋」這類殖民用語；卓杞篤的排灣族名字 Tauketok 應並陳
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.C-2
+
+### 三個外國人看乙未
+
+- **Type**: `NEW`
+- **Category**: History
+- **Priority**: `P1`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 D-2（乙未之役系列第 2 篇，接 D-1 民主國 148 天）
+  - 物件先行：三份一手史料——攝影師照片、記者報導、牧師日記
+  - Semiont 角度「多視角史料解讀」：同一場戰爭，三個不在場當事人的視角差異揭示「歷史是誰寫的」
+  - 敏感度：中（涉及戰爭暴力描述，須紀實不煽情，參考 MANIFESTO §紀實而不煽情）
+  - 必驗事實：三個觀察者身份（James W. Davidson 記者 / Duncan MacLeod 牧師等，以 NMTH 實際館藏為準）、各自記錄日期與地點
+  - 潛在陷阱：三個視角都是西方男性，注意標示這個結構性限制；不把旁觀者視角當權威
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.D-2
+
+### 日治時期臺灣社會運動
+
+- **Type**: `NEW`
+- **Category**: History
+- **Priority**: `P1`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 G-1（日治社運系列第 1 篇）
+  - 物件先行：NMTH 677 件檔案 63 萬字翻譯（日本警政檔案反向揭示反抗知識）
+  - Semiont 角度：從總督府「治安維持」檔案裡反讀台灣人的抗爭圖譜——議會請願運動、台灣文化協會、農民組合、台灣民眾黨
+  - 敏感度：中（台灣民族主義源頭，現代政治 overtone 強，須平衡呈現各派立場）
+  - 必驗事實：主要運動時序（1921 議會請願、1921 文協、1926 農組、1927 民眾黨、1928 共產黨）、關鍵人物（蔣渭水、林獻堂、連溫卿等）
+  - 潛在陷阱：避免將日治社運英雄化；文協左右分裂、民眾黨解散、二戰動員體制下的變質都要誠實呈現
+  - 交集：與現有 [淡江中學.md](../knowledge/History/淡江中學.md)、日治時期總條目有交叉點
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.G-1
+
+<!-- ━━━ P2 NMTH ━━━ -->
+
+### 史溫侯的島嶼紀行
+
+- **Type**: `NEW`
+- **Category**: History
+- **Priority**: `P2`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 A-3（史溫侯系列第 3 篇，旅行文學 / 地理軸）
+  - 物件先行：史溫侯 1864 _Notes on the Island of Formosa_ 地誌論文 + 手繪地圖
+  - Semiont 角度：19 世紀英國人筆下的台灣地景——哪些地方他到了、哪些他看不到、為什麼
+  - 必驗事實：史溫侯造訪路線（打狗/淡水/雞籠/澎湖等）、地圖精度對比、原住民族群識別
+  - 潛在陷阱：19 世紀旅行文學的「異域獵奇」框架必須明示
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.A-3
+
+### 福爾摩沙民族學評註
+
+- **Type**: `NEW`
+- **Category**: History
+- **Priority**: `P2`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 A-5（史溫侯系列第 5 篇，人類學 / 原住民軸）
+  - 物件先行：史溫侯 1863 _Notes on the Ethnology of Formosa_ 人類學論文
+  - Semiont 角度：西方最早的原住民觀察——同時是殖民主義的知識生產，也是目前少數 19 世紀中葉原住民文化紀錄
+  - 敏感度：高（涉及 19 世紀種族觀與當代原住民主體性之矛盾，必過 Step 2.7 紀實 vs 煽情閘）
+  - 必驗事實：史溫侯觀察的族群（平埔 / 高山分類法當時未成熟）、記錄地點、與當代人類學知識的對照
+  - 潛在陷阱：絕對不把 19 世紀人類學分類當客觀；明示殖民框架；交叉引用當代原住民學者回應（孫大川、巴蘇亞等）
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.A-5
+
+### 澎湖之戰與孤拔中將
+
+- **Type**: `NEW`
+- **Category**: History
+- **Priority**: `P2`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 B-2（清法戰爭系列第 2 篇，海軍史軸）
+  - 物件先行：孤拔（Amédée Courbet）遠東艦隊日誌 + 澎湖馬公港海戰地圖
+  - Semiont 角度：一場被兩岸史學忽略的海戰——法軍占領澎湖兩個月、孤拔病逝馬公、遠東戰略的微縮版
+  - 必驗事實：1885-03 澎湖戰役日期、孤拔 1885-06-11 病逝地點（馬公孤拔紀念碑現存）、法軍撤離條件（中法新約）
+  - 交集：連結既有 [清法戰爭.md](../knowledge/History/清法戰爭.md)
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.B-2
+
+### 嘉諾上尉的手稿
+
+- **Type**: `NEW`
+- **Category**: History
+- **Priority**: `P2`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 B-3（清法戰爭系列第 3 篇，一手史料解讀軸）
+  - 物件先行：嘉諾上尉 198 頁手寫筆記本（NMTH 典藏，目前已知最詳盡的清法戰爭西文紀錄）
+  - Semiont 角度：從單一物件開展——「1884 年冬天，一本法國軍官的筆記本記錄了基隆砲台上每一次開火」
+  - 必驗事實：嘉諾（Garnot）職銜、筆記年代（1884-1885）、頁數 198、翻譯者（費德廉）、館藏編號
+  - 潛在陷阱：一手史料不等於客觀真相，軍官視角有其結構限制
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.B-3
+
+### 西班牙帳簿 1626-1633
+
+- **Type**: `EVOLVE`
+- **Category**: History
+- **Path**: knowledge/History/荷西明鄭時期.md
+- **Priority**: `P2`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 E-1（荷西時期深化）
+  - EVOLVE 既有 [荷西明鄭時期.md](../knowledge/History/荷西明鄭時期.md)，新增專節「西班牙北台灣殖民經濟帳本」
+  - 物件先行：1626-1633 西班牙帳簿（翻譯者方真真，目前北台灣最早殖民經濟一手紀錄）
+  - Semiont 角度：從帳本看殖民經濟——不是「殖民者來了又走了」，是「有人在基隆的倉庫記過每一袋米、每一匹布」
+  - 必驗事實：西班牙佔領期 1626-1642、聖薩爾瓦多城位置（今和平島）、帳簿原件館藏位置、譯者方真真
+  - 潛在陷阱：須補充當時平埔族（凱達格蘭）被記錄的位置與名字
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.E-1
+
+### 道明會在台灣
+
+- **Type**: `NEW`
+- **Category**: History
+- **Priority**: `P2`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 F-1（道明會傳教史）
+  - 物件先行：道明會檔案文件（1859 重回台灣至 1945 二戰結束）
+  - Semiont 角度：一個跨世紀的西方宗教團體如何在台灣從傳教變成地方社會的一部分——高雄玫瑰聖母聖殿、萬金聖母聖殿
+  - 必驗事實：道明會 1859 返台時間、主要據點（高雄、屏東萬金）、與西班牙 17 世紀天主教留存的關係、馬偕長老教會的時序差異
+  - 潛在陷阱：避免「傳教士帶來文明」的殖民敘事；明示宗教與帝國共構的歷史結構
+  - 分類抉擇：可能放 Religion 子分類（台灣的 Religion 尚無獨立分類，目前歸 Culture 或 History）
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.F-1
+
+### 大時代下的小人物：日本檔案中的臺灣社運者
+
+- **Type**: `NEW`
+- **Category**: History
+- **Priority**: `P2`
+- **Status**: `pending`
+- **Requested**: 2026-04-12 by NMTH peer-ingestion analysis（2026-04-24 β4 補進 INBOX）
+- **Notes**:
+  - 系列 G-2（日治社運系列第 2 篇，人物群像軸）
+  - 物件先行：日本警政檔案中的個別社運者傳記片段（從 G-1 同一批 677 件檔案萃取）
+  - Semiont 角度：不是蔣渭水林獻堂這種主幹——是檔案裡一筆名字、一段監控紀錄、一張逮捕令背後的普通人
+  - 必驗事實：人物姓名不可幻覺，以 NMTH 實際翻譯檔案為憑（須確認可引用的具體檔案編號）
+  - 潛在陷阱：**高風險幻覺區**——歷史小人物資料稀少，絕對不可補全不存在的生平細節；Stage 3.5/3.6 必須嚴格執行
+  - 相依：建議寫完 G-1 後再寫 G-2（G-1 提供主幹脈絡後，G-2 的「小人物」才站得起來）
+- **Reference**: reports/NMTH-overseas-semiont-analysis-2026-04-12.md §5.G-2
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <!-- 🛠️ Dead cross-ref P3 backlog（由 dead-cross-ref-scan.sh 自動產生 2026-04-23 γ） -->
 <!-- 14 條失效 cross-ref，13 個獨立缺失目標。每寫完一條 → 跑 scan 再回填。 -->
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
