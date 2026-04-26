@@ -172,6 +172,19 @@ export default defineConfig({
     // multilingual nav (translatePath) creates /{en|ja|ko}/semiont/* 404s.
     // Redirect all non-zh semiont-series paths to canonical zh-TW equivalents.
     ...semiontRedirects,
+    // 2026-04-26 β8: issue #626 (@idlccp1984) — Geography/台灣交通運輸網絡.md
+    // 與 Lifestyle/台灣交通系統.md 主題重疊。整併到 Lifestyle 那篇（高品質
+    // 2026-04-06 EVOLVE 版本，加 3 個 Geography 視角 scene 後成 canonical）。
+    // 5 lang redirects: zh-TW + en/ja/ko/fr translation slugs
+    '/geography/台灣交通運輸網絡': '/lifestyle/台灣交通系統/',
+    '/en/geography/taiwan-transportation-network':
+      '/en/lifestyle/transportation-system/',
+    '/ja/geography/taiwan-transportation-network':
+      '/ja/lifestyle/transportation-system/',
+    '/ko/geography/transportation-network':
+      '/ko/lifestyle/transportation-system/',
+    '/fr/geography/transportation-network':
+      '/fr/lifestyle/transportation-system/',
   },
   markdown: {
     shikiConfig: {
