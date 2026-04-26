@@ -71,7 +71,11 @@ public/api/dashboard-articles.json
 public/api/dashboard-vitals.json
 public/api/dashboard-translations.json
 public/api/dashboard-organism.json
-public/api/contributors.json
+# 2026-04-26 β8: contributors.json 從 .gitignore 移除（保留作為 CI fallback baseline）
+# 觸發：CF Pages CI 共享 IP 撞 GitHub anon rate limit (60/hr) → writeFallback wipe → Dashboard 顯示 0
+# 修正：commit 一份 good baseline + generator 在 API 失敗時 preserve 上一筆好的資料
+# 永久解：Cloudflare Pages 加 GH_TOKEN env var（5,000/hr limit，從此不再撞 anon 上限）
+# public/api/contributors.json
 # dashboard-spores.json 不列入：由 scripts/tools/generate-dashboard-spores.py 產出，
 # 該 script 只在 refresh-data.sh 跑（不在 npm run prebuild 內），需要保留在 git 才能讓 CI deploy 有資料
 

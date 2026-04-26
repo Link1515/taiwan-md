@@ -280,6 +280,38 @@ function buildPayload(authors) {
 }
 
 function writeFallback(errorMsg) {
+  // 2026-04-26 β8 fix: 不要在 API 失敗時 wipe 掉上一筆好的 leaderboard。
+  // 觸發場景：CF Pages CI 共享 IP 與其他建置爭用 GitHub anon rate limit（60/hr），
+  // 第 N 個 build 一定撞 403 → 之前每次都 writeFallback 全 0 → Dashboard 顯示 0
+  // 貢獻者（事實是 50+）。修正：先讀現有 JSON，如果有 > 0 leaderboard，
+  // **保留所有資料**，只在頂層加 staleness marker（lastUpdated 沿用、加 lastError）。
+  // 只有「初次建置 + 沒有舊檔」或「舊檔本身也是空的」才寫真正的空 fallback。
+  let existing = null;
+  try {
+    if (fs.existsSync(OUTPUT_PATH)) {
+      existing = JSON.parse(fs.readFileSync(OUTPUT_PATH, 'utf8'));
+    }
+  } catch (_) {
+    /* corrupted file → fall through to fresh fallback */
+  }
+
+  if (
+    existing &&
+    Array.isArray(existing.leaderboard) &&
+    existing.leaderboard.length > 0
+  ) {
+    // 保留上一筆好的資料；只更新 staleness 旗標。
+    existing.lastError = errorMsg;
+    existing.lastErrorAt = new Date().toISOString();
+    fs.writeFileSync(OUTPUT_PATH, JSON.stringify(existing, null, 2), 'utf8');
+    console.warn(
+      `⚠️  保留上次成功的 leaderboard（${existing.leaderboard.length} 筆），` +
+        `加 lastError 旗標。Dashboard 仍會顯示資料，只是 lastUpdated 不會推進。`,
+    );
+    return;
+  }
+
+  // 真正的初次建置 fallback：寫空檔（consumer 不會 404）
   const payload = {
     lastUpdated: new Date().toISOString(),
     totals: { contributors: 0, activeWindow: 'last 30d' },
