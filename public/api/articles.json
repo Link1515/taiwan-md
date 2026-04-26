@@ -1,5 +1,16 @@
 [
   {
+    "title": "19 世紀的樟腦戰爭：世界要的香氣，藏在原住民的山",
+    "description": "1864 年史溫侯在淡水寫下三個數字：6、16、28。一擔樟腦從原產地走到香港，價格翻了將近五倍。中間的差價，是道台的口袋——和原住民的山。",
+    "category": "History",
+    "tags": [],
+    "url": "https://taiwan.md/History/19%E4%B8%96%E7%B4%80%E7%9A%84%E6%A8%9F%E8%85%A6%E6%88%B0%E7%88%AD",
+    "readingTime": 27,
+    "featured": false,
+    "date": "2026-04-25",
+    "path": "History/19世紀的樟腦戰爭.md"
+  },
+  {
     "title": "2·28 사건",
     "description": "한 과부의 담배 노점이 어떻게 38년간의 침묵으로 가득 찬 섬 하나에 불을 붙였는가—1947년 타이완의 운명을 바꾼 열흘, 그리고 78년이 지난 지금도 여전히 아물지 않은 상처",
     "category": "ko",
@@ -1942,24 +1953,6 @@
     "path": "ja/History/white-terror.md"
   },
   {
-    "title": "台湾の交通システム",
-    "description": "台湾高速鉄道が南北を90分で結び、MRTが都市の血流をつくり、スクーターが路地を走り抜ける",
-    "category": "ja",
-    "tags": [
-      "生活",
-      "交通",
-      "台湾高速鉄道",
-      "MRT",
-      "スクーター",
-      "台湾"
-    ],
-    "url": "https://taiwan.md/ja/Geography/taiwan-transportation-network",
-    "readingTime": 17,
-    "featured": false,
-    "date": "2026-03-17",
-    "path": "ja/Geography/taiwan-transportation-network.md"
-  },
-  {
     "title": "台湾の伝統芸術",
     "description": "21世紀最大の文化産業の奇跡：年間売上高1,000億台湾元規模を誇る霹靂布袋戲帝国は、いかにして農村の神事演芸から世界を席巻する文化ソフトパワーへと変貌したのか。",
     "category": "ja",
@@ -2366,6 +2359,27 @@
     "featured": false,
     "date": "2026-04-10",
     "path": "ja/Society/animal-medication-controversy.md"
+  },
+  {
+    "title": "台湾の動物園：最古は木柵ではなく、最大だけでも語れません",
+    "description": "パンダの円仔から海生館での夜宿まで、台湾の動物園と水族館は、都市、観光、海洋教育が重なってできた島内地図です。",
+    "category": "ja",
+    "tags": [
+      "動物園",
+      "台北市立動物園",
+      "新竹市立動物園",
+      "寿山動物園",
+      "Xpark",
+      "海生館",
+      "六福村",
+      "頑皮世界",
+      "遠雄海洋公園"
+    ],
+    "url": "https://taiwan.md/ja/Society/taiwan-zoos",
+    "readingTime": 26,
+    "featured": false,
+    "date": "2026-04-25",
+    "path": "ja/Society/taiwan-zoos.md"
   },
   {
     "title": "台湾の教育制度と進学文化",
@@ -3316,6 +3330,25 @@
     "path": "Art/台灣水彩畫的百年流變.md"
   },
   {
+    "title": "台灣水獺：金門歐亞水獺的孤島求生記與本島的靜默消逝",
+    "description": "台灣本島歐亞水獺自1980年代後便無確切野外紀錄，族群現況不明且極不樂觀。目前僅存於金門的「戰地水獺」正面臨棲地破碎、路殺與微塑膠污染的多重夾擊。",
+    "category": "Nature",
+    "tags": [
+      "歐亞水獺",
+      "金門",
+      "台灣本島",
+      "保育",
+      "微塑膠",
+      "路殺",
+      "棲地破碎"
+    ],
+    "url": "https://taiwan.md/Nature/%E6%B0%B4%E7%8D%BA",
+    "readingTime": 11,
+    "featured": false,
+    "date": "2026-04-25",
+    "path": "Nature/水獺.md"
+  },
+  {
     "title": "台灣火鍋：一鍋入魂的島嶼味蕾演化史",
     "description": "從殖民時期的文明象徵到今日的國民美食，台灣火鍋不僅是味蕾的演變，更是社會變遷與族群融合的縮影。",
     "category": "Food",
@@ -3511,7 +3544,7 @@
   },
   {
     "title": "台灣交通系統：一座島嶼怎麼把自己壓縮成 90 分鐘",
-    "description": "1946 年台灣一夜之間從左駕變右駕。六十年後高鐵把 394 公里壓成 90 分鐘。再十年後，一千四百萬輛機車塞滿了每一個路口。這座島嶼的交通故事，就是它的身份故事。",
+    "description": "1946 年台灣一夜之間從左駕變右駕。中央山脈縱貫南北 273 公里，把 36,000 平方公里的島切成東西兩半。六十年後高鐵把 394 公里壓成 90 分鐘，雪山隧道把宜蘭從 2 小時車程縮成 40 分鐘。再十年後，一千四百萬輛機車塞滿了每一個路口。這座島嶼的交通故事，就是它的身份故事。",
     "category": "Lifestyle",
     "tags": [
       "交通",
@@ -3520,31 +3553,16 @@
       "機車",
       "YouBike",
       "Gogoro",
-      "悠遊卡"
+      "悠遊卡",
+      "航空",
+      "海運",
+      "雪山隧道"
     ],
     "url": "https://taiwan.md/Lifestyle/%E5%8F%B0%E7%81%A3%E4%BA%A4%E9%80%9A%E7%B3%BB%E7%B5%B1",
-    "readingTime": 20,
+    "readingTime": 27,
     "featured": true,
-    "date": "2026-04-06",
+    "date": "2026-04-26",
     "path": "Lifestyle/台灣交通系統.md"
-  },
-  {
-    "title": "台灣交通運輸網路",
-    "description": "高鐵、捷運、公路、航空，編織移動台灣的立體交通網路",
-    "category": "Geography",
-    "tags": [
-      "交通運輸",
-      "高鐵",
-      "捷運",
-      "公路",
-      "航空",
-      "港口"
-    ],
-    "url": "https://taiwan.md/Geography/%E5%8F%B0%E7%81%A3%E4%BA%A4%E9%80%9A%E9%81%8B%E8%BC%B8%E7%B6%B2%E7%B5%A1",
-    "readingTime": 32,
-    "featured": false,
-    "date": "2026-03-20",
-    "path": "Geography/台灣交通運輸網絡.md"
   },
   {
     "title": "台灣企業：中華電信",
@@ -3927,6 +3945,27 @@
     "featured": false,
     "date": "2026-03-18",
     "path": "Food/台灣早餐文化.md"
+  },
+  {
+    "title": "台灣有哪些動物園：最老的不在木柵，最大的也不只是動物園",
+    "description": "從圓仔到海生館夜宿，台灣的動物園不是一張親子景點清單，而是一條城市、觀光與海洋教育一起長出的島內路線。",
+    "category": "Society",
+    "tags": [
+      "動物園",
+      "台北動物園",
+      "新竹動物園",
+      "壽山動物園",
+      "Xpark",
+      "海生館",
+      "六福村",
+      "頑皮世界",
+      "遠雄海洋公園"
+    ],
+    "url": "https://taiwan.md/Society/%E5%8F%B0%E7%81%A3%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8B%95%E7%89%A9%E5%9C%92",
+    "readingTime": 30,
+    "featured": false,
+    "date": "2026-04-25",
+    "path": "Society/台灣有哪些動物園.md"
   },
   {
     "title": "台灣米其林：星光下的代價與重新定義",
@@ -5310,7 +5349,7 @@
       "台灣文化"
     ],
     "url": "https://taiwan.md/Lifestyle/%E5%8F%B0%E7%81%A3%E9%BA%BB%E5%B0%87%E8%88%87%E6%98%8E%E6%98%9F%E4%B8%89%E7%BC%BA%E4%B8%80",
-    "readingTime": 19,
+    "readingTime": 18,
     "featured": false,
     "date": "2026-04-23",
     "path": "Lifestyle/台灣麻將與明星三缺一.md"
@@ -5734,7 +5773,7 @@
     "category": "Society",
     "tags": [],
     "url": "https://taiwan.md/Society/%E5%8F%B0%E7%81%A3%E8%A3%9C%E7%BF%92%E7%8F%AD%E6%96%87%E5%8C%96",
-    "readingTime": 16,
+    "readingTime": 15,
     "featured": false,
     "date": "2026-04-23",
     "path": "Society/台灣補習班文化.md"
@@ -6387,6 +6426,25 @@
     "path": "Art/台灣藝術教育與學院發展.md"
   },
   {
+    "title": "台灣獼猴：在中山大學的生存博弈、母系權力與萬年定居者的真相",
+    "description": "從中山大學學生「持槍取外送」的荒謬日常，到 1862 年史溫侯首次向西方介紹這座島嶼的靈長類，台灣獼猴常被冠以「流氓」之名。背後是一個萬年前就定居柴山的嚴謹母系社會，在校園擴張與人類餵食下，被迫演化出的生存文化。",
+    "category": "Nature",
+    "tags": [
+      "台灣獼猴",
+      "中山大學",
+      "壽山",
+      "母系社會",
+      "史溫侯",
+      "人猴衝突",
+      "野生動物保育"
+    ],
+    "url": "https://taiwan.md/Nature/%E5%8F%B0%E7%81%A3%E7%8D%BC%E7%8C%B4",
+    "readingTime": 14,
+    "featured": false,
+    "date": "2026-04-25",
+    "path": "Nature/台灣獼猴.md"
+  },
+  {
     "title": "台灣鹹酥雞",
     "description": "台灣最普遍的宵夜文化，從鹹酥雞攤的社會學到炸物美學的進化",
     "category": "Food",
@@ -6556,7 +6614,7 @@
     "category": "People",
     "tags": [],
     "url": "https://taiwan.md/People/%E5%8F%B2%E6%BA%AB%E4%BE%AF",
-    "readingTime": 26,
+    "readingTime": 27,
     "featured": true,
     "date": "2026-04-12",
     "path": "People/史溫侯.md"
@@ -6746,6 +6804,31 @@
     "path": "Economy/全聯福利中心.md"
   },
   {
+    "title": "冰河孑遺的微笑：台灣山椒魚的百年身世與科技守護之路",
+    "description": "在台灣高山深處，五種特有種山椒魚默默承載著冰河時期的記憶。牠們是高山生態指標，也是一段百年來科學家不斷探索、正名、甚至付出生命的故事。2025 年人工孵化技術的突破，為這些「微笑的高山精靈」帶來新希望。",
+    "category": "Nature",
+    "tags": [
+      "山椒魚",
+      "冰河孑遺",
+      "台灣特有種",
+      "微笑的高山精靈",
+      "呂光洋",
+      "賴俊祥",
+      "朱有田",
+      "人工孵化",
+      "生態保育",
+      "氣候變遷",
+      "雪霸國家公園",
+      "台灣大哥大",
+      "台灣大學"
+    ],
+    "url": "https://taiwan.md/Nature/%E5%8F%B0%E7%81%A3%E5%B1%B1%E6%A4%92%E9%AD%9A",
+    "readingTime": 25,
+    "featured": false,
+    "date": "2026-04-26",
+    "path": "Nature/台灣山椒魚.md"
+  },
+  {
     "title": "吉祥物：從黑熊迷戀到諧音救贖的文化策展",
     "description": "2013 年「喔熊」誕生開啟台灣吉祥物戰國時代。從全台黑熊大亂鬥、醜到登美國脫口秀的「虱目魚小子」，到年收上億的「福利熊」與在議會備詢的「熊讚」，台灣吉祥物正從政府宣傳工具演化為具備靈魂與社會共鳴的文化符號。",
     "category": "Lifestyle",
@@ -6772,6 +6855,25 @@
     "featured": false,
     "date": "2026-04-25",
     "path": "Food/名間埔中茶.md"
+  },
+  {
+    "title": "名間焚化爐之戰：當三十萬噸「垃圾債」撞向百億茶鄉生存線",
+    "description": "南投縣堆置垃圾於 2024 年底突破 31 萬噸，引發「垃圾圍城」危機。縣長許淑華計畫於名間鄉新民村設置每日處理 500 噸的焚化爐，引發超過 250 位學者連署抗爭。這是一場關於特定農業區、柴棺龜棲地與全台最大手搖飲茶葉供應鏈的生存保衛戰。",
+    "category": "Society",
+    "tags": [
+      "南投",
+      "名間",
+      "焚化爐",
+      "茶產業",
+      "生態保育",
+      "垃圾問題",
+      "許淑華"
+    ],
+    "url": "https://taiwan.md/Society/%E5%90%8D%E9%96%93%E7%84%9A%E5%8C%96%E7%88%90",
+    "readingTime": 13,
+    "featured": false,
+    "date": "2026-04-25",
+    "path": "Society/名間焚化爐.md"
   },
   {
     "title": "在搖晃的島嶼上，他們蓋了一座能飛的塔",
@@ -8362,7 +8464,7 @@
     "category": "History",
     "tags": [],
     "url": "https://taiwan.md/History/%E9%98%BF%E9%87%8C%E5%B1%B1%EF%BC%9A%E5%B8%9D%E5%9C%8B%E7%9A%84%E6%9E%97%E5%A0%B4%E8%88%87%E9%AB%98%E4%B8%80%E7%94%9F%E7%9A%84%E5%B1%B1",
-    "readingTime": 15,
+    "readingTime": 16,
     "featured": false,
     "date": "2026-04-05",
     "path": "History/阿里山：帝國的林場與高一生的山.md"
@@ -9329,6 +9431,24 @@
     "path": "People/翁啟惠.md"
   },
   {
+    "title": "臭豆腐：在逐臭與尋香之間，台灣人的感官極限運動",
+    "description": "從 1950 年代的街頭老兵手藝到登入國宴的「臭豆腐神殿」，這塊發酵豆腐承載了台灣半世紀的韌性。本文解析臭滷水背後的活菌策展，以及深坑焦香與玉里三道油溫的風味秘密。",
+    "category": "Food",
+    "tags": [
+      "臭豆腐",
+      "台灣小吃",
+      "發酵食",
+      "深坑",
+      "玉里橋頭",
+      "戴記獨臭之家"
+    ],
+    "url": "https://taiwan.md/Food/%E8%87%AD%E8%B1%86%E8%85%90",
+    "readingTime": 10,
+    "featured": false,
+    "date": "2026-04-26",
+    "path": "Food/臭豆腐.md"
+  },
+  {
     "title": "草東沒有派對：從陽明山草東街到兩座金曲最佳樂團的十二年",
     "description": "2017 年金曲 28，一個自費壓 2,000 張 CD 的四人樂團壓倒性擊敗五月天拿下三座。他們消失了七年，橫跨鼓手凡凡 2021 年在防疫旅館過世與兩年沉默。2023 年用《瓦合》回歸，2024 金曲 35 拿下年度專輯 + 最佳華語 + 最佳樂團三冠，經紀人代領：「草東從來不只是站在舞台上的 4 個人。」",
     "category": "People",
@@ -9888,6 +10008,27 @@
     "featured": false,
     "date": "2026-03-25T00:00:00Z",
     "path": "People/莫那·魯道.md"
+  },
+  {
+    "title": "蚵仔煎：從貧困到國民美食的味蕾演變史",
+    "description": "一道源於糧食匱乏的台灣小吃，如何從鄭成功時期的「煎鎚」演變為今日風靡海內外的國民美食，其背後隱藏著粉漿與醬汁的味蕾秘密。",
+    "category": "Food",
+    "tags": [
+      "蚵仔煎",
+      "台灣小吃",
+      "歷史",
+      "美食",
+      "文化",
+      "鄭成功",
+      "芡水",
+      "醬汁",
+      "華元洋芋片"
+    ],
+    "url": "https://taiwan.md/Food/%E8%9A%B5%E4%BB%94%E7%85%8E",
+    "readingTime": 15,
+    "featured": false,
+    "date": "2026-04-26",
+    "path": "Food/蚵仔煎.md"
   },
   {
     "title": "許文龍",
@@ -11098,7 +11239,7 @@
     "category": "People",
     "tags": [],
     "url": "https://taiwan.md/People/%E6%A5%8A%E6%B7%B1%E5%9D%91",
-    "readingTime": 12,
+    "readingTime": 13,
     "featured": false,
     "date": "2026-04-25",
     "path": "People/楊深坑.md"
@@ -12842,6 +12983,25 @@
     "featured": false,
     "date": "2026-04-06",
     "path": "People/嚴長壽.md"
+  },
+  {
+    "title": "櫻花鉤吻鮭：冰河孑遺的歸鄉路，從瀕危到流域整體保育的台灣奇蹟",
+    "description": "1917年，日本學者大島正滿在台灣發現冰河孑遺生物「櫻花鉤吻鮭」，泰雅族稱之為「Mnbang」。歷經棲地破壞與族群銳減至1995年僅200餘尾的危機，透過拆壩、人工復育與創新「無水運輸」技術，至2023年達1.8萬尾高峰，近年雖有波動，但已穩定維持在1.5萬尾以上，成為台灣流域整體保育的成功典範。",
+    "category": "Nature",
+    "tags": [
+      "櫻花鉤吻鮭",
+      "台灣鮭",
+      "國寶魚",
+      "生態保育",
+      "雪霸國家公園",
+      "泰雅族",
+      "Nbang"
+    ],
+    "url": "https://taiwan.md/Nature/%E6%AB%BB%E8%8A%B1%E9%89%A4%E5%90%BB%E9%AE%AD",
+    "readingTime": 17,
+    "featured": false,
+    "date": "2026-04-26",
+    "path": "Nature/櫻花鉤吻鮭.md"
   },
   {
     "title": "蘭嶼生態系：黑潮邊境的生命密碼",
@@ -20365,24 +20525,6 @@
     "path": "fr/History/nationalist-government-retreat-and-postwar-reconstruction.md"
   },
   {
-    "title": "Le réseau de transport à Taïwan",
-    "description": "TGV, métro, routes, aviation et ports : le réseau de transport multidimensionnel qui relie Taïwan en mouvement",
-    "category": "fr",
-    "tags": [
-      "transports",
-      "TGV",
-      "métro",
-      "routes",
-      "aviation",
-      "ports"
-    ],
-    "url": "https://taiwan.md/fr/Geography/transportation-network",
-    "readingTime": 138,
-    "featured": false,
-    "date": "2026-03-20",
-    "path": "fr/Geography/transportation-network.md"
-  },
-  {
     "title": "Le riz au porc braisé de Taïwan",
     "description": "Des cuisines des villages militaires au plat national : l''épopée du lu rou fan et la guerre Nord-Sud qui divise (et unit) Taïwan",
     "category": "fr",
@@ -24258,17 +24400,6 @@
     "path": "en/Art/traditional-arts-of-taiwan.md"
   },
   {
-    "title": "Taiwan Transportation Network",
-    "description": "High-speed rail, metro, highways, and aviation weaving Taiwan's three-dimensional transportation web",
-    "category": "en",
-    "tags": [],
-    "url": "https://taiwan.md/en/Geography/taiwan-transportation-network",
-    "readingTime": 122,
-    "featured": false,
-    "date": "2026-03-20",
-    "path": "en/Geography/taiwan-transportation-network.md"
-  },
-  {
     "title": "Taiwan VTuber",
     "description": "How a virtual streamer who refuses ads and sings in Taiwanese Hokkien is redefining pop culture in the digital age",
     "category": "en",
@@ -25213,6 +25344,27 @@
     "featured": true,
     "date": "2026-03-19",
     "path": "en/History/taiwan-white-terror.md"
+  },
+  {
+    "title": "Taiwan's Zoos: The Oldest Is Not Muzha, and the Largest Is Not the Whole Story",
+    "description": "From Yuan Zai the panda to overnight stays at the marine museum, Taiwan's animal institutions form a map of cities, tourism and ocean education.",
+    "category": "en",
+    "tags": [
+      "zoos",
+      "Taipei Zoo",
+      "Hsinchu Zoo",
+      "Shoushan Zoo",
+      "Xpark",
+      "NMMBA",
+      "Leofoo Village",
+      "Wanpi World",
+      "Farglory Ocean Park"
+    ],
+    "url": "https://taiwan.md/en/Society/taiwan-zoos",
+    "readingTime": 40,
+    "featured": false,
+    "date": "2026-04-25",
+    "path": "en/Society/taiwan-zoos.md"
   },
   {
     "title": "Taiwanese Architecture",
@@ -27795,24 +27947,6 @@
     "featured": true,
     "date": "2026-04-06",
     "path": "ko/Lifestyle/transportation-system.md"
-  },
-  {
-    "title": "대만 교통운송 네트워크",
-    "description": "고속철도·지하철·도로·항공, 입체적으로 얽힌 대만 이동의 모든 것",
-    "category": "ko",
-    "tags": [
-      "교통운송",
-      "고속철도",
-      "지하철",
-      "도로",
-      "항공",
-      "항구"
-    ],
-    "url": "https://taiwan.md/ko/Geography/transportation-network",
-    "readingTime": 51,
-    "featured": false,
-    "date": "2026-03-20",
-    "path": "ko/Geography/transportation-network.md"
   },
   {
     "title": "대만 국가풍경구 시스템",
@@ -34536,6 +34670,17 @@
     "featured": false,
     "date": "2026-03-24",
     "path": "ja/Lifestyle/garbage-truck-music.md"
+  },
+  {
+    "title": "ゴミ収集車を追いかける島：台湾はいかにして「ゴミの島」からリサイクル先進国になったか",
+    "description": "1990年代、満杯間近の埋立地が400カ所、海外メディアからは「ゴミの島」と呼ばれた島が、ベートーヴェンの旋律で2,300万人を毎日ゴミ収集車へ走らせ、30年後には資源回収率でヨーロッパの大半を上回るまでになった話",
+    "category": "ja",
+    "tags": [],
+    "url": "https://taiwan.md/ja/Lifestyle/recycling-and-circular-living-culture",
+    "readingTime": 19,
+    "featured": false,
+    "date": "2026-03-23",
+    "path": "ja/Lifestyle/recycling-and-circular-living-culture.md"
   },
   {
     "title": "シャベル超人と島の共時性——台湾の災害ボランティア文化と国民的アイデンティティ",
