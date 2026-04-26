@@ -650,7 +650,7 @@
       "殖民文學"
     ],
     "url": "https://taiwan.md/Art/%E6%97%A5%E6%B2%BB%E6%99%82%E6%9C%9F%E6%96%87%E5%AD%B8",
-    "readingTime": 17,
+    "readingTime": 18,
     "featured": false,
     "date": "2026-03-18",
     "path": "Art/日治時期文學.md"
@@ -3279,7 +3279,7 @@
     "category": "Art",
     "tags": [],
     "url": "https://taiwan.md/Art/%E5%8F%B0%E7%81%A3%E6%96%87%E5%AD%B8%E5%8F%B2",
-    "readingTime": 21,
+    "readingTime": 22,
     "featured": true,
     "date": "2026-03-24",
     "path": "Art/台灣文學史.md"
@@ -3546,18 +3546,7 @@
     "title": "台灣交通系統：一座島嶼怎麼把自己壓縮成 90 分鐘",
     "description": "1946 年台灣一夜之間從左駕變右駕。中央山脈縱貫南北 273 公里，把 36,000 平方公里的島切成東西兩半。六十年後高鐵把 394 公里壓成 90 分鐘，雪山隧道把宜蘭從 2 小時車程縮成 40 分鐘。再十年後，一千四百萬輛機車塞滿了每一個路口。這座島嶼的交通故事，就是它的身份故事。",
     "category": "Lifestyle",
-    "tags": [
-      "交通",
-      "高鐵",
-      "捷運",
-      "機車",
-      "YouBike",
-      "Gogoro",
-      "悠遊卡",
-      "航空",
-      "海運",
-      "雪山隧道"
-    ],
+    "tags": [],
     "url": "https://taiwan.md/Lifestyle/%E5%8F%B0%E7%81%A3%E4%BA%A4%E9%80%9A%E7%B3%BB%E7%B5%B1",
     "readingTime": 27,
     "featured": true,
@@ -6716,6 +6705,17 @@
     "path": "Nature/生態多樣性.md"
   },
   {
+    "title": "田馥甄：S.H.E 千萬銷量之後，把偶像體制一件件丟掉的歌手",
+    "description": "2010 年 9 月田馥甄發行首張個人專輯《To Hebe》時，海報文案寫「出道十年超級新人」——那年 S.H.E 已賣超過千萬張唱片。十一年後她在第 32 屆金曲獎舞台對媽媽喊「媽，我沒浪費水費，我拿到金曲獎了」。從新竹客家小鎮到小巨蛋舞台，這位被華研唱片培養出的偶像花了二十五年，把代言、綜藝、中國市場、「文青歌后」標籤一件件主動退掉。",
+    "category": "People",
+    "tags": [],
+    "url": "https://taiwan.md/People/%E7%94%B0%E9%A6%A5%E7%94%84",
+    "readingTime": 44,
+    "featured": false,
+    "date": "2026-04-26",
+    "path": "People/田馥甄.md"
+  },
+  {
     "title": "白先勇",
     "description": "《台北人》作者，現代文學大師與崑曲復興推手",
     "category": "People",
@@ -6807,23 +6807,9 @@
     "title": "冰河孑遺的微笑：台灣山椒魚的百年身世與科技守護之路",
     "description": "在台灣高山深處，五種特有種山椒魚默默承載著冰河時期的記憶。牠們是高山生態指標，也是一段百年來科學家不斷探索、正名、甚至付出生命的故事。2025 年人工孵化技術的突破，為這些「微笑的高山精靈」帶來新希望。",
     "category": "Nature",
-    "tags": [
-      "山椒魚",
-      "冰河孑遺",
-      "台灣特有種",
-      "微笑的高山精靈",
-      "呂光洋",
-      "賴俊祥",
-      "朱有田",
-      "人工孵化",
-      "生態保育",
-      "氣候變遷",
-      "雪霸國家公園",
-      "台灣大哥大",
-      "台灣大學"
-    ],
+    "tags": [],
     "url": "https://taiwan.md/Nature/%E5%8F%B0%E7%81%A3%E5%B1%B1%E6%A4%92%E9%AD%9A",
-    "readingTime": 25,
+    "readingTime": 28,
     "featured": false,
     "date": "2026-04-26",
     "path": "Nature/台灣山椒魚.md"
@@ -8352,6 +8338,17 @@
     "path": "Society/社會運動與公民參與.md"
   },
   {
+    "title": "邱繼弘：從 Web 2.0 失敗中崛起，以工程師思維重塑台灣數位廣告生態",
+    "description": "交通大學資工博士邱繼弘，從 Web 2.0 網站 funP 的失敗中汲取教訓，於 2009 年創立 cacaFly 聖洋科技。他以工程師思維把資料與技術引入廣告業，成為 Facebook、Google 等國際平台的台灣廣告代理巨頭；同時透過時代力量決策委員、台北市政府市政顧問、DMA 理事長等角色，持續推動台灣數位廣告產業的創新與規範。",
+    "category": "People",
+    "tags": [],
+    "url": "https://taiwan.md/People/%E9%82%B1%E7%B9%BC%E5%BC%98",
+    "readingTime": 28,
+    "featured": false,
+    "date": "2026-04-26",
+    "path": "People/邱繼弘.md"
+  },
+  {
     "title": "金牛角：飛機上的意外與漢餅靈魂的台式可頌",
     "description": "三峽金牛角並非源自法國，而是一位漢餅師傅在飛機上與菲律賓麵包的意外邂逅，最終演變成撐起三峽嗅覺記憶的硬派點心。",
     "category": "Food",
@@ -8526,7 +8523,7 @@
       "長鏡頭"
     ],
     "url": "https://taiwan.md/People/%E4%BE%AF%E5%AD%9D%E8%B3%A2",
-    "readingTime": 16,
+    "readingTime": 17,
     "featured": true,
     "date": "2026-03-24",
     "path": "People/侯孝賢.md"
@@ -9337,6 +9334,17 @@
     "path": "People/席慕蓉.md"
   },
   {
+    "title": "徐佳瑩：從護理師到金曲歌后，把選秀冠軍寫成創作題的人",
+    "description": "2008 年徐佳瑩辭掉護理工作，瞞著家人報名《超級星光大道》第三屆，差點買票回台中。〈身騎白馬〉把歌仔戲唱進選秀舞台，2018 年《心裡學》拿下金曲歌后與最佳國語專輯；到《給》與〈不在一起就不會分開〉，她把被評分的人生，慢慢寫成自己的題目。",
+    "category": "People",
+    "tags": [],
+    "url": "https://taiwan.md/People/%E5%BE%90%E4%BD%B3%E7%91%A9",
+    "readingTime": 20,
+    "featured": false,
+    "date": "2026-04-26",
+    "path": "People/徐佳瑩.md"
+  },
+  {
     "title": "捐款永動機：FAB DAO 與百岳計畫的社會實驗",
     "description": "一位離職醫師如何用一面壓線球國旗，開啟台灣 Web3 公益的全新想像。FAB DAO 與百岳計畫重新定義了捐款的本質：收藏即捐款，藝術即社會行動。",
     "category": "Art",
@@ -9443,7 +9451,7 @@
       "戴記獨臭之家"
     ],
     "url": "https://taiwan.md/Food/%E8%87%AD%E8%B1%86%E8%85%90",
-    "readingTime": 10,
+    "readingTime": 12,
     "featured": false,
     "date": "2026-04-26",
     "path": "Food/臭豆腐.md"
@@ -10025,7 +10033,7 @@
       "華元洋芋片"
     ],
     "url": "https://taiwan.md/Food/%E8%9A%B5%E4%BB%94%E7%85%8E",
-    "readingTime": 15,
+    "readingTime": 16,
     "featured": false,
     "date": "2026-04-26",
     "path": "Food/蚵仔煎.md"
@@ -11332,7 +11340,7 @@
       "數位轉型"
     ],
     "url": "https://taiwan.md/Art/%E7%95%B6%E4%BB%A3%E5%8F%B0%E7%81%A3%E6%96%87%E5%AD%B8",
-    "readingTime": 19,
+    "readingTime": 20,
     "featured": false,
     "date": "2026-03-24",
     "path": "Art/當代台灣文學.md"
@@ -11497,7 +11505,7 @@
       "多元文學"
     ],
     "url": "https://taiwan.md/Art/%E8%A7%A3%E5%9A%B4%E5%BE%8C%E5%8F%B0%E7%81%A3%E6%96%87%E5%AD%B8",
-    "readingTime": 20,
+    "readingTime": 21,
     "featured": false,
     "date": "2026-03-18",
     "path": "Art/解嚴後台灣文學.md"
@@ -12291,20 +12299,14 @@
     "path": "Society/學習貧窮.md"
   },
   {
-    "title": "戰後台灣文學",
-    "description": "從語言失語到多元爆發，戰後台灣文學如何在身份認同的漩渦中找到自己的聲音？",
+    "title": "戰後台灣文學：從不能說的事，學會怎麼說（1945-1987）",
+    "description": "1945 年 8 月，葉石濤 20 歲從日本陸軍退伍回到台南，打開稿紙一個中文字都寫不出來。這張白紙要等他 42 年。中間是失語、入獄、論戰、學會迂迴。1987 年 2 月，他出了一本 232 頁的書，書名只有「台灣」兩個字。",
     "category": "Art",
-    "tags": [
-      "戰後文學",
-      "鄉土文學",
-      "現代主義",
-      "女性文學",
-      "語言轉換"
-    ],
+    "tags": [],
     "url": "https://taiwan.md/Art/%E6%88%B0%E5%BE%8C%E5%8F%B0%E7%81%A3%E6%96%87%E5%AD%B8",
-    "readingTime": 29,
-    "featured": false,
-    "date": "2026-03-24",
+    "readingTime": 39,
+    "featured": true,
+    "date": "2026-04-26",
     "path": "Art/戰後台灣文學.md"
   },
   {
@@ -12902,6 +12904,17 @@
     "path": "People/魏德聖.md"
   },
   {
+    "title": "壞特?te：醫學系讀九年的優等生，按下暫停鍵的那場休學",
+    "description": "2021 年 8 月 21 日，戴著黑帽墨鏡的壞特?te 上台領第 32 屆金曲獎最佳新人獎。她對著鏡頭說：「請你們不要害怕。」她本名林芝儀、新竹香山人、新竹女中、國防醫學院醫學系讀了九年，含大三那年的休學一年、含延畢一年。她通過兩階段醫師國考，差最後一階就是正式醫師。台灣最會讀書的賽道上，她按下暫停鍵的那一年。",
+    "category": "People",
+    "tags": [],
+    "url": "https://taiwan.md/People/%E5%A3%9E%E7%89%B9",
+    "readingTime": 63,
+    "featured": false,
+    "date": "2026-04-26",
+    "path": "People/壞特.md"
+  },
+  {
     "title": "羅大佑",
     "description": "華語流行音樂教父，以《鹿港小鎮》《童年》等經典作品影響華人世界",
     "category": "People",
@@ -12988,15 +13001,7 @@
     "title": "櫻花鉤吻鮭：冰河孑遺的歸鄉路，從瀕危到流域整體保育的台灣奇蹟",
     "description": "1917年，日本學者大島正滿在台灣發現冰河孑遺生物「櫻花鉤吻鮭」，泰雅族稱之為「Mnbang」。歷經棲地破壞與族群銳減至1995年僅200餘尾的危機，透過拆壩、人工復育與創新「無水運輸」技術，至2023年達1.8萬尾高峰，近年雖有波動，但已穩定維持在1.5萬尾以上，成為台灣流域整體保育的成功典範。",
     "category": "Nature",
-    "tags": [
-      "櫻花鉤吻鮭",
-      "台灣鮭",
-      "國寶魚",
-      "生態保育",
-      "雪霸國家公園",
-      "泰雅族",
-      "Nbang"
-    ],
+    "tags": [],
     "url": "https://taiwan.md/Nature/%E6%AB%BB%E8%8A%B1%E9%89%A4%E5%90%BB%E9%AE%AD",
     "readingTime": 17,
     "featured": false,

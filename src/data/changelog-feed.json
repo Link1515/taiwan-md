@@ -1,7 +1,217 @@
 {
-  "generatedAt": "2026-04-26T00:38:21.985Z",
+  "generatedAt": "2026-04-26T11:05:48.818Z",
   "source": "git",
   "commits": [
+    {
+      "hash": "3dc24da239b91da7d2495f02dbbcdf792d3d4906",
+      "date": "2026-04-26T15:00:47+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [harvest+diary] 6 spores D+0/D+3 數據回填 + sporeLinks 同步 + β8 diary 收官"
+    },
+    {
+      "hash": "bd72a23ecf1ab1ee5d012660a9c33e43151d1b44",
+      "date": "2026-04-26T14:43:27+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: 2026-04-26 δ heartbeat — 14:30 light tick + PR #636 drive-by review"
+    },
+    {
+      "hash": "50f8736aba76864dd7cc54076cddd836f3ee41ba",
+      "date": "2026-04-26T14:41:55+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [spore] s45/s46 壞特?te 雙平台發佈紀錄 + sporeLinks"
+    },
+    {
+      "hash": "790146e273da6b39ab44c25fde6fb6f1a323b97f",
+      "date": "2026-04-26T14:29:14+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [evolve+pipeline] 壞特?te 三輪研究 + 鄭宜農 transcript 整合 + REWRITE-PIPELINE Rule #12 升級"
+    },
+    {
+      "hash": "4a5b7958a87285286ffdf0e882d1624391cef5af",
+      "date": "2026-04-26T13:42:50+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: lifeTree 大擴張 — 5 新 prototype + source provenance schema"
+    },
+    {
+      "hash": "81e6f52d339eb0952e8f39d2f36f5187f00a9849",
+      "date": "2026-04-26T13:14:24+08:00",
+      "author": "Che-Yu Wu",
+      "message": "Add Lala Hsu article"
+    },
+    {
+      "hash": "99ce635c6bd65dd3bfa89478581c37ca574a666b",
+      "date": "2026-04-26T11:25:58+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: split LifeTree to /lifetree standalone pages + 吳哲宇 prototype #2"
+    },
+    {
+      "hash": "2d0d5e7eb4e216d470b5e726309e68471ada1051",
+      "date": "2026-04-26T11:21:11+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [evolve] check-manifesto-11.sh 升級：三層 AI 文體 gate + context-aware + 口語建議"
+    },
+    {
+      "hash": "ab1d3102c624fafad78b2da4e9db58d88fbc7a25",
+      "date": "2026-04-26T11:08:18+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [polish] People/田馥甄 散文化重構：條列段落 → 呼吸感（保留 title/desc）"
+    },
+    {
+      "hash": "0bc7d9aefe5889c19313cf7dcdcb6abf16b3dee4",
+      "date": "2026-04-26T11:00:46+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [heal] dashboard 貢獻者 section 全 0 修復（CI rate limit 韌性）"
+    },
+    {
+      "hash": "9c63c53d03a5f9bceeb2ef90293e0c06217fc7b4",
+      "date": "2026-04-26T10:55:45+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [spore] s43/s44 田馥甄 雙平台發佈紀錄 + sporeLinks"
+    },
+    {
+      "hash": "67f91673482e1b99eb8ed293286a69036faf3a47",
+      "date": "2026-04-26T10:49:39+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: LifeTree (人生分支樹) feature ship — 焦安溥 prototype Phase 1"
+    },
+    {
+      "hash": "6e5c41d41be43f4c88a7bc879b4737a49f50ba08",
+      "date": "2026-04-26T10:40:14+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [new] People/田馥甄：S.H.E 千萬銷量之後，把偶像體制一件件丟掉的歌手"
+    },
+    {
+      "hash": "c1b9e8aad1fe959e24b82f55493c5c7e61e10de4",
+      "date": "2026-04-26T10:34:44+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] diagnose: life decision tree 視覺化設計報告（焦安溥 prototype）"
+    },
+    {
+      "hash": "2feb50c0c8b3c352ee299e2d59eea77021aff6b6",
+      "date": "2026-04-26T10:28:04+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: distill insights #2 + #6 → LESSONS-INBOX Distill SOP v2.0 + HEARTBEAT Beat 3 自我估算偏誤校準"
+    },
+    {
+      "hash": "da5ed611c6a7032b40364e25d6d5d615d1b81696",
+      "date": "2026-04-26T10:25:53+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [pipeline] REWRITE v2.19 — 加範圍重切變體 (Boundary Redraw) 子段"
+    },
+    {
+      "hash": "8ec48b7dcc521cd63dc8309f55f3f5f8c7dcdfca",
+      "date": "2026-04-26T10:16:48+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: 2026-04-26 γ — Issue #635 Phase 1 收官"
+    },
+    {
+      "hash": "7a73c9bb77f99c7404489537be1544dad5018933",
+      "date": "2026-04-26T10:14:44+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: β session 收官 (3 rounds, ~95 min) + prebuild artifacts"
+    },
+    {
+      "hash": "aa1afa03af103ff83d01a152be48e65c518f662d",
+      "date": "2026-04-26T10:07:01+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: Issue #635 Phase 1 收官 — INBOX/DONE-LOG 更新"
+    },
+    {
+      "hash": "f7c8d499571317bc50c5afd79e188893613ff6c8",
+      "date": "2026-04-26T10:05:56+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: distill 4 LESSONS-INBOX → MAINTAINER-PIPELINE §footnote audit + EDITORIAL §title People rule + Issue #618 strategy"
+    },
+    {
+      "hash": "183f5ef509a3a01fc980d2f4ceff48b4bb688a70",
+      "date": "2026-04-26T10:04:04+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 戰後台灣文學 EVOLVE — Issue #635 Phase 1/4"
+    },
+    {
+      "hash": "ed30bf4b4e0a52d607feead8316c178928cf065d",
+      "date": "2026-04-26T09:58:25+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: β-r2 observer-triggered second round (5 ship + 1 close)"
+    },
+    {
+      "hash": "6ae7e431edd5842c877fe645c98dfaf1a00735fd",
+      "date": "2026-04-26T09:56:06+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] immune: 4 PR §11 polish (臭豆腐/蚵仔煎/山椒魚/鉤吻鮭) + footnote format conversion"
+    },
+    {
+      "hash": "2eaba5ee7d6f9be5570a0a23d6e40118fa52141b",
+      "date": "2026-04-26T09:53:07+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] immune: 5 PR §11 polish + #634 fake [^25] removal + #632 close"
+    },
+    {
+      "hash": "7f647b33fa62244bd328c56883d91b18af6c2780",
+      "date": "2026-04-26T09:52:18+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [pipeline] REWRITE 加整併變體 + MAINTAINER 加 commit-attach 原則"
+    },
+    {
+      "hash": "a8471cc2e185ae61e47f50120be6126807d74134",
+      "date": "2026-04-26T09:48:55+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [evolve+merge] Lifestyle/台灣交通系統 整併 Geography/台灣交通運輸網絡 (issue #626)"
+    },
+    {
+      "hash": "8909a063732e8e4582c76f357fa4a55d85acbb71",
+      "date": "2026-04-26T09:44:22+08:00",
+      "author": "idlccp1984",
+      "message": "Create 邱繼弘.md (#634)"
+    },
+    {
+      "hash": "551bc56d53dde4c725e4d8f3e0095c96a1332cfb",
+      "date": "2026-04-26T09:35:39+08:00",
+      "author": "idlccp1984",
+      "message": "Create 臭豆腐.md (#633)"
+    },
+    {
+      "hash": "bb162c3a8eaa605878a368dff6651c8435dafc9b",
+      "date": "2026-04-26T09:35:34+08:00",
+      "author": "idlccp1984",
+      "message": "Create 蚵仔煎.md (#630)"
+    },
+    {
+      "hash": "892fdd048e61b96b8865b51e08cd0407d7965c74",
+      "date": "2026-04-26T09:35:29+08:00",
+      "author": "idlccp1984",
+      "message": "Create 櫻花鉤吻鮭.md (#629)"
+    },
+    {
+      "hash": "971dc4a7a52077e1b01c81c3f013058402151385",
+      "date": "2026-04-26T09:35:24+08:00",
+      "author": "idlccp1984",
+      "message": "Create 台灣山椒魚.md (#628)"
+    },
+    {
+      "hash": "2adb8222429dfef5ee1579c58c26197171927752",
+      "date": "2026-04-26T08:51:45+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: 2026-04-26 β heartbeat — 08:30 morning ship tick (β7 cadence #2)"
+    },
+    {
+      "hash": "a15095076df19acbfaa22121906e20b111ff0f15",
+      "date": "2026-04-26T08:41:54+08:00",
+      "author": "idlccp1984",
+      "message": "Create 水獺.md (#627)"
+    },
+    {
+      "hash": "2c96c03489fe24ca5786a1ae09c5ae1e5ded3214",
+      "date": "2026-04-26T08:41:27+08:00",
+      "author": "Zaious (@ChronicleCore)",
+      "message": "fix(citations): retroactive audit cleanup for 21 articles across 8 PRs (#625)"
+    },
+    {
+      "hash": "354fe0f48778b16213f350c05bb2224a7440a9d8",
+      "date": "2026-04-26T08:40:57+08:00",
+      "author": "Chen Yu Ling",
+      "message": "chore: convert prettier config to JSON format (#623)"
+    },
     {
       "hash": "4753d6dbec95ec556dad8ef9548b1f2e4e611e2c",
       "date": "2026-04-26T02:41:56+08:00",

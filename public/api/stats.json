@@ -1,8 +1,8 @@
 {
-  "totalArticles": 2260,
+  "totalArticles": 2264,
   "totalCategories": 21,
   "estimatedContributors": 151,
-  "totalTags": 5298,
+  "totalTags": 5277,
   "categories": [
     {
       "name": "History",
@@ -30,7 +30,7 @@
     },
     {
       "name": "People",
-      "count": 182
+      "count": 186
     },
     {
       "name": "Music",
@@ -172,8 +172,8 @@
     }
   ],
   "languageDistribution": {
-    "zh-TW": 2260,
+    "zh-TW": 2264,
     "en": 0
   },
-  "lastUpdated": "2026-04-26T01:41:50.027Z"
+  "lastUpdated": "2026-04-26T11:05:49.865Z"
 }

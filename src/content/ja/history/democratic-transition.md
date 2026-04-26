@@ -163,43 +163,23 @@ translatedFrom: 'History/台灣民主轉型.md'
 ## 参考資料
 
 [^1]: [ウィキペディア：鄭南榕](https://zh.wikipedia.org/zh-tw/%E9%84%AD%E5%8D%97%E6%A6%95)
-
 [^2]: [ウィキペディア：圓環緝煙事件](https://zh.wikipedia.org/zh-tw/%E5%9C%93%E7%92%B0%E7%B7%9D%E8%8F%B8%E4%BA%8B%E4%BB%B6)
-
 [^3]: [二・二八事件責任帰属研究報告](https://www.228.org.tw/)
-
 [^4]: [国家人権博物館：戒厳時期](https://www.nhrm.gov.tw/)
-
 [^5]: [国家人権記憶庫：高雄事件](https://memory.nhrm.gov.tw/TopicExploration/Event/Detail/5)
-
 [^6]: [故事StoryStudio：大逮捕から軍法大審まで](https://storystudio.tw/article/gushi/%E5%BE%9E%E5%A4%A7%E9%80%AE%E6%8D%95%E5%88%B0%E8%BB%8D%E6%B3%95%E5%A4%A7%E5%AF%A9%EF%BC%9A%E7%BE%8E%E9%BA%97%E5%B3%B6%E6%B0%91%E4%B8%BB%E9%81%8B%E5%8B%95%E5%BD%B1%E5%83%8F%E5%8F%B2%EF%BC%88%E4%BA%8C)
-
 [^7]: [ウィキペディア：林宅血案](https://zh.wikipedia.org/zh-tw/%E6%9E%97%E5%AE%85%E8%A1%80%E6%A1%88)
-
 [^8]: [国家人権記憶庫：江南案](https://memory.nhrm.gov.tw/TopicExploration/Event/Detail/39)
-
 [^9]: Larry Diamond, "Taiwan: A Democratic Success Story," _Journal of Democracy_, 2015
-
 [^10]: [ウィキペディア：野百合学運](https://zh.wikipedia.org/zh-hant/%E9%87%8E%E7%99%BE%E5%90%88%E5%AD%B8%E9%81%8B)
-
 [^11]: [中央通訊社：1996年台湾海峡ミサイル危機](https://www.cna.com.tw/news/aipl/202007300339.aspx)
-
 [^12]: [Focus Taiwan：初の総統直選30周年回顧](https://focustaiwan.tw/politics/202603235001)
-
 [^13]: [Freedom House：台湾民主化](https://freedomhouse.org/country/taiwan/freedom-world/2024)
-
 [^14]: [ウィキペディア：ひまわり学運](https://zh.wikipedia.org/zh-tw/%E5%A4%AA%E9%99%BD%E8%8A%B1%E5%AD%B8%E9%81%8B)
-
 [^15]: [立法院：司法院釈字第748号解釈施行法](https://lis.ly.gov.tw/lgcgi/lglaw?@221:1804289383:f:NO%3DE01961*%20OR%20NO%3DB01961$$12$$$NO-PD)
-
 [^16]: [Freedom House: Taiwan 2024](https://freedomhouse.org/country/taiwan/freedom-world/2024)
-
 [^17]: [The Economist: Democracy Index 2024](https://www.eiu.com/n/campaigns/democracy-index-2024/)
-
 [^18]: [行政院：促進轉型正義委員会](https://www.tjc.gov.tw/)
-
 [^19]: [自由時報：陳菊獄中遺書の経緯](https://news.ltn.com.tw/news/politics/breakingnews/1553866)
-
 [^20]: [China Change：蔣経国と台湾民主化](https://chinachange.org/2013/06/03/chiang-chang-kuo-and-the-democratization-of-taiwan-2/)
-
 [^21]: [Global Voices：技術がひまわり運動をいかに形作ったか](https://globalvoices.org/2014/04/20/how-technology-and-citizen-media-shaped-taiwans-sunflower-movement/)

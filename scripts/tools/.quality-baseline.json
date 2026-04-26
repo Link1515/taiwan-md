@@ -1,7 +1,9 @@
 {
   "version": "3.2",
-  "timestamp": "2026-04-26T02:13:51Z",
+  "timestamp": "2026-04-26T06:14:31Z",
   "total": 1,
-  "flagged": 0,
-  "files": []
+  "flagged": 1,
+  "files": [
+    {"file": "knowledge/People/壞特.md", "score": 7}
+  ]
 }

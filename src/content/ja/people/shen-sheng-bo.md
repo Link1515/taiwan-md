@@ -2,15 +2,7 @@
 title: '沈聖博'
 description: 'コンピューターサイエンスを専攻しながら、プログラミング言語を台湾の現代アートシーンへ持ち込んだ人物。34年という短い生涯に残したのは、デジタルアート作品にとどまらず、プログラムを生活の一部とし、フリーソフトウェアを創作の倫理として捉えた実験精神だった。'
 date: 2026-03-23
-tags:
-  [
-    '人物',
-    'デジタルアート',
-    'ニューメディアアート',
-    'FLOSS+ART',
-    'OpenLab.Taipei',
-    '台湾',
-  ]
+tags: ['人物', 'デジタルアート', 'ニューメディアアート', 'FLOSS+ART', 'OpenLab.Taipei', '台湾']
 subcategory: 'アートとデザイン'
 category: 'People'
 author: 'Taiwan.md Translation Team'
@@ -129,6 +121,5 @@ OpenLab.Taipeiがコミュニティとネットワークを代表するとすれ
 - [テクノロジーの温度の中の高貴な純粋さ：沈聖博の《pin shadow》と《texture》](https://atatw.org/hta-archive/%E7%A7%91%E6%8A%80%E6%BA%AB%E5%BA%A6%E4%B8%AD%E7%9A%84%E9%AB%98%E5%B0%9A%E7%B4%94%E6%BD%94%EF%BC%9A%E6%B2%88%E8%81%96%E5%8D%9A%E7%9A%84%E3%80%8Apin-shadow%E3%80%8B%E8%88%87%E3%80%8Atexture%E3%80%8B/)
 
 ## 関連テーマ
-
 - 吳哲宇：プログラムからアートへと向かう、もう一つの台湾的創作の道
 - 唐鳳：テクノロジー的な思考が公共領域へと入っていくとき

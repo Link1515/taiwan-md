@@ -2,8 +2,7 @@
 title: '台湾のAI日常——人工知能が街角に溶け込んだとき'
 description: '台湾人は毎日十数回AIとやり取りしている。しかしほとんどの人はAIと話しているとは気づいていない。'
 date: 2026-03-29
-tags:
-  ['AI', '人工知能', 'LINE', 'スマート医療', 'スマート農業', '日常テクノロジー']
+tags: ['AI', '人工知能', 'LINE', 'スマート医療', 'スマート農業', '日常テクノロジー']
 subcategory: 'コミュニティとデジタル文化'
 category: 'Technology'
 author: 'Taiwan.md Translation Team'

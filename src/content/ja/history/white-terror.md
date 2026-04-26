@@ -34,8 +34,8 @@ translatedFrom: 'History/台灣白色恐怖.md'
 
 これが初めて公式に示された数字だった。しかしすべての研究者はこれが氷山の一角に過ぎないことを知っていた。
 
-| 29,407件           | 14,946件                       | 1,061人              |
-| ------------------ | ------------------------------ | -------------------- |
+| 29,407件 | 14,946件 | 1,061人 |
+| --- | --- | --- |
 | 法務部軍事審判案件 | 促転会データベース裁判受理件数 | 確認された死刑執行数 |
 
 促進転型正義委員会が2020年に公開した「台湾転型正義データベース」には**14,946件**の政治案件受裁判者データが収録されており、[^3] 台湾民間真相与和解促進会は戒厳期間中の死刑執行者が合計**1,061人**（2013年時点）と統計している。[^4] 行政院は2017年に、実際の被害者は**20万人を超える**可能性があるとの推計を示した。[^5]
@@ -156,29 +156,16 @@ translatedFrom: 'History/台灣白色恐怖.md'
 ## 参考資料
 
 [^1]: [新台湾和平基金会：歴史上の今日——陳智雄受難日](https://www.twpeace.org.tw/wordpress/?p=2778)
-
 [^2]: [自由時報：白恐冤獄](https://news.ltn.com.tw/news/life/paper/1085351)
-
 [^3]: [促進轉型正義委員会公式ウェブサイト](https://www.tjc.gov.tw/)
-
 [^4]: [台湾民間真相与和解促進会：白色テロ概説](https://taiwantrc.org/taiwan-history/white-terror-history/)
-
 [^5]: [風傳媒：白色テロ外省受難者46%](https://www.storm.mg/article/487266)
-
 [^6]: [Wikipedia: White Terror (Taiwan)](<https://en.wikipedia.org/wiki/White_Terror_(Taiwan)>)
-
 [^7]: [報導者：政治的傷を持つ人を探して](https://www.twreporter.org/a/228-political-victims-families)
-
 [^8]: [国家人権記憶庫：柏楊・ポパイ漫画案](https://memory.nhrm.gov.tw/TopicExploration/Event/Detail/78?Year=1960&Type=0)
-
 [^9]: [ウィキペディア：施水環](https://zh.wikipedia.org/zh-tw/%E6%96%BD%E6%B0%B4%E7%92%B0)
-
 [^10]: [台湾民間真相与和解促進会：施水環的家書](https://taiwantrc.org/%E6%96%BD%E6%B0%B4%E7%92%B0%E7%9A%84%E5%AE%B6%E6%9B%B8-%E6%89%BF%E8%BC%89%E7%99%BD%E8%89%B2%E6%81%90%E6%80%96%E6%82%B2%E6%AD%8C/)
-
 [^11]: [自由時報：鹿窟事件](https://news.ltn.com.tw/news/politics/paper/1145206)
-
 [^12]: [国家人権博物館：新生訓導処](https://www.nhrm.gov.tw/w/nhrm/GI_Buildings_21091113422074961)
-
 [^13]: [報導者：遥かな山谷のこだま](https://www.twreporter.org/a/white-terror-alishan)
-
 [^14]: [文化部：《高一生獄中家書》出版](https://www.moc.gov.tw/information_250_111089.html)

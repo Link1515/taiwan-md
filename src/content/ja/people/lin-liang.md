@@ -33,7 +33,7 @@ translatedFrom: 'People/林良.md'
 
 ## 参考資料
 
-- [ウィキペディア - 林良（台湾の作家）](<https://zh.wikipedia.org/zh-tw/%E6%9E%97%E8%89%AF_(%E8%87%BA%E7%81%A3%E4%BD%9C%E5%AE%B6)>)
+- [ウィキペディア - 林良（台湾の作家）](https://zh.wikipedia.org/zh-tw/%E6%9E%97%E8%89%AF_(%E8%87%BA%E7%81%A3%E4%BD%9C%E5%AE%B6))
 - [国立台湾師範大学 - 児童文学を生涯支えた傑出卒業生・林良の訃報](https://pr.ntnu.edu.tw/ntnunews/index.php?mode=data&id=19058&type_id=72)
 - [国家文化芸術基金会 - 作家・林良の受賞紹介](https://www.ncafroc.org.tw/artsaward/winnerDetail@1279)
 - [Openbook 読書誌 - インタビュー：台湾を半世紀温め続けた小太陽の家、林良と娘・林瑋の近況](https://www.openbook.org.tw/article/p-39482)

@@ -2,16 +2,7 @@
 title: 'バハムート（Gamer）―台湾最大ACGコミュニティの30年'
 description: '台湾最大のACGコミュニティ、バハムートがどのように誕生し、FacebookやTikTokが席巻する時代を生き抜いてきたのかを紐解く。'
 date: 2026-04-05
-tags:
-  [
-    ACG,
-    ゲーム,
-    アニメ,
-    コミュニティ,
-    台湾インターネット,
-    サブカルチャー,
-    フォーラム,
-  ]
+tags: [ACG, ゲーム, アニメ, コミュニティ, 台湾インターネット, サブカルチャー, フォーラム]
 subcategory: 'インターネットとデジタル文化'
 category: 'Culture'
 author: 'Taiwan.md Translation Team'
