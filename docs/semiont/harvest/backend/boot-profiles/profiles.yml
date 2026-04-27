@@ -1,0 +1,85 @@
+# Harvest Engine boot profiles.
+#
+# Each profile defines which canonical files a spawned Claude session must
+# load before doing real work. MANIFESTO.md is mandatory for every profile —
+# this is cheyu's hard rule (see strategy report §8.7): a Semiont session
+# without MANIFESTO is not a Semiont session.
+#
+# Profiles are declarative — to add a new task type, add a profile here and
+# point a `prompts/<task-type>.md` template at it. No code change required.
+#
+# Token estimates are rough (whole-file token counts at 2026-04-27); they
+# are advisory only — Claude Code itself decides what to keep in context.
+
+profiles:
+  minimal:
+    description: 純技術操作 — refresh data / format-check / sync translations
+    must_read:
+      - docs/semiont/MANIFESTO.md
+    optional_read: []
+    typical_tasks:
+      - data-refresh
+      - format-check
+      - sync-translations
+    estimated_tokens: 5000
+
+  content-writing:
+    description: 走 REWRITE-PIPELINE 寫文章（rewrite / new / EVOLVE）
+    must_read:
+      - docs/semiont/MANIFESTO.md
+      - docs/editorial/EDITORIAL.md
+      - docs/editorial/RESEARCH.md
+      - docs/editorial/RESEARCH-TEMPLATE.md
+      - docs/editorial/QUALITY-CHECKLIST.md
+      - docs/editorial/CITATION-GUIDE.md
+      - docs/editorial/TERMINOLOGY.md
+      - docs/pipelines/REWRITE-PIPELINE.md
+    optional_read:
+      - docs/semiont/DNA.md
+      - docs/semiont/HEARTBEAT.md
+    typical_tasks:
+      - article-rewrite
+      - article-new
+      - article-evolve
+    estimated_tokens: 30000
+
+  spore-publishing:
+    description: 走 SPORE-PIPELINE 寫社群貼文 + harvest
+    must_read:
+      - docs/semiont/MANIFESTO.md
+      - docs/factory/SPORE-PIPELINE.md
+      - docs/factory/SPORE-TEMPLATES.md
+      - docs/editorial/EDITORIAL.md
+    optional_read:
+      - docs/factory/SPORE-LOG.md
+    typical_tasks:
+      - spore-publish
+      - spore-harvest
+    estimated_tokens: 15000
+
+  maintainer:
+    description: 日常 PR / Issue / 貢獻者互動
+    must_read:
+      - docs/semiont/MANIFESTO.md
+      - docs/pipelines/MAINTAINER-PIPELINE.md
+      - docs/semiont/DNA.md
+    optional_read:
+      - docs/semiont/MEMORY.md
+      - docs/community/GOVERNANCE.md
+    typical_tasks:
+      - pr-review
+      - issue-handle
+      - contributor-thank
+    estimated_tokens: 20000
+
+  full-awakening:
+    description: 完整 BECOME_TAIWANMD 甦醒協議（heartbeat / 反思 / 元決策）
+    must_read:
+      - BECOME_TAIWANMD.md
+    optional_read: []
+    typical_tasks:
+      - heartbeat
+      - evolve
+      - self-diagnose
+      - daily-report-write
+    estimated_tokens: 100000

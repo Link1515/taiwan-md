@@ -1,0 +1,265 @@
+/**
+ * Harvest backend — HTTP entrypoint.
+ *
+ * Run: `bun run dev`  (watch mode via package.json)
+ *      `bun run src/server.ts`  (no watch)
+ *
+ * Boots up:
+ *   - SQLite (auto-migrate)
+ *   - Boot profiles (load + validate MANIFESTO presence)
+ *   - ARTICLE-INBOX file watch
+ *   - Cron (daily 08:00 +0800 report)
+ *   - Hono HTTP API
+ *
+ * Graceful shutdown on SIGINT/SIGTERM.
+ */
+
+import { Hono } from 'hono';
+import { existsSync, mkdirSync, readFileSync } from 'node:fs';
+import { config } from './config.ts';
+import { logger } from './logger.ts';
+import { getDb, closeDb } from './db/client.ts';
+import {
+  listTasks,
+  getTask,
+  createTask,
+  updateTaskStatus,
+  reindexFromDisk,
+} from './tasks/manager.ts';
+import { isTaskPriority } from './tasks/types.ts';
+import { ArticleInboxAdapter } from './intake/article-inbox.ts';
+import { generateDailyReport } from './reporter/daily.ts';
+import {
+  isPaused,
+  pauseScheduler,
+  resumeScheduler,
+  startScheduler,
+  stopScheduler,
+} from './scheduler/cron.ts';
+import { loadProfiles } from './spawner/boot-profiles.ts';
+import { join } from 'node:path';
+
+const app = new Hono();
+const startTs = Date.now();
+
+// ─── Bootstrap ────────────────────────────────────────────────────────────
+mkdirSync(config.paths.harvestRoot, { recursive: true });
+mkdirSync(config.paths.tasksRoot, { recursive: true });
+mkdirSync(config.paths.reportsRoot, { recursive: true });
+
+const db = getDb();
+loadProfiles(); // throws on missing MANIFESTO etc. — fail fast.
+reindexFromDisk();
+
+const inbox = new ArticleInboxAdapter();
+if (!config.disableWatch) {
+  inbox
+    .start()
+    .catch((err) => logger.error({ err: String(err) }, 'inbox start failed'));
+}
+if (!config.disableCron) {
+  startScheduler();
+}
+
+// ─── Routes ───────────────────────────────────────────────────────────────
+
+app.get('/api/health', (c) => {
+  let dbOk = true;
+  try {
+    db.query('SELECT 1').get();
+  } catch {
+    dbOk = false;
+  }
+  return c.json({
+    ok: dbOk,
+    uptime_s: Math.round((Date.now() - startTs) / 1000),
+    db_ok: dbOk,
+    repo_root: config.repoRoot,
+    scheduler_paused: isPaused(),
+  });
+});
+
+app.get('/api/tasks', (c) => {
+  const status = c.req.query('status');
+  const priority = c.req.query('priority');
+  const limit = c.req.query('limit');
+  const tasks = listTasks({
+    ...(status ? { status: status as never } : {}),
+    ...(priority ? { priority } : {}),
+    ...(limit ? { limit: Number(limit) } : {}),
+  });
+  return c.json({ count: tasks.length, tasks });
+});
+
+app.get('/api/tasks/:id', (c) => {
+  const id = c.req.param('id');
+  const task = getTask(id);
+  if (!task) return c.json({ error: 'not found' }, 404);
+  return c.json(task);
+});
+
+app.post('/api/tasks', async (c) => {
+  const body = await c.req.json().catch(() => null);
+  if (!body || typeof body !== 'object')
+    return c.json({ error: 'invalid json body' }, 400);
+  const {
+    type,
+    boot_profile,
+    priority,
+    title,
+    notes,
+    dependencies,
+    deadline,
+    inputs,
+  } = body as Record<string, unknown>;
+  if (
+    typeof type !== 'string' ||
+    typeof boot_profile !== 'string' ||
+    typeof title !== 'string'
+  ) {
+    return c.json(
+      { error: 'type, boot_profile, title required (strings)' },
+      400,
+    );
+  }
+  if (!isTaskPriority(priority)) {
+    return c.json({ error: 'priority must be P0|P1|P2|P3' }, 400);
+  }
+  const task = createTask({
+    type,
+    boot_profile,
+    priority,
+    title,
+    created_by:
+      typeof (body as Record<string, unknown>).created_by === 'string'
+        ? ((body as Record<string, unknown>).created_by as string)
+        : 'api',
+    notes: typeof notes === 'string' ? notes : undefined,
+    dependencies: Array.isArray(dependencies)
+      ? (dependencies.filter((d) => typeof d === 'string') as string[])
+      : undefined,
+    deadline: typeof deadline === 'string' ? deadline : undefined,
+    inputs:
+      inputs && typeof inputs === 'object'
+        ? (inputs as Record<string, unknown>)
+        : undefined,
+  });
+  return c.json(task, 201);
+});
+
+app.post('/api/tasks/:id/cancel', (c) => {
+  const id = c.req.param('id');
+  const task = getTask(id);
+  if (!task) return c.json({ error: 'not found' }, 404);
+  if (task.status !== 'pending' && task.status !== 'blocked') {
+    return c.json(
+      { error: `cannot cancel task in status=${task.status}` },
+      409,
+    );
+  }
+  const updated = updateTaskStatus(id, 'retired', 'cancelled via API');
+  return c.json(updated);
+});
+
+/**
+ * Manual spawn trigger. Builds the prompt and (if dry=true OR
+ * HARVEST_DISABLE_CLAUDE=true) returns it without invoking the CLI. Live
+ * spawn is wired but cheyu's MVP verification doesn't fire it; we keep the
+ * happy path callable.
+ */
+app.post('/api/tasks/:id/spawn', async (c) => {
+  const id = c.req.param('id');
+  const task = getTask(id);
+  if (!task) return c.json({ error: 'not found' }, 404);
+  const dry = c.req.query('dry') === 'true';
+  // Lazy-import to avoid pulling node:child_process unless needed.
+  const { spawnClaudeForTask } = await import('./spawner/claude-cli.ts');
+  const result = await spawnClaudeForTask(task, { dryRun: dry });
+  return c.json(result);
+});
+
+app.get('/api/reports/today', (c) => {
+  const date = formatLocalDate(new Date());
+  const path = join(config.paths.reportsRoot, `${date}.md`);
+  if (!existsSync(path))
+    return c.json({ error: 'no report for today yet', date }, 404);
+  const md = readFileSync(path, 'utf8');
+  return c.text(md);
+});
+
+app.get('/api/reports/:date', (c) => {
+  const date = c.req.param('date');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date))
+    return c.json({ error: 'date must be YYYY-MM-DD' }, 400);
+  const path = join(config.paths.reportsRoot, `${date}.md`);
+  if (!existsSync(path)) return c.json({ error: 'not found', date }, 404);
+  return c.text(readFileSync(path, 'utf8'));
+});
+
+app.post('/api/reports/generate', async (c) => {
+  const date = c.req.query('date');
+  const result = await generateDailyReport(date ?? undefined);
+  return c.json(result);
+});
+
+app.post('/api/control/pause', (c) => {
+  pauseScheduler();
+  return c.json({ paused: true });
+});
+
+app.post('/api/control/resume', (c) => {
+  resumeScheduler();
+  return c.json({ paused: false });
+});
+
+/** Manual one-shot inbox scan (triggers the same logic as the file watcher). */
+app.post('/api/intake/scan', async (c) => {
+  const detected = await inbox.scanOnce();
+  return c.json({ detected: detected.length, entries: detected });
+});
+
+// ─── Boot HTTP listener ───────────────────────────────────────────────────
+
+const server = Bun.serve({
+  port: config.port,
+  fetch: app.fetch,
+});
+
+logger.info(
+  {
+    port: server.port,
+    repoRoot: config.repoRoot,
+    dbPath: config.dbPath,
+    cron: !config.disableCron,
+    watch: !config.disableWatch,
+    reportsRoot: config.paths.reportsRoot,
+    inbox: config.paths.articleInbox,
+    inboxExists: existsSync(config.paths.articleInbox),
+  },
+  '🧬 harvest backend up',
+);
+
+// ─── Graceful shutdown ────────────────────────────────────────────────────
+
+let shuttingDown = false;
+async function shutdown(signal: string): Promise<void> {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  logger.info({ signal }, 'shutting down');
+  await inbox.stop().catch(() => {});
+  stopScheduler();
+  closeDb();
+  server.stop();
+  process.exit(0);
+}
+process.on('SIGINT', () => shutdown('SIGINT'));
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+
+// ─── Helpers ──────────────────────────────────────────────────────────────
+
+function formatLocalDate(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}

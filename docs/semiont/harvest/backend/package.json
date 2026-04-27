@@ -1,0 +1,28 @@
+{
+  "name": "@taiwan-md/harvest-backend",
+  "version": "0.1.0",
+  "description": "Taiwan.md Harvest Engine — orchestrator backend that spawns Claude Code sessions for autonomous Semiont work.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/server.ts",
+    "start": "bun run src/server.ts",
+    "report": "bun run src/cli/run-report.ts",
+    "scan-inbox": "bun run src/cli/run-scan.ts",
+    "build-prompt": "bun run src/cli/build-prompt.ts",
+    "test:prompt": "bun run src/cli/test-prompt.ts",
+    "verify": "bun run src/cli/verify.ts",
+    "typecheck": "bunx tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.6.14",
+    "pino": "^9.5.0",
+    "pino-pretty": "^11.3.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/bun": "latest",
+    "typescript": "^5.6.3"
+  }
+}

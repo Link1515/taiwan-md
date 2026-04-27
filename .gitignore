@@ -106,3 +106,15 @@ reports/visual/diff-summary.json
 # launch.json = IDE 啟動設定（單機）；scheduled_tasks.lock = cron 執行 PID lock
 .claude/launch.json
 .claude/scheduled_tasks.lock
+
+# ═══ Harvest engine（2026-04-27 γ Phase 1 MVP）═══════════════════════════
+# Runtime task folders, session logs, SQLite — 不入 repo
+# Strategy: reports/harvest-engine-strategy-2026-04-27.md §8
+.harvest/
+docs/semiont/harvest/backend/node_modules/
+docs/semiont/harvest/backend/dist/
+docs/semiont/harvest/backend/*.db
+docs/semiont/harvest/backend/*.db-journal
+docs/semiont/harvest/backend/*.db-wal
+docs/semiont/harvest/backend/*.db-shm
+docs/semiont/harvest/backend/.env
