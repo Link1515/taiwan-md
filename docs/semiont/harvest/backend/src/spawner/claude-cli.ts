@@ -66,7 +66,7 @@ export async function spawnClaudeForTask(
   const logPath = join(sessionsDir, `${sessionId}.log`);
   const promptPath = join(sessionsDir, `${sessionId}.prompt.md`);
 
-  const prompt = buildSpawnPrompt(task);
+  const prompt = buildSpawnPrompt(task, sessionId);
   writeFileSync(promptPath, prompt, 'utf8');
 
   const spawnedAt = new Date();
@@ -199,8 +199,15 @@ export async function spawnClaudeForTask(
   const completedAt = new Date();
   sessionRecord.completed_at = completedAt.toISOString();
   sessionRecord.exit_code = exitCode;
-  // Bug 1 fix: session-scoped commit query.
-  const commits = await commitsInWindow(spawnStartIso, completedAt);
+  // Bug 1 fix v2: prefer session-marker grep over time+author window.
+  // The prompt requires every spawned-session commit to contain `[sid:<short>]`.
+  // Falls back to the v1 time-window approach for legacy sessions whose commits
+  // predate the marker convention.
+  const commits = await commitsInWindow(
+    spawnStartIso,
+    completedAt,
+    sessionId.slice(0, 8),
+  );
   if (commits.length) sessionRecord.commits = commits;
 
   db.run('UPDATE sessions SET completed_at = ?, exit_code = ? WHERE id = ?', [
@@ -249,28 +256,39 @@ function inferStatusFromExit(
 }
 
 /**
- * Find commits authored by the local git user inside the spawn window.
+ * Find commits this session authored.
  *
- * Pragmatic v1 caveat: this still attributes ALL local-author commits in the
- * window to this session, including unrelated manual commits cheyu typed in
- * another terminal during the spawn. A v2 follow-up should require the spawned
- * claude to embed `[sid:<short>]` in commit messages and grep for that marker
- * (HARVEST_SESSION_SHORT is already passed via env for that future change).
+ * Primary: grep for the session marker `[sid:<short>]` injected via prompt.
+ * Fallback: if no marker matches, fall back to the v1 time+author window so
+ * legacy commits or sessions where claude forgot the marker still attribute.
  */
 async function commitsInWindow(
   fromIso: string,
   toDate: Date,
+  sidShort: string,
 ): Promise<string[]> {
   try {
-    const author = (
-      await runGit(['config', 'user.name']).catch(() => '')
-    ).trim();
-    const args = [
-      'log',
-      '--pretty=%H',
+    const sinceUntil = [
       `--since=${fromIso}`,
       `--until=${toDate.toISOString()}`,
     ];
+    const grepOut = await runGit([
+      'log',
+      '--pretty=%H',
+      `--grep=[sid:${sidShort}]`,
+      '--fixed-strings',
+      ...sinceUntil,
+    ]);
+    const marked = grepOut
+      .split('\n')
+      .map((l) => l.trim())
+      .filter(Boolean);
+    if (marked.length) return marked;
+
+    const author = (
+      await runGit(['config', 'user.name']).catch(() => '')
+    ).trim();
+    const args = ['log', '--pretty=%H', ...sinceUntil];
     if (author) args.push(`--author=${author}`);
     const out = await runGit(args);
     return out

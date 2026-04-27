@@ -49,8 +49,9 @@ function renderTemplate(body: string, task: Task): string {
 }
 
 /** The main prompt-building entry point. */
-export function buildSpawnPrompt(task: Task): string {
+export function buildSpawnPrompt(task: Task, sessionId?: string): string {
   const profile = getProfile(task.boot_profile);
+  const sidShort = sessionId?.slice(0, 8) ?? 'no-sid';
   const templatePath = templatePathForTask(task);
   const templateBody = existsSync(templatePath)
     ? renderTemplate(readFileSync(templatePath, 'utf8'), task)
@@ -91,7 +92,7 @@ Inputs and prior research live under \`${repoRel}/inputs/\`. Write outputs to \`
 ## Hard rules
 
 1. **Follow the canonical pipeline.** The boot profile loaded the relevant pipeline doc — that document is the SOP, not your memory of it.
-2. **Commit messages** must follow Taiwan.md convention: \`🧬 [semiont] {type}: {short imperative}\`. The \`{type}\` here matches the task type when reasonable.
+2. **Commit messages** must follow Taiwan.md convention: \`🧬 [semiont] {type}: {short imperative} [sid:${sidShort}]\`. The \`{type}\` matches the task type when reasonable. The \`[sid:${sidShort}]\` marker is REQUIRED on every commit you make in this session — the engine uses it to attribute commits to your session and distinguish them from manual commits made elsewhere during the same window.
 3. **Pre-commit hook is the final gate.** If it fails, fix the underlying issue. Do NOT pass \`--no-verify\`.
 4. **Stuck or controversial?** Mark the task as \`awaiting-cheyu\` by writing the reason to \`${repoRel}/status.log\` and exiting cleanly. Do not guess on disputed factual matters or political-sensitive calls.
 5. **No silent skips.** If you cannot complete a stage, log why in \`status.log\` before exiting.

@@ -179,6 +179,8 @@ A user-shell tmux session inherits full keychain access. We tested both routes:
 
 So we use a tmux session instead of launchd. Trade-off: requires login (no headless boot), but the Mac is always-on logged-in anyway and once started the tmux session detaches and runs forever.
 
+**Long-running tmux caveat (observed 2026-04-27)**: a tmux session that has been alive for hours can hit `401` on new spawns if the OAuth token in keychain has rotated since the session started — bun caches the env from session-start time and doesn't see the refreshed token. Mitigation: if you see fresh-spawn 401s, `bash stop.sh && bash start.sh` to restart bun from a current shell context.
+
 ## Deploy via tmux
 
 ```bash

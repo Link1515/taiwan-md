@@ -39,10 +39,10 @@ if [[ "$AUTH_STATE" != *"true"* ]]; then
   exit 1
 fi
 
-# Confirm port 4319 free
-if lsof -ti :4319 >/dev/null 2>&1; then
+# Confirm port 4319 free (only check LISTEN — ignore stray outbound CLOSED sockets)
+if lsof -tiTCP:4319 -sTCP:LISTEN >/dev/null 2>&1; then
   echo "❌ Port 4319 already in use. Stop existing harvest first."
-  lsof -i :4319
+  lsof -iTCP:4319 -sTCP:LISTEN
   exit 1
 fi
 

@@ -39,7 +39,7 @@ function Inner() {
           const created = new Date(t.created_at).getTime();
           if (Number.isFinite(created) && now - created < dayMs) return true;
         }
-        if (t.status === 'done' || t.status === 'failed') {
+        if (t.status === 'failed') {
           const updated = new Date(t.updated_at).getTime();
           if (Number.isFinite(updated) && now - updated < dayMs) return true;
         }
