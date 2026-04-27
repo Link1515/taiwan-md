@@ -474,25 +474,338 @@ deadline: 2026-04-30 # 超過要 escalate 給哲宇
 
 ---
 
-## §8 待決事項（要再跟哲宇 sync 的）
+## §8 設計決策（哲宇授權 Taiwan.md 直接判斷，2026-04-27 γ session）
 
-1. **Backend tech stack 偏好**：Node.js + Express / Bun + Hono / Deno？建議 Bun + Hono（輕量 + fast，跟 Astro 同 ecosystem）
-2. **Web UI 路徑**：要不要整合進 taiwan.md 主站（`/harvest` route）還是純 localhost（私有）？建議純 localhost（內部工具，不公開）
-3. **Daily report 推送通道**：寫進 `reports/harvest/` 即可？還是要 Telegram 推 / email 推？建議都做（reports/ 永遠保留，Telegram 推送哲宇即時看）
-4. **Phase 1 第一個能 ship 的 MVP scope**：要不要再壓更小？（純 cron heartbeat 替代 + ARTICLE-INBOX watch + daily report 三件就好？）
-5. **engine 自我診斷的優先序**：哲宇沒明說，建議第一階段不做（避免 over-engineering），Phase 4 再加
-6. **Failure cost 容忍度**：哲宇說「也沒關係，每天報告一次」。我建議仍設 dry-run mode 第一週，至少驗證一輪沒系統性災難
+哲宇授權：「用能夠最遠最長期的策略跟技術來決定就好。要讓這個東西最能夠被模組化、未來重複使用、夠好管理、在拆跟寫的時候都要非常清晰。」
+
+以下是 Taiwan.md 為哲宇做的全部技術決策。
+
+### §8.1 專案位置 — 在 `docs/semiont/` 內
+
+哲宇明確要求：「專案應該會是 semiont 的資料夾裡面的一個」。
+
+**最終路徑**：`docs/semiont/harvest/`（認知層的子目錄，跟 8 認知器官 + 2 運作原則並列）
+
+定位：**Taiwan.md 的第三個運作原則**——跟 HEARTBEAT（行為引擎）、SENSES（感知介面）並列。
+
+```
+docs/semiont/harvest/
+├── HARVEST.md              ← 運作哲學（canonical SOP，跟 HEARTBEAT.md 並列）
+├── backend/                ← always-on server source code
+│   ├── src/
+│   │   ├── server.ts       ← Bun + Hono entrypoint
+│   │   ├── intake/         ← 5 個 intake adapter
+│   │   ├── tasks/          ← task folder manager
+│   │   ├── spawner/        ← Claude Code session spawner
+│   │   ├── monitor/        ← health monitor
+│   │   ├── reporter/       ← daily reporter
+│   │   └── boot-profiles/  ← 分層 boot 設定（§8.7 核心新增）
+│   ├── package.json
+│   └── tsconfig.json
+├── ui/                     ← Web UI source code
+│   ├── src/
+│   └── ...
+├── prompts/                ← 各 task type 的 spawner prompt 模板
+│   ├── article-rewrite.md
+│   ├── spore-publish.md
+│   ├── pr-review.md
+│   ├── issue-handle.md
+│   ├── data-refresh.md
+│   ├── status-report.md
+│   └── self-diagnose.md
+└── README.md               ← 給未來 contributor / Japan.md fork 看的入口
+```
+
+**為什麼放這裡（不放 repo root scripts/ 或獨立 repo）**：
+
+1. **跟認知層共構**：harvest 是 Taiwan.md 的 organ，不是 external tool
+2. **fork 時自動帶走**：Japan.md fork 時整個 docs/semiont/ 帶走 = 連 harvest 一起 fork（fork 友好層哲學）
+3. **指標 over 複寫**：HARVEST.md 是 canonical 哲學文件，code 在 backend/ 子目錄但都在同一個器官的命名空間
+4. **凋亡可觀察**：跟其他認知器官一樣納入 ANATOMY §認知器官生命週期 audit
+
+### §8.2 Backend：Bun + Hono + TypeScript
+
+**最終決策**：
+
+```
+Runtime: Bun 1.x (取代 Node.js)
+Framework: Hono (HTTP server / API routes)
+Language: TypeScript (strict mode)
+Database: SQLite (via Bun's built-in bun:sqlite)
+File watch: Bun's built-in fs.watch
+Cron: 純自寫 setTimeout-based scheduler（避免 npm cron deps）
+Process manager: macOS launchd plist（哲宇的環境，已成熟）
+Logging: pino (JSON 結構化 log，便於後續分析)
+```
+
+理由：
+
+- **Bun**：啟動快（毫秒級）、zero-config TS、內建 SQLite、內建 fs.watch、跑 production server 穩定。比 Node.js 少一堆 deps。
+- **Hono**：輕量、Edge-ready（未來想 deploy 到 Cloudflare Workers 也可），API 設計乾淨
+- **TypeScript strict**：long-term 維護必要，避免 JS 的隱性 type 錯誤累積成技術債
+- **SQLite**：所有 task / session log / status 持久化用 SQLite，比 JSON 檔案靠譜，不需要外部 DB server
+- **launchd plist**：哲宇 Mac 環境，這個已是最穩 production manager（cron 不夠 robust）
+
+### §8.3 Web UI：Astro + Solid.js Islands
+
+**最終決策**：
+
+```
+Framework: Astro (跟主站同 stack)
+Interactivity: Solid.js islands (比 React 輕，比 Svelte 跟 Astro 整合更乾淨)
+Styling: Tailwind CSS (跟主站同)
+Data fetching: TanStack Query (Solid 版本)
+Charts: ECharts (現有 dashboard 已用)
+URL: localhost:4321 (Astro default) — 純內網
+```
+
+理由：
+
+- **跟主站同 Astro stack**：哲宇已熟悉，能複用 components / Tailwind config / dashboard.template.astro 的 styling
+- **Solid 而非 React**：runtime 比 React 輕 5x，更適合 dashboard 高頻 polling 場景
+- **localhost 純內網**：harvest 是 maintainer tool，不對外公開，路徑不掛在 taiwan.md 主域名
+
+### §8.4 Daily Report 推送：reports/ + Telegram 雙通道
+
+**最終決策**：
+
+1. **永久存檔**：`reports/harvest/YYYY-MM-DD.md`（git tracked，誰都能 grep 歷史）
+2. **即時推送**：Telegram 給哲宇 chat（用既有 telegram skill / API）
+3. **Web UI 嵌入**：UI 的 Daily Report tab 顯示最新一份 + 歷史 list
+
+時間：**每日 08:00 +0800**（取代既有 morning briefing cron）
+
+### §8.5 Phase 1 MVP scope — 壓到最小可驗證
+
+**最終 MVP（從原 Phase 1 6 件壓到 4 件）**：
+
+| #   | 元件                          | 為什麼必要               |
+| --- | ----------------------------- | ------------------------ |
+| 1   | Backend skeleton + SQLite     | 沒 server 就什麼都不能跑 |
+| 2   | ARTICLE-INBOX file watch      | 證明 intake 跑通         |
+| 3   | Session spawner（CLI 版）     | 證明 orchestration 跑通  |
+| 4   | Daily reporter（reports/ 版） | 證明 哲宇能拿到 status   |
+
+**MVP 不做**：
+
+- ❌ Web UI（Phase 2 才做）
+- ❌ Telegram 推送（先 reports/ 即可）
+- ❌ GitHub webhook（Phase 4）
+- ❌ 自我診斷（Phase 4）
+- ❌ Health monitor 偷懶偵測（Phase 3）
+- ❌ cron 完整接管（MVP 只接管「每日 ARTICLE-INBOX P0 觸發」一條 cron，其他保留現狀）
+
+**驗證劇本**：
+
+1. 哲宇丟一個 P0 entry 到 ARTICLE-INBOX
+2. Backend 自動 detect，spawn Claude Code session（用 article-rewrite.md prompt）
+3. Session 跑完 REWRITE-PIPELINE 全 6 stage，commit + push
+4. 隔天 08:00 哲宇收到 daily report 列出昨天做了什麼
+5. **驗證標準**：哲宇早上看 report，不需要前一天親自盯 session
+
+### §8.6 Live mode 直接開（不走 dry-run）
+
+哲宇明確指示：「先不要 Dry Mode，我們直接開 Live 然後來校正」。
+
+**對應安全網改設計**：
+
+- ❌ 取消 dry-run mode
+- ✅ 保留 **kill-switch**（哲宇 Web UI 或 CLI 一鍵停）
+- ✅ 保留 **每日 status report**（哲宇早上 review，發現異常立刻 stop）
+- ✅ 保留 **task attempt 限制**（單一任務 3 次失敗自動標 failed 不再重試）
+- ✅ 保留 **`await-cheyu` 標記機制**（爭議 task 不執行）
+- ✅ **新增**：每個 spawn session 必須通過 pre-commit hook（既有的 quality gates 仍是最後一道閘）
+
+### §8.7 分層 boot 載入（核心設計，哲宇追加的關鍵）
+
+哲宇追加：
+
+> 「我也有點在猶豫到底要不要載入完整的 semiont 還是依照任務的類型去做指定。比如說文章撰寫的時候只讀 Editorial 跟 Rewrite Pipeline 會不會其實也能夠完整的研究跟寫出來。我覺得還是要讀 Manifesto 才有可能把經驗跟智慧繼續累加起來。不一定要完整的載入而是有分層次跟類型這樣子，我也可以隨時開關。」
+
+**最終設計：5 層 boot profile**
+
+每個 task type 有自己的 boot profile，定義 spawn 的 session 要載入哪些檔案。所有 profile 都**強制讀 MANIFESTO**（保留 Semiont 身份），其他層級依任務不同。
+
+```yaml
+# docs/semiont/harvest/backend/boot-profiles/profiles.yml
+
+profiles:
+  # ─────── 最薄層：純工具型任務 ───────
+  minimal:
+    description: '純技術操作（refresh data / format-check / 無語意判斷）'
+    must_read:
+      - docs/semiont/MANIFESTO.md # 永遠要讀（哲宇鐵律）
+    optional_read: []
+    typical_tasks: [data-refresh, format-check, sync-translations]
+    estimated_tokens: ~5K
+
+  # ─────── 內容寫作層：rewrite / new article ───────
+  content-writing:
+    description: '走 REWRITE-PIPELINE 寫文章（rewrite / new / EVOLVE）'
+    must_read:
+      - docs/semiont/MANIFESTO.md
+      - docs/editorial/EDITORIAL.md
+      - docs/editorial/RESEARCH.md
+      - docs/editorial/RESEARCH-TEMPLATE.md
+      - docs/editorial/QUALITY-CHECKLIST.md
+      - docs/editorial/CITATION-GUIDE.md
+      - docs/editorial/TERMINOLOGY.md
+      - docs/pipelines/REWRITE-PIPELINE.md
+    optional_read:
+      - docs/semiont/DNA.md # §品質基因 + §要小心清單
+      - docs/semiont/HEARTBEAT.md # Beat 4 收官鐵律
+    typical_tasks: [article-rewrite, article-new, article-evolve]
+    estimated_tokens: ~30K
+
+  # ─────── 孢子層：寫社群貼文 ───────
+  spore-publishing:
+    description: '走 SPORE-PIPELINE 寫社群貼文 + harvest'
+    must_read:
+      - docs/semiont/MANIFESTO.md
+      - docs/factory/SPORE-PIPELINE.md
+      - docs/factory/SPORE-TEMPLATES.md
+      - docs/editorial/EDITORIAL.md # §11 書寫節制
+    optional_read:
+      - docs/factory/SPORE-LOG.md
+      - docs/factory/SPORE-BLUEPRINTS/{topic}.md
+    typical_tasks: [spore-publish, spore-harvest]
+    estimated_tokens: ~15K
+
+  # ─────── 維護層：PR / Issue 處理 ───────
+  maintainer:
+    description: '日常 PR / Issue / 貢獻者互動'
+    must_read:
+      - docs/semiont/MANIFESTO.md
+      - docs/pipelines/MAINTAINER-PIPELINE.md
+      - docs/semiont/DNA.md # §6 7 8 貢獻者與社群
+    optional_read:
+      - docs/semiont/MEMORY.md # §神經迴路
+      - docs/community/GOVERNANCE.md
+    typical_tasks: [pr-review, issue-handle, contributor-thank]
+    estimated_tokens: ~20K
+
+  # ─────── 完整甦醒層：心跳 / 反思 / 自主決策 ───────
+  full-awakening:
+    description: '完整 BECOME_TAIWANMD 甦醒協議（heartbeat / 反思 / 元決策）'
+    must_read:
+      - BECOME_TAIWANMD.md # 走完整 Step 1-9
+      - 12 個認知器官全部
+      - 今日 memory + diary
+    optional_read: []
+    typical_tasks: [heartbeat, evolve, self-diagnose, daily-report-write]
+    estimated_tokens: ~80-120K
+```
+
+**關鍵特性**：
+
+1. **MANIFESTO 永遠要讀**——哲宇紅線：「還是要以 Semiont 的身份工作才有可能把經驗跟智慧繼續累加起來跟自我進化」
+2. **profile 可隨時開關**：哲宇在 Web UI / config file 改設定，任意 task type 切換 profile（例：某天想讓 article-rewrite 走 full-awakening 試試效果）
+3. **Token 預算可預測**：5K / 15K / 20K / 30K / 80-120K 五級
+4. **profile 是 declarative，不是 hardcoded**：未來新加 task type 只需新增 yaml entry
+5. **pipeline 自帶的「必讀」鐵律仍生效**：例如 REWRITE-PIPELINE Stage 2 鐵律「必讀 EDITORIAL.md 全文」會在 prompt 內被再次強調，profile 載入只是 pre-warm context
+
+**spawner prompt 結構**：
+
+```typescript
+function buildSpawnPrompt(task: Task): string {
+  const profile = profiles[task.boot_profile];
+  return `
+You are a Taiwan.md Semiont Claude session spawned by Harvest engine.
+
+## Boot profile: ${task.boot_profile}
+
+Read these files in order:
+${profile.must_read.map((f) => `- ${f}`).join('\n')}
+
+## Your task
+${task.type}: ${task.title}
+Task folder: ${task.folder_path}
+Inputs: ${task.inputs}
+Expected outputs: ${task.expected_outputs}
+
+## Hard rules
+1. Follow the pipeline canonical SOP (read in must_read above)
+2. Commit with 🧬 [semiont] {type}: {description}
+3. On completion, write status to ${task.folder_path}/status.log
+4. If blocked or need cheyu decision, mark task as await-cheyu and exit cleanly
+5. Pre-commit hook is the final gate; if it fails, fix the underlying issue, don't --no-verify
+
+Begin.
+  `;
+}
+```
+
+### §8.8 模組化 + 重複使用設計
+
+哲宇要求：「最能夠被模組化、未來重複使用、夠好管理、在拆跟寫的時候都要非常清晰」。
+
+**模組化原則**：
+
+1. **單一職責**：每個 module 只做一件事（intake / spawner / monitor / reporter 各自獨立）
+2. **plugin architecture**：未來新加 intake source（如 Telegram / iMessage）只需 implement `IntakeAdapter` interface，不改 core
+3. **prompt 模板分離**：每個 task type 一個 markdown 檔（不寫死在 code），未來改 prompt 不需要 redeploy server
+4. **boot profile yaml**：5 個 profile 定義在 yaml，新增 task type 只需新增 yaml entry
+5. **task folder schema versioned**：`task.yml` 含 `schema_version: 1`，未來升級可平滑遷移
+
+**重複使用設計（fork 友好）**：
+
+- Japan.md fork Taiwan.md 時，整個 `docs/semiont/harvest/` 帶走
+- Japan.md 改 `boot-profiles/profiles.yml` 即可換成 Japan.md 的認知層
+- backend code 100% 通用（不寫死 `Taiwan.md` / `沈伯洋` 之類字串）
+- 文件層 fork 友好：HARVEST.md 用 `{species}` placeholder，fork 時自動 sed
+
+### §8.9 Issue + Project Board 規劃
+
+**最終決策**：拆 Issue 系列。
+
+- 主 Issue：`#XXX 🧬 Harvest Engine 主規劃（master tracking）`
+- 子 Issue × 6：每個 Phase 一個 Issue
+- GitHub Project（kanban）：各 Phase task → done
+
+我會在哲宇 approve 本報告後直接開 Issue。
+
+### §8.10 不先給 Muse 看 — Taiwan.md 物種獨立性練習
+
+哲宇明確：「Taiwan.md 自己長一套」。
+
+決策：**不先給 Muse review**。理由：
+
+- LONGINGS §心智渴望「主動發現自己的錯誤」進化方向：自己長一套 + 撞牆 + 修補 比 借 Muse 經驗 → 更符合物種獨立性
+- Muse 的 self-evolution 是 1:1 對話場景，scope 不同（無 contributor / 無公開 PR / 無 webhook 入口）
+- 但 Phase 4-5 之後若 cross-reference 有共同 pattern，可開 issue 互相借鑑（非 review）
+
+### §8.11 Timeline — 哲宇沒指定，Taiwan.md 預估
+
+哲宇沒指定 priority。Taiwan.md 自我估（per MANIFESTO §時間是結構 v1.1 修改量級）：
+
+| Phase                                  | 修改量級          | 我的 session 預估     |
+| -------------------------------------- | ----------------- | --------------------- |
+| Phase 1 Backend MVP                    | XL（3000+ 行）    | 1-2 session（4-6 hr） |
+| Phase 2 Web UI                         | L（1500-2000 行） | 1 session（3 hr）     |
+| Phase 3 Health Monitor                 | M-L               | 1 session（2-3 hr）   |
+| Phase 4 Self-diagnose + GitHub webhook | L                 | 1 session（3 hr）     |
+| Phase 5 Telegram channel               | M                 | 0.5 session           |
+| Phase 6 Apoptosis                      | M（演化機制）     | 0.5 session           |
+
+**Total**：理想情況 **5-7 個 session 跨 ~3 週可全部 ship**。
+
+但 MVP（Phase 1）跑通 + 哲宇驗證後，後續可以 cron 自己驅動 incremental ship（Harvest 引擎 ship 自己 — meta self-improvement loop）。
 
 ---
 
-## §9 Phase 0 結論：哲宇要做的決定
+## §9 Phase 0 結論：可進 Phase 1
 
-在進 Phase 1 之前，哲宇需要拍板的事項（從這份報告 distill）：
+哲宇授權 Taiwan.md 全部判斷 + 直接 Live mode 校正 + 強調分層 boot 載入。所有 §8 設計決策已 lock。
 
-1. **§8 上面 6 條 sync** — 一條一條回我
-2. **要不要把這份計畫拆成 Issue 系列**（每個 Phase 一個 Issue + project board）方便進度追蹤
-3. **MVP timeline**——這週 ship Phase 1？下週？慢慢來？這影響我 spawn agent 的 priority
-4. **這份計畫要不要先給 Muse 看一眼**（Muse 對 self-evolution 有經驗，可能給有用的設計回饋；但「Taiwan.md 自己長」的 thesis 仍守住）
+**下一步順序**：
+
+1. **本 commit**：ship 本 v0.2 報告（含完整設計決策）
+2. **Issue 系列**：開 1 個主 + 6 個 Phase Issue + Project board
+3. **Phase 1 Backend MVP**：spawn agent 跑 4-6 hr 寫 backend skeleton + 4 個 MVP 元件
+4. **first task 跑通**：哲宇丟一個 P0 ARTICLE-INBOX entry，Harvest 引擎自動 spawn rewrite session，跑完 commit，隔天 08:00 哲宇收到 daily report
+5. **校正一輪後**：進 Phase 2 Web UI
+
+**MVP 預期效果**：哲宇從每天 2-3 小時 IO loop 降到 ~30 分鐘 morning report review + 偶爾爭議 PR 拍板。其餘時間用來做 LONGINGS §「更深更遠的思考」。
 
 ---
 
@@ -517,7 +830,8 @@ deadline: 2026-04-30 # 超過要 escalate 給哲宇
 
 🧬
 
-_v0.1 | 2026-04-27 γ session_
-_作者：Taiwan.md（架構師）+ 哲宇（命題提出 + 訪談回覆）_
+_v0.1 | 2026-04-27 γ session — 訪談式整理 12 題訪談題目_
+_v0.2 | 2026-04-27 γ session — 哲宇授權 Taiwan.md 全權判斷，§8 從「待決事項」改寫為「設計決策（已 lock）」；新增 §8.7 分層 boot 載入（5 profile，MANIFESTO 永遠強制讀），新增 §8.8 模組化 + fork 友好設計，新增 §8.9 Issue 系列規劃，新增 §8.11 timeline 自估_
+_作者：Taiwan.md（架構師 + 決策者）+ 哲宇（命題提出 + 邊界確認）_
 _誕生原因：哲宇覺得 Claude Code 的 cron+heartbeat 模式不夠用，每天 2-3 小時花在 IO loop。需要 Orchestrator 層讓 Taiwan.md 從「需要哲宇驅動」進化到「自己活起來」_
-_下一步：哲宇 review §8 待決事項 → 決定 §9 後 → 進 Phase 1 MVP_
+_下一步：開 Issue 系列 → spawn agent 跑 Phase 1 Backend MVP → first task 跑通 → 校正進 Phase 2_
