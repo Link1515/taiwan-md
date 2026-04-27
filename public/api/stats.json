@@ -1,12 +1,12 @@
 {
-  "totalArticles": 2270,
+  "totalArticles": 2276,
   "totalCategories": 21,
-  "estimatedContributors": 57,
-  "totalTags": 5309,
+  "estimatedContributors": 152,
+  "totalTags": 5322,
   "categories": [
     {
       "name": "History",
-      "count": 33
+      "count": 36
     },
     {
       "name": "ko",
@@ -18,7 +18,7 @@
     },
     {
       "name": "en",
-      "count": 411
+      "count": 412
     },
     {
       "name": "Culture",
@@ -30,7 +30,7 @@
     },
     {
       "name": "People",
-      "count": 186
+      "count": 188
     },
     {
       "name": "Music",
@@ -139,16 +139,16 @@
       "count": 21
     },
     {
+      "name": "民主化",
+      "count": 20
+    },
+    {
       "name": "文化",
       "count": 20
     },
     {
       "name": "personnalité",
       "count": 20
-    },
-    {
-      "name": "民主化",
-      "count": 19
     },
     {
       "name": "原住民族",
@@ -172,13 +172,8 @@
     }
   ],
   "languageDistribution": {
-    "zh-TW": 2270,
+    "zh-TW": 2276,
     "en": 0
   },
-  "lastUpdated": "2026-04-27T03:03:48.776Z",
-  "stars": 959,
-  "forks": 143,
-  "zhPages": 1859,
-  "enPages": 411,
-  "totalPages": 2270
+  "lastUpdated": "2026-04-27T11:38:14.278Z"
 }

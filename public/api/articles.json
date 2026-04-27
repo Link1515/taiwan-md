@@ -261,7 +261,7 @@
       "自首"
     ],
     "url": "https://taiwan.md/People/%E5%85%AB%E7%82%AF",
-    "readingTime": 17,
+    "readingTime": 18,
     "featured": false,
     "date": "2026-04-20",
     "path": "People/八炯.md"
@@ -301,6 +301,17 @@
     "featured": true,
     "date": "2026-04-01",
     "path": "Music/八部合音.md"
+  },
+  {
+    "title": "三個外國人看乙未：攝影師的相冊、記者的筆記、牧師的日記",
+    "description": "1895年乙未之役，三個外國人留下了這場戰爭最重要的外語目擊文獻——日本攝影師遠藤誠的勝利相冊、美國記者達飛聲的隨軍筆記、日本牧師細川瀏的渡台日記。問題不是他們看到了什麼，而是他們為誰而看。",
+    "category": "History",
+    "tags": [],
+    "url": "https://taiwan.md/History/%E4%B8%89%E5%80%8B%E5%A4%96%E5%9C%8B%E4%BA%BA%E7%9C%8B%E4%B9%99%E6%9C%AA",
+    "readingTime": 19,
+    "featured": false,
+    "date": "2026-04-27",
+    "path": "History/三個外國人看乙未.md"
   },
   {
     "title": "三峽茶：從「青心柑仔」的螺旋轉向，到夏茶價值的蜜香升級",
@@ -696,6 +707,25 @@
     "path": "Art/日治時期文學.md"
   },
   {
+    "title": "日治時期臺灣社會運動",
+    "description": "帝國警察的監控文件裡，藏著一張台灣人如何反抗的地圖。1920年代，議會請願、農民組合、地下黨，三條路線同時燃起，卻燒向彼此",
+    "category": "History",
+    "tags": [
+      "歷史",
+      "日治時期",
+      "社會運動",
+      "蔣渭水",
+      "林獻堂",
+      "民主化",
+      "殖民地"
+    ],
+    "url": "https://taiwan.md/History/%E6%97%A5%E6%B2%BB%E6%99%82%E6%9C%9F%E8%87%BA%E7%81%A3%E7%A4%BE%E6%9C%83%E9%81%8B%E5%8B%95",
+    "readingTime": 24,
+    "featured": false,
+    "date": "2026-04-27",
+    "path": "History/日治時期臺灣社會運動.md"
+  },
+  {
     "title": "牛肉麵",
     "description": "從外省移民鄉愁到台灣國民美食，牛肉麵的文化融合與全球飄香",
     "category": "Food",
@@ -956,6 +986,17 @@
     "featured": false,
     "date": "2026-03-19",
     "path": "ja/Art/watercolor-painting-history.md"
+  },
+  {
+    "title": "台湾牛肉麺（ビーフヌードル）",
+    "description": "外省人の郷愁から台湾の国民食へ：牛肉麺の文化的融合とグローバルな魅力",
+    "category": "ja",
+    "tags": [],
+    "url": "https://taiwan.md/ja/Food/beef-noodle-soup",
+    "readingTime": 12,
+    "featured": true,
+    "date": "2026-03-17",
+    "path": "ja/Food/beef-noodle-soup.md"
   },
   {
     "title": "台湾交通システム：一つの島がどうやって自分を90分に圧縮したのか",
@@ -1607,6 +1648,24 @@
     "featured": false,
     "date": "2026-03-24",
     "path": "ja/History/railway-history.md"
+  },
+  {
+    "title": "台湾魯肉飯（ルーローファン）",
+    "description": "眷村の味から全国的なソウルフードへ：魯肉飯の歴史、南北論争、そして文化的意義",
+    "category": "ja",
+    "tags": [
+      "グルメ",
+      "魯肉飯",
+      "肉燥飯",
+      "眷村料理",
+      "庶民の味",
+      "南北論争"
+    ],
+    "url": "https://taiwan.md/ja/Food/lu-rou-fan",
+    "readingTime": 11,
+    "featured": true,
+    "date": "2026-03-19",
+    "path": "ja/Food/lu-rou-fan.md"
   },
   {
     "title": "台湾EV産業チェーンの発展",
@@ -2561,7 +2620,7 @@
       "台湾グルメ"
     ],
     "url": "https://taiwan.md/ja/Food/taiwan-breakfast-culture",
-    "readingTime": 15,
+    "readingTime": 16,
     "featured": false,
     "date": "2026-03-18",
     "path": "ja/Food/taiwan-breakfast-culture.md"
@@ -3522,7 +3581,7 @@
     "category": "Music",
     "tags": [],
     "url": "https://taiwan.md/Music/%E5%8F%B0%E7%81%A3%E6%B0%91%E6%AD%8C%E9%81%8B%E5%8B%95",
-    "readingTime": 14,
+    "readingTime": 15,
     "featured": false,
     "date": "2026-03-18",
     "path": "Music/台灣民歌運動.md"
@@ -3990,7 +4049,7 @@
       "豆漿店"
     ],
     "url": "https://taiwan.md/Food/%E5%8F%B0%E7%81%A3%E6%97%A9%E9%A4%90%E6%96%87%E5%8C%96",
-    "readingTime": 16,
+    "readingTime": 19,
     "featured": false,
     "date": "2026-03-18",
     "path": "Food/台灣早餐文化.md"
@@ -5073,7 +5132,7 @@
       "社會"
     ],
     "url": "https://taiwan.md/Lifestyle/%E5%8F%B0%E7%81%A3%E9%AB%98%E9%90%B5",
-    "readingTime": 32,
+    "readingTime": 34,
     "featured": false,
     "date": "2026-04-19",
     "path": "Lifestyle/台灣高鐵.md"
@@ -6505,7 +6564,7 @@
       "夜市"
     ],
     "url": "https://taiwan.md/Food/%E5%8F%B0%E7%81%A3%E9%B9%B9%E9%85%A5%E9%9B%9E",
-    "readingTime": 9,
+    "readingTime": 8,
     "featured": true,
     "date": "2026-03-19",
     "path": "Food/台灣鹹酥雞.md"
@@ -7768,6 +7827,17 @@
     "featured": false,
     "date": "2026-03-31",
     "path": "People/杜聰明.md"
+  },
+  {
+    "title": "沈伯洋：他研究中國認知戰，最後成了北京親自追的人",
+    "description": "從犯罪學者到立委，沈伯洋花了七年研究中共對台資訊戰，二○二五年成為第一位被中國以「分裂國家罪」立案偵查的台灣民選政治人物。",
+    "category": "People",
+    "tags": [],
+    "url": "https://taiwan.md/People/%E6%B2%88%E4%BC%AF%E6%B4%8B",
+    "readingTime": 46,
+    "featured": false,
+    "date": "2026-04-27",
+    "path": "People/沈伯洋.md"
   },
   {
     "title": "沈聖博",
@@ -12506,6 +12576,25 @@
     "path": "Food/糖蔥.md"
   },
   {
+    "title": "蕭上農：從遊戲 PM 到 INSIDE 創辦人，台灣網路圈的里長伯",
+    "description": "2009年，六個網路人啟動了一個共筆部落格，INSIDE 硬塞的網路趨勢觀察就這樣誕生。蕭上農（fOx）同時共同創辦愛料理，兩個台灣最知名的網路平台都成了他的作品——也都賣給了同一家公司。他現在繼續以觀察家的角色告訴台灣：對科技不用太焦慮。",
+    "category": "People",
+    "tags": [
+      "INSIDE",
+      "愛料理",
+      "iCook",
+      "網路媒體",
+      "科技創業",
+      "台灣網路",
+      "fOx"
+    ],
+    "url": "https://taiwan.md/People/%E8%95%AD%E4%B8%8A%E8%BE%B2",
+    "readingTime": 17,
+    "featured": false,
+    "date": "2026-04-27",
+    "path": "People/蕭上農.md"
+  },
+  {
     "title": "蕭青陽",
     "description": "四度入圍葛萊美獎最佳專輯包裝設計的台灣視覺設計師",
     "category": "People",
@@ -13044,6 +13133,17 @@
     "featured": false,
     "date": "2026-03-19",
     "path": "People/羅大佑.md"
+  },
+  {
+    "title": "羅發號事件：181人打不下的仗，卓杞篤用45分鐘談完",
+    "description": "1867年美軍181人在恆春半島叢林中被排灣族擊退，帶隊指揮官陣亡。三個月後，瑯嶠十八社大頭目卓杞篤坐下來，用45分鐘談成了南岬之盟。這份協議讓族人暫時免於滅族，但締約的另一方李仙得，七年後帶著同一份情報跳槽日本帝國，協助策劃了1874年的出兵。",
+    "category": "History",
+    "tags": [],
+    "url": "https://taiwan.md/History/%E7%BE%85%E7%99%BC%E8%99%9F%E4%BA%8B%E4%BB%B6%E8%88%87%E5%8D%93%E6%9D%9E%E7%AF%A4",
+    "readingTime": 15,
+    "featured": false,
+    "date": "2026-04-27",
+    "path": "History/羅發號事件與卓杞篤.md"
   },
   {
     "title": "邊荷律",
@@ -13724,21 +13824,10 @@
       "Michelin"
     ],
     "url": "https://taiwan.md/en/Food/beef-noodle-soup",
-    "readingTime": 59,
+    "readingTime": 62,
     "featured": true,
     "date": "2026-03-17",
     "path": "en/Food/beef-noodle-soup.md"
-  },
-  {
-    "title": "beef-noodle-soup",
-    "description": "",
-    "category": "ja",
-    "tags": [],
-    "url": "https://taiwan.md/ja/Food/beef-noodle-soup",
-    "readingTime": 11,
-    "featured": false,
-    "date": null,
-    "path": "ja/Food/beef-noodle-soup.md"
   },
   {
     "title": "Biodiversity on a Small Island: Why Taiwan Is a Global Hotspot",
@@ -13797,7 +13886,7 @@
     "category": "en",
     "tags": [],
     "url": "https://taiwan.md/en/Food/braised-pork-rice",
-    "readingTime": 21,
+    "readingTime": 22,
     "featured": true,
     "date": "2026-03-19",
     "path": "en/Food/braised-pork-rice.md"
@@ -21948,17 +22037,6 @@
     "path": "en/People/lu-yen-hsun-tennis-champion.md"
   },
   {
-    "title": "lu-rou-fan",
-    "description": "",
-    "category": "ja",
-    "tags": [],
-    "url": "https://taiwan.md/ja/Food/lu-rou-fan",
-    "readingTime": 11,
-    "featured": false,
-    "date": null,
-    "path": "ja/Food/lu-rou-fan.md"
-  },
-  {
     "title": "Lung Ying-tai",
     "description": "Author of 'Wild Fire,' one of the most influential essayists in the Chinese-speaking world and former Taiwan Minister of Culture",
     "category": "en",
@@ -22951,6 +23029,17 @@
     "path": "ja/Technology/ptt.md"
   },
   {
+    "title": "Puma Shen (沈伯洋): The Criminologist Beijing Decided to Hunt",
+    "description": "A Taiwanese criminologist spent seven years studying China''s cognitive warfare against Taiwan. In October 2025, China''s Chongqing Public Security Bureau opened a \"splitting the country\" criminal case against him — making him the first elected Taiwanese politician to face this charge.",
+    "category": "en",
+    "tags": [],
+    "url": "https://taiwan.md/en/People/puma-shen",
+    "readingTime": 130,
+    "featured": false,
+    "date": "2026-04-27",
+    "path": "en/People/puma-shen.md"
+  },
+  {
     "title": "Q Series : comment un fabricant d''ordinateurs a planté les graines de la renaissance du drama taïwanais",
     "description": "En 2016, le patron technologique Tung Tzu-hsien a financé un projet hors du commun : confier à Wang Hsiao-ti et aux plus grands réalisateurs de Taïwan une mission anti-commerciale — ne pas tourner de blockbusters, mais former de nouveaux talents.",
     "category": "fr",
@@ -23845,7 +23934,7 @@
     "category": "en",
     "tags": [],
     "url": "https://taiwan.md/en/Food/taiwan-breakfast-culture",
-    "readingTime": 51,
+    "readingTime": 57,
     "featured": false,
     "date": "2026-03-18",
     "path": "en/Food/taiwan-breakfast-culture.md"
@@ -25448,7 +25537,7 @@
     "category": "en",
     "tags": [],
     "url": "https://taiwan.md/en/Food/taiwan-vegetarian-culture",
-    "readingTime": 27,
+    "readingTime": 29,
     "featured": false,
     "date": "2026-03-19",
     "path": "en/Food/taiwan-vegetarian-culture.md"
@@ -25712,7 +25801,7 @@
     "category": "en",
     "tags": [],
     "url": "https://taiwan.md/en/Food/taiwanese-salt-and-pepper-fried-chicken",
-    "readingTime": 19,
+    "readingTime": 21,
     "featured": true,
     "date": "2026-03-19",
     "path": "en/Food/taiwanese-salt-and-pepper-fried-chicken.md"
@@ -28630,11 +28719,11 @@
     "description": "1970년대, \"우리 노래를 부르자\"는 구호 아래 젊은이들이 일으킨 문화 혁명이 화어 음악 전체를 어떻게 바꿔놓았는지 탐구한다.",
     "category": "ko",
     "tags": [],
-    "url": "https://taiwan.md/ko/Music/folk-song-movement",
-    "readingTime": 21,
+    "url": "https://taiwan.md/ko/Music/taiwan-campus-folk-song-movement",
+    "readingTime": 25,
     "featured": false,
     "date": "2026-03-18",
-    "path": "ko/Music/folk-song-movement.md"
+    "path": "ko/Music/taiwan-campus-folk-song-movement.md"
   },
   {
     "title": "대만 민요와 가요: 도용당하고 세계에 알려지기까지",
@@ -28896,7 +28985,7 @@
     "category": "ko",
     "tags": [],
     "url": "https://taiwan.md/ko/Food/taiwan-breakfast-culture",
-    "readingTime": 26,
+    "readingTime": 28,
     "featured": false,
     "date": "2026-03-18",
     "path": "ko/Food/taiwan-breakfast-culture.md"
@@ -32493,7 +32582,7 @@
       "미슐랭"
     ],
     "url": "https://taiwan.md/ko/Food/beef-noodle-soup",
-    "readingTime": 12,
+    "readingTime": 13,
     "featured": false,
     "date": "2026-03-17",
     "path": "ko/Food/beef-noodle-soup.md"
@@ -33799,7 +33888,7 @@
       "남북차이"
     ],
     "url": "https://taiwan.md/ko/Food/braised-pork-rice",
-    "readingTime": 12,
+    "readingTime": 14,
     "featured": true,
     "date": "2026-03-19",
     "path": "ko/Food/braised-pork-rice.md"

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T03:03:47.566Z",
+  "lastUpdated": "2026-04-27T11:38:13.412Z",
   "organs": [
     {
       "id": "heart",
@@ -10,9 +10,9 @@
       "score": 90,
       "trend": "up",
       "metrics": {
-        "articlesLast7Days": 110,
-        "articlesLast30Days": 283,
-        "totalArticles": 588
+        "articlesLast7Days": 117,
+        "articlesLast30Days": 286,
+        "totalArticles": 593
       }
     },
     {
@@ -24,8 +24,8 @@
       "score": 99,
       "trend": "up",
       "metrics": {
-        "humanReviewedCount": 582,
-        "totalArticles": 588,
+        "humanReviewedCount": 587,
+        "totalArticles": 593,
         "humanReviewedPercent": 99
       }
     },
@@ -72,7 +72,7 @@
       "score": 100,
       "trend": "up",
       "metrics": {
-        "recentContributors": 23,
+        "recentContributors": 21,
         "recentSpores": 23,
         "topPerformerCount": 5,
         "topPerformerAvgViews": 152268,
@@ -98,18 +98,18 @@
       "nameZh": "語言器官",
       "metaphor": "多語言複製",
       "emoji": "🌐",
-      "score": 64,
+      "score": 63,
       "trend": "stable",
       "metrics": {
         "languageCoverage": {
-          "zh-TW": 588,
-          "en": 407,
+          "zh-TW": 593,
+          "en": 408,
           "ja": 269,
           "ko": 481,
           "es": 36,
           "fr": 478
         },
-        "translationPct": 64,
+        "translationPct": 63,
         "langHealthDetails": {
           "en": {
             "ui": {
@@ -126,7 +126,7 @@
               "pct": 100
             },
             "articles": {
-              "count": 407,
+              "count": 408,
               "pct": 69
             },
             "score": 88
@@ -147,7 +147,7 @@
             },
             "articles": {
               "count": 269,
-              "pct": 46
+              "pct": 45
             },
             "score": 78
           },
@@ -167,9 +167,9 @@
             },
             "articles": {
               "count": 481,
-              "pct": 82
+              "pct": 81
             },
-            "score": 93
+            "score": 92
           },
           "es": {
             "ui": {

@@ -1,7 +1,127 @@
 {
-  "generatedAt": "2026-04-27T03:03:47.742Z",
+  "generatedAt": "2026-04-27T11:38:13.492Z",
   "source": "git",
   "commits": [
+    {
+      "hash": "32e53d5bfdaace4e281b56cf494f2755d70673d0",
+      "date": "2026-04-27T19:12:52+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 蕭上農 NEW（first harvest spawn 產出 + observer polish）+ boot profile BECOME 升級 + memory log prompt"
+    },
+    {
+      "hash": "a8e2aeed3b81da333e83b6ea11b654c1eb8b68fa",
+      "date": "2026-04-27T16:43:59+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] heal: Harvest pivot from launchd → tmux (C 方案 — keychain access fix)"
+    },
+    {
+      "hash": "594c0275816388802772afcd74de85c120a382cf",
+      "date": "2026-04-27T15:54:23+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] heal: Harvest spawn auth fix — launchd HOME env + --bare conditional + setup-token doc"
+    },
+    {
+      "hash": "c66359902f1aaee18982ca176cf604622647c087",
+      "date": "2026-04-27T15:35:24+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: Harvest Phase 2.5 — 3-tab UI + spawn button + concurrency + live status"
+    },
+    {
+      "hash": "17a2793a0aab28de0114cb9dc11166538a259b8b",
+      "date": "2026-04-27T15:18:11+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: Harvest 引擎 Phase 2 ship — Web UI 完整 7 sections + bug fix"
+    },
+    {
+      "hash": "5dc6e92ccb0003346f287404fc22fd385c11062e",
+      "date": "2026-04-27T14:58:31+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: γ-late 收官 — Harvest Phase 1 launchd plist + auto-commit + diary"
+    },
+    {
+      "hash": "f4886f131192a8b433cb2efa785637995a348437",
+      "date": "2026-04-27T14:52:14+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: Harvest 引擎 Phase 1 MVP ship — Backend + 5 boot profiles + 7 prompts + Daily Reporter"
+    },
+    {
+      "hash": "d40a66253c69ccee37ae701d712d68af9c40dac1",
+      "date": "2026-04-27T14:33:35+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: Harvest 引擎策略報告 v0.2（哲宇授權全權判斷 + 分層 boot 載入）"
+    },
+    {
+      "hash": "675f999e27feebc8f6a4213be37089c686c10262",
+      "date": "2026-04-27T14:28:12+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] evolve: Harvest 引擎策略報告 v0.1（Phase 0 規劃）"
+    },
+    {
+      "hash": "5a1e8b8676a4345e281c91cd69c8c4c9ac12d26f",
+      "date": "2026-04-27T14:16:08+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] heal: 台灣高鐵 5 處事實錯誤校正（Issue #649 讀者校正）"
+    },
+    {
+      "hash": "4227c1a78139df558db9be1b7a0527c684ef8a09",
+      "date": "2026-04-27T13:29:12+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 沈伯洋 EN translation (Stage 6, REWRITE-PIPELINE complete)"
+    },
+    {
+      "hash": "5a0848a9582e47a7cc429feeafb30dfbcf918274",
+      "date": "2026-04-27T13:20:38+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] heal: 沈伯洋 inline link /people/baajiong → /people/八炯"
+    },
+    {
+      "hash": "3e1e177a60b40a2bd0e1d0bd58ce033f0835afb9",
+      "date": "2026-04-27T13:19:49+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] rewrite: 沈伯洋 NEW (REWRITE-PIPELINE Stage 0-6 完整跑)"
+    },
+    {
+      "hash": "cf5abfee5abed0a4ec040f167e21ee1c823e7d3d",
+      "date": "2026-04-27T12:36:21+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] memory: 2026-04-27 γ — observer-triggered PR #647 + #648 merge-then-polish"
+    },
+    {
+      "hash": "82d9f0459281e2ed1a3f7b2778cf168d19fb0e58",
+      "date": "2026-04-27T12:33:10+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] heal: PR #648 follow-up Phase 2 (fake source authority audit)"
+    },
+    {
+      "hash": "8ca452e493255f65ede2749b8b1ef8893ac4b5ce",
+      "date": "2026-04-27T12:27:53+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] heal: PR #647 + #648 follow-up Phase 1 (結構修正 + 腳註格式統一)"
+    },
+    {
+      "hash": "3c066679490fd693ffe8c33e47b4c3fd6d1506fe",
+      "date": "2026-04-27T13:20:34+09:00",
+      "author": "Wilson Chen",
+      "message": "feat(food): 強化韓文美食系列註腳與事實查核 (牛肉麵、滷肉飯、鹽酥雞、早餐、素食) (#648)"
+    },
+    {
+      "hash": "0e0c0adf17f45ebead6910d1f6769e9bc0db96f0",
+      "date": "2026-04-27T13:20:14+09:00",
+      "author": "Wilson Chen",
+      "message": "feat(music): 強化多語系註腳渲染與民歌運動文章內容 (#647)"
+    },
+    {
+      "hash": "abbbbc69eca594dbc758349431d871fe0ada6a24",
+      "date": "2026-04-27T11:15:55+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] diary: 2026-04-27 γ — 我幫一個不存在的 bug 蓋了一棟房子"
+    },
+    {
+      "hash": "03d991aaac958db701c2edf61079097853c21b0a",
+      "date": "2026-04-27T11:09:43+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] data refresh: 2026-04-27 11:00 dashboard pulse"
+    },
     {
       "hash": "386febdfd49dfded89da7a864fce9593a21d4304",
       "date": "2026-04-27T11:03:00+08:00",
