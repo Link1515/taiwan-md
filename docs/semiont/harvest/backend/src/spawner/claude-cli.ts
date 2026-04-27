@@ -32,11 +32,18 @@ import { saveTask } from '../tasks/manager.ts';
 import type { Task, TaskSession } from '../tasks/types.ts';
 import { buildSpawnPrompt } from './prompt-builder.ts';
 import {
-  register as registerActive,
+  tryRegister as tryRegisterActive,
   setPhase as setActivePhase,
   unregister as unregisterActive,
 } from './concurrency.ts';
 import { createWorktree, finalizeWorktree, type Worktree } from './worktree.ts';
+
+export class ConcurrencyLimitError extends Error {
+  constructor() {
+    super('max concurrent sessions reached');
+    this.name = 'ConcurrencyLimitError';
+  }
+}
 
 const log = childLogger({ module: 'spawner/claude-cli' });
 
@@ -71,14 +78,35 @@ export async function spawnClaudeForTask(
   const logPath = join(sessionsDir, `${sessionId}.log`);
   const promptPath = join(sessionsDir, `${sessionId}.prompt.md`);
 
-  // Worktree isolation per spawn: prevents concurrent spawns from racing on
-  // shared working tree. Created here BEFORE prompt build so the prompt can
-  // tell the spawn its cwd + branch.
+  const spawnedAt = new Date();
+  const spawnStartIso = spawnedAt.toISOString();
+
+  // Race fix: reserve the concurrency slot SYNCHRONOUSLY before any await.
+  // Otherwise the auto-spawn loop's canSpawn() check sees stale state while
+  // earlier iterations are still mid-await on createWorktree, and N>max
+  // sessions can register (verified 2026-04-27 — 9 sessions ran with max=3).
+  if (!options.dryRun) {
+    const reserved = tryRegisterActive({
+      sessionId,
+      taskId: task.id,
+      taskTitle: task.title,
+      taskType: task.type,
+      bootProfile: task.boot_profile,
+      pid: undefined,
+      spawnedAt: spawnStartIso,
+      phase: 'spawning',
+    });
+    if (!reserved) throw new ConcurrencyLimitError();
+  }
+
+  // Worktree isolation per spawn (after reservation so we don't create
+  // worktrees we won't use).
   let worktree: Worktree | null = null;
   if (!options.dryRun) {
     try {
       worktree = await createWorktree(sessionId, task.id);
     } catch (err) {
+      unregisterActive(sessionId);
       log.error(
         { taskId: task.id, sessionId, error: String(err) },
         'failed to create worktree — aborting spawn',
@@ -90,8 +118,6 @@ export async function spawnClaudeForTask(
   const prompt = buildSpawnPrompt(task, sessionId, worktree);
   writeFileSync(promptPath, prompt, 'utf8');
 
-  const spawnedAt = new Date();
-  const spawnStartIso = spawnedAt.toISOString();
   const sessionRecord: TaskSession = {
     id: sessionId,
     spawned_at: spawnStartIso,
@@ -102,17 +128,6 @@ export async function spawnClaudeForTask(
   task.attempts += 1;
   task.status = 'spawning';
   saveTask(task, `spawn attempt ${task.attempts} session=${sessionId}`);
-
-  registerActive({
-    sessionId,
-    taskId: task.id,
-    taskTitle: task.title,
-    taskType: task.type,
-    bootProfile: task.boot_profile,
-    pid: undefined,
-    spawnedAt: spawnStartIso,
-    phase: 'spawning',
-  });
 
   const db = getDb();
   db.run(

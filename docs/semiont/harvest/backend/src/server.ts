@@ -190,7 +190,8 @@ app.post('/api/tasks/:id/spawn', async (c) => {
   if (!task) return c.json({ error: 'not found' }, 404);
   const dry = c.req.query('dry') === 'true';
 
-  const { spawnClaudeForTask } = await import('./spawner/claude-cli.ts');
+  const { spawnClaudeForTask, ConcurrencyLimitError } =
+    await import('./spawner/claude-cli.ts');
   const {
     canSpawn,
     activeForTask: activeForTaskImport,
@@ -241,6 +242,13 @@ app.post('/api/tasks/:id/spawn', async (c) => {
   }
 
   spawnClaudeForTask(task, { dryRun: false }).catch((err) => {
+    if (err instanceof ConcurrencyLimitError) {
+      logger.info(
+        { taskId: id },
+        'POST /spawn: tryRegister rejected — slot taken by parallel spawn (race avoided)',
+      );
+      return;
+    }
     logger.error(
       { err: String(err), taskId: id },
       'background spawn failed unexpectedly',

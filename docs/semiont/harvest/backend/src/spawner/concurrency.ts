@@ -66,6 +66,39 @@ export function register(session: ActiveSession): void {
   );
 }
 
+/**
+ * Atomic check-and-insert. Use this instead of `canSpawn() + register()` —
+ * the two-step sequence races when callers do async work between them.
+ *
+ * Returns true if reservation succeeded (caller now owns a slot and MUST
+ * unregister on failure). Returns false if at limit (no state changed).
+ */
+export function tryRegister(session: ActiveSession): boolean {
+  if (active.size >= config.maxConcurrentSessions) {
+    log.info(
+      {
+        sessionId: session.sessionId,
+        taskId: session.taskId,
+        activeCount: active.size,
+        max: config.maxConcurrentSessions,
+      },
+      'tryRegister rejected — at max concurrency',
+    );
+    return false;
+  }
+  active.set(session.sessionId, session);
+  log.info(
+    {
+      sessionId: session.sessionId,
+      taskId: session.taskId,
+      activeCount: active.size,
+      max: config.maxConcurrentSessions,
+    },
+    'session registered',
+  );
+  return true;
+}
+
 export function setPhase(
   sessionId: string,
   phase: ActiveSession['phase'],

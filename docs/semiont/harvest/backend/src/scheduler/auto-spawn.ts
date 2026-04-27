@@ -17,7 +17,10 @@ import { child as childLogger } from '../logger.ts';
 import { isPaused } from './cron.ts';
 import { canSpawn, activeForTask } from '../spawner/concurrency.ts';
 import { listTasks } from '../tasks/manager.ts';
-import { spawnClaudeForTask } from '../spawner/claude-cli.ts';
+import {
+  spawnClaudeForTask,
+  ConcurrencyLimitError,
+} from '../spawner/claude-cli.ts';
 import { logger } from '../logger.ts';
 import type { TaskPriority } from '../tasks/types.ts';
 
@@ -105,6 +108,13 @@ async function tick(): Promise<void> {
       'auto-spawn: dispatching',
     );
     spawnClaudeForTask(task, { dryRun: false }).catch((err) => {
+      if (err instanceof ConcurrencyLimitError) {
+        log.info(
+          { taskId: task.id },
+          'auto-spawn: tryRegister rejected — slot taken by parallel spawn',
+        );
+        return;
+      }
       logger.error(
         { err: String(err), taskId: task.id },
         'auto-spawn: background spawn failed',
