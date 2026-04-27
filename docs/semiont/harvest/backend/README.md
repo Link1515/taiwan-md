@@ -140,76 +140,51 @@ To add a new task type:
 
 ## Auth setup for spawned `claude` (CRITICAL)
 
-The harvest backend spawns `claude` CLI under launchd. **launchd processes can't read the user keychain** (macOS security boundary), so the OAuth token used by interactive `claude` sessions is invisible to harvest. Symptom: every spawn ends in 12 seconds with `401 authentication_error`.
+The harvest backend spawns `claude` CLI as a child process. **launchd-managed processes cannot read the user keychain** (macOS security boundary), so OAuth tokens stored in keychain via `claude setup-token` are invisible to launchd-spawned `claude`. Symptom: every spawn ends in 12 seconds with `401 authentication_error`.
 
-**Fix — long-lived token (recommended)**:
+**Why we picked tmux over launchd (Phase 2.5 final pivot)**:
 
-```bash
-# Run ONCE interactively as cheyu (browser flow opens). Writes long-lived
-# token to ~/.claude/.credentials.json (file-based, not keychain).
-~/.bun/bin/claude setup-token
-```
+A user-shell tmux session inherits full keychain access. We tested both routes:
 
-Then ensure the launchd plist exposes `HOME`/`USER`/`LOGNAME` so the spawned
-`claude` can find the file. The shipped `launchd/md.taiwan.harvest.plist`
-already has these env vars from Phase 2.5.
+- ❌ launchd + `setup-token` keychain → `401 Invalid authentication credentials`
+- ❌ launchd + `setup-token` long-lived token in `~/.claude/.credentials.json` → file never written (token still goes to keychain)
+- ❌ launchd + `ANTHROPIC_API_KEY` env var with OAuth `sk-ant-oat01-…` token → `Invalid API key` (env var only accepts traditional `sk-ant-api03-…` keys)
+- ✅ **tmux session started from interactive shell** → keychain access inherited → spawned `claude` auths via subscription OAuth seamlessly
 
-After running `setup-token` once, restart the harvest agent:
+So we use a tmux session instead of launchd. Trade-off: requires login (no headless boot), but the Mac is always-on logged-in anyway and once started the tmux session detaches and runs forever.
 
-```bash
-launchctl kickstart -k gui/$UID/md.taiwan.harvest
-```
-
-Verify by spawning a small task — session log should NOT contain `401`.
-
-**Alt — API key**:
-
-If you have an `ANTHROPIC_API_KEY` and prefer API billing over subscription:
-
-1. Uncomment `ANTHROPIC_API_KEY` block in plist with your key
-2. The spawner already passes `--bare` so the CLI strictly uses the env var
-3. Restart agent
-
-## Deploy as a launchd service
-
-```xml
-<!-- ~/Library/LaunchAgents/md.taiwan.harvest.plist -->
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>Label</key>             <string>md.taiwan.harvest</string>
-  <key>ProgramArguments</key>
-  <array>
-    <string>/Users/cheyuwu/.bun/bin/bun</string>
-    <string>run</string>
-    <string>start</string>
-  </array>
-  <key>WorkingDirectory</key>  <string>/Users/cheyuwu/Projects/taiwan-md/docs/semiont/harvest/backend</string>
-  <key>KeepAlive</key>          <true/>
-  <key>RunAtLoad</key>          <true/>
-  <key>StandardOutPath</key>    <string>/Users/cheyuwu/Projects/taiwan-md/.harvest/launchd.out.log</string>
-  <key>StandardErrorPath</key>  <string>/Users/cheyuwu/Projects/taiwan-md/.harvest/launchd.err.log</string>
-  <key>EnvironmentVariables</key>
-  <dict>
-    <key>PATH</key><string>/Users/cheyuwu/.bun/bin:/usr/local/bin:/usr/bin:/bin</string>
-    <key>HARVEST_LOG_PRETTY</key><string>false</string>
-  </dict>
-</dict>
-</plist>
-```
+## Deploy via tmux
 
 ```bash
-launchctl load ~/Library/LaunchAgents/md.taiwan.harvest.plist
-launchctl unload ~/Library/LaunchAgents/md.taiwan.harvest.plist
+# Start (idempotent — no-op if already running)
+bash docs/semiont/harvest/backend/tmux/start.sh
+
+# Status — tmux session + HTTP /api/health + active sessions + task counts
+bash docs/semiont/harvest/backend/tmux/status.sh
+
+# Attach to interact (ctrl+b d to detach without stopping)
+bash docs/semiont/harvest/backend/tmux/attach.sh
+
+# Stop cleanly
+bash docs/semiont/harvest/backend/tmux/stop.sh
 ```
+
+Auto-start at login (optional): add this line to `~/.zprofile` or `~/.zshrc`:
+
+```bash
+bash /Users/cheyuwu/Projects/taiwan-md/docs/semiont/harvest/backend/tmux/start.sh
+```
+
+`start.sh` is idempotent — safe to run on every shell open.
 
 ## Logs
 
 ```bash
-# Server logs (when running via launchd)
-tail -f .harvest/launchd.out.log
-tail -f .harvest/launchd.err.log
+# Server logs (tmux pipe-pane captures stdout/stderr)
+tail -f ~/Library/Logs/taiwan-md-harvest/tmux.log
+
+# Live attach (sees actual pino pretty output in real time, ctrl+b d to detach)
+bash docs/semiont/harvest/backend/tmux/attach.sh
 
 # Per-task session logs (always preserved, even if SQLite is wiped)
 ls .harvest/tasks/<task-id>/sessions/
