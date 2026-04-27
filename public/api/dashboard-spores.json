@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T00:38:31.998869Z",
+  "lastUpdated": "2026-04-27T03:03:47.000697Z",
   "schemaVersion": "1.1",
   "totals": {
     "count": 46,
@@ -208,53 +208,21 @@
   ],
   "platformComparison": {
     "x": {
-      "count": 13,
-      "avgViews": 15951,
+      "count": 15,
+      "avgViews": 13854,
       "maxViews": 136474,
-      "avgRate": 4.19,
+      "avgRate": 3.99,
       "maxRate": 10.71
     },
     "threads": {
-      "count": 14,
-      "avgViews": 46350,
+      "count": 16,
+      "avgViews": 40865,
       "maxViews": 300000,
       "avgRate": 3.22,
       "maxRate": 9.0
     }
   },
   "backfillWarnings": [
-    {
-      "n": 40,
-      "article": "謝德慶",
-      "platform": "x",
-      "publishedDays": 7,
-      "status": "OVERDUE",
-      "url": "https://x.com/taiwandotmd/status/2046066338138104130"
-    },
-    {
-      "n": 39,
-      "article": "謝德慶",
-      "platform": "threads",
-      "publishedDays": 7,
-      "status": "OVERDUE",
-      "url": "https://www.threads.com/@taiwandotmd/post/DXVpBlLk4oE"
-    },
-    {
-      "n": 38,
-      "article": "Portaly 首兩筆贊助感謝（站方 announcement）",
-      "platform": "x",
-      "publishedDays": 7,
-      "status": "OVERDUE",
-      "url": "https://x.com/taiwandotmd/status/2046054177093382449"
-    },
-    {
-      "n": 37,
-      "article": "Portaly 首兩筆贊助感謝（站方 announcement）",
-      "platform": "threads",
-      "publishedDays": 7,
-      "status": "OVERDUE",
-      "url": "https://www.threads.com/@taiwandotmd/post/DXVjW6pEzeg"
-    },
     {
       "n": 42,
       "article": "認知作戰",
@@ -358,7 +326,7 @@
     {
       "week": "2026-W17",
       "published": 10,
-      "avgViews": 3806
+      "avgViews": 3844
     }
   ],
   "harvestStatus": [

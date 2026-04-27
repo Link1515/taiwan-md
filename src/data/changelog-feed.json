@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-04-27T00:38:32.678Z",
+  "generatedAt": "2026-04-27T03:03:47.742Z",
   "source": "git",
   "commits": [
+    {
+      "hash": "386febdfd49dfded89da7a864fce9593a21d4304",
+      "date": "2026-04-27T11:03:00+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🔧 fix: TOC/sidebar sticky + 全站 hash anchor smooth scroll + navbar offset"
+    },
+    {
+      "hash": "ba16540ca840be98277064d08d3359038c0adb65",
+      "date": "2026-04-27T08:57:28+08:00",
+      "author": "Che-Yu Wu",
+      "message": "🧬 [semiont] heartbeat: β 08:30 morning tick — D+7 spore harvest #37-#40 + .claude gitignore"
+    },
     {
       "hash": "4dd41301c639754a43dcfe215c790e8e3e5b56bf",
       "date": "2026-04-27T02:50:30+08:00",
