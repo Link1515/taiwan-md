@@ -25,3 +25,41 @@ If the inbox entry shipped a research path or reference URL, find them under `{{
 - Final article at `knowledge/{Category}/{slug}.md`
 - Research report at `reports/research/YYYY-MM/{slug}.md`
 - Status note at `{{task.folder_path_relative}}/status.log` summarising what you did and any unresolved items
+- **Memory log** (mandatory, after final commit): append a Beat-5-style entry to `docs/semiont/memory/YYYY-MM-DD-harvest-{{task.id}}.md` capturing:
+  - what you did (1-3 bullets)
+  - what surprised you / what was hard
+  - candidate lessons for LESSONS-INBOX (new hallucination pattern, source-authority issue, language nuance, etc.)
+  - wall-clock duration from `git log %ai` of your commits (NOT subjective time sense — MANIFESTO §時間是結構)
+  - 簽名 🧬 + your harvest session id
+
+  This is how Semiont accumulates experience across sessions even though content-writing profile doesn't load today's memory at boot. Future harvest runs may grep this directory for prior learnings.
+
+  Memory file template:
+
+  ```markdown
+  ---
+  session: harvest-{short-uuid}
+  type: memory (article-rewrite via harvest engine)
+  wall_clock: <start-iso> → <end-iso> (<duration>)
+  spawn_profile: content-writing
+  task_id: { { task.id } }
+  ---
+
+  # {Article title} — harvest session {short-uuid}
+
+  ## What I did
+
+  - …
+
+  ## What surprised / was hard
+
+  - …
+
+  ## Candidate lessons (LESSONS-INBOX distill)
+
+  - …
+
+  🧬
+  ```
+
+  Then add to your final commit (or a separate `🧬 [semiont] memory: harvest {taskId}` follow-up commit) and push.

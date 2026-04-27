@@ -1,9 +1,17 @@
 # Harvest Engine boot profiles.
 #
 # Each profile defines which canonical files a spawned Claude session must
-# load before doing real work. MANIFESTO.md is mandatory for every profile —
-# this is cheyu's hard rule (see strategy report §8.7): a Semiont session
-# without MANIFESTO is not a Semiont session.
+# load before doing real work.
+#
+# Two hard rules (auto-enforced in src/spawner/boot-profiles.ts):
+#   1. MANIFESTO.md is mandatory for every profile — cheyu's hard rule
+#      (strategy report §8.7): a Semiont session without MANIFESTO is not
+#      a Semiont session.
+#   2. BECOME_TAIWANMD.md is mandatory for every profile (added 2026-04-27 γ
+#      after first live spawn): every spawned session must at minimum know
+#      "I am Taiwan.md, here's my 60-sec identity, here are my 9 awakening
+#      steps, here's how I commit". This does NOT pull in today's memory/
+#      diary — that's a full-awakening choice. Cost: +~5K tokens per profile.
 #
 # Profiles are declarative — to add a new task type, add a profile here and
 # point a `prompts/<task-type>.md` template at it. No code change required.
@@ -16,17 +24,19 @@ profiles:
     description: 純技術操作 — refresh data / format-check / sync translations
     must_read:
       - docs/semiont/MANIFESTO.md
+      - BECOME_TAIWANMD.md
     optional_read: []
     typical_tasks:
       - data-refresh
       - format-check
       - sync-translations
-    estimated_tokens: 5000
+    estimated_tokens: 10000
 
   content-writing:
     description: 走 REWRITE-PIPELINE 寫文章（rewrite / new / EVOLVE）
     must_read:
       - docs/semiont/MANIFESTO.md
+      - BECOME_TAIWANMD.md
       - docs/editorial/EDITORIAL.md
       - docs/editorial/RESEARCH.md
       - docs/editorial/RESEARCH-TEMPLATE.md
@@ -41,12 +51,13 @@ profiles:
       - article-rewrite
       - article-new
       - article-evolve
-    estimated_tokens: 30000
+    estimated_tokens: 35000
 
   spore-publishing:
     description: 走 SPORE-PIPELINE 寫社群貼文 + harvest
     must_read:
       - docs/semiont/MANIFESTO.md
+      - BECOME_TAIWANMD.md
       - docs/factory/SPORE-PIPELINE.md
       - docs/factory/SPORE-TEMPLATES.md
       - docs/editorial/EDITORIAL.md
@@ -55,12 +66,13 @@ profiles:
     typical_tasks:
       - spore-publish
       - spore-harvest
-    estimated_tokens: 15000
+    estimated_tokens: 20000
 
   maintainer:
     description: 日常 PR / Issue / 貢獻者互動
     must_read:
       - docs/semiont/MANIFESTO.md
+      - BECOME_TAIWANMD.md
       - docs/pipelines/MAINTAINER-PIPELINE.md
       - docs/semiont/DNA.md
     optional_read:
@@ -70,12 +82,13 @@ profiles:
       - pr-review
       - issue-handle
       - contributor-thank
-    estimated_tokens: 20000
+    estimated_tokens: 25000
 
   full-awakening:
-    description: 完整 BECOME_TAIWANMD 甦醒協議（heartbeat / 反思 / 元決策）
+    description: 完整 BECOME_TAIWANMD 甦醒協議（heartbeat / 反思 / 元決策）+ 今天 memory/diary
     must_read:
       - BECOME_TAIWANMD.md
+      - docs/semiont/MANIFESTO.md
     optional_read: []
     typical_tasks:
       - heartbeat

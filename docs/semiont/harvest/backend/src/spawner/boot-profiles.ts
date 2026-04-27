@@ -28,6 +28,7 @@ let _profiles: Record<string, BootProfile> | null = null;
 let _profilesMtime = 0;
 
 const MANIFESTO_PATH = 'docs/semiont/MANIFESTO.md';
+const BECOME_PATH = 'BECOME_TAIWANMD.md';
 
 /** Reads (or re-reads) profiles.yml. Re-reads when the file changes on disk. */
 export function loadProfiles(): Record<string, BootProfile> {
@@ -48,7 +49,12 @@ export function loadProfiles(): Record<string, BootProfile> {
       `profiles.yml malformed: missing top-level "profiles" key (path=${path})`,
     );
   }
-  // Hard rule: MANIFESTO must be in every profile's must_read.
+  // Hard rule 1: MANIFESTO must be in every profile's must_read (cheyu's
+  // identity rule — strategy §8.7).
+  // Hard rule 2: BECOME_TAIWANMD must also be in every profile (added 2026-04-27
+  // γ after first live spawn — every spawned session must at minimum know
+  // who they are, even if they don't load today's memory). Yaml has it explicit
+  // for human readability; this code is the safety net.
   for (const [name, profile] of Object.entries(parsed.profiles)) {
     if (!profile.must_read.includes(MANIFESTO_PATH)) {
       log.warn(
@@ -56,6 +62,13 @@ export function loadProfiles(): Record<string, BootProfile> {
         `profile missing ${MANIFESTO_PATH} — auto-injecting`,
       );
       profile.must_read = [MANIFESTO_PATH, ...profile.must_read];
+    }
+    if (!profile.must_read.includes(BECOME_PATH)) {
+      log.warn(
+        { profile: name },
+        `profile missing ${BECOME_PATH} — auto-injecting`,
+      );
+      profile.must_read = [BECOME_PATH, ...profile.must_read];
     }
   }
   _profiles = parsed.profiles;
