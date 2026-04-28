@@ -42,6 +42,24 @@
 
 ## 📜 Log（reverse chronological，最新在頂）
 
+### 林琪兒 EVOLVE — 2026-04-28 ι 完成（從台北銀行櫃檯到 400 公里高 — 加 3 支 YouTube 訪談 verbatim 重塑紀實文體）
+
+- **Article**: [knowledge/People/林琪兒.md](../../knowledge/People/林琪兒.md)
+- **Pipeline**: REWRITE-PIPELINE v2.19 — EVOLVE 模式，Stage 0 三類劃分 + Stage 1 補抓 3 支官方 YouTube 訪談 transcript + Stage 2 全文重寫 + Stage 3.5 FACTCHECK Quick Mode + Stage 3-4 全綠
+- **觸發**：觀察者 ι session「先額外轉這篇林琪兒的訪談研究來當額外材料 + 走 rewrite-pipeline 進化文章 + 確認整篇文章語感、順暢度、紀實文體」+ 兩條補增 YouTube
+- **核心矛盾進化**：β5 原為「飛行員夢被氣喘撞碎，結果飛得比飛行員還高」（命運轉折 framing）→ ι 重定義為「那個 2 歲半被抱離島嶼的男孩，半世紀後回來，找的不是太空，是出生那家醫院」（首尾呼應 + dream crushed → resilience → mountains to climb）
+- **Hook**：開場改用中央大學演講 verbatim「I would not be here today...mountains to climb」直接打哲學重量，再回到 1993 USAFA 氣喘體檢具體事件；結尾用龍山寺到中正紀念堂徒步 + 80 年代雞蛋糕記憶 + 找到出生醫院場景，跟 green jewel in the mist 雙重首尾呼應
+- **新增三支 YouTube transcript**（首次拿到林琪兒本人 verbatim 引語）：
+  - [^28] 公視新聞網一對一深訪（zh-TW，134 lines / 3,273 chars）：童年回憶 / 1981 二年級教室電視 / 總覽效應 + 30% 維護地球 / 不是虎媽 / 訪台首日龍山寺 + 雞蛋糕 + 出生醫院
+  - [^29] TaiwanPlus Taiwan Talks 深度訪談（en，612 lines / 22.7K chars）：dream crushed / resilience / Star Wars + Arthur C. Clarke 科幻啟發
+  - [^30] TaiwanPlus News 中央大學演講側錄（en，52 lines）：「I would not be here today」「mountains to climb」「zero gravity never gets old」「front flips, back flips」
+- **結構**：9 個 scene 反編年體小標題（Mountains to climb / 二年級教室裡那台電視 / 清泉崗武漢斯卡尼 / 3,565 選 9 / 紅色 LED 下的第一口萵苣 / 真空之外的風笛聲 / 把自己的飛船命名為 Freedom / 30% 的時間 vs 地球 / 不是虎媽 / 那家銀行櫃檯後面的島）
+- **品質**：30 footnote（β5 既有 27 + ι 新增 3 個 transcript + 1 個 STS-1 NASA 官方）/ 245 行 / quality-scan ⚠️ 5（lastHumanReview false + 破折號 10 + 稀薄段落 1，全部在可接受區）/ §11 0 violations（從 2 改 0）/ format-check 7/7 全綠 / wikilink-validate 全綠 / footnote URL 28 ✅ + 2 redirect + 0 dead
+- **Stage 3.5 FACTCHECK Quick Mode**：所有新增 verbatim 引語對齊三支官方 transcript（公視「3 成」/ TaiwanPlus「mountains to climb」/「zero gravity never gets old」）+ 1981-04-12 STS-1 與 8 歲二年級算術自洽（1981-1973=8）+ Artemis II 乘員 4 人名單已 cite Britannica [^25]
+- **Research**: [reports/research/2026-04/lin-qi-er.md](../../reports/research/2026-04/lin-qi-er.md) §「2026-04-28 ι Stage 0 EVOLVE 補抓三支訪談 transcript」
+- **Transcripts archive**: [reports/research/2026-04/林琪兒-transcripts/](../../reports/research/2026-04/林琪兒-transcripts/) — 4 個 .vtt + 4 個 clean .txt
+- **語感、紀實文體 verify**：(1) 紀實筆法不煽情 — Lindgren 母親段、24 年教育段、出生醫院段都用 Lindgren 本人 verbatim，沒有作者情緒引導 (2) 反編年體 — 9 個 scene 標題全是場景/物件/數字/quote 不是「YYYY 年發生 X」(3) 無「不是 X 是 Y」對位句型 (4) 破折號 10 個（< 15 上限）
+
 ### 日治時期臺灣社會運動 — 2026-04-27 harvest-005 完成（NEW History / NMTH 999 頁監控檔案逆讀）
 
 - **Article**: [knowledge/History/日治時期臺灣社會運動.md](../../knowledge/History/日治時期臺灣社會運動.md)

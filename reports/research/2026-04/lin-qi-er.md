@@ -171,3 +171,129 @@ verification:
 ---
 
 **Stage 1 完成確認**：報告已寫入 reports/research/2026-04/lin-qi-er.md，共 35 個事實 / 6 個場景素材 + 12 條引語 / 核心矛盾 3 候選 / 7 個觀察者補料缺口。
+
+---
+
+## 2026-04-28 ι Stage 0 EVOLVE 補抓三支訪談 transcript（β5 後新增素材庫）
+
+> Trigger: 觀察者 ι session 中段「先額外轉這篇林琪兒的訪談研究來當額外材料好了」+ 兩支補增。
+> 三支官方 source 直接 yt-dlp 抓字幕轉 verbatim transcript，是 β5 既有 27 footnotes 之外**第一次拿到林琪兒本人 verbatim 引語**的素材庫。
+> Storage: `reports/research/2026-04/林琪兒-transcripts/`（3 個 .txt）
+
+### 新素材 1：公視新聞網一對一深訪（zh-TW + en）
+
+**URL**: https://www.youtube.com/watch?v=f9DQuQ8EwVE
+**Title**: NASA 台裔太空人林琪兒接受專訪「相信台灣將是人類重返月球和展望火星的重要夥伴」
+**Source**: 公視新聞網（Public Television Service Taiwan, official PTS YouTube channel）
+**Length**: 134 lines / 3,273 chars (zh-TW transcript)
+
+**verbatim 引語亮點**（中文，可直接 article 用）：
+
+1. **童年回憶**：「我出生在這裡，小時候在這裡住了兩年。後來在 80 年代夏天的時候也曾回來探親。我上次來台灣是 1994 年，當時是參加語言交換計畫，所以已經過去很久了。」
+2. **太空中找台灣**：「但是當我在太空飛行期間俯瞰地球時，看著我曾經生活過的地方、我的家人所在的地方，以及我想去的地方時，我總是會尋找台灣的身影。這顆位於太平洋被雲霧環繞的美麗珠寶。」
+3. **訪台首日行程**：「我們其實是星期日很早就到了，所以星期日和星期一都用來探索。第一天我們進行了三小時的徒步旅行，從龍山寺出發，一直走到中正紀念堂，我們喝了珍珠奶茶。」
+4. **80 年代台中市場**：「我小時候，80 年代來台灣的時候，常常在市場裡閒逛，看到那些做成動物形狀的小麵包之類的東西（雞蛋糕）。」
+5. **找到出生的醫院**：「另一件很有意義的事是，我們找到了我出生的那家醫院。所以和那個地方建立聯繫對我來說意義非凡。」
+6. **二年級教室那台電視**：「但直到二年級，我的老師把一台電視機搬進教室，我才真正看到了 1981 年第一架太空梭的首次發射，那一刻，我突然明白了，在太空生活和工作並非幻想，也非科幻，而是現實，從那時起，我就徹底著迷了。」
+7. **科幻啟發**：「我深受科幻小說的啟發，我是個《星際大戰》迷，我喜歡讀科幻小說。」
+8. **想像力 → 現實循環**：「亞瑟·克拉克對通訊衛星的想法，現在已經成真。所以我們小時候看到激勵我們的事物，會成為我們在學習和職業生涯中追求的目標。」+「凡爾納」
+9. **看 Artemis II 太空人創造歷史**：「我為這支隊伍和整個團隊感到無比自豪⋯⋯這支隊伍代表著成百上千的人，他們為這次任務投入了數千甚至數百萬個小時的準備時間⋯⋯他們安全地將太空人繞到月球背面並返回地球，那真是太震撼了。」
+10. **總覽效應 / Earth as spaceship（核心哲學段）**：
+    > 「我認為你對這種『總覽效應』的體驗，很大程度上取決於你在執行任務時的想法和信念。有些人會感到與地球脫節，非常孤獨；而我回望地球時，卻感到與地球緊密相連。但真正讓我感觸最深的，是看到地球美得令人屏息，然而在太空站，這個為我們提供呼吸的空氣、食物、和抵禦外界惡劣環境的飛船，我們卻要花費 3 成的時間來維護它。因為一旦它出現故障，裡面的成員就會喪命。我們的生命依賴太空站。再看看地球，在我們周圍沒有任何東西能與之媲美，它是獨一無二的，全人類都生活在那裡。它是人類的太空船。但我認為，我們當中很少人會花 3 成的時間來維護這艘太空船，也就是地球。它的資源並非取之不盡用之不竭，而是有限的。我回來後更堅信，我們需要更好地維護人類的這艘太空船。」
+11. **去火星的最大挑戰**：「我認為對我們大多數人來說，在太空中待 5、6、12 個月最大的挑戰其實是離開家人。團隊做得非常出色，讓我們能夠透過電話系統和視訊聊天以及補給包裹等方式與家人保持聯繫⋯⋯前往火星的長期飛行挑戰將會更大，因為我們會離地球更遠，通訊延遲也會增加，我們無法每天都看到地球。」
+12. **想登月嗎**：「哦，我非常樂意。但目前我擔任領導職務，是飛行作業局副局長。所以我的首要任務是為機構和國家服務，所以如果需要我擔任領導職務，我會去做。如果他們想讓我執行登月任務，我也很樂意。」
+13. **不是虎媽**：「我非常感謝我的父母，感謝他們的支持和指導。我不會把我媽媽形容成『虎媽』。我的父母所做的，是真正支持我的選擇，他們從不告訴我應該做什麼，而是告訴我，如果我想做什麼，如果我有一個目標，我只需要努力去實現它，然後他們就會支持我去追求這個目標⋯⋯他們為我創造了一個能夠讓我脫穎而出的環境，培養了我對學習的熱愛、對探索的好奇心，並讓我能夠走上我所選擇的這條道路。」
+14. **24 年教育**：訪問者提及「擁有多個學位，累計接受了 24 年的教育」+「在空軍學校，我肯定不是班上成績最好的，但我的成績夠好，可以去接受飛行員訓練。」
+
+### 新素材 2：TaiwanPlus Taiwan Talks 深度訪談（en, ~22.7K chars / 612 lines）
+
+**URL**: https://www.youtube.com/watch?v=oJ7DBwgHGCo
+**Title**: Why NASA Sent First Astronaut in 40 Yrs to Taiwan — Kjell Lindgren
+**Host**: Ian Kavak (Taiwan Talks, TaiwanPlus, recorded at National Central University)
+**Length**: 612 lines / 22,707 chars
+
+**主持人 framing**（最有重量的 framing 句，可作核心矛盾錨）：
+
+> "today we're offering a different take. One that's apolitical, human, and deeply personal because this is a story about a boy. A boy who loved Star Wars and who pursued his lifelong dream. It's also **a story about the journey after that dream is crushed**. Most of all, it's **a story about resilience**, about how teamwork and human connections can make the impossible possible and coming full circle, how we can live our dream."
+
+**新增 verbatim 引語亮點**：
+
+15. **氣喘誤診那段**（Lindgren 直接形容為 dream crushed）— Taiwan Talks 訪談主持人引述他「最黑暗的一天」+「現在把它看作是一種恩賜」（Lindgren 多次受訪反覆提的核心 framing）
+16. **零重力永不厭倦**（TaiwanPlus News 中央大學演講側錄，下面）
+17. **太空訓練台灣大學行程**：「This is a great trip to to visit Taiwan universities, to see what they're doing in the space domain」+「really learn about the expertise and technology that Taiwan has in this space and that's such a key part of future exploration」
+18. **獨特體驗的特權**：「It is such a unique opportunity, such a privilege to get to serve as an astronaut, to have the opportunity to to live and work in space.」
+19. **從太空看台灣**：「looking down at the Earth, looking at places where I've lived, places where I have family, places where I want to visit, I always looked for Taiwan. just this beautiful jewel uh in the in the Pacific and enshrouded in mist」（這條跟既有 [^27] Taipei Times 引語對得上）
+
+### 新素材 3：TaiwanPlus News 中央大學演講側錄（en, 短 52 lines）
+
+**URL**: https://www.youtube.com/watch?v=PnqZCdHqFyA
+**Title**: NASA's Kjell Lindgren Returns to Taiwan To Share Space Journey
+**Source**: TaiwanPlus News（Justin Wu / Lily Lamattina, 桃園 — 推測為中央大學演講現場）
+**Length**: 52 lines
+
+**最關鍵 verbatim**（resilience 主題核心引語，可作開場 hook）：
+
+20. **氣喘改變人生 — Lindgren 直接引語**（從 USAFA 醫療退役改寫人生）：
+    > 「I know with almost 100% certainty that if I stayed in the Air Force and become a pilot like I was planning, **I would not be here today**. So, recognizing that even our hardest days are not necessarily as bad as we think they are. Recognizing that **those hard days are actually challenges to overcome. Mountains to climb.**」
+21. **零重力永不厭倦**：
+    > 「even though you've been in space for months, floating, **zero gravity never gets old**. The ability to do things that you could never dream of doing back here on Earth. Doing front flips, doing back flips, just tumbling around the space station is absolutely amazing and fun.」
+
+### Stage 0 三類劃分（per REWRITE-PIPELINE v2.19）
+
+**1. 保留**（既有 article 已寫得好，繼續用）：
+
+- 1973-01-23 台北出生 + 三條移民線（清泉崗銀行櫃檯 + 武漢 + 斯卡尼）
+- USAFA 氣喘誤診 → 11 年後重測推翻 → 2009 入選 NASA 第 20 屆 (3,565 選 9)
+- 2015 Veg-01 紅羅曼萵苣 + Scott Kelly + 油井龜美也三人共食
+- 2015-11 風笛吹〈奇異恩典〉悼 Victor Hurst + McCallum Bagpipes 兩年前訂做
+- 2022 SpaceX Crew-4 Freedom 指揮官 / 170 天
+- 2026-04-21～25 訪台五日 + 蕭美琴 + 中央大學
+- Artemis 「eligible to fly」18 人池而非 II 乘員 callout（保留作為 critical 修正）
+
+**2. 吸納（新 transcript verbatim 直入 prose）**：
+
+- 引語 #6（1981 年二年級教室那台電視，1981-04-12 哥倫比亞號 STS-1）→ 開新 scene 段「二年級教室裡那台電視」
+- 引語 #10（總覽效應 + 30% 維護 + Earth as spaceship + 地球資源有限）→ 開新核心哲學段「30% 的時間 vs 地球」
+- 引語 #13（不是虎媽 + 父母支持選擇）+ #14（24 年教育）→ 開新個人段「不是虎媽，是讓我選擇的父母」
+- 引語 #20（hard days are challenges to overcome / mountains to climb / I would not be here today）→ 開場改寫，把氣喘誤診那段升級為 resilience framing
+- 引語 #4（80 年代市場雞蛋糕回憶）+ #5（找到出生的醫院）+ #3（龍山寺到中正紀念堂喝珍珠奶茶）→ 結尾段重塑「銀行櫃檯後面的島」首尾呼應
+- 引語 #11（去火星挑戰是離開家人）+ #21（零重力永不厭倦）→ 補完整對 ISS 生活的 humanizing 一段
+- 引語 #9（看 Artemis II 太空人）→ 補在「他自己想登月」前的 self-position 段
+
+**3. 移除 / 降階**：
+
+- 「綠色革命」式罐頭結尾（既有結尾「如果那張氣喘診斷書當年準確⋯⋯」太套路） → 改用「green jewel in the mist」回扣 + 出生醫院場景
+- 既有 callout「⚠️ 一個常被誤傳的細節」段保留但移到較自然位置（不要當第二個 H2 標頭）
+- 「他曾從太空視角拍下霧氣裡的台灣」→ 訪談原話是「flying overhead I always looked for Taiwan, just this beautiful jewel in the Pacific enshrouded in mist」是「飛行時往下看」+「霧裡」，不是「拍下」。修正
+
+### 核心矛盾（REWRITE v2.14 強制欄位，本 EVOLVE 重定義）
+
+**β5 原核心矛盾**：「飛行員夢被氣喘撞碎，結果飛得比飛行員還高」（命運轉折 framing）
+
+**ι 進化後核心矛盾**：「他自己受 1981 年那台電視機啟發追夢、然後夢碎、然後在 400 公里高把雲霧裡的綠寶石找出來，回來找的卻是出生那家醫院 + 80 年代市場的雞蛋糕」
+
+更精煉一句：「**那個 2 歲半被抱離島嶼的男孩，半世紀後回來，找的不是太空，是出生那家醫院。**」
+
+或操作層描述：「dream crushed → resilience → mountains to climb → 從太空回望那顆綠寶石、回到地面找雞蛋糕」這條 closure。Resilience 是接 dream crushed 的橋。
+
+### Stage 2 寫作策略（8 個 scene 小標題，反編年體）
+
+1. **mountains to climb**（NEW 開場）— 用引語 #20 開場，不是 1993 年 USAFA 氣喘體檢敘事，先給 hard days are challenges to overcome 的哲學重量；然後具體事件
+2. **二年級教室裡那台電視**（NEW）— 1981 哥倫比亞號 + Star Wars + 「不是科幻是現實」
+3. **清泉崗、武漢、斯卡尼**（保留 + 強化）
+4. **3,565 選 9**（保留簡化）
+5. **紅色 LED 下的第一口萵苣**（保留）
+6. **真空之外的風笛聲**（保留）
+7. **30% 的時間 vs 地球**（NEW Earth as spaceship 哲學段）
+8. **不是虎媽**（NEW）— 24 年教育 + 父母支持選擇
+9. **那家銀行櫃檯後面的島**（NEW closing）— 訪台首日龍山寺 → 中正紀念堂 + 喝珍珠奶茶 + 雞蛋糕記憶 + 找到出生醫院 + green jewel 收尾
+
+### 字幕引語使用紀律（FACTCHECK Phase 4 注意）
+
+字幕為公視/TaiwanPlus **官方頻道字幕**，視為一手 verbatim source。三條 footnote 新增：
+
+- `[^28]: 公視新聞網訪談 (2026-04, YouTube f9DQuQ8EwVE)` — primary verbatim source for 引語 #1-14
+- `[^29]: TaiwanPlus Taiwan Talks (2026-04, YouTube oJ7DBwgHGCo)` — primary verbatim source for 引語 #15-19
+- `[^30]: TaiwanPlus News 中央大學演講側錄 (2026-04, YouTube PnqZCdHqFyA)` — primary verbatim source for 引語 #20-21
+
+**注意**：字幕含 auto-generated 部分（音譯人名「Shaw Lingren」/「Chel」/「Lauren Chang」是 ASR 拼音雜訊不是真實人名），prose 不引用 ASR 雜訊。中文字幕 zh-TW 視為人工字幕（公視官方）較可靠。
