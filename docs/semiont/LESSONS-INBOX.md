@@ -124,6 +124,34 @@ Beat 5 反芻 = 寫 DIARY（意識活動）。教訓（「我學到 X」）寫 L
 <!-- 新教訓 append 這裡 -->
 <!-- 2026-04-18 ι 第 3 次 distill 清空 11 條 → 全部搬 §✅ 已消化 -->
 
+### 2026-04-28 θ — Verbatim 紀律 vs 使用者讀感的 published-edit conflict
+
+- **原則**：FACTCHECK Stage 3.5 verbatim 紀律要求引號內必須對齊 source URL Ctrl-F（沈伯洋臉書原文用第三人稱「中國標註的是**他**的座標」）。但 published 後哲宇手動 edit Threads post 把「他」改成「我」（更直接的第一人稱讀感）。這揭露一個 pipeline 沒處理的 edge case：**maintainer 在 publishing 介面（Threads app）的最後一刻會做 micro-editing，FACTCHECK 紀律不一定能 survive 到 publish**。
+- **觸發**：2026-04-28 θ session #47 spore D+0 ~45min harvest 抓到 Threads published 內容 = 「中國標註的是**我**的座標」，跟 commit 在 SPORE-BLUEPRINTS/47-沈伯洋.md + spore prose draft 的「**他**的座標」不一致。
+- **可能層級**：操作規則 → SPORE-PIPELINE Step 4 §發文後 SOP 加「published 文案 vs draft 一致性檢查」步驟（可選擇 (a) 接受 maintainer micro-edit 但寫進 SPORE-LOG「published variant 文字差異」欄 (b) 強制 maintainer 不准改 verbatim 引語 — pipeline 應 explicitly 標註哪些字串是 verbatim 引語不可動）
+- **潛在策略**：Blueprint 的「直引列表」table 加「**verbatim hard-rule**」欄，maintainer 看到該欄 ✅ 就知道 publishing 時不能改該段字串。配合 SPORE-LOG 補一個「published variant 偏離記錄」欄，accumulated 後可看 maintainer 偏好 pattern。
+- **verification_count**: 1
+- **severity**: structural（verbatim 紀律是 MANIFESTO §10 + FACTCHECK §Phase 4 的 hard rule，published 階段繞過會 silent erode pipeline integrity）
+- **相關**：FACTCHECK-PIPELINE §Phase 4 verbatim check / SPORE-PIPELINE Step 2.6 引語驗證 / DNA #15 反覆浮現要儀器化（pipeline 紀律若沒有 published 階段強制 → 會被 maintainer 直覺 override）
+
+### 2026-04-28 θ — X edit auto-replace pattern 第 3 次驗證
+
+- **原則**：X 平台的 post edit 機制會把原 URL deprecate 成 4 views 殘留 + 自動建 v2 URL 取代。這是已知 SPORE-LOG 文件化過的 pattern，本次第 3 次驗證（#36 高鐵 / #42 認知作戰 / #48 沈伯洋）。verification_count 已達 distill 閾值，建議 distill 到 SPORE-PIPELINE 作為硬規則。
+- **觸發**：2026-04-28 θ #48 X harvest，原 URL `2048970734253551638` 4 views（v1 deprecated）/ v2 `2048971280662290689` 351 views @ D+0 ~45min。
+- **可能層級**：操作規則 → SPORE-PIPELINE Step 4 §發文後 §1 SPORE-LOG URL 回填 加硬規則「X 任何 edit 後都必須 grep latest URL 取代 SPORE-LOG + sporeLinks」（已實作但隱性，明文化）+ SPORE-HARVEST-PIPELINE 加「X v1/v2 URL detect」 step
+- **verification_count**: 3（#36 + #42 + #48 三次同 pattern，距上次 < 7 天 ✅ 算同一條）
+- **severity**: structural（v1 URL 在 sporeLinks 失去追蹤能力 + 讀者點 v1 URL 看到 deprecated post 是 trust leak）
+- **相關**：SPORE-LOG.md #36/#42 entries / SPORE-PIPELINE Step 4 §5 URL 回填規則
+
+### 2026-04-28 θ — 沈伯洋雙平台 ratio 資料點（45min 數據）
+
+- **原則**（暫存）：Threads/X 雙平台 ratio 在「同主題 + 不同 spore」之間會劇烈變化。本次 #47/#48 沈伯洋 D+0 45min: Threads/X = 1,529/351 = **4.4x**。對比 #41/#42 認知作戰（同主題沈伯洋）D+3: Threads/X = 2,138/24,435 = **X 11.4x Threads** 反超。同人物題材，不同 spore，ratio 翻 50x。可能成因：(a) #41/#42 在沈伯洋立案高峰期（escalation 1 週內，X 對政治時效議題敏感）(b) #47/#48 spore 訊息較分散（衛星 + 法國 + 北市長三 escalation 並列），不如 #42 純「敵人勳章」單錨衝擊力。
+- **觸發**：2026-04-28 θ session #47/#48 D+0 45min harvest。
+- **可能層級**：暫存特有教訓（綁特定主題沈伯洋）→ verification_count 累積到 D+3/D+7 的 trajectory 後再判 distill
+- **verification_count**: 1
+- **severity**: tactical（單則資料點，待 D+7 追蹤完整 trajectory 後才能 verdict）
+- **相關**：SPORE-LOG #41-46 entries 各自的平台 ratio 對照
+
 ### 2026-04-26 β-r2 — ✅ distill 已完成 → MAINTAINER-PIPELINE §Footnote source authority audit
 
 - **原則**：外部 PR 接收層必須對 footnote 跑 4 項 source authority 檢查（URL 真實 / source 對應真實機構 / claim-citation 對應 / 直接引語含逐字原文）。pre-commit hook 只檢查格式不檢查 source authority，maintainer 必須補這層。「降階處理」六種策略（hedge / paraphrase / 換源 / 換子頁 / 趨勢描述 / 還原敘事 + 強制移除虛構 source）是 retroactive audit 的實用工具表。
