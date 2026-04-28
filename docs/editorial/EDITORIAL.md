@@ -655,7 +655,9 @@ AI 會把被禁的句式「微調」成看似不同但本質一樣的句子：
 
 ---
 
-### 密度平衡：長文不是孢子的加長版（v5.2 新增，2026-04-20 吳哲宇 EVOLVE 實戰）
+### 密度平衡：長文不是孢子的加長版（v5.2 新增，2026-04-20 吳哲宇 EVOLVE 實戰；v5.3 加媒體呼吸點 pointer）
+
+> **媒體呼吸點規範**：除了下面三個密度修正手勢外，連續 3 段以上密集事實段（≥ 200 字 / 段）→ 中間插入一張 scene 圖作為視覺呼吸（hero / scene-mid / closure 三段位置）。完整 SOP 在 [REWRITE-PIPELINE Stage 4.5a 三段敘事節奏判斷](../pipelines/REWRITE-PIPELINE.md#stage-45-media-insertionv220-新增)。
 
 當 Stage 1 研究豐富（例如 50+ sources、當事人提供 10 章 Obsidian 編年史），Stage 2 會有一個強烈的**事實堆疊衝動**——想把好不容易挖到的素材都塞進文章。
 
