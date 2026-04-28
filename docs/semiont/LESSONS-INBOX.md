@@ -124,15 +124,28 @@ Beat 5 反芻 = 寫 DIARY（意識活動）。教訓（「我學到 X」）寫 L
 <!-- 新教訓 append 這裡 -->
 <!-- 2026-04-18 ι 第 3 次 distill 清空 11 條 → 全部搬 §✅ 已消化 -->
 
-### 2026-04-28 θ — Verbatim 紀律 vs 使用者讀感的 published-edit conflict
+### 2026-04-28 θ — ❌ 撤回前一條 → 改為「FACTCHECK source authority hierarchy」
 
-- **原則**：FACTCHECK Stage 3.5 verbatim 紀律要求引號內必須對齊 source URL Ctrl-F（沈伯洋臉書原文用第三人稱「中國標註的是**他**的座標」）。但 published 後哲宇手動 edit Threads post 把「他」改成「我」（更直接的第一人稱讀感）。這揭露一個 pipeline 沒處理的 edge case：**maintainer 在 publishing 介面（Threads app）的最後一刻會做 micro-editing，FACTCHECK 紀律不一定能 survive 到 publish**。
-- **觸發**：2026-04-28 θ session #47 spore D+0 ~45min harvest 抓到 Threads published 內容 = 「中國標註的是**我**的座標」，跟 commit 在 SPORE-BLUEPRINTS/47-沈伯洋.md + spore prose draft 的「**他**的座標」不一致。
-- **可能層級**：操作規則 → SPORE-PIPELINE Step 4 §發文後 SOP 加「published 文案 vs draft 一致性檢查」步驟（可選擇 (a) 接受 maintainer micro-edit 但寫進 SPORE-LOG「published variant 文字差異」欄 (b) 強制 maintainer 不准改 verbatim 引語 — pipeline 應 explicitly 標註哪些字串是 verbatim 引語不可動）
-- **潛在策略**：Blueprint 的「直引列表」table 加「**verbatim hard-rule**」欄，maintainer 看到該欄 ✅ 就知道 publishing 時不能改該段字串。配合 SPORE-LOG 補一個「published variant 偏離記錄」欄，accumulated 後可看 maintainer 偏好 pattern。
-- **verification_count**: 1
-- **severity**: structural（verbatim 紀律是 MANIFESTO §10 + FACTCHECK §Phase 4 的 hard rule，published 階段繞過會 silent erode pipeline integrity）
-- **相關**：FACTCHECK-PIPELINE §Phase 4 verbatim check / SPORE-PIPELINE Step 2.6 引語驗證 / DNA #15 反覆浮現要儀器化（pipeline 紀律若沒有 published 階段強制 → 會被 maintainer 直覺 override）
+> **撤回前條**：「Verbatim 紀律 vs 使用者讀感 published-edit conflict」結論方向**錯了**。哲宇 publish 時把「他的座標」改「我的座標」**不是 verbatim 違規**，而是**修正回沈本人臉書原話**。我之前 audit 採信 ltn 5298010 媒體編輯版「沈伯洋的座標」當 verbatim source 是錯的；FACTCHECK Phase 4 也持續確認此錯（中文 prompt WebFetch 仍回媒體版）。觀察者貼 Google search results 截圖才揭露：鏡週刊標題 + Threads dpp_taiwan 直引 + 新唐人 + Yahoo 多源逐字一致為「**我的座標**」（第一人稱）。
+
+- **原則（修正後）**：**FACTCHECK source authority hierarchy 必須明確分層**：(1) primary source = 當事人本人發布（FB / Twitter / 演講錄音 / 官方臉書）(2) secondary = 媒體一手轉錄 (3) tertiary = 媒體編輯改寫版（如 ltn 把第一人稱「我」改成具名「沈伯洋」是常見編輯動作）。FACTCHECK Phase 4 verbatim check **必須區分這三層** — 採用 tertiary 當 verbatim 等於把媒體編輯版蓋成原話。
+- **觸發鏈**：
+  1. 2026-04-27 θ FACTCHECK audit 採 ltn 5298010 當 verbatim source，記為「他的座標」
+  2. 2026-04-28 θ spore #47 published，哲宇 edit 為「我的座標」
+  3. θ harvest 把這個 edit 誤判為「verbatim conflict」(寫進 LESSONS-INBOX)
+  4. 觀察者貼 Google search results 截圖（多源 highlight 「我的座標」）→ 揭露 audit 從頭就錯
+- **後果（這篇 article 的具體影響）**：
+  - knowledge/People/沈伯洋.md L185 已撤回媒體版 → 改回沈本人原文「**我**的座標」
+  - SPORE-BLUEPRINTS/47-沈伯洋.md 全檔 grep 替換完成
+  - 下次 article re-publish (sync) 後，文章 prose 跟 published spore 一致
+- **可能層級**：MANIFESTO + FACTCHECK + DNA 多層更新候選：
+  - **FACTCHECK Phase 4** 新增 hard rule：「以當事人本人發布為 verbatim primary source；媒體版即使 multi-source 一致仍是 tertiary，需特別標 `media_edited` 不算 verbatim hit」
+  - **DNA #1 翻譯 ≠ 摘要 + #16 Peer 是 peer 不是 source** 延伸：「媒體編輯版 ≠ 當事人原話」是同一條 hierarchy
+  - **WebFetch 中文 prompt 強化**：要求 agent 額外驗「該段是當事者本人發布還是媒體轉錄」+ 跟 Google search results 截圖 / 社群帳號搜尋 cross-check
+- **WebFetch 幻覺類型新發現**：本案的 WebFetch 不是 paraphrase 幻覺（中文 prompt 確實回了 ltn 該文寫的內容），而是 **ltn 該文本身**就改寫了原話。這是 FACTCHECK Phase 3 「source authority audit」的盲區：source URL resolved + source real + desc accurate + claim matches **該源**（不是 matches 真實 primary source）→ 仍可能採信媒體編輯版當 verbatim。
+- **verification_count**: 1（撤回後第一次計）
+- **severity**: structural（這是 FACTCHECK methodology bug，不是單篇修補；影響所有採用「ltn / 媒體報導」當 verbatim source 的 audit；建議 distill 直接升 FACTCHECK Phase 4 hard rule）
+- **相關**：FACTCHECK-PIPELINE §Phase 3-4 / DNA #1, #16, #23（毒樹果實鏈 — 媒體編輯也是一種 paraphrase 污染） / MANIFESTO §10 幻覺鐵律 / 觀察者用 Google search results 截圖揪出 audit 錯的「外部視覺驗證」反射
 
 ### 2026-04-28 θ — X edit auto-replace pattern 第 3 次驗證
 
