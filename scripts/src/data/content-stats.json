@@ -4,7 +4,7 @@
     "Art": 103,
     "Culture": 177,
     "Economy": 187,
-    "Food": 117,
+    "Food": 118,
     "Geography": 60,
     "History": 133,
     "Language": 1,
@@ -184,7 +184,7 @@
     },
     {
       "date": "2026-04-28",
-      "count": 5
+      "count": 6
     }
   ],
   "updated": "2026-04-28"

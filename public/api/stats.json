@@ -1,8 +1,8 @@
 {
-  "totalArticles": 2282,
+  "totalArticles": 2283,
   "totalCategories": 21,
   "estimatedContributors": 57,
-  "totalTags": 5341,
+  "totalTags": 5344,
   "categories": [
     {
       "name": "History",
@@ -38,7 +38,7 @@
     },
     {
       "name": "Food",
-      "count": 43
+      "count": 44
     },
     {
       "name": "Economy",
@@ -172,13 +172,13 @@
     }
   ],
   "languageDistribution": {
-    "zh-TW": 2282,
+    "zh-TW": 2283,
     "en": 0
   },
-  "lastUpdated": "2026-04-28T00:38:43.185Z",
+  "lastUpdated": "2026-04-28T07:12:21.495Z",
   "stars": 958,
   "forks": 143,
-  "zhPages": 1871,
+  "zhPages": 1872,
   "enPages": 411,
-  "totalPages": 2282
+  "totalPages": 2283
 }
