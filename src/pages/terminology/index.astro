@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
 import { readdir, readFile } from 'fs/promises';
 import { resolve, join } from 'path';
 
@@ -179,50 +180,56 @@ const termsJSON = JSON.stringify(terms);
 -->
 <Layout title="📖 用語保存計畫 — Taiwan.md">
   <main class="term-page flex min-h-screen flex-col bg-[#f8f8f8]">
-    <!-- ── Header ─────────────────────────────────────────────── -->
-    <div
-      class="bg-[#1a1a2e] px-[var(--space-page-x,2rem)] pb-8 pt-10 text-white max-[640px]:px-4 max-[640px]:pb-5 max-[640px]:pt-6"
+    <!-- ── Header（共用 PageHero 元件） ─────────────────────── -->
+    <PageHero
+      bgVariant="solid"
+      bgColor="#1a1a2e"
+      bgTone="dark"
+      titleVariant="inherit"
+      titleSize="md"
+      containerWidth="wide"
+      padding="default"
     >
-      <div class="mx-auto max-w-[72rem]">
-        <h1
-          class="m-0 mb-3 font-[var(--font-editorial,Georgia,serif)] text-[clamp(1.6rem,3.5vw,2.4rem)] font-extrabold leading-[1.2] -tracking-[0.01em]"
+      <Fragment slot="title">
+        📖 用語保存計畫
+        <span
+          class="mt-[0.2em] block font-[var(--font-ui,system-ui,sans-serif)] text-[0.45em] font-normal tracking-[0.04em] opacity-[0.65]"
+          >Terminology Preservation</span
         >
-          📖 用語保存計畫 <span
-            class="mt-[0.2em] block font-[var(--font-ui,system-ui,sans-serif)] text-[0.62em] font-normal tracking-[0.04em] opacity-[0.65]"
-            >Terminology Preservation</span
-          >
-        </h1>
-        <p
-          class="m-0 mb-5 max-w-[42rem] text-[clamp(0.9rem,1.8vw,1.05rem)] leading-[1.65] opacity-[0.82]"
+      </Fragment>
+      <Fragment slot="subtitle">
+        Taiwan.md
+        的文字應該讀起來像在台灣長大的人寫的——這不是政治立場，是生活經驗的真實性。
+      </Fragment>
+      <Fragment slot="meta">
+        <span class="[&_strong]:text-[1.05em] [&_strong]:text-white"
+          ><strong>{totalTerms}</strong> 個詞條</span
         >
-          Taiwan.md
-          的文字應該讀起來像在台灣長大的人寫的——這不是政治立場，是生活經驗的真實性。
-        </p>
-        <div class="flex flex-wrap items-center justify-between gap-3">
-          <div
-            class="flex flex-wrap items-center gap-[0.6rem] text-[0.9rem] opacity-75 [&_strong]:text-[1.05em] [&_strong]:text-white [&_strong]:opacity-100"
-          >
-            <span><strong>{totalTerms}</strong> 個詞條</span>
-            <span class="opacity-40">|</span>
-            <span><strong>6</strong> 種分歧類型</span>
-            <span class="opacity-40">|</span>
-            <span><strong>{totalSources}</strong> 個來源</span>
-          </div>
-          <a
-            href="/terminology/converter"
-            class="inline-flex items-center gap-[0.4rem] whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-4 py-[0.45rem] text-[0.88rem] font-semibold text-white no-underline transition-[background,border-color] duration-150 hover:border-white/40 hover:bg-white/20 hover:no-underline"
-          >
-            🔄 用語轉換器 →
-          </a>
-          <a
-            href="/fork-graph"
-            class="inline-flex items-center gap-[0.4rem] whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-4 py-[0.45rem] text-[0.88rem] font-semibold text-white no-underline transition-[background,border-color] duration-150 hover:border-white/40 hover:bg-white/20 hover:no-underline"
-          >
-            🌿 語言分支樹 →
-          </a>
-        </div>
+        <span class="opacity-40">｜</span>
+        <span class="[&_strong]:text-[1.05em] [&_strong]:text-white"
+          ><strong>6</strong> 種分歧類型</span
+        >
+        <span class="opacity-40">｜</span>
+        <span class="[&_strong]:text-[1.05em] [&_strong]:text-white"
+          ><strong>{totalSources}</strong> 個來源</span
+        >
+      </Fragment>
+
+      <div class="mt-6 flex flex-wrap justify-center gap-2">
+        <a
+          href="/terminology/converter"
+          class="inline-flex items-center gap-[0.4rem] whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-4 py-[0.45rem] text-[0.88rem] font-semibold text-white no-underline transition-[background,border-color] duration-150 hover:border-white/40 hover:bg-white/20 hover:no-underline"
+        >
+          🔄 用語轉換器 →
+        </a>
+        <a
+          href="/fork-graph"
+          class="inline-flex items-center gap-[0.4rem] whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-4 py-[0.45rem] text-[0.88rem] font-semibold text-white no-underline transition-[background,border-color] duration-150 hover:border-white/40 hover:bg-white/20 hover:no-underline"
+        >
+          🌿 語言分支樹 →
+        </a>
       </div>
-    </div>
+    </PageHero>
 
     <!-- ── Filter bar ─────────────────────────────────────────── -->
     <div

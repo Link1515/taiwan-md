@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
 import { readdir, readFile } from 'fs/promises';
 import { resolve, join } from 'path';
 import { parse as parseYaml } from 'yaml';
@@ -205,30 +206,34 @@ const reverseRulesJSON = JSON.stringify(reverseRules);
     - .opencc-ready / .opencc-failed state classes (JS-toggled)
   -->
   <main class="flex min-h-screen flex-col bg-[#f8f8f8]">
-    <!-- ── Header ──────────────────────────────────────────────────── -->
-    <div
-      class="bg-[#1a1a2e] px-[var(--space-page-x,2rem)] pb-8 pt-10 text-white"
+    <!-- ── Header（共用 PageHero 元件） ─────────────────────────── -->
+    <PageHero
+      bgVariant="solid"
+      bgColor="#1a1a2e"
+      bgTone="dark"
+      titleVariant="inherit"
+      titleSize="md"
+      containerWidth="wide"
+      padding="default"
     >
-      <div class="mx-auto max-w-[72rem]">
-        <h1
-          class="m-0 mb-3 font-[var(--font-editorial,Georgia,serif)] text-[clamp(1.6rem,3.5vw,2.4rem)] font-extrabold leading-[1.2] -tracking-[0.01em]"
+      <Fragment slot="title">
+        台灣用語轉換器
+        <span
+          class="mt-[0.2em] block font-[var(--font-ui,system-ui,sans-serif)] text-[0.45em] font-normal tracking-[0.04em] opacity-[0.65]"
+          >Taiwan Terminology Converter</span
         >
-          台灣用語轉換器 <span
-            class="mt-[0.2em] block font-[var(--font-ui,system-ui,sans-serif)] text-[0.62em] font-normal tracking-[0.04em] opacity-[0.65]"
-            >Taiwan Terminology Converter</span
-          >
-        </h1>
-        <p
-          id="header-tagline"
-          class="m-0 mb-5 max-w-[42rem] text-[clamp(0.9rem,1.8vw,1.05rem)] leading-[1.65] opacity-[0.82]"
+      </Fragment>
+      <Fragment slot="subtitle">
+        <span id="header-tagline"
+          >把中國用語轉換為台灣用語——不只是字形，是語感。</span
         >
-          把中國用語轉換為台灣用語——不只是字形，是語感。
-        </p>
+      </Fragment>
 
-        <!-- ── Direction toggle ──────────────────────────────────────── -->
+      <!-- 方向 toggle + 規則數 + 導航按鈕 — 全部進 default slot -->
+      <div class="mt-6 flex flex-col items-center gap-4">
         <div
           id="direction-toggle"
-          class="mb-5 inline-flex items-stretch overflow-hidden rounded-lg border border-white/25 text-[0.85rem]"
+          class="inline-flex items-stretch overflow-hidden rounded-lg border border-white/25 text-[0.85rem]"
           role="tablist"
           aria-label="轉換方向"
         >
@@ -236,39 +241,38 @@ const reverseRulesJSON = JSON.stringify(reverseRules);
             data-dir="cn2tw"
             class="dir-btn cursor-pointer border-0 bg-white/15 px-[1rem] py-[0.45rem] font-semibold text-white transition-[background] duration-150 hover:bg-white/25 aria-selected:bg-white aria-selected:text-[#1a1a2e] aria-selected:hover:bg-white"
             aria-selected="true"
-            role="tab">🇨🇳 → 🇹🇼 中國 → 台灣</button
+            role="tab">中國 → 台灣</button
           >
           <button
             data-dir="tw2cn"
             class="dir-btn cursor-pointer border-0 border-l border-white/25 bg-white/15 px-[1rem] py-[0.45rem] font-semibold text-white transition-[background] duration-150 hover:bg-white/25 aria-selected:bg-white aria-selected:text-[#1a1a2e] aria-selected:hover:bg-white"
             aria-selected="false"
-            role="tab">🇹🇼 → 🇨🇳 台灣 → 中國</button
+            role="tab">台灣 → 中國</button
           >
         </div>
 
-        <div class="flex flex-wrap items-center justify-between gap-3">
-          <div
-            class="flex items-center gap-[0.6rem] text-[0.9rem] opacity-80 [&_strong]:text-white [&_strong]:opacity-100"
+        <div
+          class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[0.9rem] opacity-80 [&_strong]:text-white [&_strong]:opacity-100"
+        >
+          <span id="rule-count-display"
+            ><strong>{rules.length}</strong> 條轉換規則</span
           >
-            <span id="rule-count-display"
-              ><strong>{rules.length}</strong> 條轉換規則</span
-            >
-          </div>
-          <div class="flex flex-wrap gap-2">
-            <a
-              href="/terminology"
-              class="inline-flex items-center gap-[0.4rem] whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-4 py-[0.45rem] text-[0.88rem] font-semibold text-white no-underline transition-[background,border-color] duration-150 hover:border-white/40 hover:bg-white/20 hover:no-underline"
-              >← 回到詞庫</a
-            >
-            <a
-              href="/fork-graph"
-              class="inline-flex items-center gap-[0.4rem] whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-4 py-[0.45rem] text-[0.88rem] font-semibold text-white no-underline transition-[background,border-color] duration-150 hover:border-white/40 hover:bg-white/20 hover:no-underline"
-              >🌿 語言分支樹</a
-            >
-          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2">
+          <a
+            href="/terminology"
+            class="inline-flex items-center gap-[0.4rem] whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-4 py-[0.45rem] text-[0.88rem] font-semibold text-white no-underline transition-[background,border-color] duration-150 hover:border-white/40 hover:bg-white/20 hover:no-underline"
+            >← 回到詞庫</a
+          >
+          <a
+            href="/fork-graph"
+            class="inline-flex items-center gap-[0.4rem] whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-4 py-[0.45rem] text-[0.88rem] font-semibold text-white no-underline transition-[background,border-color] duration-150 hover:border-white/40 hover:bg-white/20 hover:no-underline"
+            >🌿 語言分支樹</a
+          >
         </div>
       </div>
-    </div>
+    </PageHero>
 
     <!-- ── Main converter area ─────────────────────────────────────── -->
     <div class="flex-1 px-[var(--space-page-x,2rem)] py-8">
